@@ -15,12 +15,12 @@
                 {{ p.title }}
             </button>
             <button ion-item (click)="MyChannelItemHandler()"> <ion-icon item-start name="contact" color="isActive(this)"></ion-icon> Mi canal</button>
-            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Mis Videos</ion-item>
-            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Suscripciones</ion-item>
-            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Notificaciones</ion-item>
-            <button ion-item (click)="SettingsItemHandler()"> <ion-icon item-start name="settings"></ion-icon> Configuración de usuario</button>
-            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de perfil de usuario</ion-item>
-            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de filtros</ion-item>
+            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()"> <ion-icon name="film"></ion-icon>  Mis Videos</ion-item>
+            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()"> <ion-icon name="people"></ion-icon> Suscripciones</ion-item>
+            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()"> <ion-icon name="chatbubbles"></ion-icon> Notificaciones</ion-item>
+            <button ion-item (click)="SettingsItemHandler()"> <ion-icon item-start name="settings"></ion-icon> Configuración de Usuario</button>
+            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()"> <ion-icon name="person"></ion-icon> Config de Perfil de Usuario</ion-item>
+            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()"> <ion-icon name="eye-off"></ion-icon> Config de Filtros</ion-item>
           <!-- other menu items will go here -->
           </ion-list>
     <ion-list>
