@@ -38,6 +38,7 @@ viUCAB/\.directory
 
 viucab_maven/classes/*
 vitucab_maven/target/*
+vitucab_maven/Viucab.iml
 *.log
 
 viucab_maven/out/artifacts/fitucab_war_exploded/
