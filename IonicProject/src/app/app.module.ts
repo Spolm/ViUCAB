@@ -5,10 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 
+import { PopOverListasReproduccionPage} from '../pages/Modulo 2/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
+
 
 @NgModule({
   declarations: [
-    MyApp
+    MyApp,
+    PopOverListasReproduccionPage
  
   ],
   imports: [
@@ -17,7 +20,8 @@ import { MyApp } from './app.component';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    PopOverListasReproduccionPage
   ],
   providers: [
     StatusBar,
