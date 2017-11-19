@@ -1,0 +1,32 @@
+<ion-menu [content]="content">
+  <ion-header>
+      <ion-navbar color="morado2">
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+    </ion-navbar>
+  </ion-header>
+ 
+  <ion-content>
+      <ion-list id="sidenav">
+          <!-- other menu items will go here -->
+            <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" >
+                <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>
+                {{ p.title }}
+            </button>
+            <button ion-item (click)="MyChannelItemHandler()"> <ion-icon item-start name="contact" color="isActive(this)"></ion-icon> Mi canal</button>
+            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Mis Videos</ion-item>
+            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Suscripciones</ion-item>
+            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Notificaciones</ion-item>
+            <button ion-item (click)="SettingsItemHandler()"> <ion-icon item-start name="settings"></ion-icon> Configuración de usuario</button>
+            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de perfil de usuario</ion-item>
+            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de filtros</ion-item>
+          <!-- other menu items will go here -->
+          </ion-list>
+    <ion-list>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+ 
+<!-- main navigation -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>
