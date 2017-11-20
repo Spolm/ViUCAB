@@ -6,11 +6,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import {EditListPage} from "../pages/Modulo 2/listas/edit-list/edit-list";
 
+import { PopOverListasReproduccionPage} from '../pages/Modulo 2/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
+
 
 @NgModule({
   declarations: [
     MyApp,
-    EditListPage
+    EditListPage,
+    PopOverListasReproduccionPage
 
   ],
   imports: [
@@ -20,7 +23,8 @@ import {EditListPage} from "../pages/Modulo 2/listas/edit-list/edit-list";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    EditListPage
+    EditListPage,
+    PopOverListasReproduccionPage
   ],
   providers: [
     StatusBar,
