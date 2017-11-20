@@ -4,41 +4,59 @@
       <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    </ion-buttons>
+  </ion-buttons>
     <ion-title>
-      Configuración de Notificaciones
-      <ion-buttons class='centrado-porcentual'>
-      </ion-buttons>
-
+      Configuración
     </ion-title>
-
   </ion-navbar>
 </ion-header>
-
-<ion-content padding>
-  <ion-list>
-    <ion-item-group>
-      <ion-list-header>Configuración</ion-list-header>
-      <ion-item>
-        <ion-label>Notificaciones</ion-label>
-        <ion-toggle enabled checked="false"></ion-toggle>
-      </ion-item>
-      <ion-item>
-        <ion-label>Boletin Semanal</ion-label>
-        <ion-toggle enabled checked="false"></ion-toggle>
-      </ion-item>
-    </ion-item-group>
-    <ion-item-group>
-      <ion-list-header>Estoy de acuerdo con recibir notificaciones a mi correo electrónico</ion-list-header>
-      <ion-list-header>Preferencias</ion-list-header>
-      <ion-item>
-        <ion-label>Subscripciones</ion-label>
-        <ion-toggle enabled checked="false"></ion-toggle>
-      </ion-item>
-      <ion-item>
-        <ion-label>Recomendados</ion-label>
-        <ion-toggle enabled checked="false"></ion-toggle>
-      </ion-item>
-    </ion-item-group>
-  </ion-list>
+<ion-content padding id="page3">
+  <div id="titulo" class="show-list-numbers-and-dots">
+      <strong>
+        Configuración de Notificaciones
+      </strong>
+  </div>
+  <form id="configuracion-form">
+    <ion-item id="notificaciones-toggle">
+      <ion-label>
+        Notificaciones
+      </ion-label>
+      <ion-toggle color="positive" checked="true"></ion-toggle>
+    </ion-item>
+    <ion-item id="noletin-toggle">
+      <ion-label>
+        Boletín Semanal
+      </ion-label>
+      <ion-toggle color="positive" checked="true"></ion-toggle>
+    </ion-item>
+    <div id="mensaje" class="show-list-numbers-and-dots">
+        <strong>
+          Acepto recibir notificaciones a mi correo electrónico
+        </strong>
+    </div>
+    <ion-item id="videos-toggle">
+      <ion-label>
+        Videos Recomendados
+      </ion-label>
+      <ion-toggle color="positive" checked="false"></ion-toggle>
+    </ion-item>
+    <ion-item id="subscripciones-toggle">
+      <ion-label>
+        Videos de Subscripciones
+      </ion-label>
+      <ion-toggle color="positive" checked="false"></ion-toggle>
+    </ion-item>
+    <ion-item id="etiquetados-toggle">
+      <ion-label>
+        Videos Etiquetados
+      </ion-label>
+      <ion-toggle color="positive" checked="false"></ion-toggle>
+    </ion-item>
+    <ion-item id="estadisticas-toggle">
+      <ion-label>
+        Estadísticas de Usuario
+      </ion-label>
+      <ion-toggle color="positive" checked="false"></ion-toggle>
+    </ion-item>
+  </form>
 </ion-content>

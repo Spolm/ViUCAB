@@ -1,14 +1,14 @@
 webpackJsonp([7],{
 
-/***/ 264:
+/***/ 573:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EstadisticaPageModule", function() { return EstadisticaPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__estadistica__ = __webpack_require__(275);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InicioPageModule", function() { return InicioPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__inicio__ = __webpack_require__(585);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EstadisticaPageModule = (function () {
-    function EstadisticaPageModule() {
+var InicioPageModule = (function () {
+    function InicioPageModule() {
     }
-    return EstadisticaPageModule;
+    return InicioPageModule;
 }());
-EstadisticaPageModule = __decorate([
+InicioPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__estadistica__["a" /* EstadisticaPage */],
+            __WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__estadistica__["a" /* EstadisticaPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__inicio__["a" /* InicioPage */]),
         ],
     })
-], EstadisticaPageModule);
+], InicioPageModule);
 
-//# sourceMappingURL=estadistica.module.js.map
+//# sourceMappingURL=inicio.module.js.map
 
 /***/ }),
 
-/***/ 275:
+/***/ 585:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EstadisticaPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InicioPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,29 +57,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the EstadisticaPage page.
+ * Generated class for the InicioPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var EstadisticaPage = (function () {
-    function EstadisticaPage(navCtrl, navParams) {
+var InicioPage = (function () {
+    function InicioPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
-    EstadisticaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad EstadisticaPage');
+    InicioPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad InicioPage');
     };
-    return EstadisticaPage;
+    return InicioPage;
 }());
-EstadisticaPage = __decorate([
+InicioPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-estadistica',template:/*ion-inline-start:"C:\Users\veron\Documents\Desarrollo\IonicProject\src\pages\Modulo 2\estadistica\estadistica.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons start>\n      <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n    <ion-title>\n      <ion-icon name="logo-youtube"> ViUCAB</ion-icon>\n      <ion-buttons class= \'centrado-porcentual\'  >\n          <button  >\n        <ion-icon name="videocam" color="primary"></ion-icon>   \n      </button>\n      </ion-buttons>   \n    \n    </ion-title>\n    \n  </ion-navbar>\n</ion-header>\n \n<ion-content padding>\n   \n  \n\n     \n</ion-content>'/*ion-inline-end:"C:\Users\veron\Documents\Desarrollo\IonicProject\src\pages\Modulo 2\estadistica\estadistica.html"*/,
+        selector: 'page-inicio',template:/*ion-inline-start:"C:\Users\veron\Documents\Desarrollo\ViUCAB\IonicProject\src\pages\Modulo 2\inicio\inicio.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons start>\n      <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n    <ion-title>\n      <ion-icon name="logo-youtube"> ViUCAB</ion-icon>\n      <ion-buttons class= \'centrado-porcentual\'  >\n          <button  >\n        <ion-icon name="videocam" color="primary"></ion-icon>   \n      </button>\n      </ion-buttons>   \n    \n    </ion-title>\n    \n  </ion-navbar>\n</ion-header>\n \n<ion-content padding>\n   \n  \n\n     \n</ion-content>'/*ion-inline-end:"C:\Users\veron\Documents\Desarrollo\ViUCAB\IonicProject\src\pages\Modulo 2\inicio\inicio.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-], EstadisticaPage);
+], InicioPage);
 
-//# sourceMappingURL=estadistica.js.map
+//# sourceMappingURL=inicio.js.map
 
 /***/ })
 

@@ -4,19 +4,20 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
-import {NotificacionesPage} from '../pages/notificaciones/notificaciones';
-import {ConfiguracionNotificacionesPage} from '../pages/configuracion-notificaciones/configuracion-notificaciones';
+import { HttpModule } from '@angular/http';
+import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notificaciones/configuracion-notificaciones';
 
 @NgModule({
   declarations: [
     MyApp,
     NotificacionesPage,
     ConfiguracionNotificacionesPage
- 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

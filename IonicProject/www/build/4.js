@@ -1,14 +1,14 @@
 webpackJsonp([4],{
 
-/***/ 273:
+/***/ 576:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuPageModule", function() { return MenuPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu__ = __webpack_require__(282);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PopOverListasReproduccionPageModule", function() { return PopOverListasReproduccionPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pop_over_listas_reproduccion__ = __webpack_require__(588);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,35 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var MenuPageModule = (function () {
-    function MenuPageModule() {
+var PopOverListasReproduccionPageModule = (function () {
+    function PopOverListasReproduccionPageModule() {
     }
-    return MenuPageModule;
+    return PopOverListasReproduccionPageModule;
 }());
-MenuPageModule = __decorate([
+PopOverListasReproduccionPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__menu__["a" /* MenuPage */],
+            __WEBPACK_IMPORTED_MODULE_2__pop_over_listas_reproduccion__["a" /* PopOverListasReproduccionPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* MenuPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__pop_over_listas_reproduccion__["a" /* PopOverListasReproduccionPage */]),
         ],
     })
-], MenuPageModule);
+], PopOverListasReproduccionPageModule);
 
-//# sourceMappingURL=menu.module.js.map
+//# sourceMappingURL=pop-over-listas-reproduccion.module.js.map
 
 /***/ }),
 
-/***/ 282:
+/***/ 588:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__notificaciones_notificaciones__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__configuracion_notificaciones_configuracion_notificaciones__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(39);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PopOverListasReproduccionPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,88 +54,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-//Modificado por Modulo 10
 
 
-
-
-var MenuPage = (function () {
-    function MenuPage(navCtrl) {
+/**
+ * Generated class for the PopOverListasReproduccionPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var PopOverListasReproduccionPage = (function () {
+    function PopOverListasReproduccionPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
-        // Basic root for our content view
-        this.rootPage = 'TabsPage';
-        this.pages = [
-            { title: 'Inicio', pageName: 'TabsPage', tabComponent: 'InicioPage', index: 0, icon: 'home' },
-            //Aqui van los links de las paginas principales de los demas grupos
-            //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
-            //{ title: 'Mi canal', pageName: 'CanalPage', icon: 'play' },
-            { title: 'Mis listas', pageName: 'ListasPage', icon: 'star-half' },
-            { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
-        ];
-        //Fin Modificado por Modulo 10
-        this.MyChannelSubmenu = false;
-        this.SettingsSubmenu = false;
+        this.navParams = navParams;
     }
-    MenuPage.prototype.openPage = function (page) {
-        var params = {};
-        // The index is equal to the order of our tabs inside tabs.ts
-        if (page.index) {
-            params = { tabIndex: page.index };
-        }
-        // The active child nav is our Tabs Navigation
-        if (this.nav.getActiveChildNav() && page.index != undefined) {
-            this.nav.getActiveChildNav().select(page.index);
-        }
-        else {
-            // Tabs are not active, so reset the root page 
-            // In this case: moving to or from SpecialPage
-            this.nav.setRoot(page.pageName, params);
-        }
+    PopOverListasReproduccionPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad PopOverListasReproduccionPage');
     };
-    MenuPage.prototype.isActive = function (page) {
-        // Again the Tabs Navigation
-        var childNav = this.nav.getActiveChildNav();
-        if (childNav) {
-            if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
-                return 'secondary';
-            }
-            return;
-        }
-        // Fallback needed when there is no active childnav (tabs not active)
-        if (this.nav.getActive() && this.nav.getActive().name === page.pageName) {
-            return 'secondary';
-        }
-        return;
-    };
-    //Modificado por Modulo 10
-    MenuPage.prototype.openNotificaciones = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_0__notificaciones_notificaciones__["a" /* NotificacionesPage */]);
-    };
-    MenuPage.prototype.openConNotificaciones = function () {
-        this.nav.push(__WEBPACK_IMPORTED_MODULE_1__configuracion_notificaciones_configuracion_notificaciones__["a" /* ConfiguracionNotificacionesPage */]);
-    };
-    MenuPage.prototype.MyChannelItemHandler = function () {
-        this.MyChannelSubmenu = !this.MyChannelSubmenu;
-        this.SettingsSubmenu = false;
-    };
-    MenuPage.prototype.SettingsItemHandler = function () {
-        this.SettingsSubmenu = !this.SettingsSubmenu;
-        this.MyChannelSubmenu = false;
-    };
-    return MenuPage;
+    return PopOverListasReproduccionPage;
 }());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_14" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* Nav */]),
-    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* Nav */])
-], MenuPage.prototype, "nav", void 0);
-MenuPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
-        selector: 'page-menu',template:/*ion-inline-start:"C:\Users\veron\Documents\Desarrollo\IonicProject\src\pages\Modulo 2\menu\menu.html"*/'<ion-menu [content]="content">\n  <ion-header>\n      <ion-navbar color="morado2">\n    <ion-toolbar>\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n    </ion-navbar>\n  </ion-header>\n \n  <ion-content>\n      <ion-list id="sidenav">\n          <!-- other menu items will go here -->\n            <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" >\n                <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>\n                {{ p.title }}\n            </button>\n            <button ion-item (click)="MyChannelItemHandler()"> <ion-icon item-start name="contact" color="isActive(this)"></ion-icon> Mi canal</button>\n            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Mis Videos</ion-item>\n            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Suscripciones</ion-item>\n            <button ion-item submenu-item menuClose *ngIf="MyChannelSubmenu" (click)="openNotificaciones()">Notificaciones</button>\n            <button ion-item (click)="SettingsItemHandler()"> <ion-icon item-start name="settings"></ion-icon> Configuración de usuario</button>\n            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de perfil de usuario</ion-item>\n            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de filtros</ion-item>\n            <button ion-item submenu-item menuClose *ngIf="SettingsSubmenu" (click)="openConNotificaciones()">Configuración de Notificaciones</button>\n          <!-- other menu items will go here -->\n          </ion-list>\n    <ion-list>\n    </ion-list>\n  </ion-content>\n</ion-menu>\n \n<!-- main navigation -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>'/*ion-inline-end:"C:\Users\veron\Documents\Desarrollo\IonicProject\src\pages\Modulo 2\menu\menu.html"*/,
+PopOverListasReproduccionPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-pop-over-listas-reproduccion',template:/*ion-inline-start:"C:\Users\veron\Documents\Desarrollo\ViUCAB\IonicProject\src\pages\Modulo 2\pop-over-listas-reproduccion\pop-over-listas-reproduccion.html"*/'<ion-list >\n    <ion-item>\n      <ion-grid>\n        <ion-row>\n          <ion-col col-4 class="nopadding">\n              <ion-icon class="f21 color-blue" ios="ios-create" md="md-create"></ion-icon>\n          </ion-col>\n          <ion-col col-8 class="nopadding" align="right">\n              Editar lista \n          </ion-col>\n        </ion-row>\n      </ion-grid>\n    \n    </ion-item>\n    <ion-item>\n        <ion-grid>\n          <ion-row>\n            <ion-col col-4 class="nopadding">\n                <ion-icon class="f21 color-blue" ios="ios-trash" md="md-trash"></ion-icon>\n            </ion-col>\n            <ion-col col-8 class="nopadding" align="right">\n                Eliminar lista \n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      \n      </ion-item>\n    \n  </ion-list>'/*ion-inline-end:"C:\Users\veron\Documents\Desarrollo\ViUCAB\IonicProject\src\pages\Modulo 2\pop-over-listas-reproduccion\pop-over-listas-reproduccion.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* NavController */]])
-], MenuPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
+], PopOverListasReproduccionPage);
 
-//# sourceMappingURL=menu.js.map
+//# sourceMappingURL=pop-over-listas-reproduccion.js.map
 
 /***/ })
 

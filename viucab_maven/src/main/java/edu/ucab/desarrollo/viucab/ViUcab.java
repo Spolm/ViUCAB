@@ -1,6 +1,7 @@
 package edu.ucab.desarrollo.viucab;
 
 import edu.ucab.desarrollo.viucab.webService.*;
+import edu.ucab.desarrollo.viucab.webService.M11_Estadistica.M11_Estadistica;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -14,6 +15,7 @@ public class ViUcab extends Application {
     public Set<Class<?>> getClasses() {
         HashSet h= new HashSet<Class<?>>();
         h.add(hola.class);
+        h.add(M11_Estadistica.class);
         return h;
     }
 }

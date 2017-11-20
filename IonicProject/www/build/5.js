@@ -1,14 +1,14 @@
 webpackJsonp([5],{
 
-/***/ 266:
+/***/ 575:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListasPageModule", function() { return ListasPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__listas__ = __webpack_require__(277);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MenuPageModule", function() { return MenuPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__menu__ = __webpack_require__(587);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var ListasPageModule = (function () {
-    function ListasPageModule() {
+var MenuPageModule = (function () {
+    function MenuPageModule() {
     }
-    return ListasPageModule;
+    return MenuPageModule;
 }());
-ListasPageModule = __decorate([
+MenuPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__listas__["a" /* ListasPage */],
+            __WEBPACK_IMPORTED_MODULE_2__menu__["a" /* MenuPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__listas__["a" /* ListasPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* MenuPage */]),
         ],
     })
-], ListasPageModule);
+], MenuPageModule);
 
-//# sourceMappingURL=listas.module.js.map
+//# sourceMappingURL=menu.module.js.map
 
 /***/ }),
 
-/***/ 277:
+/***/ 587:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListasPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(39);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MenuPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__notificaciones_notificaciones__ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__configuracion_notificaciones_configuracion_notificaciones__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_ionic_angular__ = __webpack_require__(54);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -54,32 +56,88 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+//Modificado por Modulo 10
 
 
-/**
- * Generated class for the ListasPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var ListasPage = (function () {
-    function ListasPage(navCtrl, navParams) {
+
+
+var MenuPage = (function () {
+    function MenuPage(navCtrl) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
+        // Basic root for our content view
+        this.rootPage = 'TabsPage';
+        this.pages = [
+            { title: 'Inicio', pageName: 'TabsPage', tabComponent: 'InicioPage', index: 0, icon: 'home' },
+            //Aqui van los links de las paginas principales de los demas grupos
+            //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
+            //{ title: 'Mi canal', pageName: 'CanalPage', icon: 'play' },
+            { title: 'Mis listas', pageName: 'ListasPage', icon: 'star-half' },
+            { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
+        ];
+        //Fin Modificado por Modulo 10
+        this.MyChannelSubmenu = false;
+        this.SettingsSubmenu = false;
     }
-    ListasPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad ListasPage');
+    MenuPage.prototype.openPage = function (page) {
+        var params = {};
+        // The index is equal to the order of our tabs inside tabs.ts
+        if (page.index) {
+            params = { tabIndex: page.index };
+        }
+        // The active child nav is our Tabs Navigation
+        if (this.nav.getActiveChildNav() && page.index != undefined) {
+            this.nav.getActiveChildNav().select(page.index);
+        }
+        else {
+            // Tabs are not active, so reset the root page 
+            // In this case: moving to or from SpecialPage
+            this.nav.setRoot(page.pageName, params);
+        }
     };
-    return ListasPage;
+    MenuPage.prototype.isActive = function (page) {
+        // Again the Tabs Navigation
+        var childNav = this.nav.getActiveChildNav();
+        if (childNav) {
+            if (childNav.getSelected() && childNav.getSelected().root === page.tabComponent) {
+                return 'secondary';
+            }
+            return;
+        }
+        // Fallback needed when there is no active childnav (tabs not active)
+        if (this.nav.getActive() && this.nav.getActive().name === page.pageName) {
+            return 'secondary';
+        }
+        return;
+    };
+    //Modificado por Modulo 10
+    MenuPage.prototype.openNotificaciones = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_0__notificaciones_notificaciones__["a" /* NotificacionesPage */]);
+    };
+    MenuPage.prototype.openConNotificaciones = function () {
+        this.nav.push(__WEBPACK_IMPORTED_MODULE_1__configuracion_notificaciones_configuracion_notificaciones__["a" /* ConfiguracionNotificacionesPage */]);
+    };
+    MenuPage.prototype.MyChannelItemHandler = function () {
+        this.MyChannelSubmenu = !this.MyChannelSubmenu;
+        this.SettingsSubmenu = false;
+    };
+    MenuPage.prototype.SettingsItemHandler = function () {
+        this.SettingsSubmenu = !this.SettingsSubmenu;
+        this.MyChannelSubmenu = false;
+    };
+    return MenuPage;
 }());
-ListasPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-listas',template:/*ion-inline-start:"C:\Users\veron\Documents\Desarrollo\IonicProject\src\pages\Modulo 2\listas\listas.html"*/'<ion-header>\n  <ion-navbar color="primary">\n    <ion-buttons start>\n      <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    </ion-buttons>\n    <ion-title>\n      <ion-icon name="logo-youtube"> ViUCAB</ion-icon>\n      <ion-buttons class= \'centrado-porcentual\'  >\n          <button  >\n        <ion-icon name="videocam" color="primary"></ion-icon>   \n      </button>\n      </ion-buttons>   \n    \n    </ion-title>\n    \n  </ion-navbar>\n</ion-header>\n \n<ion-content padding>\n   \n  \n\n     \n</ion-content>'/*ion-inline-end:"C:\Users\veron\Documents\Desarrollo\IonicProject\src\pages\Modulo 2\listas\listas.html"*/,
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["_14" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* Nav */]),
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_3_ionic_angular__["e" /* Nav */])
+], MenuPage.prototype, "nav", void 0);
+MenuPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_2__angular_core__["n" /* Component */])({
+        selector: 'page-menu',template:/*ion-inline-start:"C:\Users\veron\Documents\Desarrollo\ViUCAB\IonicProject\src\pages\Modulo 2\menu\menu.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n\n      <ion-navbar color="morado2">\n\n    <ion-toolbar>\n\n      <ion-title>Menu</ion-title>\n\n    </ion-toolbar>\n\n    </ion-navbar>\n\n  </ion-header>\n\n \n\n  <ion-content>\n\n      <ion-list id="sidenav">\n\n          <!-- other menu items will go here -->\n\n            <button ion-item menuClose *ngFor="let p of pages" (click)="openPage(p)" >\n\n                <ion-icon item-start [name]="p.icon" [color]="isActive(p)"></ion-icon>\n\n                {{ p.title }}\n\n            </button>\n\n            <button ion-item (click)="MyChannelItemHandler()"> <ion-icon item-start name="contact" color="isActive(this)"></ion-icon> Mi canal</button>\n\n            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Mis Videos</ion-item>\n\n            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Suscripciones</ion-item>\n\n            <button ion-item submenu-item menuClose *ngIf="MyChannelSubmenu" (click)="openNotificaciones()">Notificaciones</button>\n\n            <button ion-item (click)="SettingsItemHandler()"> <ion-icon item-start name="settings"></ion-icon> Configuración de usuario</button>\n\n            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de perfil de usuario</ion-item>\n\n            <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de filtros</ion-item>\n\n            <button ion-item submenu-item menuClose *ngIf="SettingsSubmenu" (click)="openConNotificaciones()">Configuración de Notificaciones</button>\n\n          <!-- other menu items will go here -->\n\n          </ion-list>\n\n    <ion-list>\n\n    </ion-list>\n\n  </ion-content>\n\n</ion-menu>\n\n \n\n<!-- main navigation -->\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>'/*ion-inline-end:"C:\Users\veron\Documents\Desarrollo\ViUCAB\IonicProject\src\pages\Modulo 2\menu\menu.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-], ListasPage);
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_3_ionic_angular__["f" /* NavController */]])
+], MenuPage);
 
-//# sourceMappingURL=listas.js.map
+//# sourceMappingURL=menu.js.map
 
 /***/ })
 
