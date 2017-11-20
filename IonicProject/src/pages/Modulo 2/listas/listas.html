@@ -34,21 +34,21 @@
 <ion-content padding>
 
 
-  <button ion-button (click)="goToEditList()">Editar</button>
+  <!-- <button ion-button (click)="goToEditList()">Editar</button>
 
-
+ -->
 
 
 
 <div [ngSwitch]="tab">
   <ion-list *ngSwitchCase="'mias'">
-    <ion-item *ngFor="let lista of ListasDeReproduccion">
-      <ion-thumbnail item-start id="List-img">
+    <ion-item *ngFor="let lista of ListasDeReproduccion" >
+      <ion-thumbnail item-start id="List-img" (click)="goToViewList()">
         <img [src]="lista.img">
       </ion-thumbnail>
       <ion-grid>
         <ion-row>
-          <ion-col col-11 class="nopadding">
+          <ion-col col-10 class="nopadding" (click)="goToViewList()">
             <ion-row >
               <div class="ellipsis">
                 <span class="List-title">{{lista.title}}</span>
@@ -62,7 +62,7 @@
               <span class="List-duration">{{lista.duration}}</span>
             </ion-row>
           </ion-col>
-          <ion-col col-1 class="nopadding" align="right">
+          <ion-col col-2 class="nopadding" align="right">
             <ion-icon class="f15 color-grey" (click)="presentPopover($event)"  ios="ios-more" md="md-more"></ion-icon>
           </ion-col>
         </ion-row>

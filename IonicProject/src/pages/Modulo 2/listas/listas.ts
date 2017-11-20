@@ -2,8 +2,9 @@ import {Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EditListPage} from "./edit-list/edit-list";
 import { PopoverController } from 'ionic-angular';
+import {ViewListPage} from "./view-list/view-list";
 
-import {PopOverListasReproduccionPage} from '../pop-over-listas-reproduccion/pop-over-listas-reproduccion';
+import {PopOverListasReproduccionPage} from '../listas/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 
 /**
  * Generated class for the ListasPage page.
@@ -42,8 +43,8 @@ export class ListasPage {
     });
   }
 
-  public goToEditList(){
-    this.navCtrl.push(EditListPage);
+  public goToViewList(){
+    this.navCtrl.push(ViewListPage);
   }
 
 }

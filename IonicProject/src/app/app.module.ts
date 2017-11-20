@@ -5,15 +5,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import {EditListPage} from "../pages/Modulo 2/listas/edit-list/edit-list";
+import {ViewListPage} from "../pages/Modulo 2/listas/view-list/view-list";
 
-import { PopOverListasReproduccionPage} from '../pages/Modulo 2/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
+import { PopOverListasReproduccionPage} from '../pages/Modulo 2/listas/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 
 
 @NgModule({
   declarations: [
     MyApp,
     EditListPage,
-    PopOverListasReproduccionPage
+    PopOverListasReproduccionPage,
+    ViewListPage
 
   ],
   imports: [
@@ -24,7 +26,8 @@ import { PopOverListasReproduccionPage} from '../pages/Modulo 2/pop-over-listas-
   entryComponents: [
     MyApp,
     EditListPage,
-    PopOverListasReproduccionPage
+    PopOverListasReproduccionPage,
+    ViewListPage
   ],
   providers: [
     StatusBar,
