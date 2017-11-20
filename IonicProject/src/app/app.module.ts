@@ -4,12 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
+import {EditListPage} from "../pages/Modulo 2/listas/edit-list/edit-list";
 
 
 @NgModule({
   declarations: [
-    MyApp
- 
+    MyApp,
+    EditListPage
+
   ],
   imports: [
     BrowserModule,
@@ -17,7 +19,8 @@ import { MyApp } from './app.component';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp
+    MyApp,
+    EditListPage
   ],
   providers: [
     StatusBar,
