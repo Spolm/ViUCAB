@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the PopOverListasReproduccionPage page.
+ * Generated class for the EditListPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-pop-over-listas-reproduccion',
-  templateUrl: 'pop-over-listas-reproduccion.html',
+  selector: 'page-edit-list',
+  templateUrl: 'edit-list.html',
 })
-export class PopOverListasReproduccionPage {
+export class EditListPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PopOverListasReproduccionPage');
+    console.log('ionViewDidLoad EditListPage');
   }
 
 }
