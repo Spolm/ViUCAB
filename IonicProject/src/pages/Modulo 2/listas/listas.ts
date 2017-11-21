@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EditListPage} from "./edit-list/edit-list";
 import { PopoverController } from 'ionic-angular';
 import {ViewListPage} from "./view-list/view-list";
+import {CreateNewListPage} from "./create-new-list/create-new-list";
 
 import {PopOverListasReproduccionPage} from '../listas/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 
@@ -45,6 +46,10 @@ export class ListasPage {
 
   public goToViewList(){
     this.navCtrl.push(ViewListPage);
+  }
+
+  public goToCreateNewList(){
+    this.navCtrl.push(CreateNewListPage);
   }
 
 }
