@@ -5,6 +5,7 @@ import { PopoverController } from 'ionic-angular';
 import {ViewListPage} from "./view-list/view-list";
 
 import {PopOverListasReproduccionPage} from '../listas/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
+import {AddListPage} from "./add-list/add-list";
 
 /**
  * Generated class for the ListasPage page.
@@ -27,6 +28,7 @@ export class ListasPage {
     { title: 'Lista numero 3', amount: '1', duration: '39:05 min' , img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho'},
   ];
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController) {
   }
 
@@ -45,6 +47,10 @@ export class ListasPage {
 
   public goToViewList(){
     this.navCtrl.push(ViewListPage);
+  }
+
+  public goToAddList(){
+    this.navCtrl.push(AddListPage);
   }
 
 }
