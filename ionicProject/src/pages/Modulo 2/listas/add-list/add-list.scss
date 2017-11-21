@@ -1,0 +1,39 @@
+page-add-list {
+
+}
+
+.bottonAddNewList{
+  position: absolute;
+  bottom: 20px;
+  width: 50%;
+  left: 25%;
+}
+
+.List-title-soft{
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.List-title{
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.List-amount{
+  font-weight: 100;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.ellipsis{
+  width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.custom-icon {
+  font-size: 25px;
+  color : skyblue;
+}

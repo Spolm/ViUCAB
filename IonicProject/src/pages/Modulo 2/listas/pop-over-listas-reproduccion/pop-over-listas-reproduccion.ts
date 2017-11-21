@@ -1,10 +1,9 @@
-import {Component, ViewChild} from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {EditListPage} from "../listas/edit-list/edit-list";
-
+import {EditListPage} from "../edit-list/edit-list";
 
 /**
- * Generated class for the InicioPage page.
+ * Generated class for the PopOverListasReproduccionPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -12,22 +11,20 @@ import {EditListPage} from "../listas/edit-list/edit-list";
 
 @IonicPage()
 @Component({
-  selector: 'page-inicio',
-  templateUrl: 'inicio.html',
+  selector: 'page-pop-over-listas-reproduccion',
+  templateUrl: 'pop-over-listas-reproduccion.html',
 })
-export class InicioPage {
+export class PopOverListasReproduccionPage {
 
-  @ViewChild('myNav') nav: NavController
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad InicioPage');
+    console.log('ionViewDidLoad PopOverListasReproduccionPage');
   }
 
   public goToEditList(){
     this.navCtrl.push(EditListPage);
   }
-
 
 }
