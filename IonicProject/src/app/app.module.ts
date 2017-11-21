@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import {EditListPage} from "../pages/Modulo 2/listas/edit-list/edit-list";
 import {ViewListPage} from "../pages/Modulo 2/listas/view-list/view-list";
+import {CreateNewList} from "../pages/Modulo 2/listas/create-new-list/create-new-list";
 
 import { PopOverListasReproduccionPage} from '../pages/Modulo 2/listas/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 
