@@ -1,6 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {EditListPage} from "../listas/edit-list/edit-list";
 
 
 /**
@@ -23,10 +22,6 @@ export class InicioPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad InicioPage');
-  }
-
-  public goToEditList(){
-    this.navCtrl.push(EditListPage);
   }
 
 
