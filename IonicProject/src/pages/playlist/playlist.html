@@ -1,0 +1,146 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+
+      <ion-buttons class='centrado-porcentual'>
+        <button>
+          <ion-icon name="videocam" color="primary"></ion-icon>
+        </button>
+      </ion-buttons>
+      Listas de Reproducción
+
+
+    </ion-title>
+
+  </ion-navbar>
+
+  <div>
+    <ion-segment [(ngModel)]="tab">
+      <ion-segment-button value="mias">
+        MIAS
+      </ion-segment-button>
+      <ion-segment-button value="sugeridas">
+        SUGERIDAS
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content padding>
+
+
+  <!-- <button ion-button (click)="goToEditList()">Editar</button>
+
+ -->
+
+
+
+<div [ngSwitch]="tab">
+  <ion-list *ngSwitchCase="'mias'">
+
+    <button ion-button (click)="goToAddList()" >Agregar Lista</button>
+
+    <ion-item *ngFor="let lista of ListasDeReproduccion" >
+      <ion-thumbnail item-start id="List-img" (click)="goToViewList()">
+        <img [src]="lista.img">
+      </ion-thumbnail>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-10 class="nopadding" (click)="goToViewList()">
+            <ion-row >
+              <div class="ellipsis">
+                <span class="List-title">{{lista.title}}</span>
+              </div>
+
+            </ion-row>
+            <ion-row>
+              <span class="List-amount">{{lista.amount}} videos</span>
+            </ion-row>
+            <ion-row>
+              <span class="List-duration">{{lista.duration}}</span>
+            </ion-row>
+          </ion-col>
+          <ion-col col-2 class="nopadding" align="right">
+            <ion-icon class="f15 color-grey" (click)="presentPopover($event)"  ios="ios-more" md="md-more"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+  </ion-list>
+
+  <ion-list no-lines *ngSwitchCase="'sugeridas'">
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-icon name="american-football" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Deportes</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-icon name="game-controller-b" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Videojuegos</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-icon ios="ios-musical-notes" md="md-musical-notes" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Música</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-icon name="happy" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Comedia</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-icon name="color-palette" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Arte</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+</div>
+
+</ion-content>
