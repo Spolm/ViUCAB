@@ -2,7 +2,7 @@ import { InicioPage } from './../inicio/inicio';
 import {TendenciasPage } from './../tendencias/tendencias';
 import {SuscripcionesPage} from './../suscripciones/suscripciones';
 import {UsuarioPage} from './../usuario/usuario';
-import {CanalPage} from './../canal/canal';
+import {InfovideoPage} from './../../Modulo3/infovideo/infovideo';
 import {ListasPage} from './../listas/listas';
 import {EstadisticaPage} from './../estadistica/estadistica';
 import { TabsPage } from './../tabs/tabs';
@@ -33,8 +33,8 @@ export class MenuPage {
     { title: 'Inicio', pageName: 'TabsPage', tabComponent: 'InicioPage', index: 0, icon: 'home' },
     //Aqui van los links de las paginas principales de los demas grupos
     //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
-    //{ title: 'Mi canal', pageName: 'CanalPage', icon: 'play' },
-    { title: 'Mis listas', pageName: 'ListasPage', icon: 'star-half' },
+    { title: 'Mis videos', pageName: 'InfovideoPage', icon: 'play' },
+    { title: 'Mis listas', pageName: 'PlaylistPage', icon: 'star-half' },
     { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
   ];
  
