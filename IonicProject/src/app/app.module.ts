@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
+
 import {EditListPage} from "../pages/playlist/edit-list/edit-list";
 import {ViewListPage} from "../pages/playlist/view-list/view-list";
 import {CreateNewListPage} from "../pages/playlist/create-new-list/create-new-list";
@@ -17,7 +18,8 @@ import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-
     EditListPage,
     PopOverListasReproduccionPage,
     ViewListPage,
-    AddListPage
+    AddListPage,
+    CreateNewListPage
 
   ],
   imports: [
@@ -30,7 +32,8 @@ import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-
     EditListPage,
     PopOverListasReproduccionPage,
     ViewListPage,
-    AddListPage
+    AddListPage,
+    CreateNewListPage
   ],
   providers: [
     StatusBar,
