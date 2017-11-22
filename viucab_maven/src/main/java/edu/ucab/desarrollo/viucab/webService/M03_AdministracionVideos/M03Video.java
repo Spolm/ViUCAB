@@ -1,14 +1,7 @@
-package edu.ucab.desarrollo.viucab.webService.M03_AdministraconVideos;
+package edu.ucab.desarrollo.viucab.webService.M03_AdministracionVideos;
 
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
-
-import javax.ws.rs.*;
-import java.sql.Connection;
-
-import com.google.gson.Gson;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
-
 import javax.ws.rs.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,43 +18,43 @@ public class M03Video {
     public String addVideo(/*@QueryParam("valor") String valor*/){
 
 
-        return "";
+        return gson.toJson("addVideo");
     }
 
     @POST
     @Path("/update")
     @Produces("application/json")
-    public String updateVideo(@QueryParam("videoId") String videoId){
+    public String updateVideo(/*@QueryParam("videoId") String videoId*/){
 
 
-        return "";
+        return gson.toJson("updateVideo");
     }
 
     @GET
     @Path("/get")
     @Produces("application/json")
-    public String getVideo(@QueryParam("videoId") String videoId){
+    public String getVideo(/*@QueryParam("videoId") String videoId*/){
 
 
-        return "";
+        return gson.toJson("getVideo");
     }
 
     @GET
     @Path("/getAll")
     @Produces("application/json")
-    public String getAllVideoFromUser(@QueryParam("userID") String userID){
+    public String getAllVideoFromUser(/*@QueryParam("userID") String userID*/){
 
 
-        return "";
+        return gson.toJson("getAllFromUser");
     }
 
-    @GET
+    @DELETE
     @Path("/delete")
     @Produces("application/json")
-    public String deleteVideo(@QueryParam("videoId") String videoId){
+    public String deleteVideo(/*@QueryParam("videoId") String videoId*/){
 
 
-        return "";
+        return gson.toJson("DeleteVideo");
     }
 
 
