@@ -10,7 +10,7 @@ import {ViewListPage} from "../pages/playlist/view-list/view-list";
 import {CreateNewListPage} from "../pages/playlist/create-new-list/create-new-list";
 import {AddListPage} from "../pages/playlist/add-list/add-list";
 import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
-
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-
   ],
   providers: [
     StatusBar,
+    Camera,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
