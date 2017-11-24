@@ -1,11 +1,4 @@
-import { InicioPage } from './../inicio/inicio';
-import {TendenciasPage } from './../tendencias/tendencias';
-import {SuscripcionesPage} from './../suscripciones/suscripciones';
-import {UsuarioPage} from './../usuario/usuario';
-import {CanalPage} from './../canal/canal';
-import {ListasPage} from './../listas/listas';
-import {EstadisticaPage} from './../estadistica/estadistica';
-import { TabsPage } from './../tabs/tabs';
+
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
  
