@@ -10,7 +10,11 @@ import {ViewListPage} from "../pages/playlist/view-list/view-list";
 import {CreateNewListPage} from "../pages/playlist/create-new-list/create-new-list";
 import {AddListPage} from "../pages/playlist/add-list/add-list";
 import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
-
+//Modificado Grupo 10
+import { HttpModule } from '@angular/http';
+import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
+import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notificaciones/configuracion-notificaciones';
+//Fin Modificado
 
 @NgModule({
   declarations: [
@@ -19,12 +23,15 @@ import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-
     PopOverListasReproduccionPage,
     ViewListPage,
     AddListPage,
-    CreateNewListPage
+    CreateNewListPage,
+    NotificacionesPage,
+    ConfiguracionNotificacionesPage
 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -33,7 +40,9 @@ import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-
     PopOverListasReproduccionPage,
     ViewListPage,
     AddListPage,
-    CreateNewListPage
+    CreateNewListPage,
+    NotificacionesPage,
+    ConfiguracionNotificacionesPage
   ],
   providers: [
     StatusBar,
