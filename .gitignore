@@ -27,7 +27,12 @@ platforms/
 plugins/
 plugins/android.json
 plugins/ios.json
+www/
 *www/
+
+IonicProject/node_modules/
+IonicProject/www/
+IonicProject/.sourcemaps/
 $RECYCLE.BIN/
 
 .DS_Store

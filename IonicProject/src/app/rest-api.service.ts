@@ -7,7 +7,7 @@ import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8080/viucab/hola';
+const URL = 'http://localhost:8080/viucab';
 
 @Injectable()
 export class RestApiService {
@@ -16,71 +16,103 @@ export class RestApiService {
     private http: Http
   ) { }
 
-  //Metodo GET: /listaObjetos
-  //Devuelve todos los objetos
-  public getTodo(objetos){
-    console.log(URL+'/'+objetos);
+  //Metodo GET: /direccion
+  //Accede al metodo que se encuentra en direccion y devuelve la respuesta
+  public getTodo(direccion){
+    console.log(URL+'/'+direccion);
     return this.http
-      .get(URL+'/'+objetos)
+      .get(URL+'/'+direccion)
+      .map((data: any) => data.json())
+      .subscribe();
   }
 
-  //Metodo GET: /listaObjetos/id_objeto
-  //Devuelve un objeto, es necesario el id
-  public getUno(objetos, id) {
+  //Metodo GET: /direccion/id_objeto
+  //Accede al metodo que se encuentra en direccion, enviando un id y devuelve la respuesta
+  public getUno(direccion, idObjeto) {
     return this.http
-    .get(URL+'/'+objetos+'/'+id)
-    .map((data: any) => data.json())
-    .catch(this.handleError);
-  }
-
-  //Metodo POST: /listaObjetos
-  //Actualiza varios datos de un tipo objeto
-  public postTodo(objetos, datos) {
-    return this.http
-    .post(URL+'/'+objetos, datos)
+    .get(URL+'/'+direccion+'/'+idObjeto)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
 
-  //Metodo POST: /listaObjetos/id_objeto
-  //Actualiza un dato de tipo objeto. Es necesario el id
-  public postUno(objetos, id, dato) {
+  //Metodo GET: /direccion + (param)
+  //Accede al metodo que se encuentra en direccion, enviando parametros y devuelve la respuesta
+  public getTodoParam(direccion, param){
     return this.http
-    .post(URL+'/'+objetos+"/"+id, dato)
+      .get(URL+'/'+direccion, param)
+      .map((data: any) => data.json())
+      .subscribe();
+  }
+
+  //Metodo GET: /direccion + (param)
+  //Accede al metodo que se encuentra en direccion, enviando un id y parametros y devuelve la respuesta
+  public getUnoParam(direccion, idObjeto, param){
+    return this.http
+      .get(URL+'/'+direccion+'/'+idObjeto, param)
+      .map((data: any) => data.json())
+      .subscribe();
+  }
+
+
+  //Metodo POST: /direccion
+  //Actualiza o envia datos mas parametros a una direccion
+  public postTodo(direccion, datos, param) {
+    return this.http
+    .post(URL+'/'+direccion, datos, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
 
-  //Metodo PUT: /listaObjetos
-  //Agrega varios datos de tipo objetos
-  public putTodo(objetos, datos) {
+  //Metodo POST: /direccion/id_objeto
+  //Actualiza el objeto id en una direccion. Es necesario el enviar el dato nuevo y los parametros
+  public postUno(direccion, idObjeto, dato, param) {
     return this.http
-    .put(URL+'/'+objetos, datos)
+    .post(URL+'/'+direccion+"/"+idObjeto, dato, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
-   //Metodo PUT: /listaObjetos/id_objeto
-   //Agrega un dato de tipo objetos
-  public putUno(objetos, dato) {
+
+  //Metodo PUT: /direccion
+  //Agrega en una direccion, envia los datos y el parametro
+  public putTodo(direccion, datos, param) {
     return this.http
-    .put(URL+'/'+objetos, dato)
+    .put(URL+'/'+direccion, datos, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
-   //Metodo DELETE: /listaObjetos
-   //Elimina todos los objetos
-   public deleteTodo(objetos){
+
+  //Metodo PUT: /direccion/id_objeto
+  //Agrega el objeto id en una direccion, envia los datos y el parametro
+  public putUno(direccion, idObjeto, dato, param) {
     return this.http
-    .delete(URL+'/'+objetos)
+    .put(URL+'/'+direccion+'/'+idObjeto, dato, param)
+    .map((data: any) => data.json())
+    .catch(this.handleError);
+  }
+
+   //Metodo DELETE: /direccion
+   //Elimina en una direccion, enviando parametros
+   public deleteTodo(direccion, param){
+    return this.http
+    .delete(URL+'/'+direccion, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
    }
 
-  //Metodo DELETE: /listaObjetos/id_objeto
-  //Elimina un dato de un objeto, es necesario el id
-   public deleteUno(objetos, id){
+  //Metodo DELETE: /direccion/id_objeto
+  //Elimina un objeto en una direccion, es necesario el id y los parametros
+   public deleteUno(direccion, idObjeto, param){
     return this.http
-    .delete(URL+'/'+objetos+"/"+id)
+    .delete(URL+'/'+direccion+"/"+idObjeto, param)
+    .map((data: any) => data.json())
+    .catch(this.handleError);
+   }
+
+  //Metodo DELETE: /direccion
+  //Elimina varios objetos en una direccion, es necesario la lista de objetos a eliminar y los parametros
+   public deleteVarios(direccion, dato, param){
+    return this.http
+    .delete(URL+'/'+direccion, dato)
     .map((data: any) => data.json())
     .catch(this.handleError);
    }
