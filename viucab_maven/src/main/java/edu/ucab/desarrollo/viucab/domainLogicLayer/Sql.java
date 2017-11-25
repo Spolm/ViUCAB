@@ -1,8 +1,9 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer;
-
-
 import java.sql.*;
 
+/**
+ * Created by Daniel on 25/11/2017.
+ */
 public class Sql {
 
     private static Connection conInstance;

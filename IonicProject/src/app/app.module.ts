@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
+import { ChartsModule } from 'ng2-charts';
 
 import {EditListPage} from "../pages/playlist/edit-list/edit-list";
 import {ViewListPage} from "../pages/playlist/view-list/view-list";
@@ -32,6 +33,8 @@ import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notifica
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule
+    IonicModule.forRoot(MyApp),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
