@@ -7,7 +7,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
 /**
  * Interface que implementa el DAO
- * que actua como contrato con los metodos comunes
+ * que actua como contrato con los metodos comunes creada por M011
  */
 public interface IDao
 {

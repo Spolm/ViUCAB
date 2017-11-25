@@ -1,9 +1,9 @@
-package edu.ucab.desarrollo.viucab.domainLogicLayer.M11_Estadistica;
+package edu.ucab.desarrollo.viucab.common.entities;
 
 
 import java.util.ArrayList;
 
-public class Estadistica {
+public class Estadistica extends Entity {
 
     private String username;
     private ArrayList<String> tags;

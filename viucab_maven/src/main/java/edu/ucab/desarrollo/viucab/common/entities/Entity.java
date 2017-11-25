@@ -1,9 +1,10 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
 /**
- *Patron Entidad
+ *Patron Entidad creada por M011
  */
 public class Entity {
+
 
         private int _id;
         private int _errorCode;
