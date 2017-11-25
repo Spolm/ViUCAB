@@ -161,7 +161,9 @@ export class EstadisticaPage {
 
  marico ()
  {
+   this.hola = !this.hola;
    console.log("entre")
+
 
    this.aux=this.perra2
    this.aux2=this.perra
