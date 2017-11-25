@@ -32,8 +32,7 @@ import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notifica
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
-    IonicModule.forRoot(MyApp),
+    HttpModule,
     ChartsModule
   ],
   bootstrap: [IonicApp],
