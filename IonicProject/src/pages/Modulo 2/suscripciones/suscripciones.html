@@ -1,26 +1,58 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-buttons start>
-      <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    </ion-buttons>
-    <ion-title>
-      <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
-      <ion-buttons class= 'centrado-porcentual'  >
-          <button  >
-        <ion-icon name="videocam" color="primary"></ion-icon>   
+    <ion-navbar color="primary">
+      <ion-buttons start>
+        <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
       </button>
-      </ion-buttons>   
-    
-    </ion-title>
-    
-  </ion-navbar>
-</ion-header>
- 
-<ion-content padding>
-   
+      </ion-buttons>
+      <ion-title>
+        <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
+        
+        <ion-buttons class= 'centrado-Lupa'  >   
+          <button  >
+           <ion-icon name="search"></ion-icon>
+        </button>
+        </ion-buttons>   
   
-
+        <ion-buttons class= 'centrado-porcentual'  >
+            <button  >
+  
+          <ion-icon name="videocam" color="primary"></ion-icon>   
+        </button>
+        </ion-buttons>   
+      
+      </ion-title>
+      
+    </ion-navbar>
+  </ion-header>
+   
+  <ion-content padding>
      
-</ion-content>
+      <ion-item *ngFor="let lista of ListasSuscripciones" >
+          <ion-thumbnail item-start id="List-img">
+            <img [src]="lista.img">
+          </ion-thumbnail>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-10 class="nopadding">
+                <ion-row >
+                  <div class="ellipsis">
+                    <span class="List-title">{{lista.title}}</span>
+                  </div>
+    
+                </ion-row>
+                <ion-row>
+                   <span class="List-usuario">{{lista.usuario}}</span>
+                </ion-row>
+                <ion-row>
+                  <span class="List-amount">{{lista.amount}} Visualizaciones</span>
+                </ion-row>
+                
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+  
+       
+  </ion-content>

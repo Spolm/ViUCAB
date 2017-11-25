@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+        <ion-row>
+            <ion-col col-10 class="nopadding">
+                Editar lista numero 1
+   
+            </ion-col>
+            <ion-col col-2 class="nopadding" align="right">
+                <ion-icon ios="ios-trash" md="md-trash"></ion-icon>
+            </ion-col>
+          </ion-row>
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Nombre de la Lista</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Descripcion</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+    <br>
+    <br>
+    <ion-item>
+      <ion-label>Lista Privada</ion-label>
+      <ion-checkbox color="red" checked="false"></ion-checkbox>
+    </ion-item>
+
+  </ion-list>
+
+
+      <button class="botonGuardarEditado" ion-button color="light">GUARDAR</button>
+
+  
+
+
+</ion-content>
