@@ -176,6 +176,10 @@ export class EstadisticaPage {
    console.log("entre")
 
 
+       if (this.barChart != null)
+       {
+            this.barChart.destroy()
+       }
    this.aux=this.perra2
    this.aux2=this.perra
 
