@@ -16,10 +16,12 @@ import { Chart } from 'chart.js';
   templateUrl: 'estadistica.html',
 })
 
+
+
 export class EstadisticaPage {
   private  hola :boolean =false;
   private perra = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"]
-  private perra4 =["rivetti", "es", "rolo", "de ", "pargo", "si"]
+  private perra4 =["rivetti", "es", "rolo", "de ", "pargo", "si","burda "]
   private perra2 = [12, 19, 3, 5, 2, 3]
   private perra3 = [10, 5, 2, 3, 2, 1]
   private aux: any
@@ -28,7 +30,7 @@ export class EstadisticaPage {
  @ViewChild('doughnutCanvas') doughnutCanvas;
  @ViewChild('lineCanvas') lineCanvas;
 
- barChart: any;
+    barChart: Chart;
      doughnutChart: any;
      lineChart: any;
 
@@ -43,8 +45,17 @@ export class EstadisticaPage {
 
   }
 
-  pasar ()
+
+
+
+
+  public pasar ()
  {
+
+    if (this.barChart != null)
+    {
+         this.barChart.destroy()
+    }
     this.hola = true;
     this.aux= this.perra3;
     this.aux2=this.perra4
@@ -241,8 +252,54 @@ export class EstadisticaPage {
 
  rivettipargo()
  {
+   this.barChart.destroy()
 
-    this.aux= this.perra3;
+
+      this.aux=this.perra2
+      this.aux2=this.perra
+
+         this.barChart = new Chart(this.barCanvas.nativeElement, {
+
+             type: 'bar',
+             data: {
+                 labels: this.aux2,
+                 datasets: [{
+                     label: '# of Votes',
+                     data: this.aux,
+                     backgroundColor: [
+                         'rgba(255, 99, 132, 0.2)',
+                         'rgba(54, 162, 235, 0.2)',
+                         'rgba(255, 206, 86, 0.2)',
+                         'rgba(75, 192, 192, 0.2)',
+                         'rgba(153, 102, 255, 0.2)',
+                         'rgba(255, 159, 64, 0.2)'
+                     ],
+                     borderColor: [
+                         'rgba(255,99,132,1)',
+                         'rgba(54, 162, 235, 1)',
+                         'rgba(255, 206, 86, 1)',
+                         'rgba(75, 192, 192, 1)',
+                         'rgba(153, 102, 255, 1)',
+                         'rgba(255, 159, 64, 1)'
+                     ],
+                     borderWidth: 1
+                 }]
+             },
+             options: {
+                 scales: {
+                     yAxes: [{
+                         ticks: {
+                             beginAtZero:true
+                         }
+                     }]
+                 }
+             }
+
+         });
+
+      // this.aux=this.perra2
+      // this.aux2=this.perra
+
  }
 
 
