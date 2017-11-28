@@ -28,31 +28,6 @@
    
   <ion-content padding>
      
-      <ion-item *ngFor="let lista of ListasSuscripciones" >
-          <ion-thumbnail item-start id="List-img">
-            <img [src]="lista.img">
-          </ion-thumbnail>
-          <ion-grid>
-            <ion-row>
-              <ion-col col-10 class="nopadding">
-                <ion-row >
-                  <div class="ellipsis">
-                    <span class="List-title">{{lista.title}}</span>
-                  </div>
-    
-                </ion-row>
-                <ion-row>
-                   <span class="List-usuario">{{lista.usuario}}</span>
-                </ion-row>
-                <ion-row>
-                  <span class="List-amount">{{lista.amount}} Visualizaciones</span>
-                </ion-row>
-                
-              </ion-col>
-
-            </ion-row>
-          </ion-grid>
-        </ion-item>
-  
+ 
        
   </ion-content>
