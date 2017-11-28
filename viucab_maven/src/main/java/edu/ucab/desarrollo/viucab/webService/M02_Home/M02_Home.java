@@ -71,11 +71,14 @@ public class M02_Home {
     public String obtenerPreferencia (@QueryParam("id")  int idUsuario
     ){
 
-        String query =  "SELECT video.vid_id,video.vid_titulo,video.vid_descripcion,video.vid_imagen,video.vid_url,video.vid_fecha,video.vid_visitas " +
-                " FROM video,usuario,categoria,preferencia,video_cat" +
-                " WHERE video.vid_id=video_cat.idvid and categoria.cat_id=video_cat.idcat\n" +
-                " AND   usuario.usu_id=preferencia.id_usu and categoria.cat_id=preferencia.id_cat\n" +
-                " AND  video_cat.idcat=preferencia.id_cat and usuario.usu_id='"+idUsuario+"'";
+        String query =  "SELECT video.* " +
+                        " FROM video,usuario,categoria,preferencia,video_cat" +
+                        " WHERE video.vid_id=video_cat.idvid " +
+                                "AND categoria.cat_id=video_cat.idcat " +
+                                "AND usuario.usu_id=preferencia.id_usu " +
+                                "AND categoria.cat_id=preferencia.id_cat " +
+                                "AND video_cat.idcat=preferencia.id_cat " +
+                                "AND usuario.usu_id='"+idUsuario+"'";
 
 
 
@@ -120,7 +123,9 @@ public class M02_Home {
     public String obtenerMasVistos ()
     {
 
-        String query =  "SELECT * FROM VIDEO ORDER BY VIDEO.VID_VISITAS DESC";
+        String query =  "SELECT * " +
+                        "FROM VIDEO " +
+                        "ORDER BY VIDEO.VID_VISITAS DESC";
         try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
@@ -219,20 +224,20 @@ public class M02_Home {
         String query  = "SELECT  video.* " +
                         "FROM    video, categoria, video_cat " +
                         "WHERE   video.vid_titulo LIKE '%"+parametroBusqueda+"%'" +
-                        "AND video.vid_id=video_cat.idvid " +
-                        "AND categoria.cat_id=video_cat.idcat " +
+                            "AND video.vid_id=video_cat.idvid " +
+                            "AND categoria.cat_id=video_cat.idcat " +
                         "UNION " +
                         "SELECT  video.* " +
                         "FROM    video,categoria,video_cat " +
-                        "WHERE  categoria.cat_valor LIKE '%"+parametroBusqueda+"%'  " +
-                        "AND video.vid_id=video_cat.idvid " +
-                        "AND categoria.cat_id=video_cat.idcat " +
+                        "WHERE   categoria.cat_valor LIKE '%"+parametroBusqueda+"%'  " +
+                            "AND video.vid_id=video_cat.idvid " +
+                            "AND categoria.cat_id=video_cat.idcat " +
                         "UNION " +
                         "SELECT  video.*" +
                         "FROM    video,etiqueta,video_etiq " +
                         "WHERE   etiqueta.eti_valor LIKE '%"+parametroBusqueda+"%' " +
-                        "AND video.vid_id=video_etiq.idvid " +
-                        "AND etiqueta.eti_id=video_etiq.idetiq";
+                            "AND video.vid_id=video_etiq.idvid " +
+                            "AND etiqueta.eti_id=video_etiq.idetiq";
         try{
 
             //Lista del objeto video para almacenar todos los videos a cargar
