@@ -17,6 +17,10 @@ import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
 import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notificaciones/configuracion-notificaciones';
 //Fin Modificado
 
+//Modificado Grupo 8
+import { ChannelsPage } from '../pages/Modulo 8/channels/channels';
+//Fin modificado
+
 @NgModule({
   declarations: [
     MyApp,
@@ -26,7 +30,8 @@ import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notifica
     AddListPage,
     CreateNewListPage,
     NotificacionesPage,
-    ConfiguracionNotificacionesPage
+    ConfiguracionNotificacionesPage,
+    ChannelsPage
 
   ],
   imports: [
@@ -44,7 +49,8 @@ import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notifica
     AddListPage,
     CreateNewListPage,
     NotificacionesPage,
-    ConfiguracionNotificacionesPage
+    ConfiguracionNotificacionesPage,
+    ChannelsPage
   ],
   providers: [
     StatusBar,
