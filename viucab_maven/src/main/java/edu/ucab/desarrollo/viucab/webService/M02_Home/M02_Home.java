@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class M02_Home {
 
     Gson gson = new Gson();
-    Connection conn = Sql.getConInstance();
+    Connection conn = conectarADb();
 
     @GET
 
@@ -56,10 +56,11 @@ public class M02_Home {
 
             return gson.toJson(listaVideos);
 
-        } catch (Exception e) {
-
+        } catch(SQLException e) {
             return e.getMessage();
-
+        }
+        finally {
+            Sql.bdClose(conn);
         }
 
 
@@ -85,14 +86,14 @@ public class M02_Home {
 
 
 
-        try{
+        try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos= new ArrayList<>();
+            ArrayList<Video> listaVideos = new ArrayList<>();
             Statement st = conn.createStatement();
-            ResultSet rs =  st.executeQuery(query);
+            ResultSet rs = st.executeQuery(query);
 
-            while(rs.next()){
+            while (rs.next()) {
                 Video resultado = new Video();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
@@ -106,12 +107,13 @@ public class M02_Home {
             }
 
             return gson.toJson(listaVideos);
-
-        } catch (Exception e) {
-
-            return e.getMessage();
-
-        }
+             }
+            catch(SQLException e) {
+                return e.getMessage();
+            }
+            finally {
+                Sql.bdClose(conn);
+            }
 
 
     }
@@ -130,14 +132,14 @@ public class M02_Home {
         String query =  "SELECT * FROM VIDEO ORDER BY VIDEO.VID_VISITAS DESC";
 
 
-        try{
+        try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos= new ArrayList<>();
+            ArrayList<Video> listaVideos = new ArrayList<>();
             Statement st = conn.createStatement();
-            ResultSet rs =  st.executeQuery(query);
+            ResultSet rs = st.executeQuery(query);
 
-            while(rs.next()){
+            while (rs.next()) {
                 Video resultado = new Video();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
@@ -151,12 +153,13 @@ public class M02_Home {
             }
 
             return gson.toJson(listaVideos);
-
-        } catch (Exception e) {
-
-            return e.getMessage();
-
-        }
+             }
+            catch(SQLException e) {
+                return e.getMessage();
+            }
+            finally {
+                Sql.bdClose(conn);
+            }
 
 
     }
@@ -219,10 +222,11 @@ public class M02_Home {
 
             return gson.toJson(listaVideos);
 
-        } catch (Exception e) {
-
+        } catch(SQLException e) {
             return e.getMessage();
-
+        }
+        finally {
+            Sql.bdClose(conn);
         }
 
 
@@ -242,7 +246,7 @@ public class M02_Home {
             Class.forName("org.postgresql.Driver");
             //el string de conexion de la db el formato es el siguiente:
             //jdbc:postgresql://HOST//NOMBRE_DE_LA_DB
-            String url = "jdbc:postgresql://localhost/viucab";
+            String url = "jdbc:postgresql://localhost/VIUCAB";
             //parametros de la conexion que basicamente es el usuario en mi caso es postgres y la clave es root
             // NO DEBEN DEJAR ESTO ASI POR DEFECTO
             conn = DriverManager.getConnection(url,"postgres", "postgres");
