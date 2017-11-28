@@ -6,7 +6,7 @@
     </ion-toolbar>
     </ion-navbar>
   </ion-header>
- 
+
   <ion-content>
       <ion-list id="sidenav">
           <!-- other menu items will go here -->
@@ -17,16 +17,17 @@
             <button ion-item (click)="MyChannelItemHandler()"> <ion-icon item-start name="contact" color="isActive(this)"></ion-icon> Mi canal</button>
             <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Mis Videos</ion-item>
             <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Suscripciones</ion-item>
-            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Notificaciones</ion-item>
+            <button ion-item submenu-item menuClose *ngIf="MyChannelSubmenu" (click)="openNotificaciones()">Notificaciones</button>
             <button ion-item (click)="SettingsItemHandler()"> <ion-icon item-start name="settings"></ion-icon> Configuración de usuario</button>
             <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de perfil de usuario</ion-item>
             <ion-item submenu-item *ngIf="SettingsSubmenu" (click)="SettingsItemHandler()">Configuración de filtros</ion-item>
+            <button ion-item submenu-item menuClose *ngIf="SettingsSubmenu" (click)="openConNotificaciones()">Configuración de Notificaciones</button>
           <!-- other menu items will go here -->
           </ion-list>
     <ion-list>
     </ion-list>
   </ion-content>
 </ion-menu>
- 
+
 <!-- main navigation -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false" ></ion-nav>
