@@ -8,6 +8,10 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
  */
 public class GetMasVistosComando extends Command {
 
+    public GetMasVistosComando() {
+
+    }
+
     @Override
     public void execute() {
 
