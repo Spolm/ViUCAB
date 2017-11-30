@@ -11,8 +11,12 @@ import org.slf4j.LoggerFactory;
 public class GetEstadistica1 extends Command {
 
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
-
+    private static Entity est;
     public GetEstadistica1(Entity est) {
+    }
+
+    public static Entity getEstadistica1(){
+        return est;
     }
 
     @Override

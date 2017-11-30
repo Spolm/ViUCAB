@@ -8,6 +8,7 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
  */
 public class GetEstadisticaDao1 extends Dao implements IDaoEstadistica{
     public GetEstadisticaDao1(Entity est) {
+
     }
 
     @Override
