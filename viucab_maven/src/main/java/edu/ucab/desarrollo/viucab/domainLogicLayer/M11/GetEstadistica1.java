@@ -1,7 +1,6 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M11;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.exceptions.MessageException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
@@ -24,10 +23,6 @@ public class GetEstadistica1 extends Command {
         }
         catch (Exception e){
 
-            MessageException error = new MessageException(e, this.getClass().getSimpleName(),
-                    Thread.currentThread().getStackTrace()[1].getMethodName());
-            logger.debug("Debug: ", error);
-            logger.error("Error: ", error);
         }
     }
 
