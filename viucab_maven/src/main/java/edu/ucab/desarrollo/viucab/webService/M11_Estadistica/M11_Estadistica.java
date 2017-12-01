@@ -27,8 +27,9 @@ public class M11_Estadistica {
         Command commandEstadistica = CommandsFactory.instanciateEstadistica1(estadisticaObject);
         GetEstadistica1 cmd = (GetEstadistica1) commandEstadistica;
         cmd.execute();
-        Estadistica result = (Estadistica) GetEstadistica1.getEstadistica1();
-        return gson.toJson(result);
+        Entity result = cmd.Return();
+        Estadistica json = (Estadistica) result;
+        return gson.toJson(json);
     }
 
     @GET

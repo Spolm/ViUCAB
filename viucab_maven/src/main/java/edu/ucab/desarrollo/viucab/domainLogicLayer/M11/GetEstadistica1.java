@@ -12,11 +12,8 @@ public class GetEstadistica1 extends Command {
 
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
     private static Entity est;
-    public GetEstadistica1(Entity est) {
-    }
 
-    public static Entity getEstadistica1(){
-        return est;
+    public GetEstadistica1(Entity est) {
     }
 
     @Override
@@ -36,6 +33,6 @@ public class GetEstadistica1 extends Command {
 
     @Override
     public Entity Return() {
-        return null;
+        return est;
     }
 }
