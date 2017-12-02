@@ -28,17 +28,20 @@
     Estadistica2
     </ion-item>
 
-    <ion-item (click)="marico()">
+    <ion-item  (click)="marico()">
     Estadistica3
     </ion-item>
-    <ion-item (click)="marico()">
+    <ion-item   (click)="rivettipargo()">
     Estadistica4
     </ion-item>
 
   </ion-list>
 
 
-  <ion-card [class.hide]="!hola" >
+
+
+
+  <ion-card  [class.hide]="!hola" >
       <ion-card-header>
         Bar Chart
       </ion-card-header>
@@ -47,7 +50,10 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
+
+
+
+    <ion-card [class.hide]="!hola">
       <ion-card-header>
         Doughnut Chart
       </ion-card-header>
