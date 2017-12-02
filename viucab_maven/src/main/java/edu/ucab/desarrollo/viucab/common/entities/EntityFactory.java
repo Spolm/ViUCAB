@@ -1,1 +1,1 @@
-package edu.ucab.desarrollo.viucab.common.entities;/** * Fabrica de Entidades creada por M011 */public class EntityFactory{}
+package edu.ucab.desarrollo.viucab.common.entities;/** * Fabrica de Entidades creada por M011 */public class EntityFactory{    //inicio codigo grupo M08    //fin grupo M08}

@@ -42,6 +42,12 @@ public class DaoFactory
 
     //endregion
 
+    //region M08
+    static public Dao instanciadaoSubscripciones(Entity sus){ return new SuscripcionDao (sus);}
+
+
+    //endregion M08
+
 
 }
 

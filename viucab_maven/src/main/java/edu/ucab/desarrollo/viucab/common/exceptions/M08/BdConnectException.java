@@ -1,7 +1,7 @@
 package edu.ucab.desarrollo.viucab.common.exceptions.M11;
 
 /**
- * Created by Daniel on 25/11/2017. creada por M011
+ * creada por johan
  */
 public class BdConnectException extends Exception {
 
