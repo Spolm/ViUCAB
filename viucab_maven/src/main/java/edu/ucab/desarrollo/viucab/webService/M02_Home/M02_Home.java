@@ -26,6 +26,7 @@ public class M02_Home {
       Connection conn= Sql.getConInstance();
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/cargarTodo")
     @Produces("application/json")
     /**
@@ -62,6 +63,7 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/ObtenerPreferencias")
     @Produces("application/json")
     /**
@@ -118,6 +120,7 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/MasVistos")
     @Produces("application/json")
     /**
@@ -161,6 +164,7 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/Suscritos")
     @Produces("application/json")
     /**
@@ -211,6 +215,7 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/Busqueda")
     @Produces("application/json")
     /**
