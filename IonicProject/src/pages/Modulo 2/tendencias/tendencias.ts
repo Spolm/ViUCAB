@@ -1,5 +1,6 @@
 import { Component, } from '@angular/core';
 import { IonicPage, NavController, NavParams,  AlertController} from 'ionic-angular';
+import { RestApiService } from '../../../app/rest-api.service';
 
 /**
  * Generated class for the TendenciasPage page.
@@ -12,6 +13,7 @@ import { IonicPage, NavController, NavParams,  AlertController} from 'ionic-angu
 @Component({
   selector: 'page-tendencias',
   templateUrl: 'tendencias.html',
+  providers: [RestApiService]
 })
 export class TendenciasPage {
   buscarQuery : string ='';
@@ -22,7 +24,10 @@ export class TendenciasPage {
 
   
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams, 
+              public alertCtrl: AlertController,
+              public api : RestApiService) {
     this.initializeItems();
   }
 

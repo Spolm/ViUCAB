@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, PopoverController,AlertController } from 'ionic-angular';
+import { RestApiService } from '../../../app/rest-api.service';
 
 /**
  * Generated class for the SuscripcionesPage page.
@@ -12,6 +13,7 @@ import { IonicPage, NavController, NavParams, PopoverController,AlertController 
 @Component({
   selector: 'page-suscripciones',
   templateUrl: 'suscripciones.html',
+  providers: [RestApiService]
 })
 export class SuscripcionesPage {
   buscarQuery : string ='';
@@ -22,7 +24,11 @@ export class SuscripcionesPage {
   
 
   
-  constructor(public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController,public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public popoverCtrl: PopoverController,
+              public alertCtrl: AlertController,
+              public api : RestApiService) {
     this.initializeItems();
   }
 

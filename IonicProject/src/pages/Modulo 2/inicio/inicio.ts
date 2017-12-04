@@ -1,5 +1,6 @@
 import {Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { RestApiService } from '../../../app/rest-api.service';
 
 
 /**
@@ -13,6 +14,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 @Component({
   selector: 'page-inicio',
   templateUrl: 'inicio.html',
+  providers: [RestApiService]
 })
 export class InicioPage {
   
@@ -23,8 +25,13 @@ export class InicioPage {
   estadoNombre:string;
 
   @ViewChild('myNav') nav: NavController
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams, 
+              public alertCtrl: AlertController,
+              public api : RestApiService) {
     this.initializeItems();
+    this.api.getTodo('Home/MasVistos');
+    
   }
 
   ionViewDidLoad() {
@@ -62,4 +69,5 @@ export class InicioPage {
           })
         }
   }
+
 }
