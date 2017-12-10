@@ -8,7 +8,13 @@ import {EstadisticaPage} from './../estadistica/estadistica';
 import { TabsPage } from './../tabs/tabs';
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
- 
+//Modificado por Modulo 10
+import {NotificacionesPage} from '../../notificaciones/notificaciones';
+import {ConfiguracionNotificacionesPage} from '../../configuracion-notificaciones/configuracion-notificaciones';
+//Fin Modificado por Modulo 10
+
+import { ChannelsPage } from '../../Modulo 8/channels/channels';
+
 export interface PageInterface {
   title: string;
   pageName: string;
@@ -86,5 +92,22 @@ export class MenuPage {
     this.SettingsSubmenu = !this.SettingsSubmenu;
     this.MyChannelSubmenu = false;
   }
- 
+
+  //Modificado por Modulo 10
+  openNotificaciones(){
+    this.nav.push(NotificacionesPage);
+  }
+
+  openConNotificaciones(){
+    this.nav.push(ConfiguracionNotificacionesPage);
+  }
+  //Fin Modificado por Modulo 10
+
+
+  openSuscripciones(){
+    this.nav.push(ChannelsPage);// llama a la pagina
+  // this.nav.setRoot(pagina);// llama a la pagina
+    this.MyChannelItemHandler();//oculta el submenu
+  }
+
 }

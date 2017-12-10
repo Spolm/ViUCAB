@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { CreateNewListPage } from '../create-new-list/create-new-list';
+// import { AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the AddListPage page.
@@ -16,7 +17,7 @@ import { AlertController } from 'ionic-angular';
 })
 export class AddListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams/*  , public alertCtrl: AlertController*/) {
   }
 
 
@@ -31,7 +32,7 @@ export class AddListPage {
   ];
 
 
-  showAddListPrompt() {
+  /*  showAddListPrompt() {
     let prompt = this.alertCtrl.create({
       title: 'Crear Lista',
       message: "Introduzca datos de la Lista a crear",
@@ -62,6 +63,10 @@ export class AddListPage {
       ]
     });
     prompt.present();
+  }*/
+
+  public goToCreateNewList(){
+    this.navCtrl.push(CreateNewListPage);
   }
 
 }
