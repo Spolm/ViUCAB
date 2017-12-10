@@ -4,16 +4,13 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Estadistica;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  * Created by Daniel on 25/11/2017.
  */
 public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
-    public GetEstadisticaDao(Entity est) {
+    public GetEstadisticaDao() {
 
     }
 
@@ -34,11 +31,23 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     @Override
     public Entity GetEstadistica1(Entity e) throws SQLException {
+        Estadistica estadistica = (Estadistica) e;
 
-
+        String [] label = new String[4];
+        label[0] = "El";
+        label[1] = "cable";
+        label[2] = "funciona";
+        label[3] = "claro que yes";
+        String [] data = new String[4];
+        data[0]="1";
+        data[1]="2";
+        data[2]="3";
+        data[3]="4";
+        estadistica.setData(data);
+        estadistica.setLabel(label);
+    /*
         //castean el objeto a su objeto y lo usan como quieran , para sacar los datos de la consulta
 
-        Estadistica estadistica = (Estadistica) e;
 
        // llaman la con aqui
         Connection conn = Dao.getBdConnect();
@@ -61,6 +70,8 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
         }
 
         //aqui recojes todos los datos de la consulta y luego llamas al factory creas tu objeto y lo dvuelves
+
+*/
 
 
         return estadistica;

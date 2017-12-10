@@ -1,15 +1,13 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
 
-import java.util.ArrayList;
-
 public class Estadistica extends Entity {
 
     private String username;
-    private ArrayList<String> label;
-    private ArrayList<String> data;
+    private String [] label;
+    private String [] data;
 
-    public Estadistica(String username,  ArrayList<String> label, ArrayList<String> data){
+    public Estadistica(String username, String [] label, String [] data){
 
         this.username = username;
         this.label = label;
@@ -29,19 +27,19 @@ public class Estadistica extends Entity {
         this.username = username;
     }
 
-    public ArrayList<String> getLabel() {
+    public String [] getLabel() {
         return label;
     }
 
-    public void setLabel(ArrayList<String> label) {
+    public void setLabel(String [] label) {
         this.label = label;
     }
 
-    public ArrayList<String> getData() {
+    public String [] getData() {
         return data;
     }
 
-    public void setData(ArrayList<String> data) {
+    public void setData(String [] data) {
         this.data = data;
     }
 }
