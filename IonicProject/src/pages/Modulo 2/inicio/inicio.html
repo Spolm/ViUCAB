@@ -1,3 +1,4 @@
+<div ng-app="myApp" ng-controller="myCtrl" style="height:inherit"> 
 <ion-header>
   <ion-navbar color="primary">
     <ion-buttons start>
@@ -24,10 +25,10 @@
 </ion-header>
 
 
- 
+
 <ion-content padding>
-  
-  <ion-card >
+
+  <ion-card *ngFor="let item of data">
      
       <ion-item>
           <ion-buttons class= 'centrado-porcentual2'  >
@@ -39,22 +40,22 @@
           <img src="assets/imgs/marty-avatar.png">
         </ion-avatar>
 
-        <h2>Marty McFly</h2>
-        <p>November 5, 1955</p>
+        <h2>{{item.user}}</h2>
+        <p>{{item.date}}</p>
         
       </ion-item>
     
       <img src="assets/imgs/advance-card-bttf.png">
     
       <ion-card-content>
-        <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+        <p>{{item.title}}</p>
       </ion-card-content>
     
       <ion-row>
         <ion-col>
           <button ion-button icon-left clear small>
             <ion-icon name="thumbs-up"></ion-icon>
-            <div>12 Likes</div>
+            <div>12 likes</div>
           </button>
         </ion-col>
         <ion-col>
@@ -72,6 +73,9 @@
     
     </ion-card>
   
+  
 
      
 </ion-content>
+
+</div>

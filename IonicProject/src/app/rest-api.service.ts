@@ -123,4 +123,14 @@ export class RestApiService {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
+
+
+//BORRAR ESTO LUEGO DE PROBAR
+  public getVideosPrueba(direccion): Observable<any> {
+    return this.http.get(URL+'/'+direccion)
+        .map((data: any) => data.json())
+        .do(data => console.log("get Countries from json: " + JSON.stringify(data)))
+        .catch(this.handleError);
+  }
+
 }
