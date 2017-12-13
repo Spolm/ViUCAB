@@ -60,7 +60,7 @@ export class InicioPage {
 
 //Metodo para llenar el listado de videos inicial
   ngOnInit(): void {
-    this.subscription = this.api.getVideosPrueba('Home/cargarTodo')
+    this.subscription = this.api.getVideos('Home/cargarTodo')
         .subscribe(items => this.items = items,
         error => this.errorMessage = error);
     this.errorMessage = '';

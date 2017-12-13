@@ -127,8 +127,8 @@ export class RestApiService {
   }
 
 
-//BORRAR ESTO LUEGO DE PROBAR
-  public getVideosPrueba(direccion): Observable<any> {
+//Metodo para obtener todos los videos
+  public getVideos(direccion): Observable<any> {
     return this.http.get(URL+'/'+direccion)
         .map((data: any) => data.json())
         .do(data => console.log("get Countries from json: " + JSON.stringify(data)))
