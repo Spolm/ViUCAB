@@ -18,37 +18,7 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [RestApiService]
 })
 export class InicioPage {
-  data = [{
-      id: 1,
-      title: 'Video 1',
-      user: 'Barbara Fernández',
-      date: 'November 5, 1955'
-  }, {
-      id: 2,
-      title: 'Video 2',
-      user: 'Barbara Fernández',
-      date: 'November 6, 1955'
-  }, {
-      id: 3,
-      title: 'Video 3',
-      user: 'Barbara Fernández',
-      date: 'November 7, 1955'
-  }, {
-      id: 4,
-      title: 'Video 4',
-      user: 'Barbara Fernández',
-      date: 'November 8, 1955'
-  }, {
-      id: 5,
-      title: 'Video 5',
-      user: 'Barbara Fernández',
-      date: 'November 9, 1955'
-  }, {
-      id: 6,
-      title: 'Video 6',
-      user: 'Barbara Fernández',
-      date: 'November 5, 1955'
-  }];
+  data: any[];
   
   buscarQuery : string ='';
   
@@ -59,11 +29,12 @@ export class InicioPage {
   errorMessage = '';
   
 
-//ESTO ES PARA PROBAR LA CONSULTA, FALTA PROBAR SI FUNCIONA O NO
+//Metodo para llenar el listado de videos inicial
   ngOnInit(): void {
-    this.subscription = this.api.getVideosPrueba('Home/MasVistos')
+    this.subscription = this.api.getVideosPrueba('Home/cargarTodo')
         .subscribe(items => this.items = items,
         error => this.errorMessage = error);
+    this.errorMessage = '';
   }
 
 

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class M02_Home {
 
     Gson gson = new Gson();
-      Connection conn= Sql.getConInstance();
+    Connection conn= Sql.getConInstance();
 
     @GET
 	@CrossOrigin(origins = "http://localhost:8100")
@@ -33,7 +33,7 @@ public class M02_Home {
      * @Param id
      * Devuelve todos los Videos dado un id
      */
-    public String obtenerVideo (@QueryParam("id")  int id
+    public String obtenerVideo (
     ){
 
         String query = "select * from video ";
@@ -46,6 +46,12 @@ public class M02_Home {
                 Video resultado = new Video();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
+                resultado.setDescripcion(rs.getString("vid_descripcion"));
+                resultado.setImagen(rs.getString("vid_imagen"));
+                resultado.setUrl(rs.getString("vid_url"));
+                resultado.setFecha(rs.getString("vid_fecha"));
+                resultado.setVisitas(rs.getInt("vid_visitas"));
+                resultado.setUsuario("Bárbara Fernández");
                 listaVideos.add(resultado);
             }
 

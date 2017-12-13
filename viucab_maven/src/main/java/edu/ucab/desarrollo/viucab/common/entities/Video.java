@@ -16,6 +16,7 @@ public class Video {
     private String imagen;
     private String url;
     private String _valorCategoria;
+    private String usuario;
 
     public Video() {
     }
@@ -82,5 +83,13 @@ public class Video {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 }
