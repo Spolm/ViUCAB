@@ -7,7 +7,7 @@ package edu.ucab.desarrollo.viucab.common.entities;
 /**
  * Created by estefania on 10/11/2017.
  */
-public class Video {
+public class Video extends Entity{
 
     private int id;
     private String nombre;
@@ -18,12 +18,12 @@ public class Video {
     private String url;
     private String _valorCategoria;
     private String usuario;
-    private ArrayList<Video> listaVideo;
+    private ArrayList<Entity> listaVideo;
 
     public Video() {
     }
 
-    public Video(ArrayList<Video> listaVideo) {
+    public Video(ArrayList listaVideo) {
         this.listaVideo = listaVideo;
     }
 
@@ -36,6 +36,9 @@ public class Video {
         this.imagen=imagen;
         this.url=url;
         this.visitas=visitas;
+    }
+
+    public Video(int idUsuario) {
     }
 
     public String get_valorCategoria() {
@@ -110,11 +113,11 @@ public class Video {
         this.usuario = usuario;
     }
 
-    public ArrayList<Video> getListaVideo() {
+    public ArrayList<Entity> getListaVideo() {
         return listaVideo;
     }
 
-    public void setListaVideo(ArrayList<Video> listaVideo) {
+    public void setListaVideo(ArrayList<Entity> listaVideo) {
         this.listaVideo = listaVideo;
     }
 }

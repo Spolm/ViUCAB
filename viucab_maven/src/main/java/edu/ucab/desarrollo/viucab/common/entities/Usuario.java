@@ -6,7 +6,7 @@ import java.awt.*;
 /**
  * Created by estefania on 20/11/2017.
  */
-public class Usuario {
+public class Usuario extends Entity{
     private int     _id_user;
     private String  _name_user;
     private String  _pass_user;

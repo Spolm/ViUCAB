@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * Created by estefania on 29/11/2017.
  */
 public class GetMasVistosComando extends Command {
+    ArrayList<Video> resultado=null;
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetMasVistosComando.class);
 
     public GetMasVistosComando() {
@@ -29,6 +30,8 @@ public class GetMasVistosComando extends Command {
         try {
             GetHomeDao dao =  DaoFactory.instanciateGetHome();
             ArrayList<Video> video = dao.listaVideoTop();
+            //Guardamos lo que devuelve el DAO
+            resultado=video;
 
         }
         catch (Exception e){
