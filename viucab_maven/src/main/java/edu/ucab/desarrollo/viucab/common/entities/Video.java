@@ -27,6 +27,17 @@ public class Video {
         this.listaVideo = listaVideo;
     }
 
+    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
+                 String url) {
+        this.descripcion=descripcion;
+        this.id=id;
+        this.fecha=fecha;
+        this.nombre=titulo;
+        this.imagen=imagen;
+        this.url=url;
+        this.visitas=visitas;
+    }
+
     public String get_valorCategoria() {
         return _valorCategoria;
     }
