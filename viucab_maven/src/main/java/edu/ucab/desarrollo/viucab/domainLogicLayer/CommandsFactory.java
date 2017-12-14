@@ -1,7 +1,9 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 
 /**
  * Fabrica de comandos creada por M011
@@ -49,4 +51,16 @@ public class CommandsFactory {
 
     //endregion
 
+    //M02 Instancias
+
+    public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando(criterio);}
+
+    //Mas Vistos no recibe Parametros
+    public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}
+
+    public  static  Command instanciateGetPreferenciasComando (int idUsuario) {return  new GetPreferenciasComando(idUsuario);}
+
+    public  static  Command instanciateGetSuscritosComando    (int idUsuario) {return  new GetSuscritosComando(idUsuario);}
+
+    // Fin instancias M02
 }
