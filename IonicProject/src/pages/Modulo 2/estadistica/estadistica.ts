@@ -1,6 +1,8 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
+import { RestApiService } from '../../../app/rest-api.service';
+
 
 
 /**
@@ -14,6 +16,7 @@ import { Chart } from 'chart.js';
 @Component({
   selector: 'page-estadistica',
   templateUrl: 'estadistica.html',
+  providers:[RestApiService]
 })
 
 
@@ -34,7 +37,8 @@ export class EstadisticaPage {
      doughnutChart: any;
      lineChart: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public api: RestApiService) {
 
 
   }
@@ -52,6 +56,7 @@ export class EstadisticaPage {
   public pasar ()
  {
 
+    console.log(this.api.getUno('Estadistica/Estadistica1','a'))
     if (this.barChart != null)
     {
          this.barChart.destroy()
@@ -172,7 +177,7 @@ export class EstadisticaPage {
 
  marico ()
  {
-   this.hola = !this.hola;
+ 
    console.log("entre")
 
 
