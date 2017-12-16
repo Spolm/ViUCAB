@@ -5,9 +5,10 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8080/viucab';
+const URL = 'http://localhost:8888/viucab';
 
 @Injectable()
 export class RestApiService {
@@ -123,4 +124,12 @@ export class RestApiService {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
+
+ 
+  public geta(direccion){
+    return this.http
+      .get(URL+'/'+direccion)
+ 
+  }
+
 }

@@ -2,6 +2,7 @@ import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import { RestApiService } from '../../../app/rest-api.service';
+import { Subscription } from 'rxjs/Subscription';
 
 
 
@@ -29,6 +30,12 @@ export class EstadisticaPage {
   private perra3 = [10, 5, 2, 3, 2, 1]
   private aux: any
     private aux2: any
+    respu : any
+    respu1 : any
+    type : any
+subscription: Subscription;
+
+  
   @ViewChild('barCanvas') barCanvas;
  @ViewChild('doughnutCanvas') doughnutCanvas;
  @ViewChild('lineCanvas') lineCanvas;
@@ -46,22 +53,63 @@ export class EstadisticaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EstadisticaPage');
-
+    this.pet()
   }
 
 
 
+public pet ()
+{
+    this.api.geta('Estadistica/Estadistica1').subscribe((data) => { // Success
+        this.respu = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+         console.error(error);
+       });
+
+}
 
 
-  public pasar ()
+
+
+
+
+public metodo (id:any)
+{
+    this.hola = true;
+    if (id == 1)
+    {
+        
+        this.type = 'bar'
+       this.respu1 = this.respu 
+     this.pasar()
+    }
+    else if (id == 2)
+    {
+     
+        this.type = 'bar'
+        this.respu1 = this.respu 
+        console.log(this.type)
+        this.marico()
+    }
+
+
+}
+
+  public   pasar ()
  {
 
-    console.log(this.api.getUno('Estadistica/Estadistica1','a'))
+
     if (this.barChart != null)
     {
          this.barChart.destroy()
     }
-    this.hola = true;
+    if (this.doughnutChart != null)
+    {
+         this.doughnutChart.destroy()
+    }
+
     this.aux= this.perra3;
     this.aux2=this.perra4
 
@@ -69,12 +117,12 @@ export class EstadisticaPage {
 
    this.barChart = new Chart(this.barCanvas.nativeElement, {
 
-       type: 'bar',
+       type: this.type,
        data: {
-           labels: this.aux2,
+           labels: this.respu.label,
            datasets: [{
                label: '# of Votes',
-               data: this.aux,
+               data: this.respu.data,
                backgroundColor: [
                    'rgba(255, 99, 132, 0.2)',
                    'rgba(54, 162, 235, 0.2)',
@@ -110,12 +158,12 @@ export class EstadisticaPage {
  //
    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
 
-       type: 'doughnut',
+       type: "doughnut",
        data: {
-           labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-           datasets: [{
-               label: '# of Votes',
-               data: [12, 19, 3, 5, 2, 3],
+        labels: this.respu.label,
+        datasets: [{
+            label: '# of Votes',
+            data: this.respu.data,
                backgroundColor: [
                    'rgba(255, 99, 132, 0.2)',
                    'rgba(54, 162, 235, 0.2)',
@@ -184,6 +232,7 @@ export class EstadisticaPage {
        if (this.barChart != null)
        {
             this.barChart.destroy()
+            console.log("entre3")
        }
    this.aux=this.perra2
    this.aux2=this.perra
