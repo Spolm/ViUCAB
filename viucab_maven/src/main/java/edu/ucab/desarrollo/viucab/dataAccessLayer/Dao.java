@@ -2,8 +2,7 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer;
 
 
 import edu.ucab.desarrollo.viucab.common.Registry;
-import edu.ucab.desarrollo.viucab.common.exceptions.M11.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.MessageException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -31,10 +30,8 @@ public abstract class Dao implements IDao
 
         try {
             conInstance = getBdConnect();
-        }catch (BdConnectException e){
-            MessageException error = new MessageException(e, Dao.class.getSimpleName(),
-                    Thread.currentThread().getStackTrace()[1].getMethodName());
-            logger.error("Error: ", error.toString());
+        }catch (Exception e){
+
         }
 
         return conInstance;
@@ -49,7 +46,7 @@ public abstract class Dao implements IDao
      * @see Connection
      * @see Statement
      */
-    public static Connection getBdConnect() throws BdConnectException
+    public static Connection getBdConnect()
     {
 
         try
@@ -60,12 +57,12 @@ public abstract class Dao implements IDao
         catch ( ClassNotFoundException e )
         {
             logger.error( "Metodo: {} {}", "getBdConnect", e.toString() );
-            throw new BdConnectException( e );
+
         }
         catch ( SQLException e )
         {
             logger.error( "Metodo: {} {}", "getBdConnect", e.toString() );
-            throw new BdConnectException( e );
+
         }
         return conn;
     }
