@@ -13,6 +13,10 @@ public class ListaDeReproduccion extends Entity {
     private String fechaCreacion;
     private Integer idUsuario;
 
+    public ListaDeReproduccion(Integer idLista) {
+        this.idLista = idLista;
+    }
+
     /**
      * Constructor de ListaDeReproduccion
      * @param idLista
