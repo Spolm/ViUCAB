@@ -19,12 +19,18 @@ public class Video extends Entity{
     private String _valorCategoria;
     private String usuario;
     private ArrayList<Entity> listaVideo;
+    private String [] listaRespVideo;
+
 
     public Video() {
     }
 
     public Video(ArrayList listaVideo) {
         this.listaVideo = listaVideo;
+    }
+
+    public Video(String [] listaRespVideo) {
+        this.listaRespVideo = listaRespVideo;
     }
 
     public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
@@ -119,5 +125,13 @@ public class Video extends Entity{
 
     public void setListaVideo(ArrayList<Entity> listaVideo) {
         this.listaVideo = listaVideo;
+    }
+
+    public String[] getListaRespVideo() {
+        return listaRespVideo;
+    }
+
+    public void setListaRespVideo(String[] listaRespVideo) {
+        this.listaRespVideo = listaRespVideo;
     }
 }

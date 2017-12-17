@@ -4,7 +4,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Patron Comando creada por M011

@@ -7,6 +7,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetMasVistosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 
@@ -19,12 +20,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by estefania on 14/12/2017.
  */
-@Path("/Home")
-public class M02_HomePrueba {
+@Path("/HomePatrones")
+public class M02_HomePatrones {
 
         Gson gson = new Gson();
         Connection conn= Sql.getConInstance();
@@ -58,38 +60,13 @@ public class M02_HomePrueba {
          */
         public String obtenerMasVistos ()
         {
-
-            String query =  "SELECT * " +
-                    "FROM VIDEO " +
-                    "ORDER BY VIDEO.VID_VISITAS DESC";
-            try {
-
-                //Lista del objeto video para almacenar todos los videos a cargar
-                ArrayList<Video> listaVideos= new ArrayList<>();
-                PreparedStatement ps = conn.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    Video resultado = new Video();
-                    resultado.setId(rs.getInt("vid_id"));
-                    resultado.setNombre(rs.getString("vid_titulo"));
-                    resultado.setDescripcion(rs.getString("vid_descripcion"));
-                    resultado.setImagen(rs.getString("vid_imagen"));
-                    resultado.setFecha(rs.getString("vid_fecha"));
-                    resultado.setVisitas(rs.getInt("vid_visitas"));
-
-                    listaVideos.add(resultado);
-
-                }
-                return gson.toJson(listaVideos);
-            }
-            catch(SQLException e) {
-                return e.getMessage();
-            }
-            finally {
-                Sql.bdClose(conn);
-            }
-
+            Entity videoObject = EntityFactory.homeUsuario();
+            Command commandVideoMasVisto= CommandsFactory.instanciateGetMasVistosComando();
+            GetMasVistosComando cmd = (GetMasVistosComando) commandVideoMasVisto;
+            cmd.execute();
+            ArrayList<Entity> result = cmd.Return();
+            Video json = (Video) result;
+            return gson.toJson(json);
 
         }
 
