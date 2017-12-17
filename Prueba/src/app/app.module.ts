@@ -9,6 +9,7 @@ import { LoginPageModule } from '../pages/login/login.module';
 import { OlvidarContraseñaPageModule } from '../pages/olvidar-contraseña/olvidar-contraseña.module';
 import { RegristrarsePageModule} from '../pages/regristrarse/regristrarse.module';
 import { InvitacionTwitterPageModule} from '../pages/invitacion-twitter/invitacion-twitter.module';
+import {HomecablePageModule } from '../pages/homecable/homecable.module';
 
 import  {Facebook} from '@ionic-native/facebook';
 
@@ -23,6 +24,7 @@ import  {Facebook} from '@ionic-native/facebook';
     OlvidarContraseñaPageModule,
     RegristrarsePageModule,
      InvitacionTwitterPageModule,
+     HomecablePageModule,
 
     
     IonicModule.forRoot(MyApp)

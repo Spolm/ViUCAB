@@ -59,17 +59,25 @@
     <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
   </button>
   
-  
+  <button ion-button inline (click)="loginWithFB()"><ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+    Facebook</button>
+  <ion-card *ngIf="userData" >
+    <ion-card-header>{{ userData.username }}</ion-card-header>
+    <img [src]="userData.picture">
+    <ion-card-content>
+      <p> Email: {{ userData.email }} </p>
+      <p> First Name: {{ userData.first_name }} </p>
+    </ion-card-content>
+  </ion-card>
+
+
   <!-- Only icon (no text) -->
-  <button ion-button icon-left   inline (click)="loginwithFB()" >
+  <!--<button ion-button icon-left   inline (click)="loginwithFB()" >
     <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
     Facebook
   </button>
-  <ion-card >
-      <ion-card-header>
-          {{ userData.username } }
+  <ion-card *ngIf="userData" >
+      <ion-card-header>{{userData.username }}</ion-card-header>
 
-      </ion-card-header>
-
-  </ion-card>
+  </ion-card>-->
 </ion-content>
