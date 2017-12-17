@@ -15,7 +15,7 @@ import java.util.LinkedList;
 public class GetSuscritosComando extends Command {
     int _idUsuario;
     Entity est;
-    LinkedList<Entity> _resultado=null;
+    ArrayList<Video> _resultado=null;
 
     public GetSuscritosComando(Entity est) {
         this.est = est;
@@ -25,7 +25,7 @@ public class GetSuscritosComando extends Command {
      * Obtiene la lista resultante de las suscripciones
      * @return
      */
-    public LinkedList<Entity> get_listVideo()
+    public ArrayList<Video> get_listVideo()
     {
         return _resultado;
     }
@@ -33,7 +33,7 @@ public class GetSuscritosComando extends Command {
     @Override
     public void execute() {
         GetHomeDao dao =  DaoFactory.instanciateGetSuscritosComando();
-        LinkedList<Entity> video = dao.GetSuscritosComando(est);
+        ArrayList<Video> video = dao.GetSuscritosComando(est);
         _resultado =video;
 
     }

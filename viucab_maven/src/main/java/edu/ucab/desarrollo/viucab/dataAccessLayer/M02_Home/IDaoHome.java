@@ -1,9 +1,11 @@
 package edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.IDao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -11,10 +13,10 @@ import java.util.LinkedList;
  */
 public interface IDaoHome extends IDao {
 
-    public LinkedList<Entity> GetMasVistosComando()throws SQLException;
-    public LinkedList<Entity> GetPreferenciasComando(Entity entidad) throws  SQLException;
-    public LinkedList<Entity> GetSuscritosComando(Entity entidad) throws  SQLException;
-    public LinkedList<Entity> GetBusquedaComando(String parametro) throws SQLException;
+    public ArrayList<Video> GetMasVistosComando()throws SQLException;
+    public ArrayList<Video> GetPreferenciasComando(Entity entidad) throws  SQLException;
+    public ArrayList<Video> GetSuscritosComando(Entity entidad) throws  SQLException;
+    public ArrayList<Video> GetBusquedaComando(String parametro) throws SQLException;
 
 
 }

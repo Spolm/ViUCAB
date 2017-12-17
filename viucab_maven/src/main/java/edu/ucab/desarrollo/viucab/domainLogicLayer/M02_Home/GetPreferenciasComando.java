@@ -15,21 +15,21 @@ import java.util.LinkedList;
 public class GetPreferenciasComando extends Command {
 
     Entity est;
-    LinkedList<Entity> _resultado=null;
+    ArrayList<Video> _resultado=null;
 
     public GetPreferenciasComando(Entity est) {
         this.est = est;
     }
 
 
-    public LinkedList<Entity> get_listVideo()
+    public ArrayList<Video> get_listVideo()
     {
         return _resultado;
     }
     @Override
     public void execute() {
         GetHomeDao dao =  DaoFactory.instanciateGetPreferenciasComando();
-        LinkedList<Entity> video = dao.GetPreferenciasComando(est);
+        ArrayList<Video> video = dao.GetPreferenciasComando(est);
         _resultado =video;
 
     }

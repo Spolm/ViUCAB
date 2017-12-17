@@ -45,17 +45,17 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @throws SQLException
      */
     @Override
-    public LinkedList<Entity> GetMasVistosComando() throws SQLException {
+    public ArrayList<Video> GetMasVistosComando() throws SQLException {
         Video video;
         CallableStatement preStatement = null;
-        LinkedList<Entity> resultlist = null;
+        ArrayList<Video> listaVideos= new ArrayList<>();
         ResultSet resultSet = null;
 
         Connection conn;
 
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new LinkedList<Entity>();
+
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -73,8 +73,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 int visitas = resultSet.getInt("visitasvideo");
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
-                video.setListaVideo(resultlist);
-                resultlist.add(video);
+                listaVideos.add(video);
 
 
             }
@@ -85,7 +84,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
         } finally {
             closeConnection();
         }
-        return resultlist;
+        return listaVideos;
 
     }
 /*
@@ -96,17 +95,17 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @return resultlist
      */
     @Override
-    public LinkedList<Entity> GetPreferenciasComando(Entity entidad) {
+    public ArrayList<Video> GetPreferenciasComando(Entity entidad) {
         Usuario usuario =(Usuario) entidad;
         int idU=usuario.get_id_user();
         Video video = null;
         CallableStatement preStatement = null;
-        LinkedList<Entity> resultlist = null;
+        ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
         Connection conn;
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new LinkedList<Entity>();
+            resultlist = new ArrayList<Video>();
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -146,18 +145,18 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @return resultlist
      */
     @Override
-    public LinkedList<Entity> GetSuscritosComando(Entity entidad) {
+    public ArrayList<Video> GetSuscritosComando(Entity entidad) {
 
         Usuario usuario =(Usuario) entidad;
         int idU=usuario.get_id_user();
         CallableStatement preStatement = null;
-        LinkedList<Entity> resultlist = null;
+        ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
         Video video;
         Connection conn;
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new LinkedList<Entity>();
+            resultlist = new ArrayList<Video>();
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -197,15 +196,15 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @return resultlist
      */
     @Override
-    public LinkedList<Entity> GetBusquedaComando(String parametro) {
+    public ArrayList<Video> GetBusquedaComando(String parametro) {
         CallableStatement preStatement = null;
-        LinkedList<Entity> resultlist = null;
+        ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
         Video video;
         Connection conn;
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new LinkedList<Entity>();
+            resultlist = new ArrayList<Video>();
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP

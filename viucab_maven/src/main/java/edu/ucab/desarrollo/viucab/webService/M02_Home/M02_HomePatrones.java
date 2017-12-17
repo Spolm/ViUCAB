@@ -7,6 +7,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetBusquedaComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetMasVistosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
@@ -66,7 +67,8 @@ public class M02_HomePatrones {
                 Command commandVideoMasVisto = CommandsFactory.instanciateGetMasVistosComando();
                 GetMasVistosComando cmd = (GetMasVistosComando) commandVideoMasVisto;
                 cmd.execute();
-                LinkedList<Entity> result = cmd.get_listVideo();
+                ArrayList<Video> result =cmd.get_listVideo();
+                //LinkedList<Entity> result = cmd.get_listVideo();
                 //LinkedList <Video> pruebaCast = (LinkedList<Video>) result;
                 return gson.toJson(result);
             }
@@ -106,7 +108,14 @@ public class M02_HomePatrones {
          */
         public String busquedaVideos (@QueryParam("parametroBusqueda")  String parametroBusqueda)
         {
-            return  null;
+
+            Command commandVideo = CommandsFactory.instanciateGetBusquedaComando(parametroBusqueda);
+            GetBusquedaComando cmd = (GetBusquedaComando) commandVideo;
+            cmd.execute();
+            Entity result =cmd.Return();
+            Video json = (Video) result;
+
+            return gson.toJson(json);
 
 
         }
