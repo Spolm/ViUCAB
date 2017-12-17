@@ -7,8 +7,6 @@ import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
-//Direccion del servidor donde esta la BDD war_exploded
-const URL = 'http://localhost:8080/viucab_war_exploded';
 //Direccion del servidor donde esta la BDD
 const URL = 'http://localhost:8888/viucab';
 
