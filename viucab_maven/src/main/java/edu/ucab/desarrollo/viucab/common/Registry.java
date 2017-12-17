@@ -2,6 +2,7 @@ package edu.ucab.desarrollo.viucab.common;
 
 /**
  * Created by Daniel on 25/11/2017. creada por M011
+ * conexion a la base de datos
  */
 public class Registry {
 

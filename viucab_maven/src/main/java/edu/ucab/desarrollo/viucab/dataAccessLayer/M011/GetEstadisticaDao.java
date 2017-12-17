@@ -17,6 +17,7 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+
     @Override
     public Entity create(Entity e) {
         return null;
@@ -32,6 +33,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
         return null;
     }
 
+    /***
+     * metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica1(Entity e) throws SQLException {
         Estadistica estadistica = (Estadistica) e;
@@ -82,6 +89,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+    /***
+     *  metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica2(Entity e) throws SQLException {
 
@@ -135,6 +148,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+    /***
+     *  metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica3(Entity e) throws SQLException {
 
@@ -195,6 +214,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+    /***
+     *  metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica4(Entity e) throws SQLException {
         Estadistica estadistica = (Estadistica) e;
@@ -251,6 +276,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+    /***
+     *  metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica5(Entity e) throws SQLException {
         Estadistica estadistica = (Estadistica) e;
@@ -306,6 +337,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+    /***
+     *  metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica6(Entity e) throws SQLException {
         Estadistica estadistica = (Estadistica) e;
@@ -362,7 +399,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
     }
 
 
-
+    /***
+     *  metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
       public Entity GetEstadistica7(Entity e) throws SQLException {
 
@@ -420,6 +462,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+    /***
+     *  metodo que consume a la base de datos los valores
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica8(Entity e) throws SQLException {
         Estadistica estadistica = (Estadistica) e;
@@ -478,6 +526,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
         return estadistica;
     }
 
+    /*** metodo que consume a la base de datos los valores
+     *
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Entity GetEstadistica9(Entity e) throws SQLException {
         Estadistica estadistica = (Estadistica) e;

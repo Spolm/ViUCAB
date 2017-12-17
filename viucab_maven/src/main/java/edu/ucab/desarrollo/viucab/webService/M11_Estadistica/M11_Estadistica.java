@@ -14,12 +14,20 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 
+
 @Path("/Estadistica")
 public class M11_Estadistica {
 
     Gson gson = new Gson();
 //a a recibir un int
     //Ver de Etiquetas más utilizadas
+
+
+     /***
+     * web service que es llamado a traves del fronten para Ver de Etiquetas más utilizadas
+     * @param username
+     * @return
+     */
     @GET
     @Path("/Estadistica1")
     @Produces("text/plain")
@@ -35,6 +43,11 @@ public class M11_Estadistica {
         return gson.toJson(json);
     }
 
+    /***
+     * web service que es llamado a traves del fronten para la estadistica videos con más likes
+     * @param username
+     * @return
+     */
     //Ver Estadísticas de videos con más likes
     @GET
     @Path("/Estadistica2")
@@ -51,6 +64,11 @@ public class M11_Estadistica {
     }
 
 
+    /***
+     * web service que es llamado a traves del fronten para la ver Estadísticas de videos  más visto
+     * @param username
+     * @return
+     */
     @GET
     @Path("/Estadistica3")
     @Produces("text/plain")
@@ -66,6 +84,11 @@ public class M11_Estadistica {
         return gson.toJson(json);
     }
 
+    /***
+     * web service que es llamado a traves del fronten para Ver Estadísticas de usuarios con mas videos
+     * @param username
+     * @return
+     */
     @GET
     @Path("/Estadistica4")
     @Produces("text/plain")
@@ -81,6 +104,11 @@ public class M11_Estadistica {
         return gson.toJson(json);
     }
 
+    /***
+     * web service que es llamado a traves del fronten para Ver Estadísticas número de personas seguidas por mes
+     * @param username
+     * @return
+     */
     @GET
     @Path("/Estadistica5")
     @Produces("text/plain")
@@ -95,7 +123,11 @@ public class M11_Estadistica {
         Estadistica json = (Estadistica) result;
         return gson.toJson(json);
     }
-
+    /***
+     * web service que es llamado a traves del fronten para Ver Estadísticas número de personas que te siguen por mes
+     * @param username
+     * @return
+     */
     @GET
     @Path("/Estadistica6")
     @Produces("text/plain")
@@ -112,6 +144,11 @@ public class M11_Estadistica {
         return gson.toJson(json);
     }
 
+    /***
+     * web service que es llamado a traves del fronten para Ver Estadísticas De número de visualizaciones de tus vídeos por mes
+     * @param username
+     * @return
+     */
     @GET
     @Path("/Estadistica7")
     @Produces("text/plain")
@@ -127,7 +164,12 @@ public class M11_Estadistica {
         Estadistica json = (Estadistica) result;
         return gson.toJson(json);
     }
+    /***
+     * web service que es llamado a traves del fronten para listar cual video tiene mas categorias lusto
 
+     * @param username
+     * @return
+     */
     @GET
     @Path("/Estadistica8")
     @Produces("text/plain")
@@ -143,6 +185,11 @@ public class M11_Estadistica {
         Estadistica json = (Estadistica) result;
         return gson.toJson(json);
     }
+    /***
+     * web service que es llamado a traves del fronten para listar cual video tiene mas categorias lusto
+     * @param username
+     * @return
+     */
 
     @GET
     @Path("/Estadistica9")

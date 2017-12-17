@@ -12,39 +12,84 @@ public class CommandsFactory {
 
     //region M011
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public static Command instanciateEstadistica1 (Entity est){
         return new GetEstadistica1(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public static  Command instanciateEstadistica2 (Entity est){
 
         return  new GetEstadistica2(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public  static  Command instanciateEstadistica3 (Entity est){
         return new GetEstadistica3(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public  static  Command instanciateEstadistica4 (Entity est){
         return new GetEstadistica4(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public  static  Command instanciateEstadistica5 (Entity est){
         return new GetEstadistica5(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public  static  Command instanciateEstadistica6 (Entity est){
         return new GetEstadistica6(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public  static  Command instanciateEstadistica7 (Entity est){
         return new GetEstadistica7(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public  static  Command instanciateEstadistica8 (Entity est){
         return new GetEstadistica8(est);
     }
 
+    /***
+     * meto que crea la instancia de los comandos
+     * @param est
+     * @return
+     */
     public  static  Command instanciateEstadistica9 (Entity est){
         return new GetEstadistica9(est);
     }

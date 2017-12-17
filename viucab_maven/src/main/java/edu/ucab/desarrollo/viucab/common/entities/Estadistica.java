@@ -1,6 +1,8 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-
+/***
+ * objeto estadistica que se usara para mostrar los datos traidos de la base de datos.
+ */
 public class Estadistica extends Entity {
 
     private String username;
@@ -8,6 +10,12 @@ public class Estadistica extends Entity {
     private String[] data;
     private String nombre;
 
+    /***
+     * constructor
+     * @param username
+     * @param label
+     * @param data
+     */
     public Estadistica(String username, String[] label, String[] data) {
 
         this.username = username;
@@ -16,11 +24,19 @@ public class Estadistica extends Entity {
 
     }
 
+    /***
+     * constructor
+     * @param username
+     */
     public Estadistica(String username) {
 
         this.username = username;
     }
 
+    /***
+     * getter and setter
+     * @return
+     */
     public String getUsername() {
         return username;
     }

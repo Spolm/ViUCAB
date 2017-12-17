@@ -13,6 +13,10 @@ import java.util.Set;
 
 @ApplicationPath("/")
 public class ViUcab extends Application {
+    /***
+     * metodo para obtener la rutas
+     * @return
+     */
     @Override
     public Set<Class<?>> getClasses() {
         HashSet h= new HashSet<Class<?>>();

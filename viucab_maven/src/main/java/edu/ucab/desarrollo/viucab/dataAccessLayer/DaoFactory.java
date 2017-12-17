@@ -12,6 +12,10 @@ public class DaoFactory
 
     //region M011
 
+    /***
+     * Metodo que retorna un oget estadisticadato
+     * @return GetEstadisticaDao
+     */
     static public GetEstadisticaDao instanciateDaoEstadistica1(){
         return new GetEstadisticaDao();
     }

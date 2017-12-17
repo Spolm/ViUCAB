@@ -17,6 +17,9 @@ public class GetEstadistica2 extends Command {
         this.est = est;
     }
 
+    /***
+     * metodo execute que llama al dao para guardar los datos de la fabrica
+     */
     @Override
     public void execute() {
         try {
@@ -32,7 +35,9 @@ public class GetEstadistica2 extends Command {
         }
 
     }
-
+    /***
+     * metodo execute que llama al dao para obtener los datos
+     */
     @Override
     public Entity Return() {
         return est;

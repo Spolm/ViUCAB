@@ -12,8 +12,14 @@ import java.util.List;
 public abstract class Command
 {
 
+    /***
+     * metodo abstracto que es extendido en las clases particulares  de patrones
+     */
     public abstract void execute() ;
 
+    /***
+     * metodo abstracto que es extendido en las clases particulares  de patrones
+     */
     public abstract Entity Return() ;
 
 

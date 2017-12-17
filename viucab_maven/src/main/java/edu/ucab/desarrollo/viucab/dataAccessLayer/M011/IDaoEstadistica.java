@@ -10,13 +10,67 @@ import java.sql.SQLException;
  */
 public interface IDaoEstadistica extends IDao {
 
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica1 (Entity e) throws SQLException; //throws SQLException, BdConnectException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica2 (Entity e) throws SQLException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica3 (Entity e) throws SQLException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica4 (Entity e) throws SQLException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica5 (Entity e) throws SQLException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica6 (Entity e) throws SQLException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica7 (Entity e) throws SQLException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica8 (Entity e) throws SQLException;
+    /***
+     * metodos que son instanciados en la clase especifica del modulo 11 getEstadisticaDao
+     * @param e
+     * @return
+     * @throws SQLException
+     */
     Entity GetEstadistica9 (Entity e) throws SQLException;
 }

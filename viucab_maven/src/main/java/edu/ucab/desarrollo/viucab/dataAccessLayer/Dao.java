@@ -67,6 +67,9 @@ public abstract class Dao implements IDao
         return conn;
     }
 
+    /***
+     * metodo que cierra la conexion
+     */
     protected static void closeConnection()
     {
         try
