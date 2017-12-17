@@ -63,19 +63,19 @@ public class GetHomeDao extends Dao implements IDaoHome {
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
 
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
                 resultlist.add(video);
                 video.setListaVideo(resultlist);
 
-
+                return resultlist;
             }
             resultSet.close();
 
@@ -116,13 +116,13 @@ public class GetHomeDao extends Dao implements IDaoHome {
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
 
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
                 resultlist.add(video);
@@ -166,13 +166,13 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
                 resultlist.add(video);
@@ -213,13 +213,13 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
                 resultlist.add(video);
