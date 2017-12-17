@@ -68,7 +68,7 @@ public class CommandsFactory {
     //region M05
 
     public static Command instanciaGetLista (Entity lista){
-        return new GetLista(lista);
+        return new GetListaComando(lista);
     }
 
     //endregion

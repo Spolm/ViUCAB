@@ -39,6 +39,8 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
     public Entity GetLista(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
+        Integer idLista = lista.getIdLista();
+        Entity listaRecibida = null;
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Connection conn;
@@ -47,7 +49,9 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
-            preStatement = conn.prepareCall("{call m05_obtenerListaDeReproduccion()}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
+            preStatement = conn.prepareCall("{call m05_obtenerListaDeReproduccion(?)}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
+            //Seteo lo que le estoy mandando al procedimiento con ese "?"
+            preStatement.setInt(1,idLista);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
@@ -59,8 +63,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
                 String fechaCreacion = resultSet.getString("LIS_REP_FECHA");
                 int numReproducciones = resultSet.getInt("LIS_REP_NUMREP");
 
-                lista = EntityFactory.listaDeReproduccion(idLista, nombre, descripcion, numReproducciones, fechaCreacion);
-
+                listaRecibida = EntityFactory.listaDeReproduccion(idLista, nombre, descripcion, numReproducciones, fechaCreacion);
 
             }
             resultSet.close();
@@ -70,6 +73,6 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
         } finally {
             closeConnection();
         }
-        return resultlist;
+        return listaRecibida;
     }
 }

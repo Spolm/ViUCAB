@@ -7,7 +7,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
 /**
- * 
+ *
  */
 public class GetListaComando extends Command {
 
