@@ -7,28 +7,29 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by estefania on 29/11/2017.
  */
 public class GetPreferenciasComando extends Command {
 
-    Video est;
-    ArrayList<Video> _resultado=null;
+    Entity est;
+    LinkedList<Entity> _resultado=null;
 
-    public GetPreferenciasComando(Video est) {
+    public GetPreferenciasComando(Entity est) {
         this.est = est;
     }
 
 
-    public ArrayList<Video> get_listVideo()
+    public LinkedList<Entity> get_listVideo()
     {
         return _resultado;
     }
     @Override
     public void execute() {
         GetHomeDao dao =  DaoFactory.instanciateGetPreferenciasComando();
-        ArrayList<Video> video = dao.GetPreferenciasComando(est);
+        LinkedList<Entity> video = dao.GetPreferenciasComando(est);
         _resultado =video;
 
     }

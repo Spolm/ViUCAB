@@ -7,16 +7,17 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by estefania on 29/11/2017.
  */
 public class GetSuscritosComando extends Command {
     int _idUsuario;
-    Video est;
-    ArrayList<Video> _resultado=null;
+    Entity est;
+    LinkedList<Entity> _resultado=null;
 
-    public GetSuscritosComando(Video est) {
+    public GetSuscritosComando(Entity est) {
         this.est = est;
     }
 
@@ -24,7 +25,7 @@ public class GetSuscritosComando extends Command {
      * Obtiene la lista resultante de las suscripciones
      * @return
      */
-    public ArrayList<Video> get_listVideo()
+    public LinkedList<Entity> get_listVideo()
     {
         return _resultado;
     }
@@ -32,7 +33,7 @@ public class GetSuscritosComando extends Command {
     @Override
     public void execute() {
         GetHomeDao dao =  DaoFactory.instanciateGetSuscritosComando();
-        ArrayList<Video> video = dao.GetSuscritosComando(est);
+        LinkedList<Entity> video = dao.GetSuscritosComando(est);
         _resultado =video;
 
     }

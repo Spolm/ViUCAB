@@ -21,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * Created by estefania on 14/12/2017.
@@ -60,13 +61,19 @@ public class M02_HomePatrones {
          */
         public String obtenerMasVistos ()
         {
-            Entity videoObject = EntityFactory.homeUsuario();
-            Command commandVideoMasVisto= CommandsFactory.instanciateGetMasVistosComando();
-            GetMasVistosComando cmd = (GetMasVistosComando) commandVideoMasVisto;
-            cmd.execute();
-            ArrayList<Video> result = cmd.get_listVideo();
-            return gson.toJson(result);
+            try {
 
+                Command commandVideoMasVisto = CommandsFactory.instanciateGetMasVistosComando();
+                GetMasVistosComando cmd = (GetMasVistosComando) commandVideoMasVisto;
+                cmd.execute();
+                LinkedList<Entity> result = cmd.get_listVideo();
+                //LinkedList <Video> pruebaCast = (LinkedList<Video>) result;
+                return gson.toJson(result);
+            }
+            catch (Exception e){
+
+            }
+            return null;
         }
 
         @GET
@@ -81,41 +88,10 @@ public class M02_HomePatrones {
         public String obtenerVideosSuscritos (@QueryParam("id") int idUser)
         {
 
-            String query =  "SELECT DISTINCT video.* " +
-                    "FROM video,usuario,suscripcion " +
-                    "WHERE video.vid_usuario=suscripcion.id_suscripcion " +
-                    "AND suscripcion.id_suscriptor='"+idUser+"'" +
-                    "ORDER BY video.vid_fecha DESC ";
 
 
-            try {
 
-                //Lista del objeto video para almacenar todos los videos a cargar
-                ArrayList<Video> listaVideos= new ArrayList<>();
-                PreparedStatement ps = conn.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-
-                while (rs.next()) {
-                    Video resultado = new Video();
-                    resultado.setId(rs.getInt("vid_id"));
-                    resultado.setNombre(rs.getString("vid_titulo"));
-                    resultado.setDescripcion(rs.getString("vid_descripcion"));
-                    resultado.setImagen(rs.getString("vid_imagen"));
-                    resultado.setFecha(rs.getString("vid_fecha"));
-                    resultado.setVisitas(rs.getInt("vid_visitas"));
-
-                    listaVideos.add(resultado);
-
-                }
-
-                return gson.toJson(listaVideos);
-            }
-            catch(SQLException e) {
-                return e.getMessage();
-            }
-            finally {
-                Sql.bdClose(conn);
-            }
+        return null;
 
 
         }
@@ -130,58 +106,7 @@ public class M02_HomePatrones {
          */
         public String busquedaVideos (@QueryParam("parametroBusqueda")  String parametroBusqueda)
         {
-            //Consulta por:
-            // 1._Titulo
-            // 2._Categoria
-            // 3._Etiqueta
-
-            String query  = "SELECT  video.* " +
-                    "FROM    video, categoria, video_cat " +
-                    "WHERE   video.vid_titulo LIKE '%"+parametroBusqueda+"%'" +
-                    "AND video.vid_id=video_cat.idvid " +
-                    "AND categoria.cat_id=video_cat.idcat " +
-                    "UNION " +
-                    "SELECT  video.* " +
-                    "FROM    video,categoria,video_cat " +
-                    "WHERE   categoria.cat_valor LIKE '%"+parametroBusqueda+"%'  " +
-                    "AND video.vid_id=video_cat.idvid " +
-                    "AND categoria.cat_id=video_cat.idcat " +
-                    "UNION " +
-                    "SELECT  video.*" +
-                    "FROM    video,etiqueta,video_etiq " +
-                    "WHERE   etiqueta.eti_valor LIKE '%"+parametroBusqueda+"%' " +
-                    "AND video.vid_id=video_etiq.idvid " +
-                    "AND etiqueta.eti_id=video_etiq.idetiq";
-            try{
-
-                //Lista del objeto video para almacenar todos los videos a cargar
-                ArrayList<Video> listaVideos= new ArrayList<>();
-                PreparedStatement ps = conn.prepareStatement(query);
-                ResultSet rs = ps.executeQuery();
-
-
-                while (rs.next() ) {
-                    Video resultado = new Video();
-                    resultado.setId(rs.getInt("vid_id"));
-                    resultado.setNombre(rs.getString("vid_titulo"));
-                    resultado.setDescripcion(rs.getString("vid_descripcion"));
-                    resultado.setImagen(rs.getString("vid_imagen"));
-                    resultado.setFecha(rs.getString("vid_fecha"));
-                    resultado.setVisitas(rs.getInt("vid_visitas"));
-
-                    listaVideos.add(resultado);
-
-                }
-
-
-                return gson.toJson(listaVideos);
-
-            } catch(SQLException e) {
-                return e.getMessage();
-            }
-            finally {
-                Sql.bdClose(conn);
-            }
+            return  null;
 
 
         }

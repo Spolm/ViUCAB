@@ -59,9 +59,9 @@ public class CommandsFactory {
     //Mas Vistos no recibe Parametros
     public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}
 
-    public  static  Command instanciateGetPreferenciasComando (Video e) {return  new GetPreferenciasComando(e);}
+    public  static  Command instanciateGetPreferenciasComando (Entity est) {return  new GetPreferenciasComando(est);}
 
-    public  static  Command instanciateGetSuscritosComando    (Video e) {return  new GetSuscritosComando(e);}
+    public  static  Command instanciateGetSuscritosComando    (Entity est) {return  new GetSuscritosComando(est);}
 
     // Fin instancias M02
 }

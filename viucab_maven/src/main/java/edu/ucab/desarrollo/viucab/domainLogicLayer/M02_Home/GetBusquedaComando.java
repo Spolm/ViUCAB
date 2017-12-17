@@ -9,6 +9,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by estefania on 29/11/2017.
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 public class GetBusquedaComando extends Command{
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetMasVistosComando.class);
     String _criterio;
-    ArrayList<Video> _resultado=null;
+    LinkedList<Entity> _resultado=null;
 
 
 
@@ -28,7 +29,7 @@ public class GetBusquedaComando extends Command{
      * Obtiene Resultaddo de las Busquedas
      * @return ListVideo
      */
-    public ArrayList<Video> get_listVideo()
+    public LinkedList<Entity> get_listVideo()
     {
         return _resultado;
     }
@@ -36,7 +37,7 @@ public class GetBusquedaComando extends Command{
     public void execute() {
         try {
             GetHomeDao dao =DaoFactory.instanciateGetBusquedaComando();
-            ArrayList<Video> video=dao.GetBusquedaComando(_criterio);
+            LinkedList<Entity> video=dao.GetBusquedaComando(_criterio);
 
             _resultado =video;
         }

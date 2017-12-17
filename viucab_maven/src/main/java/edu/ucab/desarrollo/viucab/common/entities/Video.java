@@ -1,6 +1,6 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-        import java.util.ArrayList;
+        import java.util.LinkedList;
 
 /**
  * Created by estefania on 10/11/2017.
@@ -16,14 +16,14 @@ public class Video extends Entity{
     private String url;
     private String _valorCategoria;
     private String usuario;
-    private ArrayList<Video> listaVideo;
+    private LinkedList<Entity> listaVideo;
     private String [] listaRespVideo;
 
 
     public Video() {
     }
 
-    public Video(ArrayList listaVideo) {
+    public Video(LinkedList listaVideo) {
         this.listaVideo = listaVideo;
     }
 
@@ -117,11 +117,11 @@ public class Video extends Entity{
         this.usuario = usuario;
     }
 
-    public ArrayList<Video> getListaVideo() {
+    public LinkedList<Entity> getListaVideo() {
         return listaVideo;
     }
 
-    public void setListaVideo(ArrayList<Video> listaVideo) {
+    public void setListaVideo(LinkedList<Entity> listaVideo) {
         this.listaVideo = listaVideo;
     }
 
