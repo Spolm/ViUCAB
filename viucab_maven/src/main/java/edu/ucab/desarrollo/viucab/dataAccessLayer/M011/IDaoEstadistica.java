@@ -11,12 +11,12 @@ import java.sql.SQLException;
 public interface IDaoEstadistica extends IDao {
 
     Entity GetEstadistica1 (Entity e) throws SQLException; //throws SQLException, BdConnectException;
-    Entity GetEstadistica2 (Entity e);
-    Entity GetEstadistica3 (Entity e);
-    Entity GetEstadistica4 (Entity e);
-    Entity GetEstadistica5 (Entity e);
-    Entity GetEstadistica6 (Entity e);
-    Entity GetEstadistica7 (Entity e);
-    Entity GetEstadistica8 (Entity e);
-    Entity GetEstadistica9 (Entity e);
+    Entity GetEstadistica2 (Entity e) throws SQLException;
+    Entity GetEstadistica3 (Entity e) throws SQLException;
+    Entity GetEstadistica4 (Entity e) throws SQLException;
+    Entity GetEstadistica5 (Entity e) throws SQLException;
+    Entity GetEstadistica6 (Entity e) throws SQLException;
+    Entity GetEstadistica7 (Entity e) throws SQLException;
+    Entity GetEstadistica8 (Entity e) throws SQLException;
+    Entity GetEstadistica9 (Entity e) throws SQLException;
 }

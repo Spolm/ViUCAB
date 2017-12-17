@@ -82,6 +82,8 @@ public pet ()
         this.respu1 =  this.respu
          console.error(error);
        });
+
+
        this.api.geta('Estadistica/Estadistica2').subscribe((data) => { // Success
         this.respu2 = data.json()
         console.log (this.respu)
@@ -90,6 +92,8 @@ public pet ()
         this.respu2 =  this.respu
          console.error(error);
        });
+
+
        this.api.geta('Estadistica/Estadistica3').subscribe((data) => { // Success
         this.respu3 = data.json()
         console.log (this.respu)
@@ -98,6 +102,8 @@ public pet ()
         this.respu3 =  this.respu
          console.error(error);
        });
+
+
        this.api.geta('Estadistica/Estadistica4').subscribe((data) => { // Success
         this.respu4 = data.json()
         console.log (this.respu)
@@ -106,6 +112,8 @@ public pet ()
         this.respu4 =  this.respu
          console.error(error);
        });
+
+
        this.api.geta('Estadistica/Estadistica5').subscribe((data) => { // Success
         this.respu5 = data.json()
         console.log (this.respu)
@@ -114,6 +122,8 @@ public pet ()
         this.respu5 =  this.respu
          console.error(error);
        });
+
+
        this.api.geta('Estadistica/Estadistica6').subscribe((data) => { // Success
         this.respu6 = data.json()
         console.log (this.respu)
@@ -122,6 +132,8 @@ public pet ()
          console.error(error);
          this.respu6 =  this.respu
        });
+
+    
        this.api.geta('Estadistica/Estadistica7').subscribe((data) => { // Success
         this.respu7 = data.json()
         console.log (this.respu)
@@ -130,6 +142,8 @@ public pet ()
         this.respu7 =  this.respu
          console.error(error);
        });
+
+
        this.api.geta('Estadistica/Estadistica8').subscribe((data) => { // Success
         this.respu8 = data.json()
         console.log (this.respu)
@@ -138,6 +152,8 @@ public pet ()
         this.respu8 =  this.respu
          console.error(error);
        });
+
+       
        this.api.geta('Estadistica/Estadistica9').subscribe((data) => { // Success
         this.respu9 = data.json()
         console.log (this.respu)
