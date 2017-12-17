@@ -12,18 +12,17 @@ const URL = 'http://localhost:8080/viucab';
 @Injectable()
 export class RestApiService {
 
-  constructor(
-    private http: Http
-  ) { }
+  constructor( private http: Http) {
+    this.http = http;
+   }
 
   //Metodo GET: /direccion
   //Accede al metodo que se encuentra en direccion y devuelve la respuesta
   public getTodo(direccion){
-    console.log(URL+'/'+direccion);
     return this.http
       .get(URL+'/'+direccion)
       .map((data: any) => data.json())
-      .subscribe();
+      .catch(this.handleError);
   }
 
   //Metodo GET: /direccion/id_objeto
@@ -38,13 +37,14 @@ export class RestApiService {
   //Metodo GET: /direccion + (param)
   //Accede al metodo que se encuentra en direccion, enviando parametros y devuelve la respuesta
   public getTodoParam(direccion, param){
+    console.log(URL+'/'+direccion);
     return this.http
       .get(URL+'/'+direccion, param)
       .map((data: any) => data.json())
       .subscribe();
   }
 
-  //Metodo GET: /direccion + (param)
+  //Metodo GET: /direccion/id_objeto + (param)
   //Accede al metodo que se encuentra en direccion, enviando un id y parametros y devuelve la respuesta
   public getUnoParam(direccion, idObjeto, param){
     return this.http

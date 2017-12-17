@@ -9,18 +9,54 @@
       <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
       <ion-buttons class= 'centrado-porcentual'  >
           <button  >
-        <ion-icon name="videocam" color="primary"></ion-icon>   
+        <ion-icon name="videocam" color="primary"></ion-icon>
       </button>
-      </ion-buttons>   
-    
+      </ion-buttons>
+
     </ion-title>
-    
+
   </ion-navbar>
 </ion-header>
- 
-<ion-content padding>
-   
-  
 
-     
+<ion-content padding>
+
+  <ion-list>
+    <ion-item (click)="pasar()">
+      Estadistica1
+    </ion-item >
+    <ion-item >
+    Estadistica2
+    </ion-item>
+
+    <ion-item (click)="marico()">
+    Estadistica3
+    </ion-item>
+    <ion-item (click)="marico()">
+    Estadistica4
+    </ion-item>
+
+  </ion-list>
+
+
+  <ion-card [class.hide]="!hola" >
+      <ion-card-header>
+        Bar Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        Doughnut Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
 </ion-content>
