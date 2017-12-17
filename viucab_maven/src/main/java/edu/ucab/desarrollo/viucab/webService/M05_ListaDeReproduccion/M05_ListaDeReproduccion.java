@@ -24,7 +24,7 @@ public class M05_ListaDeReproduccion {
     public String obtenerLista(@QueryParam("id") int idLista)
     {
 
-        Entity listaObject = EntityFactory.listaDeReproduccion(1);
+        Entity listaObject = EntityFactory.listaDeReproduccion(1); //SE LE ESTA PASANDO MANUALMENTE
         Command commandGetLista = CommandsFactory.instanciaGetLista(listaObject);
         GetListaComando cmd = (GetListaComando) commandGetLista;
         cmd.execute();
