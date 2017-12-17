@@ -4,6 +4,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 
 /**
  * Fabrica de comandos creada por M011
@@ -63,4 +64,12 @@ public class CommandsFactory {
     public  static  Command instanciateGetSuscritosComando    (int idUsuario) {return  new GetSuscritosComando(idUsuario);}
 
     // Fin instancias M02
+
+    //region M05
+
+    public static Command instanciaGetLista (Entity lista){
+        return new GetLista(lista);
+    }
+
+    //endregion
 }
