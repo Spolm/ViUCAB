@@ -18,7 +18,8 @@ import javax.ws.rs.QueryParam;
 public class M11_Estadistica {
 
     Gson gson = new Gson();
-
+//a a recibir un int
+    //Ver de Etiquetas más utilizadas
     @GET
     @Path("/Estadistica1")
     @Produces("text/plain")
@@ -34,6 +35,7 @@ public class M11_Estadistica {
         return gson.toJson(json);
     }
 
+    //Ver Estadísticas de videos con más likes
     @GET
     @Path("/Estadistica2")
     @Produces("text/plain")

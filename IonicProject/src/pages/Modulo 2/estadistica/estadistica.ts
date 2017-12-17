@@ -24,14 +24,19 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class EstadisticaPage {
   private  mostrar :boolean =false;
-  private perra = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"]
-  private perra4 =["rivetti", "es", "rolo", "de ", "pargo", "si","burda "]
-  private perra2 = [12, 19, 3, 5, 2, 3]
-  private perra3 = [10, 5, 2, 3, 2, 1]
+
   private aux: any
     private aux2: any
-    respu : any
+    respu : any =  {"username":"","label":[],"data":[],"nombre":"","_id":""}
     respu1 : any
+    respu2 : any
+    respu3 : any
+    respu4 : any
+    respu5 : any
+    respu6 : any
+    respu7 : any
+    respu8 : any
+    respu9 : any
 
     
     type = 'bar'
@@ -48,7 +53,9 @@ export class EstadisticaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public api: RestApiService) {
-
+            
+       
+   
 
      
   }
@@ -56,7 +63,11 @@ export class EstadisticaPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EstadisticaPage');
+    console.log(this.respu)
     this.pet()
+    
+    
+    
   }
 
 
@@ -64,14 +75,82 @@ export class EstadisticaPage {
 public pet ()
 {
     this.api.geta('Estadistica/Estadistica1').subscribe((data) => { // Success
-        this.respu = data.json()
+        this.respu1 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu1 =  this.respu
+         console.error(error);
+       });
+       this.api.geta('Estadistica/Estadistica2').subscribe((data) => { // Success
+        this.respu2 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu2 =  this.respu
+         console.error(error);
+       });
+       this.api.geta('Estadistica/Estadistica3').subscribe((data) => { // Success
+        this.respu3 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu3 =  this.respu
+         console.error(error);
+       });
+       this.api.geta('Estadistica/Estadistica4').subscribe((data) => { // Success
+        this.respu4 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu4 =  this.respu
+         console.error(error);
+       });
+       this.api.geta('Estadistica/Estadistica5').subscribe((data) => { // Success
+        this.respu5 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu5 =  this.respu
+         console.error(error);
+       });
+       this.api.geta('Estadistica/Estadistica6').subscribe((data) => { // Success
+        this.respu6 = data.json()
         console.log (this.respu)
        },
        (error) =>{
          console.error(error);
+         this.respu6 =  this.respu
+       });
+       this.api.geta('Estadistica/Estadistica7').subscribe((data) => { // Success
+        this.respu7 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu7 =  this.respu
+         console.error(error);
+       });
+       this.api.geta('Estadistica/Estadistica8').subscribe((data) => { // Success
+        this.respu8 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu8 =  this.respu
+         console.error(error);
+       });
+       this.api.geta('Estadistica/Estadistica9').subscribe((data) => { // Success
+        this.respu9 = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+        this.respu9 =  this.respu
+         console.error(error);
        });
 
+      
+
 }
+
 
 
 
@@ -85,7 +164,7 @@ public metodo (id:any)
     {
         
        this.mostrar = true;
-       this.respu1 = this.respu 
+       this.respu = this.respu1 
 
     this.CrearGrafica()
     this.respu1 =[]
@@ -93,13 +172,73 @@ public metodo (id:any)
     else if (id == 2)
     {
      
-       
         this.mostrar = true;
-        this.respu1.label = this.perra4
-        this.respu1.data = this.perra2
-   
+        this.respu = this.respu2 
+
         this.CrearGrafica()
     }
+    else if (id == 3)
+    {
+     
+        this.mostrar = true;
+        this.respu = this.respu3 
+
+        this.CrearGrafica()
+    }
+
+    else if (id == 4)
+    {
+     
+        this.mostrar = true;
+        this.respu = this.respu4 
+
+        this.CrearGrafica()
+    }
+
+    else if (id == 5)
+    {
+     
+        this.mostrar = true;
+        this.respu = this.respu5 
+
+        this.CrearGrafica()
+    }
+
+    else if (id == 6)
+    {
+     
+        this.mostrar = true;
+        this.respu = this.respu6 
+
+        this.CrearGrafica()
+    }
+    else if (id == 7)
+    {
+     
+        this.mostrar = true;
+        this.respu = this.respu7 
+
+        this.CrearGrafica()
+    }
+
+    else if (id == 8)
+    {
+     
+        this.mostrar = true;
+        this.respu = this.respu8 
+
+        this.CrearGrafica()
+    }
+
+    else if (id == 9)
+    {
+     
+        this.mostrar = true;
+        this.respu = this.respu9 
+
+        this.CrearGrafica()
+    }
+
 
 
 }
@@ -107,7 +246,8 @@ public metodo (id:any)
   public   CrearGrafica ()
  {
 
-
+  if (this.respu.label != null)
+{
     if (this.barChart != null)
     {
          this.barChart.destroy()
@@ -124,10 +264,10 @@ public metodo (id:any)
 
        type: this.type,
        data: {
-           labels: this.respu1.label,
+           labels: this.respu.label,
            datasets: [{
-               label: '# of Votes',
-               data: this.respu1.data,
+               label: this.respu.nombre,
+               data: this.respu.data,
                backgroundColor: [
                    'rgba(255, 99, 132, 0.2)',
                    'rgba(54, 162, 235, 0.2)',
@@ -165,10 +305,10 @@ public metodo (id:any)
 
        type: "doughnut",
        data: {
-        labels: this.respu1.label,
+        labels: this.respu.label,
         datasets: [{
-            label: '# of Votes',
-            data: this.respu1.data,
+            label: this.respu.nombre,
+            data: this.respu.data,
                backgroundColor: [
                    'rgba(255, 99, 132, 0.2)',
                    'rgba(54, 162, 235, 0.2)',
@@ -190,6 +330,7 @@ public metodo (id:any)
 
    });
  
+}
  }
 
 

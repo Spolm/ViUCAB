@@ -24,13 +24,33 @@
     <ion-item (click)="metodo(1)">
       Estadistica1
     </ion-item >
-    <ion-item >
+
+  <ion-item (click)="metodo(2)"> 
     Estadistica2
     </ion-item>
+  <ion-item (click)="metodo(3)"> 
+      Estadistica3
+      </ion-item>
+    <ion-item (click)="metodo(4)"> 
+        Estadistica4
+        </ion-item>
+      <ion-item (click)="metodo(5)"> 
+          Estadistica5
+          </ion-item>
+        <ion-item (click)="metodo(6)"> 
+            Estadistica6
+            </ion-item>
+          <ion-item (click)="metodo(7)"> 
+              Estadistica7
+              </ion-item>
+            <ion-item (click)="metodo(8)"> 
+                Estadistica8
+                </ion-item>
+              <ion-item (click)="metodo(9)"> 
+                  Estadistica9
+                  </ion-item>
 
-    <ion-item  (click)="metodo(2)">
-    Estadistica3a
-    </ion-item>
+    
   
 
   </ion-list>
@@ -45,7 +65,7 @@
 
   <ion-card  [class.hide]="!isDisabled" >
       <ion-card-header>
-        Bar Chart
+    
       </ion-card-header>
       <ion-card-content>
         <canvas #barCanvas></canvas>
@@ -57,7 +77,7 @@
 
     <ion-card [class.hide]="isDisabled">
       <ion-card-header>
-        Doughnut Chart
+   
       </ion-card-header>
       <ion-card-content>
         <canvas #doughnutCanvas></canvas>

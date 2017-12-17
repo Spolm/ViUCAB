@@ -4,17 +4,19 @@ package edu.ucab.desarrollo.viucab.common.entities;
 public class Estadistica extends Entity {
 
     private String username;
-    private String [] label;
-    private String [] data;
+    private String[] label;
+    private String[] data;
+    private String nombre;
 
-    public Estadistica(String username, String [] label, String [] data){
+    public Estadistica(String username, String[] label, String[] data) {
 
         this.username = username;
         this.label = label;
         this.data = data;
+
     }
 
-    public Estadistica(String username){
+    public Estadistica(String username) {
 
         this.username = username;
     }
@@ -27,19 +29,24 @@ public class Estadistica extends Entity {
         this.username = username;
     }
 
-    public String [] getLabel() {
+    public String[] getLabel() {
         return label;
     }
 
-    public void setLabel(String [] label) {
+    public void setLabel(String[] label) {
         this.label = label;
     }
 
-    public String [] getData() {
+    public String[] getData() {
         return data;
     }
 
-    public void setData(String [] data) {
+    public void setData(String[] data) {
         this.data = data;
+    }
+
+    public void setNombre(String nombre)
+    {
+    this.nombre = nombre;
     }
 }

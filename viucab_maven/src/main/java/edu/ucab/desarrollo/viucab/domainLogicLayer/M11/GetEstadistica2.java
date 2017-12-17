@@ -35,6 +35,6 @@ public class GetEstadistica2 extends Command {
 
     @Override
     public Entity Return() {
-        return null;
+        return est;
     }
 }
