@@ -1,7 +1,5 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-        import java.awt.*;
-        import java.io.InputStream;
         import java.util.ArrayList;
 
 /**
@@ -18,7 +16,7 @@ public class Video extends Entity{
     private String url;
     private String _valorCategoria;
     private String usuario;
-    private ArrayList<Entity> listaVideo;
+    private ArrayList<Video> listaVideo;
     private String [] listaRespVideo;
 
 
@@ -119,11 +117,11 @@ public class Video extends Entity{
         this.usuario = usuario;
     }
 
-    public ArrayList<Entity> getListaVideo() {
+    public ArrayList<Video> getListaVideo() {
         return listaVideo;
     }
 
-    public void setListaVideo(ArrayList<Entity> listaVideo) {
+    public void setListaVideo(ArrayList<Video> listaVideo) {
         this.listaVideo = listaVideo;
     }
 

@@ -2,6 +2,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
+import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 
@@ -58,9 +59,9 @@ public class CommandsFactory {
     //Mas Vistos no recibe Parametros
     public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}
 
-    public  static  Command instanciateGetPreferenciasComando (Entity e) {return  new GetPreferenciasComando(e);}
+    public  static  Command instanciateGetPreferenciasComando (Video e) {return  new GetPreferenciasComando(e);}
 
-    public  static  Command instanciateGetSuscritosComando    (Entity e) {return  new GetSuscritosComando(e);}
+    public  static  Command instanciateGetSuscritosComando    (Video e) {return  new GetSuscritosComando(e);}
 
     // Fin instancias M02
 }

@@ -1,6 +1,7 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
@@ -12,23 +13,28 @@ import java.util.ArrayList;
  */
 public class GetPreferenciasComando extends Command {
 
-    Entity est;
-    ArrayList<Entity> resultado=null;
+    Video est;
+    ArrayList<Video> _resultado=null;
 
-    public GetPreferenciasComando(Entity est) {
+    public GetPreferenciasComando(Video est) {
         this.est = est;
     }
 
+
+    public ArrayList<Video> get_listVideo()
+    {
+        return _resultado;
+    }
     @Override
     public void execute() {
         GetHomeDao dao =  DaoFactory.instanciateGetPreferenciasComando();
-        ArrayList<Entity> video = dao.GetPreferenciasComando(est);
-        resultado =video;
+        ArrayList<Video> video = dao.GetPreferenciasComando(est);
+        _resultado =video;
 
     }
 
     @Override
-    public ArrayList<Entity> Return() {
+    public Entity Return() {
         return null;
     }
 }

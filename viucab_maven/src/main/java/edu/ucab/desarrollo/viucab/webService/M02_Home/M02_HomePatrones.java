@@ -64,9 +64,8 @@ public class M02_HomePatrones {
             Command commandVideoMasVisto= CommandsFactory.instanciateGetMasVistosComando();
             GetMasVistosComando cmd = (GetMasVistosComando) commandVideoMasVisto;
             cmd.execute();
-            ArrayList<Entity> result = cmd.Return();
-            Video json = (Video) result;
-            return gson.toJson(json);
+            ArrayList<Video> result = cmd.get_listVideo();
+            return gson.toJson(result);
 
         }
 
