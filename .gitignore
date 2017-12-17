@@ -38,7 +38,7 @@ viUCAB/\.directory
 
 viucab_maven/classes/*
 vitucab_maven/target/*
-vitucab_maven/Viucab.iml
+*.iml
 *.log
 
 viucab_maven/out/artifacts/fitucab_war_exploded/
@@ -47,7 +47,3 @@ viucab_maven/out/
 
 
 viucab_maven/target/
-
-IonicProject/package-lock\.json
-
-viucab_maven/Viucab\.iml

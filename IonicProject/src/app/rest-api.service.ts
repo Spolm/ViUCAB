@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+//Direccion del servidor donde esta la BDD war_exploded
+const URL = 'http://localhost:8080/viucab_war_exploded';
 //Direccion del servidor donde esta la BDD
 const URL = 'http://localhost:8888/viucab';
 
@@ -124,6 +126,16 @@ export class RestApiService {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
+
+
+//Metodo para obtener todos los videos
+  public getVideos(direccion): Observable<any> {
+    return this.http.get(URL+'/'+direccion)
+        .map((data: any) => data.json())
+        .do(data => console.log("get Countries from json: " + JSON.stringify(data)))
+        .catch(this.handleError);
+  }
+
 
  
   public geta(direccion){

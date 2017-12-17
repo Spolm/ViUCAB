@@ -1,6 +1,7 @@
 package edu.ucab.desarrollo.viucab.dataAccessLayer;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 
 /**
  * Fabrica para instanciar los DAO creada por M011
@@ -18,6 +19,11 @@ public class DaoFactory
 
     //endregion
 
+    //region M02
+    static  public GetHomeDao instanciateGetHome(){
+        return new GetHomeDao();
+    }
+    //endregion
 
 }
 
