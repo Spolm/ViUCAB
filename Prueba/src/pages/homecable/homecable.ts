@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
-/**
- * Generated class for the HomecablePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -15,11 +9,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HomecablePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomecablePage');
   }
 
+  /**
+Se usa para devolverte a una pagina
+ */
+logout() {  
+const root = this.app.getRootNav();
+root.popToRoot();
+
+}
 }

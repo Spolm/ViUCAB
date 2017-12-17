@@ -19,20 +19,20 @@
   <ion-list>
     
       <ion-item>
-        <ion-label  floating>Correo electronico</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-label  floating>Usuario</ion-label>
+        <ion-input type="text " #Usuario></ion-input>
       </ion-item>
     
       <ion-item>
         <ion-label floating>Contraseña</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password"#Contrasena ></ion-input>
       </ion-item>
     </ion-list>
     <div padding>
-        <button ion-button block outline  >Iniciar sesion</button>
+        <button ion-button block outline (click)='IniciarS()' >Iniciar sesion</button>
     </div>
     <div padding>
-        <button ion-button block clear (click)='goPaginaRegistrar()'  >Cera una cuenta</button>
+        <button ion-button block clear (click)='goPaginaRegistrar()'  >Crea una cuenta</button>
     </div>
     <div padding>
         <button ion-button block clear (click)='goPaginaOlvidarcontra()'  >Olvidaste tu contraseña ?</button>

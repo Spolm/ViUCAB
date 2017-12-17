@@ -14,6 +14,7 @@
 
 
 <ion-content padding>
+    <form ng-submit="onsubmit()"   [formGroup]="formgroup">
     <ion-list >
         <h4 style="color:#000000;font-weight:600;text-align:center;">Ingresa todos los datos: </h4>
         
@@ -21,28 +22,44 @@
     
         <ion-item>
             <ion-label  floating>Usuario</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input type="text" formControlName="Usuario"></ion-input>
           </ion-item>
-  
-    
+          <ion-item *ngIf="Usuario.hasError('required') && Usuario.touched">
+              <p>*usuario requerido </p>
+          </ion-item>
       <ion-item>
         <ion-label  floating>Correo electronico</ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="email"></ion-input>
       </ion-item>
+
+      <ion-item *ngIf="Usuario.hasError('required') && Usuario.touched">
+          <p>*email requerido </p>
+      </ion-item>
+
             <ion-item>
   <ion-label floating>Contraseña</ion-label>
-   <ion-input type="password"></ion-input>
+   <ion-input type="password" formControlName="Contraseña"></ion-input>
             </ion-item>
+
+            <ion-item *ngIf="Usuario.hasError('required') && Usuario.touched">
+                <p>*Contraseña requerida </p>
+            </ion-item>
+
             <ion-item>
   <ion-label floating>Repetir Contraseña</ion-label>
-   <ion-input type="password"></ion-input>
+   <ion-input type="password" formControlName="RepetirContraseña"></ion-input>
              </ion-item>
+
+             <ion-item *ngIf="Usuario.hasError('required') && Usuario.touched">
+                <p>*repetir contraseña requerido </p>
+            </ion-item>
         
         </ion-list>
-        
+     
         <div padding>
-            <button ion-button block outline  >Continuar</button>
+            <button ion-button block outline type="submit" (click)="signup()" >Continuar</button>
         </div>
+         </form>
         <h6 style="color:#000000;font-weight:600;text-align:center;">Tambien puedes ingresar a traves de : </h6>
       
         

@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OlvidarContraseñaPage }from '../olvidar-contraseña/olvidar-contraseña';
 import { RegristrarsePage } from '../regristrarse/regristrarse';
+import { HomecablePage } from '../homecable/homecable';
+
 import { AlertController } from 'ionic-angular';
 /**
  * Generated class for the LoginPage page.
@@ -17,13 +19,40 @@ import { AlertController } from 'ionic-angular';
 })
 export class LoginPage {
 
+@ViewChild('Usuario') usu;
+@ViewChild('Contrasena') passw;
+
+
   constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+IniciarS(){
+if(this.usu.value == "luis" && this.passw.value == "admin"){
+  let alert = this.alertCtrl.create({
 
+    title: 'Logeaste correctamentes',
+    subTitle: 'Excelente!',
+    buttons: ['OK']
+   
+  });
+  alert.present();
+  this.navCtrl.push(HomecablePage);
+}else{
+
+  let alert = this.alertCtrl.create({
+    
+        title: 'ERROR!!!',
+        subTitle: 'Usuario o contraseña incorrectas!',
+        buttons: ['OK']
+       
+      });
+      alert.present();
+
+}
+}
   goPaginaOlvidarcontra():void {
     this.navCtrl.push(OlvidarContraseñaPage);
       }
@@ -33,6 +62,8 @@ export class LoginPage {
         
           } 
         }
+
+  
 
 //Funcion mostrar confirmacion
   showConfirm() {
