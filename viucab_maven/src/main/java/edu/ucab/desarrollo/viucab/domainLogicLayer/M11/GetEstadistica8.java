@@ -6,7 +6,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 /**
  * Created by Daniel on 25/11/2017.
  */
-public class GetEstadistica8 extends Command {
+public class GetEstadistica8 implements Command {
     public GetEstadistica8(Entity est) {
     }
 
@@ -14,9 +14,9 @@ public class GetEstadistica8 extends Command {
     public void execute() {
 
     }
-
+/*
     @Override
     public Entity Return() {
         return null;
-    }
+    }*/
 }

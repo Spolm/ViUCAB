@@ -1,5 +1,6 @@
 package edu.ucab.desarrollo.viucab;
 
+import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import edu.ucab.desarrollo.viucab.webService.*;
 import edu.ucab.desarrollo.viucab.webService.M02_Home.M02_Home;
 import edu.ucab.desarrollo.viucab.webService.M07_Etiqueta.M07_Etiqueta;
@@ -18,9 +19,10 @@ public class ViUcab extends Application {
     public Set<Class<?>> getClasses() {
         HashSet h= new HashSet<Class<?>>();
         h.add(hola.class);
+        h.add(Dao.class);
         h.add(M02_Home.class);
         h.add(M07_Etiqueta.class);
-        //h.add(M09_Sugerencias.class);
+        h.add(M09_Sugerencias.class);
         h.add(M11_Estadistica.class);
 
 

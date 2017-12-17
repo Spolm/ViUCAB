@@ -6,14 +6,14 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 /**
  * Created by estefania on 29/11/2017.
  */
-public class GetSuscritosComando extends Command {
+public class GetSuscritosComando implements Command {
     @Override
     public void execute() {
 
     }
 
-    @Override
+   /* @Override
     public Entity Return() {
         return null;
-    }
+    }*/
 }

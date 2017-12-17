@@ -6,14 +6,14 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 /**
  * Created by estefania on 29/11/2017.
  */
-public class GetPreferenciasComando extends Command {
+public class GetPreferenciasComando implements Command {
     @Override
     public void execute() {
 
     }
-
+/*
     @Override
     public Entity Return() {
         return null;
-    }
+    }*/
 }

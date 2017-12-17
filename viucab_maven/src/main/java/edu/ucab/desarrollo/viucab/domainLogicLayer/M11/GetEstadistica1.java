@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 /**
  * Created by Daniel on 25/11/2017.
  */
-public class GetEstadistica1 extends Command {
+public class GetEstadistica1 implements Command {
 
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
 
@@ -29,9 +29,9 @@ public class GetEstadistica1 extends Command {
             logger.error("Error: ", error);
         }
     }
-
+/*
     @Override
     public Entity Return() {
         return null;
-    }
+    }*/
 }

@@ -7,15 +7,15 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 /**
  * Created by estefania on 29/11/2017.
  */
-public class GetBusquedaComando extends Command{
+public class GetBusquedaComando implements Command{
 
     @Override
     public void execute() {
 
     }
-
+/*
     @Override
     public Entity Return() {
         return null;
-    }
+    }*/
 }

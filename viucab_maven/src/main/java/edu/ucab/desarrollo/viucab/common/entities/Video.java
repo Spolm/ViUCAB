@@ -16,8 +16,27 @@ public class Video {
     private String imagen;
     private String url;
     private String _valorCategoria;
+    private int usuario;
+    private int categoria;
+
+    public int getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
+    }
+
+    public int getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(int categoria) {
+        this.categoria = categoria;
+    }
 
     public Video() {
+
     }
 
     public String get_valorCategoria() {

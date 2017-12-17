@@ -4,17 +4,18 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
  * Patron Comando creada por M011
  */
-public abstract class Command
+public interface  Command
 {
 
-    public abstract void execute() ;
+    public String execute(int usuario, String categoria) throws SQLException;
 
-    public abstract Entity Return() ;
+    //public abstract Entity Return() ;
 
 
 }
