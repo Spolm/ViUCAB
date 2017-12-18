@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "132016325234",
+    "project_id": "login-m1-189017"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132016325234:android:3124af6de34eea7d",
+        "android_client_info": {
+          "package_name": "com.jazminViucab.mytestapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132016325234-9cihiebgo102ci02k698kpuitobbjue6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jazminViucab.mytestapp",
+            "certificate_hash": "e12960218aed887e54c48f388c57cb5e0b55d5af"
+          }
+        },
+        {
+          "client_id": "132016325234-uhptd4g60kfi619rure2e9kd4mvfh8eq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADNvmrO-aSWJGFbJD7dWhUcEh1wL596_o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
