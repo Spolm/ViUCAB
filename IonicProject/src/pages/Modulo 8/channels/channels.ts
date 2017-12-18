@@ -13,12 +13,15 @@ import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angu
   templateUrl: 'channels.html',
 })
 export class ChannelsPage {
+// analizar donde se va a colocar
 
   buscarQuery : string ='';
 
   items: any[];
-  color: 'secondary';
-  estadoNombre:string;
+  botones: any[];
+  color: string ='primary';
+  estadoSus:string ='Suscrito';
+  suscrito:boolean = true;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
@@ -38,25 +41,27 @@ x
 
        this.items =[
         {
-           estadoNombre:'',
            nombre: 'Jesus Yepes',
            suscritos: '12',
            color: this.color,
-           estado: 'Suscrito',
-           img:''
+           estado: this.estadoSus,
+           flag: this.suscrito,
+           img:'https://www.cstatic-images.com/car-pictures/xl/USC60CHT279E021001.png'
         },
            {
           nombre: 'Andy Gomez',
           suscritos: '133',
           color: this.color,
-          estado: 'Suscrito',
+          estado: this.estadoSus,
+          flag: this.suscrito,
           img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa'
          },
         {
           nombre: 'Johan de Freitas',
           suscritos: '11212',
           color:this.color,
-          estado: 'Suscrito',
+          estado: this.estadoSus,
+          flag: this.suscrito,
           img:'https://www.lapatilla.com/site/wp-content/uploads/2017/08/Meme.x43795.jpg'
         },
       ]
@@ -79,34 +84,52 @@ x
 
 // Realizacion del mensaje de confirmacion
 
-showConfirm(usuarioSelected : any){
+showConfirm(usuarioSelected : any, idx : number){
 
-
-      let confirm = this.alertCtrl.create(
-        {
+      if(this.items[idx].flag)
+      {
+        let confirm = this.alertCtrl.create(
+          {
             title: 'Cancelar suscripcion ?',
-            message: 'Deseas cancelar la suscripcion a '+usuarioSelected,
+            message: 'Deseas cancelar la suscripcion a ' + usuarioSelected,
             buttons:
-            [
+              [
                 {
-                    text: 'Cancelar',
-                    handler: () => {this.verificarEstado(false,usuarioSelected); console.log('presiono no');  }
+                  text: 'Cancelar',
+                  handler: () => {
+                    console.log('presiono no');
+                    this.items[idx].color = 'primary';
+                    this.estadoSus = 'Suscrito';
+                    this.items[idx].estado = this.estadoSus
+                  }
 
                 },
-                {
-                    text: 'Eliminar Suscripcion',
-                    handler: () => {this.verificarEstado(true,usuarioSelected) ; console.log('presiono si'); }
+                {    //this.verificarEstado(false,usuarioSelected);
+                  text: 'Eliminar Suscripcion',
+                  handler: () => {
+                    console.log('presiono si');
+                    this.items[idx].color = 'claro';
+                    this.estadoSus = 'Suscribirse';
+                    this.items[idx].estado = this.estadoSus;
+
+                  }
                 }
 
-            ]
-        });
-      confirm.present();
-      this.estadoNombre='Suscrito';
+              ]
+          });
+        confirm.present();
+        // this.estadoNombre='Suscrito';
+        this.items[idx].flag=false;
+      }
+      else
+      {
+        this.items[idx].color = 'primary';
+        this.estadoSus = 'Suscrito';
+        this.items[idx].estado = this.estadoSus;
+        this.items[idx].flag=true;
+      }
+  }
 
-  }
-  activarColor(color:string){
-    return color;
-  }
 
   /**
    * Modulo 08 Suscripciones
@@ -119,11 +142,16 @@ showConfirm(usuarioSelected : any){
 
     if (es ==false)
     {
-      console.log('probando false ' +es + usuarioSeleccionado);
+      console.log('probando  ' +es + usuarioSeleccionado.bold());
+
+
     }
     else if (es ==true)
     {
-      console.log('probando true ' +es + usuarioSeleccionado);
+      console.log('probando ' +es + usuarioSeleccionado.bold());
+
+
+//this.items.splice(idx,1);this.items[1]
     }
   }
 }
