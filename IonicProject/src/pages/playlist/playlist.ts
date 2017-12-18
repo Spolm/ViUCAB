@@ -45,6 +45,10 @@ export class PlaylistPage {
     });
   }
 
+  public goToEditList(){
+    this.navCtrl.push(EditListPage);
+  }
+
   public goToViewList(){
     this.navCtrl.push(ViewListPage);
   }
