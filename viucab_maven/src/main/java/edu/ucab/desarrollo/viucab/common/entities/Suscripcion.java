@@ -16,7 +16,11 @@ public class Suscripcion extends Entity {
         this.suscriptor = suscriptor;
         this.suscripcion = suscripcion;
     }
+    public Suscripcion( int suscriptor, int suscripcion) {
 
+        this.suscriptor = suscriptor;
+        this.suscripcion = suscripcion;
+    }
     public int getId() {
         return id;
     }

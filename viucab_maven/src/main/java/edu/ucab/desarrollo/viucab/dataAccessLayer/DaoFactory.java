@@ -2,6 +2,7 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 
 /**
  * Fabrica para instanciar los DAO creada por M011
@@ -25,7 +26,11 @@ public class DaoFactory
     }
     //endregion
 
-
+    //region M08
+    static  public SuscripcionDao instanciateSuscripcion(){
+        return new SuscripcionDao();
+    }
+    
     //endregion M08
 
 

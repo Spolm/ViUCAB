@@ -2,6 +2,9 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 
@@ -63,4 +66,15 @@ public class CommandsFactory {
     public  static  Command instanciateGetSuscritosComando    (int idUsuario) {return  new GetSuscritosComando(idUsuario);}
 
     // Fin instancias M02
+
+    //M08 Instancias
+
+     public  static  Command instanciaGetSuscripcionComando(int idsuscriptor) {return  new GetSuscripcionComando();}
+
+     public  static  Command instanciaSetSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new SetSuscripcionComando(idsuscriptor,idsuscripcion);}
+
+     public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
+
+
+    //Fin instancias M08
 }
