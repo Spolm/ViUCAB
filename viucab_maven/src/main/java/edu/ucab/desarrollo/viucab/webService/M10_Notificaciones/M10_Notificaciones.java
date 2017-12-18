@@ -85,16 +85,16 @@ public class M10_Notificaciones {
     }
     @POST
     @Path("/configuracion")
-
+    @Consumes("application/json")
+    @Produces("text/plain")
     //@QueryParam("id") String id
-    //WIP de Vero
-    public void guardarConfiguracion(@QueryParam("datos") String datos){
 
+    public String guardarConfiguracion(String datos){
         String select="UPDATE config_notificacion SET con_not_boletin ;";
 
             Sql.bdClose(conexion);
+            return datos;
 
     }
 
 }
-

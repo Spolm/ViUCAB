@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
+import { Headers, RequestOptions} from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
 const URL = 'http://localhost:8080/viucab';
@@ -37,9 +38,9 @@ export class RestApiService {
   //Metodo GET: /direccion + (param)
   //Accede al metodo que se encuentra en direccion, enviando parametros y devuelve la respuesta
   public getTodoParam(direccion, param){
-    console.log(URL+'/'+direccion);
+    console.log(URL +'/' + direccion);
     return this.http
-      .get(URL+'/'+direccion, param)
+      .get(URL+'/' + direccion, param)
       .map((data: any) => data.json())
       .subscribe();
   }
@@ -48,7 +49,7 @@ export class RestApiService {
   //Accede al metodo que se encuentra en direccion, enviando un id y parametros y devuelve la respuesta
   public getUnoParam(direccion, idObjeto, param){
     return this.http
-      .get(URL+'/'+direccion+'/'+idObjeto, param)
+      .get(URL+'/'+direccion+'/' + idObjeto, param)
       .map((data: any) => data.json())
       .subscribe();
   }
@@ -58,7 +59,7 @@ export class RestApiService {
   //Actualiza o envia datos mas parametros a una direccion
   public postTodo(direccion, datos, param) {
     return this.http
-    .post(URL+'/'+direccion, datos, param)
+    .post(URL+'/' + direccion, datos, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
@@ -66,8 +67,12 @@ export class RestApiService {
   //Metodo POST: /direccion/id_objeto
   //Actualiza el objeto id en una direccion. Es necesario el enviar el dato nuevo y los parametros
   public postUno(direccion, idObjeto, dato, param) {
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+    });
+    let options = new RequestOptions( { headers : headers });
     return this.http
-    .post(URL+'/'+direccion+"/"+idObjeto, dato, param)
+    .post(URL + '/' + direccion, JSON.stringify(dato), options)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
@@ -76,7 +81,7 @@ export class RestApiService {
   //Agrega en una direccion, envia los datos y el parametro
   public putTodo(direccion, datos, param) {
     return this.http
-    .put(URL+'/'+direccion, datos, param)
+    .put(URL+'/' + direccion, datos, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
@@ -85,7 +90,7 @@ export class RestApiService {
   //Agrega el objeto id en una direccion, envia los datos y el parametro
   public putUno(direccion, idObjeto, dato, param) {
     return this.http
-    .put(URL+'/'+direccion+'/'+idObjeto, dato, param)
+    .put(URL+'/'+direccion+'/' + idObjeto, dato, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
@@ -94,7 +99,7 @@ export class RestApiService {
    //Elimina en una direccion, enviando parametros
    public deleteTodo(direccion, param){
     return this.http
-    .delete(URL+'/'+direccion, param)
+    .delete(URL+'/' + direccion, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
    }
@@ -103,7 +108,7 @@ export class RestApiService {
   //Elimina un objeto en una direccion, es necesario el id y los parametros
    public deleteUno(direccion, idObjeto, param){
     return this.http
-    .delete(URL+'/'+direccion+"/"+idObjeto, param)
+    .delete(URL+'/'+direccion+"/" + idObjeto, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
    }
@@ -112,7 +117,7 @@ export class RestApiService {
   //Elimina varios objetos en una direccion, es necesario la lista de objetos a eliminar y los parametros
    public deleteVarios(direccion, dato, param){
     return this.http
-    .delete(URL+'/'+direccion, dato)
+    .delete(URL+'/' + direccion, dato)
     .map((data: any) => data.json())
     .catch(this.handleError);
    }

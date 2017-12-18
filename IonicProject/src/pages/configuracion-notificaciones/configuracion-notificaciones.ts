@@ -63,12 +63,16 @@ export class ConfiguracionNotificacionesPage {
   }
 
   public guardar() {
+    this.restApi.postUno(URL, 1, JSON.stringify(this.configuracion), 1).subscribe( (data) => {
+      this.response = data;
+      console.log(this.response);
+      },
+    );
   // this.toast.show(`Guardado con Exito`, '5000', 'bottom').subscribe(
   //   (toast) => {
   //    console.log(toast);
   //    },
   //  );
-    this.restApi.postUno(URL,this.configuracion.id,this.configuracion,this.configuracion.id);
   }
 
 }
