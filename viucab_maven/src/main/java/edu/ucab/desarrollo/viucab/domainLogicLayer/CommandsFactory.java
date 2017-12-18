@@ -54,7 +54,7 @@ public class CommandsFactory {
 
     //M02 Instancias
 
-    public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando(criterio);}
+    public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando();}
 
     //Mas Vistos no recibe Parametros
     public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}

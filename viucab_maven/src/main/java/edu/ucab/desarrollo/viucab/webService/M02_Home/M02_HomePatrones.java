@@ -108,14 +108,13 @@ public class M02_HomePatrones {
          */
         public String busquedaVideos (@QueryParam("parametroBusqueda")  String parametroBusqueda)
         {
-
-            Command commandVideo = CommandsFactory.instanciateGetBusquedaComando(parametroBusqueda);
-            GetBusquedaComando cmd = (GetBusquedaComando) commandVideo;
+            Command commandVideoBusqueda = CommandsFactory.instanciateGetBusquedaComando(parametroBusqueda);
+            GetBusquedaComando cmd = (GetBusquedaComando) commandVideoBusqueda;
             cmd.execute();
-            Entity result =cmd.Return();
-            Video json = (Video) result;
+            ArrayList<Video> result = cmd.get_listVideo();
 
-            return gson.toJson(json);
+
+            return gson.toJson(result);
 
 
         }

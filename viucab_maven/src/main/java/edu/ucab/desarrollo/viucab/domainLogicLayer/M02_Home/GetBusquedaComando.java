@@ -18,16 +18,12 @@ public class GetBusquedaComando extends Command{
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetMasVistosComando.class);
     String _criterio;
     ArrayList<Video>_resultado=null;
-    private static Entity est;
 
-    public GetBusquedaComando(Entity est)
-    {
-        this.est = est;
+    public GetBusquedaComando(ArrayList<Video> resultado) {
+        this._resultado = resultado;
     }
-
-
-    public GetBusquedaComando(String criterio) {
-        this._criterio=criterio;
+    public GetBusquedaComando() {
+        _resultado=get_listVideo();
     }
 
     /**
@@ -38,6 +34,8 @@ public class GetBusquedaComando extends Command{
     {
         return _resultado;
     }
+
+
     @Override
     public void execute() {
         try {
@@ -58,6 +56,6 @@ public class GetBusquedaComando extends Command{
 
     @Override
     public Entity Return() {
-        return est;
+        return null;
     }
 }
