@@ -4,6 +4,7 @@ import com.google.gson.*;
 import edu.ucab.desarrollo.viucab.common.entities.ConfiguracionNotificaciones;
 import edu.ucab.desarrollo.viucab.common.entities.Notificacion;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.MailNotificacion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 import javax.ws.rs.*;
 import java.sql.*;
@@ -15,6 +16,26 @@ import java.util.List;
 public class M10_Notificaciones {
     Gson gson = new Gson();
     Connection conexion = Sql.getConInstance();
+
+
+    @POST
+    @Path("/notificacionMail")
+    @Produces("text/plain")
+    public String obtenerWebo (@QueryParam("username") String username){
+
+        try{
+
+            MailNotificacion mail = new MailNotificacion();
+            mail.enviarNotificacion("vladimirblanco13@gmail.com",username,"post worked");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Sql.bdClose(conexion);
+        }
+        return "Holiwis\n"+username;
+    }
+
 
     @GET
     @Path("/notificacion")
