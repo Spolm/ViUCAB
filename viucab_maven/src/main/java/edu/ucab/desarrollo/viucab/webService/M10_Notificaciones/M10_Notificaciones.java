@@ -12,28 +12,40 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Path("/Notificaciones")
-public class M10_Notificaciones {
-    Gson gson = new Gson();
-    Connection conexion = Sql.getConInstance();
+                @Path("/Notificaciones")
+                public class M10_Notificaciones {
+                    Gson gson = new Gson();
+                    Connection conexion = Sql.getConInstance();
 
+                    @POST
+                    @Path("/notificacionMail")
+                    @Produces("text/plain")
+                    public String obtenerWebo (@QueryParam("userCliId") String userCli, @QueryParam("userSuscrId") String userSuscr){
 
-    @POST
-    @Path("/notificacionMail")
-    @Produces("text/plain")
-    public String obtenerWebo (@QueryParam("username") String username){
-
-        try{
-
+                        String usuarioCliente= null;
+                        String correo = null;
+                        String usuarioSuscripcion= null;
+                        try{
+                            Statement stmt = conexion.createStatement();
+                            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userCli);
+                            if(rs.next()){
+                                usuarioCliente = rs.getString(2);
+                                correo = rs.getString(6);
+                            }
+                            rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userSuscr);
+                            if(rs.next()){
+                                usuarioSuscripcion = rs.getString(2);
+                            }
             MailNotificacion mail = new MailNotificacion();
-            mail.enviarNotificacion("vladimirblanco13@gmail.com",username,"post worked");
-
+            mail.enviarNotificacion(correo,"Hola " + usuarioCliente + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + usuarioSuscripcion +" ha subido un nuevo video titulado: Vamos a pasar desarrollo verdad?","Actividad reciente");
+            rs.close();
+            stmt.close();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             Sql.bdClose(conexion);
         }
-        return "Holiwis\n"+username;
+        return "Holiwis\n";
     }
 
 
