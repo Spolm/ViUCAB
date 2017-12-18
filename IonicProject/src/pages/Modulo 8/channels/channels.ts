@@ -28,7 +28,7 @@ export class ChannelsPage {
       this.initializeItems();
 
   }
-x
+// pendiente arreglar el metodo buscar lun 18/ dic/2017
 
 
 // realizacion de busqueda mediante arreglos
@@ -105,7 +105,7 @@ showConfirm(usuarioSelected : any, idx : number){
 
                 },
                 {    //this.verificarEstado(false,usuarioSelected);
-                  text: 'Eliminar Suscripcion',
+                  text: 'Eliminar Suscripcion', // llamar a los metodos necesarios
                   handler: () => {
                     console.log('presiono si');
                     this.items[idx].color = 'claro';
