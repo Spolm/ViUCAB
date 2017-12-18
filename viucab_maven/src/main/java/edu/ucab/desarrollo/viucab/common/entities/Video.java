@@ -8,16 +8,16 @@ package edu.ucab.desarrollo.viucab.common.entities;
  */
 public class Video {
 
-    private int id;
-    private String nombre;
-    private String fecha;
-    private int visitas;
-    private String descripcion;
-    private String imagen;
-    private String url;
-    private String _valorCategoria;
-    private int usuario;
-    private int categoria;
+    int id;
+    String nombre;
+    String fecha;
+    int visitas;
+    String descripcion;
+    String imagen;
+    String url;
+    String _valorCategoria;
+    int usuario;
+    int categoria;
 
     public int getUsuario() {
         return usuario;

@@ -25,6 +25,7 @@ public class GetSugerenciasLikeComando implements Command {
     public String execute(int usuario, String categoria) throws SQLException {
         Dao dao = new Dao();
         return dao.getSugerenciasLike(usuario, categoria);
+      //  return dao.getSugerenciasLike(usuario, categoria);
     }
 /*
     @Override

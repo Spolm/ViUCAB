@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,20 +24,21 @@ import java.util.List;
 /***
  * creada por M011
  */
-@Path("/dao")
+//@Path("/dao")
 public class Dao{
 
     //Gson gson = new Gson();
     Connection conn = null;
     String query;
+    //Gson gson = new Gson();
 
     public Dao(){
 
     }
 
-    @GET
-    @Path("/conectar")
-    @Produces("Application/json")
+    //@GET
+    //@Path("/conectar")
+   // @Produces("Application/json")
     public String conectarDB(){
 
 
@@ -55,17 +57,17 @@ public class Dao{
         //return "No conecto";
     }
 
-    @GET
-    @Path("/desconectar")
-    @Produces("Application/json")
+    //@GET
+    //@Path("/desconectar")
+   // @Produces("Application/json")
     public String desconectarDB() throws SQLException {
         conn.close();
         return "Desconectado";
     }
 
-    @GET
-    @Path("/insertar_usuario")
-    @Produces("Application/json")
+    //@GET
+   // @Path("/insertar_usuario")
+  //  @Produces("Application/json")
     public String insertarUsuario() throws SQLException {
         conectarDB();
         query = "INSERT into usuario(usu_id, usu_login, usu_clave, usu_token, usu_act, usu_correo, usu_avatar) values (2, 'luis', '123', 'papa', true, 'gmail', 'papa')";
@@ -81,20 +83,20 @@ public class Dao{
         }
     }
 
-    @GET
-    @Path("/get_sugerencias-like")
-    @Produces("Application/json")
-    public String getSugerenciasLike(int id_usuario, String categoria) throws SQLException { //Recuerda cambiar esto a json
+    //@GET
+    //@Path("/get_sugerencias-like")
+   // @Produces("Application/json")
+    public String getSugerenciasLike( int id_usuario, String categoria)  { //Recuerda cambiar esto a json
         conectarDB();
-       // List<Gson> lista = new List<Gson>();
+        //List<Gson> lista = new List<Gson>();
         Gson gson = new Gson();
-        ArrayList<Video> lista = new ArrayList<Video>();
+        ArrayList<Video> lista = new ArrayList<>();
 
-        query = "SELECT * FROM video WHERE vid_id = ((SELECT id_video FROM like WHERE vid_usuario = (SELECT id_suscripcion FROM suscripcion WHERE id_suscriptor = "+id_usuario+"))) AND (vid_categoria = (SELECT cat_id WHERE cat_valor = "+categoria+"))";
-
+        query = "SELECT * FROM public.video JOIN public.likes ON public.video.vid_id = public.likes.id_video JOIN public.suscripcion ON public.likes.id_usuario = public.suscripcion.id_suscripcion JOIN public.categoria ON public.categoria.cat_id = public.video.vid_categoria WHERE id_suscriptor = "+id_usuario+" AND public.categoria.cat_valor = '"+categoria+"' ";
+        //query = "SELECT video.* FROM video";
         try{
             Statement st = conn.createStatement();
-            st.executeUpdate(query);
+         //   st.executeUpdate(query);
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()){
@@ -112,25 +114,27 @@ public class Dao{
 
             }
             return gson.toJson(lista);
+
         }
         catch (Exception e){
             return e.getMessage();
         }
     }
 
-    @GET
-    @Path("/get_sugerencias-suscripciones")
-    @Produces("Application/json")
-    public String getSugerenciasSuscripciones(int id_usuario, String categoria) throws SQLException { //Recuerda cambiar esto a json
+    //@GET
+    //@Path("/get_sugerencias-suscripciones")
+   // @Produces("Application/json")
+    public String getSugerenciasSuscripciones( int id_usuario,  String categoria) { //Recuerda cambiar esto a json
         conectarDB();
         // List<Gson> lista = new List<Gson>();
         Gson gson = new Gson();
-        ArrayList<Video> lista = new ArrayList<Video>();
+        ArrayList<Video> lista = new ArrayList<>();
 
-        query = "SELECT * FROM video WHERE vid_usuario = (SELECT id_suscripcion FROM suscripcion WHERE id_suscriptor = "+id_usuario+") AND (vid_categoria = (SELECT cat_id WHERE cat_valor = "+categoria+"))";
+        query = "SELECT * FROM public.video JOIN public.suscripcion ON public.video.vid_usuario = public.suscripcion.id_suscripcion JOIN public.preferencia ON public.preferencia.id_usu = "+id_usuario+" JOIN public.categoria ON public.categoria.cat_id = public.preferencia.id_cat WHERE public.video.vid_categoria = public.categoria.cat_id AND public.categoria.cat_valor = '"+categoria+"'";
+        //query= "SELECT * FROM public.video";
         try{
             Statement st = conn.createStatement();
-            st.executeUpdate(query);
+           // st.executeUpdate(query);
             ResultSet rs = st.executeQuery(query);
 
             while (rs.next()){
@@ -148,6 +152,7 @@ public class Dao{
 
             }
             return gson.toJson(lista);
+
         }
         catch (Exception e){
             return e.getMessage();

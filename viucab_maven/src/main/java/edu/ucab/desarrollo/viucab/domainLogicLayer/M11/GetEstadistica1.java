@@ -5,6 +5,8 @@ import edu.ucab.desarrollo.viucab.common.exceptions.MessageException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
+
 /**
  * Created by Daniel on 25/11/2017.
  */
@@ -15,6 +17,11 @@ public class GetEstadistica1 implements Command {
     public GetEstadistica1(Entity est) {
     }
 
+    @Override
+    public String execute(int usuario, String categoria) throws SQLException {
+        return null;
+    }
+/*
     @Override
     public void execute() {
 
@@ -28,7 +35,7 @@ public class GetEstadistica1 implements Command {
             logger.debug("Debug: ", error);
             logger.error("Error: ", error);
         }
-    }
+    }*/
 /*
     @Override
     public Entity Return() {
