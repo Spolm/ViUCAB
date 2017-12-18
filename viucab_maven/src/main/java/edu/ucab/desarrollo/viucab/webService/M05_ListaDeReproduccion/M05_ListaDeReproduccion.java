@@ -19,7 +19,7 @@ public class M05_ListaDeReproduccion {
     Gson gson = new Gson();
 
     @GET
-    @Path("/playlist")
+    @Path("/editPlaylist")
     @Produces("text/plain")
     public String obtenerLista(@QueryParam("id") int idLista)
     {
