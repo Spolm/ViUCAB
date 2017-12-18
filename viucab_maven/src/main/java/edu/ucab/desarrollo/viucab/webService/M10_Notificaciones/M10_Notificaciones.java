@@ -1,6 +1,6 @@
 package edu.ucab.desarrollo.viucab.webService.M10_Notificaciones;
 
-import com.google.gson.Gson;
+import com.google.gson.*;
 import edu.ucab.desarrollo.viucab.common.entities.ConfiguracionNotificaciones;
 import edu.ucab.desarrollo.viucab.common.entities.Notificacion;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
@@ -89,11 +89,24 @@ public class M10_Notificaciones {
     @Produces("text/plain")
     //@QueryParam("id") String id
 
-    public String guardarConfiguracion(String datos){
-        String select="UPDATE config_notificacion SET con_not_boletin ;";
-
-            Sql.bdClose(conexion);
-            return datos;
+    public String guardarConfiguracion(String datos) throws SQLException {
+        JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
+        PreparedStatement ps = conexion.prepareStatement(
+                "UPDATE config_notificacion SET " +
+                        "con_not_boletin = ?, con_not_recibir =? , " +
+                        "con_not_preferencias = ?, con_not_suscripciones = ?, " +
+                        "con_not_etiquetado = ?, con_not_estadisticas =? " +
+                        "WHERE con_not_id = ?;");
+        ps.setBoolean(1,jsonDatos.get("boletin").getAsBoolean());
+        ps.setBoolean(2,jsonDatos.get("notificaciones").getAsBoolean());
+        ps.setBoolean(3,jsonDatos.get("recomendados").getAsBoolean());
+        ps.setBoolean(4,jsonDatos.get("subscripciones").getAsBoolean());
+        ps.setBoolean(5,jsonDatos.get("etiquetados").getAsBoolean());
+        ps.setBoolean(6, jsonDatos.get("estadisticas").getAsBoolean());
+        ps.setInt(7, jsonDatos.get("id").getAsInt());
+        ps.executeQuery();
+        Sql.bdClose(conexion);
+        return datos;
 
     }
 
