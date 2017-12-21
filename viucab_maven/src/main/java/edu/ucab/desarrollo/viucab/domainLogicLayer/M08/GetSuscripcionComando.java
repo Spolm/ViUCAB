@@ -3,6 +3,8 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M08;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 
+import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
@@ -37,24 +39,33 @@ public class GetSuscripcionComando extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws BdConnectException, PlConnectException {
 
-        try {
-
-           SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-
-            ArrayList<Usuario> user = dao.listaSuscripciones(1);
-
-           // est=
-
-        }
-        catch (Exception e){
-
-        }
     }
 
+    /*
+        @Override
+        public  ArrayList<Suscripciones>  execute() {
+
+            // Eliminar el manejo de excepciones del comando y colocarlo en presentacion
+
+
+            ////Echo por bismarck
+            SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
+            return dao.insertarSuscriptor(suscriptor,suscripcion);
+            /////
+
+
+               SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
+
+                ArrayList<Usuario> user = dao.listaSuscripciones(1);
+
+               // est=
+
+        }
+    */
     @Override
     public Entity Return() {
-        return est;
+        return est; //EN ESTE RETURN ES DONDE DEBO DEVOLVER LA LISTA DE SUSCRIPCIONES
     }
 }

@@ -3,6 +3,7 @@ package edu.ucab.desarrollo.viucab.common.entities;
 /**
  *Patron Entidad creada por M011
  */
+//[@Serializable]
 public class Entity {
 
 

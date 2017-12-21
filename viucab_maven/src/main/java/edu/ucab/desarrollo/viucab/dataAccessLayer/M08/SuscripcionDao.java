@@ -5,10 +5,10 @@ import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Suscripcion;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import org.postgresql.util.PSQLException;
 
-import java.awt.*;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,8 +31,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
+     * @throws PlConnectException , BdConnectException Exepcion personalizada
      */
-      public ArrayList<Usuario> listaSuscripciones(int idUsuario) {
+      public ArrayList<Usuario> listaSuscripciones(int idUsuario) throws BdConnectException, PlConnectException {
         CallableStatement preStatement = null;
         ArrayList<Usuario> resultlist = null;
         ResultSet resultSet = null;
@@ -63,10 +64,19 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet.close();
 
         } catch (PSQLException e){
-            e.printStackTrace();
+
+            throw new PlConnectException(e);
+            //e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+
+            throw new BdConnectException (e);
+
+        }
+        catch (Exception e)
+        {
+            throw new BdConnectException (e);
+        }
+        finally {
             closeConnection();
         }
         return resultlist;
@@ -77,8 +87,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
+     * @throws PlConnectException , BdConnectException Exepcion personalizada
      */
-    public void insertarSuscriptor (int idUsuario, int idsuscripcion){
+    public void insertarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
@@ -98,11 +109,17 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet.close();
 
         } catch (PSQLException e){
-            e.printStackTrace(); //Excepcion si ocuerre algun error con el SP
+
+            throw new PlConnectException(e); //Excepcion si ocuerre algun error con el SP
+            //e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace(); //Excepcion si ocuerre algun error con la BD
-        } catch (Exception e){
-            e.printStackTrace(); //Excepcion GENERICA
+
+            throw new BdConnectException (e);//Excepcion si ocuerre algun error con la BD
+
+        }
+        catch (Exception e)
+        {
+            throw new BdConnectException (e); //Excepcion si ocuerre algun error con el SP
         } finally {
             closeConnection();
         }
@@ -114,8 +131,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
+     * @throws PlConnectException , BdConnectException Exepcion personalizada
      */
-    public void eliminarSuscriptor (int idUsuario, int idsuscripcion){
+    public void eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
@@ -135,11 +153,17 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet.close();
 
         } catch (PSQLException e){
-            e.printStackTrace(); //Excepcion si ocuerre algun error con el SP
+
+            throw new PlConnectException(e); //Excepcion si ocuerre algun error con el SP
+            //e.printStackTrace();
         } catch (SQLException e) {
-            e.printStackTrace(); //Excepcion si ocuerre algun error con la BD
-        } catch (Exception e){
-            e.printStackTrace(); //Excepcion GENERICA
+
+            throw new BdConnectException (e);//Excepcion si ocuerre algun error con la BD
+
+        }
+        catch (Exception e)
+        {
+            throw new BdConnectException (e); //Excepcion si ocuerre algun error con el SP
         } finally {
             closeConnection();
         }
