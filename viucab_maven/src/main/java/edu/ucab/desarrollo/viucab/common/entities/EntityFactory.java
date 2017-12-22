@@ -1,6 +1,7 @@
 
 package edu.ucab.desarrollo.viucab.common.entities;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -79,6 +80,19 @@ public class EntityFactory
     }
 
     //endregion
+
+    //region M08
+
+
+   // static public Video suscripcionUsuario (ArrayList<Usuario> listaUsuarios)
+    //{
+     //  return new  //Usuario(listaUsuarios);
+    //}
+     static public Usuario suscripcionUsuario (String login /*, Image avatar */){return new Usuario(login/*,avatar*/);  }
+
+     static public Suscripcion suscripcion (int suscriptor, int suscripcion){return new Suscripcion(suscriptor,suscripcion);  }
+
+    //final M08
 
 }
 
