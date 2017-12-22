@@ -5,6 +5,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
 
 /**
  * Fabrica de comandos creada por M011
@@ -71,5 +72,19 @@ public class CommandsFactory {
         return new GetListaComando(lista);
     }
 
+    //endregion
+
+    //region M07
+    public static Command instanciateInsertEtiqueta(Entity etiqueta){
+        return new InsertarEtiqueta(etiqueta);
+    }
+
+    public static Command instanciateEliminarEtiqueta(Entity etiqueta){
+        return new EliminarEtiqueta(etiqueta);
+    }
+
+    public static Command instanciateConsultarVideos(Entity etiqueta){
+        return new ConsultarVideos(etiqueta);
+    }
     //endregion
 }
