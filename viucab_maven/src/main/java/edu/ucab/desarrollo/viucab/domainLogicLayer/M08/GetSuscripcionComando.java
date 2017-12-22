@@ -20,6 +20,12 @@ public class GetSuscripcionComando extends Command {
     private static Entity est;
 
     ArrayList<Usuario>_resultado=null;
+    private  int idSuscriptor;
+
+    //Constructores:
+    public GetSuscripcionComando(int idSuscriptor) {
+        this.idSuscriptor = idSuscriptor;
+    }
 
     public GetSuscripcionComando(ArrayList<Usuario> _resultado) {
         this._resultado = _resultado;
@@ -29,18 +35,25 @@ public class GetSuscripcionComando extends Command {
         _resultado=get_listUsuario();
     }
 
-    /**
-     * Obtiene Resultaddo de las Busquedas
-     * @return ListVideo
-     */
+
     public ArrayList<Usuario> get_listUsuario()
     {
         return _resultado;
     }
 
+    /**
+     * Obtiene Resultaddo de las Busquedas
+     * @return ListVideo
+     */
+
     @Override
     public void execute() throws BdConnectException, PlConnectException {
 
+        SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
+        ArrayList<Usuario> user = dao.listaSuscripciones(idSuscriptor);
+
+        //Guardamos lo que devuelve el DAO
+        _resultado=user;
     }
 
     /*

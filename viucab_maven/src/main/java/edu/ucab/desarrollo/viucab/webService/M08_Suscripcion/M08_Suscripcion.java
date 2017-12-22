@@ -8,6 +8,7 @@ import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.M08.WebFaulException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 
@@ -22,13 +23,22 @@ import java.util.ArrayList;
 public class M08_Suscripcion {
     Gson gson = new Gson();
 
+    /**
+     * Metodo que me comunico con el comando : SetSuscripcionComando
+     * el cual suscribe una persona al usuario logueado.
+     * @param id
+     * @return
+     * @throws BdConnectException
+     * @throws PlConnectException
+     * @throws WebFaulException
+     */
     @GET
     @Path("/SetSuscripcion")
     @Produces("text/plain")
     public String SetSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException  {
 
         try {
-            Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(1, id); //cable para insertar en el usuario 1, una suscripcion de otro usuario(id)
+            Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(1, id); //OJO: cable para insertar en el usuario 1, una suscripcion de otro usuario(id)
             SetSuscripcionComando cmd = (SetSuscripcionComando) comandSuscripcion;
             cmd.execute();
         }
@@ -38,6 +48,11 @@ public class M08_Suscripcion {
         }
         catch (PlConnectException ex)
         {
+            /*
+            catch (ViUCABException e) {
+
+           throw new WebFault(e.Mensaje, e.codigo);
+        } */
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
 
@@ -53,6 +68,15 @@ public class M08_Suscripcion {
 
     }
 
+    /**
+     * Metodo que me comunico con el comando : UpdateSuscripcionComando
+     * el cual elimina la suscripcion del usuario logueado.
+     * @param id
+     * @return
+     * @throws BdConnectException
+     * @throws PlConnectException
+     * @throws WebFaulException
+     */
     @GET
     @Path("/UpdateSuscripcion")
     @Produces("text/plain")
@@ -60,7 +84,7 @@ public class M08_Suscripcion {
 
         try {
 
-            Command comandSuscripcion = CommandsFactory.instanciaUpdateSuscripcionComando(1, id); //cable para eliminar en el usuario 1, una suscripcion de otro usuario(id)
+            Command comandSuscripcion = CommandsFactory.instanciaUpdateSuscripcionComando(1, id); //OJO:cable para eliminar en el usuario 1, una suscripcion de otro usuario(id)
             UpdateSuscripcionComando cmd = (UpdateSuscripcionComando) comandSuscripcion;
             cmd.execute();
 
@@ -75,25 +99,37 @@ public class M08_Suscripcion {
         }
 
     }
-/*
+
+    /**
+     * Metodo que me comunico con el comando : UpdateSuscripcionComando
+     * el cual lista las suscripciones del usuario logueado.
+     * @param id
+     * @return
+     * @throws BdConnectException
+     * @throws PlConnectException
+     * @throws WebFaulException
+     */
+
     @GET
     @Path("/GetSuscripcion")
-    @Produces("text/plain")
+    @Produces("application/json")
     public String GetSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException {
 
         try{
-       // Command comandSuscripcion = CommandsFactory.instanciaGetSuscripcionComando();
-      //  GetSuscripcionComando cmd = (GetSuscripcionComando) comandSuscripcion;
-       //     return cmd.execute();  //Este execute deberia devolver la lista de suscripciones
 
-      //  ArrayList<Usuario> result = cmd.get_listVideo();
+            Command comandSuscripcion = CommandsFactory.instanciaGetSuscripcionComando(id);
+
+            GetSuscripcionComando cmd = (GetSuscripcionComando) comandSuscripcion;
+            cmd.execute();
+            ArrayList<Usuario> result = cmd.get_listUsuario(); System.out.println("RESPUESTA DE CAPA DE PRESENTACION->  "+result);
 
 
-      // return gson.toJson(result);
+            return   gson.toJson(result);
 
-        return null;
+
+
         }catch (BdConnectException ex)
-        {
+        {   ex.printStackTrace();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }catch (PlConnectException ex)
         {
@@ -104,7 +140,7 @@ public class M08_Suscripcion {
 
 
     }
- */
+
 
 
 }
