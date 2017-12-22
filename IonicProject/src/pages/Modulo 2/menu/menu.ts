@@ -1,14 +1,13 @@
-import { InicioPage } from './../inicio/inicio';
-import {TendenciasPage } from './../tendencias/tendencias';
-import {SuscripcionesPage} from './../suscripciones/suscripciones';
-import {UsuarioPage} from './../usuario/usuario';
-import {CanalPage} from './../canal/canal';
-import {ListasPage} from './../listas/listas';
-import {EstadisticaPage} from './../estadistica/estadistica';
-import { TabsPage } from './../tabs/tabs';
+
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, Nav } from 'ionic-angular';
- 
+//Modificado por Modulo 10
+import {NotificacionesPage} from '../../notificaciones/notificaciones';
+import {ConfiguracionNotificacionesPage} from '../../configuracion-notificaciones/configuracion-notificaciones';
+//Fin Modificado por Modulo 10
+
+import { ChannelsPage } from '../../Modulo 8/channels/channels';
+
 export interface PageInterface {
   title: string;
   pageName: string;
@@ -34,7 +33,7 @@ export class MenuPage {
     //Aqui van los links de las paginas principales de los demas grupos
     //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
     //{ title: 'Mi canal', pageName: 'CanalPage', icon: 'play' },
-    { title: 'Mis listas', pageName: 'ListasPage', icon: 'star-half' },
+    { title: 'Mis listas', pageName: 'PlaylistPage', icon: 'star-half' },
     { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
   ];
  
@@ -86,5 +85,22 @@ export class MenuPage {
     this.SettingsSubmenu = !this.SettingsSubmenu;
     this.MyChannelSubmenu = false;
   }
- 
+
+  //Modificado por Modulo 10
+  openNotificaciones(){
+    this.nav.push(NotificacionesPage);
+  }
+
+  openConNotificaciones(){
+    this.nav.push(ConfiguracionNotificacionesPage);
+  }
+  //Fin Modificado por Modulo 10
+
+
+  openSuscripciones(){
+    this.nav.push(ChannelsPage);// llama a la pagina
+  // this.nav.setRoot(pagina);// llama a la pagina
+    this.MyChannelItemHandler();//oculta el submenu
+  }
+
 }
