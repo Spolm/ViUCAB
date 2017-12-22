@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 package edu.ucab.desarrollo.viucab.common.entities;
 
 import java.util.ArrayList;
@@ -60,6 +60,22 @@ public class EntityFactory
     static public Entity listaDeReproduccion (Integer idLista)
     {
         return new ListaDeReproduccion(idLista);
+    }
+
+    //endregion
+
+    //region M07
+
+    static public Entity insertEtiqueta(String valor){
+        return new Etiquetas(valor);
+    }
+
+    static public Entity eliminarEtiqueta(int id){
+        return new Etiquetas(id);
+    }
+
+    static public Entity consultarVideos(int id){
+        return new Etiquetas(id);
     }
 
     //endregion
