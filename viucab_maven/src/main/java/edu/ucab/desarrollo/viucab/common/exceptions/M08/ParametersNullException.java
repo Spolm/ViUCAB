@@ -1,4 +1,4 @@
-package edu.ucab.desarrollo.viucab.common.exceptions.M11;
+package edu.ucab.desarrollo.viucab.common.exceptions.M08;
 
 /**
  *  creada por johan

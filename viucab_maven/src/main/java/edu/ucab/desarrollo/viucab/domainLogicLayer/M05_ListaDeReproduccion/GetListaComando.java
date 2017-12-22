@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  */
 public class GetListaComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetListaComando.class);
     private static Entity est;
 
     public GetListaComando(Entity est)
