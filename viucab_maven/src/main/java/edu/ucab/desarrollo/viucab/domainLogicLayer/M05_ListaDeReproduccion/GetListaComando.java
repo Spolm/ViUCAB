@@ -20,19 +20,19 @@ public class GetListaComando extends Command {
     }
 
     @Override
-    public void execute() {
+    public ListaReproduccion execute() {
 
-        try {
+        /*try {*/
             GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion();
             Entity  lista = dao.GetLista(est);
             est = lista;
 
 
-        }
+        /*}
         catch (Exception e){
             est = new Entity();
 
-        }
+        }*/
     }
 
     @Override
