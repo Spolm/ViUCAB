@@ -1,6 +1,6 @@
-package edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas;
+package edu.ucab.desarrollo.viucab.common.entities;
 
-public class Video_Etiq {
+public class Video_Etiq extends Entity{
 
     private int idVid;
     private int idEtiq;

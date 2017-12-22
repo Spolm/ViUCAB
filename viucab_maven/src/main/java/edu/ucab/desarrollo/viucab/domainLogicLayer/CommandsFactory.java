@@ -7,6 +7,8 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
 
 /**
  * Fabrica de comandos creada por M011
@@ -66,6 +68,28 @@ public class CommandsFactory {
     public  static  Command instanciateGetSuscritosComando    (int idUsuario) {return  new GetSuscritosComando(idUsuario);}
 
     // Fin instancias M02
+
+    //region M05
+
+    public static Command instanciaGetLista (Entity lista){
+        return new GetListaComando(lista);
+    }
+
+    //endregion
+
+    //region M07
+    public static Command instanciateInsertEtiqueta(Entity etiqueta){
+        return new InsertarEtiqueta(etiqueta);
+    }
+
+    public static Command instanciateEliminarEtiqueta(Entity etiqueta){
+        return new EliminarEtiqueta(etiqueta);
+    }
+
+    public static Command instanciateConsultarVideos(Entity etiqueta){
+        return new ConsultarVideos(etiqueta);
+    }
+    //endregion
 
     //M08 Instancias
 

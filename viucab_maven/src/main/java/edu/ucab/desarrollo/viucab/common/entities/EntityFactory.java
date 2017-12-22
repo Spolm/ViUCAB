@@ -1,3 +1,4 @@
+
 package edu.ucab.desarrollo.viucab.common.entities;
 
 import java.awt.*;
@@ -37,6 +38,49 @@ public class EntityFactory
     }
     //final M02
 
+    //region M05
+
+    /**
+     * Factory de ListaDeReproduccion
+     * @param nombre
+     * @param descripcion
+     * @param numReproducciones
+     * @param fechaCreacion
+     * @return nombre,descripcion,numReproducciones,fechaCreacion
+     */
+    static public Entity listaDeReproduccion (Integer idLista, String nombre, String descripcion, Integer numReproducciones, String fechaCreacion)
+    {
+        return new ListaDeReproduccion(idLista, nombre, descripcion, numReproducciones, fechaCreacion);
+    }
+
+    static public Entity listaDeReproduccion (String nombre, String descripcion, Integer numReproducciones, String fechaCreacion)
+    {
+        return new ListaDeReproduccion(nombre, descripcion, numReproducciones, fechaCreacion);
+    }
+
+    static public Entity listaDeReproduccion (Integer idLista)
+    {
+        return new ListaDeReproduccion(idLista);
+    }
+
+    //endregion
+
+    //region M07
+
+    static public Entity insertEtiqueta(String valor){
+        return new Etiquetas(valor);
+    }
+
+    static public Entity eliminarEtiqueta(int id){
+        return new Etiquetas(id);
+    }
+
+    static public Entity consultarVideos(int id){
+        return new Etiquetas(id);
+    }
+
+    //endregion
+
     //region M08
 
 
@@ -51,3 +95,4 @@ public class EntityFactory
     //final M08
 
 }
+
