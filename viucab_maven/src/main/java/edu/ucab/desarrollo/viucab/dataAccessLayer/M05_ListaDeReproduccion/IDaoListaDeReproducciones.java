@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  *
  */
-public interface IDaoListaDeReproduccion extends IDao {
+public interface IDaoListaDeReproducciones extends IDao {
 
     Entity GetLista(Entity e) throws SQLException; //throws SQLException, BdConnectException;
 

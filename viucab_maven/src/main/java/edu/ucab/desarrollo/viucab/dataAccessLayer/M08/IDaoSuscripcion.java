@@ -13,7 +13,7 @@ public interface IDaoSuscripcion extends IDao {
 
     public void agregarsuscripcion (int suscriptor,int suscripcion) throws SQLException, BdConnectException;
     public void eliminarsuscripcion (int suscriptor, int suscripcion ) throws SQLException, BdConnectException;
-    public List<int> listasuscripcion(int suscriptor) throws SQLException, BdConnectException;
+   // public List<int> listasuscripcion(int suscriptor) throws SQLException, BdConnectException;
 
 
 
