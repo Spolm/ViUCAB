@@ -74,8 +74,8 @@ public class M07_Etiqueta {
         ConsultarVideos cmd = (ConsultarVideos) commandEtiqueta;
         cmd.execute();
         List<Entity> result = cmd.ReturnList();
-        List<Video_Etiq> json = new ArrayList<Video_Etiq>();
-        json.addAll((Collection<? extends Video_Etiq>) result);
-        return gson.toJson(json);
+        //List<Video_Etiq> json = new ArrayList<Video_Etiq>();
+        //json.addAll((Collection<? extends Video_Etiq>) result);
+        return gson.toJson(result);
     }
 }
