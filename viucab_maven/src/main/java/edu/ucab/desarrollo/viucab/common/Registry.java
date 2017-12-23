@@ -5,9 +5,15 @@ package edu.ucab.desarrollo.viucab.common;
  */
 public class Registry {
 
+<<<<<<< HEAD
     public static String BD_USER = "";
     public static String BD_PASSWORD = "";
     public static String BD_URL = "jdbc:postgresql://localhost/";
+=======
+    public static String BD_USER = "viucab";
+    public static String BD_PASSWORD = "viucab";
+    public static String BD_URL = "jdbc:postgresql://localhost/viucabdb";
+>>>>>>> Develop
     public static String BD_CLASS_FOR_NAME = "org.postgresql.Driver";
 
     public static final int RESULT_CODE_OK = 200;

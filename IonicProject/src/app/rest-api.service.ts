@@ -5,11 +5,18 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
+<<<<<<< HEAD
 
 //Direccion del servidor donde esta la BDD war_exploded
 const URL = 'http://localhost:8080/viucab_war_exploded';
 //Direccion del servidor donde esta la BDD
 //const URL = 'http://localhost:8080/viucab';
+=======
+import 'rxjs/add/operator/toPromise';
+
+//Direccion del servidor donde esta la BDD
+const URL = 'http://localhost:8888/viucab';
+>>>>>>> Develop
 
 @Injectable()
 export class RestApiService {
@@ -135,4 +142,15 @@ export class RestApiService {
         .catch(this.handleError);
   }
 
+<<<<<<< HEAD
+=======
+
+ 
+  public geta(direccion){
+    return this.http
+      .get(URL+'/'+direccion)
+ 
+  }
+
+>>>>>>> Develop
 }

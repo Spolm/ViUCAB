@@ -1,7 +1,18 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+<<<<<<< HEAD
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
+=======
+
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
+>>>>>>> Develop
 
 /**
  * Fabrica de comandos creada por M011
@@ -49,4 +60,52 @@ public class CommandsFactory {
 
     //endregion
 
+<<<<<<< HEAD
+=======
+    //M02 Instancias
+
+    public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando(criterio);}
+
+    //Mas Vistos no recibe Parametros
+    public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}
+
+    public  static  Command instanciateGetPreferenciasComando (int idUsuario) {return  new GetPreferenciasComando(idUsuario);}
+
+    public  static  Command instanciateGetSuscritosComando    (int idUsuario) {return  new GetSuscritosComando(idUsuario);}
+
+    // Fin instancias M02
+
+    //region M05
+
+    public static Command instanciaGetLista (Entity lista){
+        return new GetListaComando(lista);
+    }
+
+    //endregion
+
+    //region M07
+    public static Command instanciateInsertEtiqueta(Entity etiqueta){
+        return new InsertarEtiqueta(etiqueta);
+    }
+
+    public static Command instanciateEliminarEtiqueta(Entity etiqueta){
+        return new EliminarEtiqueta(etiqueta);
+    }
+
+    public static Command instanciateConsultarVideos(Entity etiqueta){
+        return new ConsultarVideos(etiqueta);
+    }
+    //endregion
+
+    //M08 Instancias
+
+     public  static  Command instanciaGetSuscripcionComando(int idsuscriptor) {return  new GetSuscripcionComando(idsuscriptor);}
+
+     public  static  Command instanciaSetSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new SetSuscripcionComando(idsuscriptor,idsuscripcion);}
+
+     public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
+
+
+    //Fin instancias M08
+>>>>>>> Develop
 }

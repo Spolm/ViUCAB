@@ -3,6 +3,11 @@ package edu.ucab.desarrollo.viucab.webService.M02_Home;
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+<<<<<<< HEAD
+=======
+import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
+>>>>>>> Develop
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 
 import javax.ws.rs.GET;
@@ -21,15 +26,23 @@ import java.util.ArrayList;
 public class M02_Home {
 
     Gson gson = new Gson();
+<<<<<<< HEAD
     Connection conn = conectarADb();
 
     @GET
+=======
+    Connection conn= Sql.getConInstance();
+
+    @GET
+	@CrossOrigin(origins = "http://localhost:8100")
+>>>>>>> Develop
     @Path("/cargarTodo")
     @Produces("application/json")
     /**
      * @Param id
      * Devuelve todos los Videos dado un id
      */
+<<<<<<< HEAD
     public String obtenerVideo (@QueryParam("id")  String horainicio
     ){
 
@@ -40,15 +53,38 @@ public class M02_Home {
             ArrayList<Video> listaVideos= new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs =  st.executeQuery(query);
+=======
+    public String obtenerVideo (
+    ){
+
+        String query = "select * from video ";
+        try{
+            ArrayList<Video> listaVideos= new ArrayList<>();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+>>>>>>> Develop
 
             while(rs.next()){
                 Video resultado = new Video();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
+<<<<<<< HEAD
                 listaVideos.add(resultado);
 
             }
 
+=======
+                resultado.setDescripcion(rs.getString("vid_descripcion"));
+                resultado.setImagen(rs.getString("vid_imagen"));
+                resultado.setUrl(rs.getString("vid_url"));
+                resultado.setFecha(rs.getString("vid_fecha"));
+                resultado.setVisitas(rs.getInt("vid_visitas"));
+                resultado.setUsuario("Bárbara Fernández");
+                listaVideos.add(resultado);
+            }
+
+
+>>>>>>> Develop
             return gson.toJson(listaVideos);
 
         } catch(SQLException e) {
@@ -62,6 +98,10 @@ public class M02_Home {
     }
 
     @GET
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "http://localhost:8100")
+>>>>>>> Develop
     @Path("/ObtenerPreferencias")
     @Produces("application/json")
     /**
@@ -80,6 +120,7 @@ public class M02_Home {
                                 "AND video_cat.idcat=preferencia.id_cat " +
                                 "AND usuario.usu_id='"+idUsuario+"'";
 
+<<<<<<< HEAD
 
 
         try {
@@ -88,6 +129,19 @@ public class M02_Home {
             ArrayList<Video> listaVideos = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
+=======
+        //GetPreferenciasComando cmd =CommandsFactory.instanciateGetPreferenciasComando(idUsuario);
+
+
+        try {
+            //cmd.execute();
+            //Lista del objeto video para almacenar todos los videos a cargar
+            ArrayList<Video> listaVideos= new ArrayList<>();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+
+>>>>>>> Develop
 
             while (rs.next()) {
                 Video resultado = new Video();
@@ -115,6 +169,10 @@ public class M02_Home {
     }
 
     @GET
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "http://localhost:8100")
+>>>>>>> Develop
     @Path("/MasVistos")
     @Produces("application/json")
     /**
@@ -129,9 +187,15 @@ public class M02_Home {
         try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
+<<<<<<< HEAD
             ArrayList<Video> listaVideos = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
+=======
+            ArrayList<Video> listaVideos= new ArrayList<>();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+>>>>>>> Develop
 
             while (rs.next()) {
                 Video resultado = new Video();
@@ -158,12 +222,20 @@ public class M02_Home {
     }
 
     @GET
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "http://localhost:8100")
+>>>>>>> Develop
     @Path("/Suscritos")
     @Produces("application/json")
     /**
      * Obtiene los ultimos videos subidos por los canales a los cuales
      * esta suscrito el usuario
+<<<<<<< HEAD
      *@Param id del Usuario
+=======
+     *@Param id del Usuario suscrito
+>>>>>>> Develop
      */
     public String obtenerVideosSuscritos (@QueryParam("id") int idUser)
     {
@@ -178,9 +250,15 @@ public class M02_Home {
         try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
+<<<<<<< HEAD
             ArrayList<Video> listaVideos = new ArrayList<>();
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
+=======
+            ArrayList<Video> listaVideos= new ArrayList<>();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+>>>>>>> Develop
 
             while (rs.next()) {
                 Video resultado = new Video();
@@ -208,6 +286,10 @@ public class M02_Home {
     }
 
     @GET
+<<<<<<< HEAD
+=======
+	@CrossOrigin(origins = "http://localhost:8100")
+>>>>>>> Develop
     @Path("/Busqueda")
     @Produces("application/json")
     /**
@@ -242,8 +324,13 @@ public class M02_Home {
 
             //Lista del objeto video para almacenar todos los videos a cargar
             ArrayList<Video> listaVideos= new ArrayList<>();
+<<<<<<< HEAD
             Statement st = conn.createStatement();
             ResultSet rs = st.executeQuery(query);
+=======
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+>>>>>>> Develop
 
 
             while (rs.next() ) {
@@ -272,6 +359,7 @@ public class M02_Home {
 
     }
 
+<<<<<<< HEAD
 
     /**
      * Metodo que crea el conector de la base de datos
@@ -307,6 +395,8 @@ public class M02_Home {
 
 
 
+=======
+>>>>>>> Develop
     /**
      * Metodo que dado un nombre de usuario devuelve
      * la id correspondiente
@@ -322,9 +412,14 @@ public class M02_Home {
         Usuario resultado = new Usuario();
 
         try{
+<<<<<<< HEAD
             Connection conn = conectarADb();
             Statement    st = conn.createStatement();
             ResultSet    rs =  st.executeQuery(query);
+=======
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+>>>>>>> Develop
 
             while(rs.next()){
 

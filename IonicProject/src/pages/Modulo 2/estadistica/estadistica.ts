@@ -1,6 +1,12 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
+<<<<<<< HEAD
+=======
+import { RestApiService } from '../../../app/rest-api.service';
+import { Subscription } from 'rxjs/Subscription';
+
+>>>>>>> Develop
 
 
 /**
@@ -14,18 +20,24 @@ import { Chart } from 'chart.js';
 @Component({
   selector: 'page-estadistica',
   templateUrl: 'estadistica.html',
+  providers:[RestApiService]
 })
 
 
 
 export class EstadisticaPage {
+<<<<<<< HEAD
   private  hola :boolean =false;
+=======
+  private  mostrar :boolean =false;
+>>>>>>> Develop
   private perra = ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"]
   private perra4 =["rivetti", "es", "rolo", "de ", "pargo", "si","burda "]
   private perra2 = [12, 19, 3, 5, 2, 3]
   private perra3 = [10, 5, 2, 3, 2, 1]
   private aux: any
     private aux2: any
+<<<<<<< HEAD
   @ViewChild('barCanvas') barCanvas;
  @ViewChild('doughnutCanvas') doughnutCanvas;
  @ViewChild('lineCanvas') lineCanvas;
@@ -37,39 +49,133 @@ export class EstadisticaPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 
 
+=======
+    respu : any
+    respu1 : any
+
+    
+    type = 'bar'
+
+
+  
+  @ViewChild('barCanvas') barCanvas;
+ @ViewChild('doughnutCanvas') doughnutCanvas;
+ @ViewChild('lineCanvas') lineCanvas;
+
+    barChart: Chart;
+     doughnutChart: any;
+     lineChart: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public api: RestApiService) {
+
+
+     
+>>>>>>> Develop
   }
 
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad EstadisticaPage');
+<<<<<<< HEAD
 
+=======
+    this.pet()
+>>>>>>> Develop
   }
 
 
 
+<<<<<<< HEAD
 
 
   public pasar ()
  {
 
+=======
+public pet ()
+{
+    this.api.geta('Estadistica/Estadistica1').subscribe((data) => { // Success
+        this.respu = data.json()
+        console.log (this.respu)
+       },
+       (error) =>{
+         console.error(error);
+       });
+
+}
+
+
+
+
+
+
+public metodo (id:any)
+{
+  
+    if (id == 1)
+    {
+        
+       this.mostrar = true;
+       this.respu1 = this.respu 
+
+    this.CrearGrafica()
+    this.respu1 =[]
+    }
+    else if (id == 2)
+    {
+     
+       
+        this.mostrar = true;
+        this.respu1.label = this.perra4
+        this.respu1.data = this.perra2
+   
+        this.CrearGrafica()
+    }
+
+
+}
+
+  public   CrearGrafica ()
+ {
+
+
+>>>>>>> Develop
     if (this.barChart != null)
     {
          this.barChart.destroy()
     }
+<<<<<<< HEAD
     this.hola = true;
     this.aux= this.perra3;
     this.aux2=this.perra4
+=======
+    if (this.doughnutChart != null)
+    {
+         this.doughnutChart.destroy()
+    }
+
+>>>>>>> Develop
 
 
 
    this.barChart = new Chart(this.barCanvas.nativeElement, {
 
+<<<<<<< HEAD
        type: 'bar',
        data: {
            labels: this.aux2,
            datasets: [{
                label: '# of Votes',
                data: this.aux,
+=======
+       type: this.type,
+       data: {
+           labels: this.respu1.label,
+           datasets: [{
+               label: '# of Votes',
+               data: this.respu1.data,
+>>>>>>> Develop
                backgroundColor: [
                    'rgba(255, 99, 132, 0.2)',
                    'rgba(54, 162, 235, 0.2)',
@@ -105,12 +211,21 @@ export class EstadisticaPage {
  //
    this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
 
+<<<<<<< HEAD
        type: 'doughnut',
        data: {
            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
            datasets: [{
                label: '# of Votes',
                data: [12, 19, 3, 5, 2, 3],
+=======
+       type: "doughnut",
+       data: {
+        labels: this.respu1.label,
+        datasets: [{
+            label: '# of Votes',
+            data: this.respu1.data,
+>>>>>>> Develop
                backgroundColor: [
                    'rgba(255, 99, 132, 0.2)',
                    'rgba(54, 162, 235, 0.2)',
@@ -131,6 +246,7 @@ export class EstadisticaPage {
        }
 
    });
+<<<<<<< HEAD
  //
  //   this.lineChart = new Chart(this.lineCanvas.nativeElement, {
  //
@@ -305,6 +421,11 @@ export class EstadisticaPage {
       // this.aux2=this.perra
 
  }
+=======
+ 
+ }
+
+>>>>>>> Develop
 
 
 

@@ -33,3 +33,17 @@ $RECYCLE.BIN/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+
+viUCAB/\.directory
+
+viucab_maven/classes/*
+vitucab_maven/target/*
+*.iml
+*.log
+
+viucab_maven/out/artifacts/fitucab_war_exploded/
+
+viucab_maven/out/
+
+
+viucab_maven/target/

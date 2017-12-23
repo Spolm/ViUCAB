@@ -1,6 +1,7 @@
 package edu.ucab.desarrollo.viucab.dataAccessLayer;
 
 
+<<<<<<< HEAD
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.Registry;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
@@ -14,17 +15,28 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import java.io.IOException;
+=======
+import edu.ucab.desarrollo.viucab.common.Registry;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+>>>>>>> Develop
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+=======
+>>>>>>> Develop
 
 /***
  * creada por M011
  */
+<<<<<<< HEAD
 //@Path("/dao")
 public class Dao{
 
@@ -172,6 +184,8 @@ public class Dao{
 /*
 
 /*
+=======
+>>>>>>> Develop
 public abstract class Dao implements IDao
 {
     private static Logger logger = LoggerFactory.getLogger( Dao.class );
@@ -183,15 +197,24 @@ public abstract class Dao implements IDao
     /**
      * Metodo para devolver una unica instancia de la conexion
      * @return instancia de la conexion
+<<<<<<< HEAD
 
+=======
+     */
+>>>>>>> Develop
     public static Connection getConInstance() {
 
         try {
             conInstance = getBdConnect();
+<<<<<<< HEAD
         }catch (BdConnectException e){
             MessageException error = new MessageException(e, Dao.class.getSimpleName(),
                     Thread.currentThread().getStackTrace()[1].getMethodName());
             logger.error("Error: ", error.toString());
+=======
+        }catch (Exception e){
+
+>>>>>>> Develop
         }
 
         return conInstance;
@@ -205,8 +228,13 @@ public abstract class Dao implements IDao
      * @throws Exception
      * @see Connection
      * @see Statement
+<<<<<<< HEAD
 
     public static Connection getBdConnect() throws BdConnectException
+=======
+     */
+    public static Connection getBdConnect()
+>>>>>>> Develop
     {
 
         try
@@ -217,12 +245,20 @@ public abstract class Dao implements IDao
         catch ( ClassNotFoundException e )
         {
             logger.error( "Metodo: {} {}", "getBdConnect", e.toString() );
+<<<<<<< HEAD
             throw new BdConnectException( e );
+=======
+
+>>>>>>> Develop
         }
         catch ( SQLException e )
         {
             logger.error( "Metodo: {} {}", "getBdConnect", e.toString() );
+<<<<<<< HEAD
             throw new BdConnectException( e );
+=======
+
+>>>>>>> Develop
         }
         return conn;
     }
@@ -238,5 +274,9 @@ public abstract class Dao implements IDao
             logger.error( "Metodo: {} {}", "getBdConnect", e.toString() );
         }
     }
+<<<<<<< HEAD
 */
+=======
+
+>>>>>>> Develop
 }

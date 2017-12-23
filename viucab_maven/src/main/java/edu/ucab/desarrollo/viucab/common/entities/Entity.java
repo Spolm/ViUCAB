@@ -3,12 +3,20 @@ package edu.ucab.desarrollo.viucab.common.entities;
 /**
  *Patron Entidad creada por M011
  */
+<<<<<<< HEAD
+=======
+//[@Serializable]
+>>>>>>> Develop
 public class Entity {
 
 
         private int _id;
+<<<<<<< HEAD
         private int _errorCode;
         private String _errorMsg;
+=======
+
+>>>>>>> Develop
 
         public Entity (){}
 
@@ -24,6 +32,7 @@ public class Entity {
                 this._id = _id;
         }
 
+<<<<<<< HEAD
         public int get_errorCode()
         {
                 return _errorCode;
@@ -43,4 +52,6 @@ public class Entity {
         {
                 this._errorMsg = _errorMsg;
         }
+=======
+>>>>>>> Develop
 }

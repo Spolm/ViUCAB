@@ -19,6 +19,7 @@
 </ion-header>
 
 <ion-content padding>
+<<<<<<< HEAD
 
   <ion-list>
     <ion-item (click)="pasar()">
@@ -42,6 +43,33 @@
 
 
   <ion-card  [class.hide]="!hola" >
+=======
+
+  <ion-list>
+    <ion-item (click)="metodo(1)">
+      Estadistica1
+    </ion-item >
+    <ion-item >
+    Estadistica2
+    </ion-item>
+
+    <ion-item  (click)="metodo(2)">
+    Estadistica3a
+    </ion-item>
+  
+
+  </ion-list>
+
+
+  <ion-item>
+    <ion-label>Cambiar Grafica </ion-label>
+    <ion-toggle (ionChange)="isDisabled = !isDisabled"></ion-toggle>
+  </ion-item>
+
+  <div [class.hide]="!mostrar">
+
+  <ion-card  [class.hide]="!isDisabled" >
+>>>>>>> Develop
       <ion-card-header>
         Bar Chart
       </ion-card-header>
@@ -53,7 +81,11 @@
 
 
 
+<<<<<<< HEAD
     <ion-card [class.hide]="!hola">
+=======
+    <ion-card [class.hide]="isDisabled">
+>>>>>>> Develop
       <ion-card-header>
         Doughnut Chart
       </ion-card-header>
@@ -62,7 +94,11 @@
       </ion-card-content>
     </ion-card>
 
+<<<<<<< HEAD
 
+=======
+  </div>
+>>>>>>> Develop
 
 
 </ion-content>

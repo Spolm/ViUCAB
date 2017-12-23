@@ -1,13 +1,21 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M11;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+<<<<<<< HEAD
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import java.sql.SQLException;
+=======
+import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
+import org.slf4j.LoggerFactory;
+>>>>>>> Develop
 
 /**
  * Created by Daniel on 25/11/2017.
  */
+<<<<<<< HEAD
 public class GetEstadistica4 implements Command {
     public GetEstadistica4(Entity est) {
     }
@@ -24,3 +32,36 @@ public class GetEstadistica4 implements Command {
         return null;
     }*/
 }
+=======
+public class GetEstadistica4 extends Command {
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
+    private static Entity est;
+
+    public GetEstadistica4(Entity est)
+    {
+        this.est = est;
+    }
+
+    @Override
+    public void execute() {
+
+        try {
+            GetEstadisticaDao dao =  DaoFactory.instanciateDaoEstadistica1();
+            Entity  estadistica = dao.GetEstadistica4(est);
+            est =estadistica;
+
+
+        }
+        catch (Exception e){
+            est = new Entity();
+
+        }
+    }
+
+    @Override
+    public Entity Return() {
+        return est;
+    }
+}
+
+>>>>>>> Develop

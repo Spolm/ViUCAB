@@ -1,6 +1,10 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
 import java.awt.*;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> Develop
 
 
 /**
@@ -13,6 +17,14 @@ public class Usuario {
     private boolean _user_token;
     private String  _email_user;
     private Image _avatar_user;
+<<<<<<< HEAD
+=======
+    private ArrayList<Usuario> listaUsuario;
+
+    public Usuario(ArrayList<Usuario> listaUsuario) {
+        this.listaUsuario = listaUsuario;
+    }
+>>>>>>> Develop
 
     public Usuario(int _id_user, String _name_user, String _pass_user, boolean _user_token, String _email_user, Image _avatar_user) {
         this._id_user = _id_user;
@@ -22,8 +34,18 @@ public class Usuario {
         this._email_user = _email_user;
         this._avatar_user = _avatar_user;
     }
+<<<<<<< HEAD
 
 
+=======
+/*
+    public Usuario(String _name_user, Image _avatar_user) {
+        
+        this._name_user = _name_user;
+       this._avatar_user = _avatar_user;
+    }
+*/
+>>>>>>> Develop
     public Usuario(String _name_user) {
         this._name_user = _name_user;
     }
@@ -35,6 +57,11 @@ public class Usuario {
     public Usuario() {
     }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> Develop
     public int get_id_user() {
         return _id_user;
     }
@@ -82,5 +109,16 @@ public class Usuario {
     public void set_avatar_user(Image _avatar_user) {
         this._avatar_user = _avatar_user;
     }
+<<<<<<< HEAD
+=======
+
+    public ArrayList<Usuario> getListaUsuario() {
+        return listaUsuario;
+    }
+
+    public void setListaUsuario(ArrayList<Usuario> listaUsuario) {
+        this.listaUsuario = listaUsuario;
+    }
+>>>>>>> Develop
 }
 

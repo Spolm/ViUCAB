@@ -9,31 +9,58 @@
       <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
       <ion-buttons class= 'centrado-porcentual'  >
           <button  >
+<<<<<<< HEAD
         <ion-icon name="videocam" color="primary"></ion-icon>   
       </button>
       </ion-buttons>   
     
     </ion-title>
     
+=======
+        <ion-icon name="videocam" color="primary"></ion-icon>
+      </button>
+      </ion-buttons>
+
+    </ion-title>
+
+>>>>>>> Develop
   </ion-navbar>
   <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> <!--> Creacion</!-->
 </ion-header>
 
+<<<<<<< HEAD
  
+=======
+
+>>>>>>> Develop
 <ion-content padding>
 
 
     <ion-list>
+<<<<<<< HEAD
       
         <ion-item *ngFor="let item of items" >
+=======
+
+        <ion-item *ngFor="let item of items ; let i = index" >
+>>>>>>> Develop
             <ion-avatar item-start >
                 <img [src]="item.img">
             </ion-avatar>
             <h2> {{ item.nombre }} </h2>
             <p>Suscritos {{item.suscritos}}</p>
+<<<<<<< HEAD
             <button ion-button color= {{item.color}} item-right (click)="showConfirm()" > {{item.estado}}</button>
 
         </ion-item>
      </ion-list>
     
   </ion-content>
+=======
+            <button ion-button color= {{item.color}} item-right (click)="showConfirm(item.nombre, i)" > {{item.estado}}</button>
+
+        </ion-item>
+     </ion-list>
+
+  </ion-content>
+>>>>>>> Develop

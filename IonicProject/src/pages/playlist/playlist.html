@@ -25,7 +25,11 @@
         MIAS
       </ion-segment-button>
       <ion-segment-button value="sugeridas">
+<<<<<<< HEAD
         Sugerencia
+=======
+        SUGERIDAS
+>>>>>>> Develop
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -44,7 +48,10 @@
   <ion-list *ngSwitchCase="'mias'">
 
     <button ion-button (click)="goToAddList()" >Agregar Lista</button>
+<<<<<<< HEAD
     
+=======
+>>>>>>> Develop
 
     <ion-item *ngFor="let lista of ListasDeReproduccion" >
       <ion-thumbnail item-start id="List-img" (click)="goToViewList()">
@@ -76,6 +83,7 @@
   </ion-list>
 
   <ion-list no-lines *ngSwitchCase="'sugeridas'">
+<<<<<<< HEAD
      
     <ion-item>
       <ion-grid>
@@ -92,12 +100,26 @@
             <h1>Deportes</h1>
              </ion-col>-->
              </ion-row>
+=======
+
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <ion-icon name="american-football" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Deportes</h1>
+          </ion-col>
+        </ion-row>
+>>>>>>> Develop
       </ion-grid>
     </ion-item>
 
     <ion-item>
       <ion-grid>
         <ion-row>
+<<<<<<< HEAD
          <!-- <ion-col col-1>
             <ion-icon name="game-controller-b" class="grande"></ion-icon>
           </ion-col>-->
@@ -109,6 +131,14 @@
           <!--<ion-col col-9 class="paddingtop15">
             <h1>Videojuegos</h1>
           </ion-col> -->
+=======
+          <ion-col col-3>
+            <ion-icon name="game-controller-b" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Videojuegos</h1>
+          </ion-col>
+>>>>>>> Develop
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -116,6 +146,7 @@
     <ion-item>
       <ion-grid>
         <ion-row>
+<<<<<<< HEAD
          <!-- <ion-col col-1>
             <ion-icon ios="ios-musical-notes" md="md-musical-notes" class="grande"></ion-icon>
           </ion-col>-->
@@ -124,6 +155,14 @@
             Musica
         </button>
         
+=======
+          <ion-col col-3>
+            <ion-icon ios="ios-musical-notes" md="md-musical-notes" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Música</h1>
+          </ion-col>
+>>>>>>> Develop
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -131,6 +170,7 @@
     <ion-item>
       <ion-grid>
         <ion-row>
+<<<<<<< HEAD
           <!-- <ion-col col-1>
             <ion-icon name="happy" class="grande"></ion-icon>
           </ion-col>-->
@@ -142,6 +182,14 @@
          <!-- <ion-col col-9 class="paddingtop15">
             <h1>Comedia</h1>
           </ion-col>-->
+=======
+          <ion-col col-3>
+            <ion-icon name="happy" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Comedia</h1>
+          </ion-col>
+>>>>>>> Develop
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -149,6 +197,7 @@
     <ion-item>
       <ion-grid>
         <ion-row>
+<<<<<<< HEAD
         <!--   <ion-col col-1>
             <ion-icon name="color-palette" class="grande"></ion-icon>
           </ion-col>-->
@@ -164,6 +213,17 @@
     
           
             
+=======
+          <ion-col col-3>
+            <ion-icon name="color-palette" class="grande"></ion-icon>
+          </ion-col>
+          <ion-col col-9 class="paddingtop15">
+            <h1>Arte</h1>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+>>>>>>> Develop
   </ion-list>
 </div>
 

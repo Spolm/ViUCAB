@@ -1,6 +1,7 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 
 public class Estadistica extends Entity {
@@ -17,6 +18,24 @@ public class Estadistica extends Entity {
     public Estadistica(){
 
 
+=======
+public class Estadistica extends Entity {
+
+    private String username;
+    private String [] label;
+    private String [] data;
+
+    public Estadistica(String username, String [] label, String [] data){
+
+        this.username = username;
+        this.label = label;
+        this.data = data;
+    }
+
+    public Estadistica(String username){
+
+        this.username = username;
+>>>>>>> Develop
     }
 
     public String getUsername() {
@@ -27,6 +46,7 @@ public class Estadistica extends Entity {
         this.username = username;
     }
 
+<<<<<<< HEAD
     public ArrayList<String> getTags() {
         return tags;
     }
@@ -81,5 +101,21 @@ public class Estadistica extends Entity {
 
     public void setFecha(ArrayList<String> fecha) {
         this.fecha = fecha;
+=======
+    public String [] getLabel() {
+        return label;
+    }
+
+    public void setLabel(String [] label) {
+        this.label = label;
+    }
+
+    public String [] getData() {
+        return data;
+    }
+
+    public void setData(String [] data) {
+        this.data = data;
+>>>>>>> Develop
     }
 }

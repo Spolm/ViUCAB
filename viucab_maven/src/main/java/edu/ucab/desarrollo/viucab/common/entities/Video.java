@@ -2,12 +2,17 @@ package edu.ucab.desarrollo.viucab.common.entities;
 
         import java.awt.*;
         import java.io.InputStream;
+<<<<<<< HEAD
+=======
+        import java.util.ArrayList;
+>>>>>>> Develop
 
 /**
  * Created by estefania on 10/11/2017.
  */
 public class Video {
 
+<<<<<<< HEAD
     int id;
     String nombre;
     String fecha;
@@ -37,6 +42,35 @@ public class Video {
 
     public Video() {
 
+=======
+    private int id;
+    private String nombre;
+    private String fecha;
+    private int visitas;
+    private String descripcion;
+    private String imagen;
+    private String url;
+    private String _valorCategoria;
+    private String usuario;
+    private ArrayList<Video> listaVideo;
+
+    public Video() {
+    }
+
+    public Video(ArrayList<Video> listaVideo) {
+        this.listaVideo = listaVideo;
+    }
+
+    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
+                 String url) {
+        this.descripcion=descripcion;
+        this.id=id;
+        this.fecha=fecha;
+        this.nombre=titulo;
+        this.imagen=imagen;
+        this.url=url;
+        this.visitas=visitas;
+>>>>>>> Develop
     }
 
     public String get_valorCategoria() {
@@ -102,4 +136,23 @@ public class Video {
     public void setUrl(String url) {
         this.url = url;
     }
+<<<<<<< HEAD
+=======
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public ArrayList<Video> getListaVideo() {
+        return listaVideo;
+    }
+
+    public void setListaVideo(ArrayList<Video> listaVideo) {
+        this.listaVideo = listaVideo;
+    }
+>>>>>>> Develop
 }

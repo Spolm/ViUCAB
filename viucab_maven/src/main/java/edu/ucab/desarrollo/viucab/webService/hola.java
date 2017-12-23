@@ -24,6 +24,7 @@ public class hola {
             return "hola" + username;
     }
 
+<<<<<<< HEAD
     @GET
     @Path("/mundo")
     @Produces("text/plain")
@@ -33,6 +34,8 @@ public class hola {
         return "hola";
     }
 
+=======
+>>>>>>> Develop
 
 
 
