@@ -3,7 +3,7 @@ package edu.ucab.desarrollo.viucab.common.exceptions;
 /**
  * Created by Daniel on 25/11/2017. creada por M011
  */
-public class MessageException extends Exception{
+public class MessageException extends RuntimeException{
 
     private int _code = 999;
     private String _clase;

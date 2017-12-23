@@ -1,4 +1,6 @@
 package edu.ucab.desarrollo.viucab.webService.M11_Estadistica;
+import edu.ucab.desarrollo.viucab.common.entities.Entity;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -10,7 +12,7 @@ public class M11_Estadistica {
     @GET
     @Path("/Estadistica1")
     @Produces("text/plain")
-    public String estadistica1(@QueryParam("username") String username)
+    public Entity estadistica1(@QueryParam("username") String username)
     {
 
         return "hola" + username;

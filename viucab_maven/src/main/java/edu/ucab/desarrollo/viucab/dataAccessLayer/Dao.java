@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -84,8 +85,9 @@ public class Dao{
     }
 
     //@GET
-    //@Path("/get_sugerencias-like")
-   // @Produces("Application/json")
+    //    //@Path("/get_sugerencias-like")
+    //   // @Produces("Application/json")
+    //Metodo que busca las suscripciones del usuario, encuentra los videos a las que estas les haya dado Like y las filtra por categoria
     public String getSugerenciasLike( int id_usuario, String categoria)  { //Recuerda cambiar esto a json
         conectarDB();
         //List<Gson> lista = new List<Gson>();
@@ -99,6 +101,7 @@ public class Dao{
          //   st.executeUpdate(query);
             ResultSet rs = st.executeQuery(query);
 
+            //Ciclo que va tomando los videos de la BDD y los almacena en el ArrayList
             while (rs.next()){
                 Video video = new Video();
                 video.setId(rs.getInt("vid_id"));
@@ -113,8 +116,15 @@ public class Dao{
                 lista.add(video);
 
             }
+            //Transforma en Json ya que se necesita
             return gson.toJson(lista);
 
+        }
+        catch (SQLException e){
+            throw new MessageException(e.getMessage(), e.getErrorCode(), "Dao.java");
+        }
+        catch (IOException e){
+            return e.getMessage();
         }
         catch (Exception e){
             return e.getMessage();
@@ -124,6 +134,7 @@ public class Dao{
     //@GET
     //@Path("/get_sugerencias-suscripciones")
    // @Produces("Application/json")
+    //Funcion que busca las suscripciones del usuario, y toma los videos de dichos canales basados en las preferencias del usuario
     public String getSugerenciasSuscripciones( int id_usuario,  String categoria) { //Recuerda cambiar esto a json
         conectarDB();
         // List<Gson> lista = new List<Gson>();
@@ -159,36 +170,6 @@ public class Dao{
         }
     }
 /*
-    @GET
-    @Path("/get_sugerencias-Preferencias")
-    @Produces("Application/json")
-    public String getSugerenciasPreferencias(int id_usuario, String categoria) throws SQLException {
-        conectarDB();
-        query = "SELECT * FROM video WHERE vid_id = ((SELECT id_video FROM like WHERE vid_usuario = (SELECT id_suscripcion FROM suscripcion WHERE id_suscriptor = "+id_usuario+"))) AND (vid_categoria = (SELECT cat_id WHERE cat_valor = "+categoria+"))";
-        Video video = new Video();
-        try{
-            Statement st = conn.createStatement();
-            st.executeUpdate(query);
-            ResultSet rs = st.executeQuery(query);
-
-            while (rs.next()){
-                video.setId(rs.getInt("vid_id"));
-                video.setNombre(rs.getString("vid_titulo"));
-                video.setDescripcion(rs.getString("vid_descripcion"));
-                video.setImagen(rs.getString("vid_imagen"));
-                video.setUrl(rs.getString("vid_url"));
-                video.setFecha(rs.getString("vid_fecha"));
-                video.setVisitas(rs.getInt("vid_visitas"));
-                video.setUsuario(rs.getInt("vid_usuario"));
-                video.setCategoria(rs.getInt("vid_categoria"));
-            }
-            return "Se ejecuto exitosamente";
-        }
-        catch (Exception e){
-            return e.getMessage();
-        }
-    }*/
-
 
 /*
 public abstract class Dao implements IDao
