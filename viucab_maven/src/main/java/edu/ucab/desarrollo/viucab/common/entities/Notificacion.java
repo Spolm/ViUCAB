@@ -5,6 +5,7 @@ import java.util.Date;
 public class Notificacion {
     private int id;
     private Video video;
+    private Usuario usuario;
     private boolean desechado;
     private Date fecha;
 
@@ -22,6 +23,14 @@ public class Notificacion {
 
     public void setVideo(Video video) {
         this.video = video;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public boolean isDesechado() {

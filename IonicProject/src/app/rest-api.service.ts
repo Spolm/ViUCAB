@@ -8,7 +8,7 @@ import { Http } from '@angular/http';
 import { Headers, RequestOptions} from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8080/viucab';
+const URL = 'http://localhost:8888/Viucab_war';
 
 @Injectable()
 export class RestApiService {
@@ -21,7 +21,7 @@ export class RestApiService {
   //Accede al metodo que se encuentra en direccion y devuelve la respuesta
   public getTodo(direccion){
     return this.http
-      .get(URL+'/'+direccion)
+      .get(URL + '/' + direccion)
       .map((data: any) => data.json())
       .catch(this.handleError);
   }
@@ -30,7 +30,7 @@ export class RestApiService {
   //Accede al metodo que se encuentra en direccion, enviando un id y devuelve la respuesta
   public getUno(direccion, idObjeto) {
     return this.http
-    .get(URL+'/'+direccion+'/'+idObjeto)
+    .get(URL +'/' + direccion + '/' + idObjeto)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
@@ -40,7 +40,7 @@ export class RestApiService {
   public getTodoParam(direccion, param){
     console.log(URL +'/' + direccion);
     return this.http
-      .get(URL+'/' + direccion, param)
+      .get(URL +'/' + direccion, param)
       .map((data: any) => data.json())
       .subscribe();
   }
@@ -59,7 +59,7 @@ export class RestApiService {
   //Actualiza o envia datos mas parametros a una direccion
   public postTodo(direccion, datos, param) {
     return this.http
-    .post(URL+'/' + direccion, datos, param)
+    .post(URL +'/' + direccion, datos, param)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }

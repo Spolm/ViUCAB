@@ -4,6 +4,7 @@ import com.google.gson.*;
 import edu.ucab.desarrollo.viucab.common.entities.ConfiguracionNotificaciones;
 import edu.ucab.desarrollo.viucab.common.entities.Notificacion;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.MailNotificacion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 import javax.ws.rs.*;
@@ -53,32 +54,59 @@ import java.util.List;
     @Path("/notificacion")
     @Produces("application/json")
     //Recibe como parametro el id del usuario que inicio sesion
-    public String obtenerNotificacion (@QueryParam("id")  int id){
+    public String obtenerNotificacion (){
 
-        String select="SELECT * FROM notificacion WHERE (not_desechado=false)";
-        String selectVideo="SELECT * FROM video WHERE (vid_id = VALUES(?));";
+        String select="SELECT n.not_id, n.not_fecha, n.not_desechado, v.vid_url, v.vid_imagen, v.vid_titulo, " +
+                "v.vid_descripcion, u.usu_login " +
+                "FROM notificacion n, video v, usuario u " +
+                "WHERE (not_desechado=false and n.vid_id=v.vid_id and n.usu_id=1 and v.usu_id= u.usu_id) " +
+                "ORDER BY not_fecha DESC";
+
         try{
-            ArrayList<Notificacion> listaNotificaciones= new ArrayList<>();
+            ArrayList<Notificacion> listaNotificaciones = new ArrayList<>();
             Statement st = conexion.createStatement();
             ResultSet result =  st.executeQuery(select);
-            Video notVideo= new Video();
+
 
             while(result.next()){
                 Notificacion not = new Notificacion();
+                Video vid= new Video();
+                Usuario usu = new Usuario();
+                vid.setUrl(result.getString( "vid_url"));
+                vid.setDescripcion(result.getString("vid_descripcion"));
+                vid.setImagen(result.getString("vid_imagen"));
+                vid.setNombre(result.getString("vid_titulo"));
+                usu.set_name_user(result.getString("usu_login"));
                 not.setId(result.getInt("not_id"));
+                not.setVideo(vid);
+                not.setUsuario(usu);
                 not.setFecha(result.getDate("not_fecha"));
-                not.setDesechado(result.getBoolean("not_desechada"));
+                not.setDesechado(result.getBoolean("not_desechado"));
+                listaNotificaciones.add(not);
+
             }
 
             return gson.toJson(listaNotificaciones);
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            return e.getMessage();
         } finally {
             Sql.bdClose(conexion);
         }
-        //Mientras
-        return select;
+    }
+
+    //Desechar Notificacion
+    @GET
+    @Path("/notificacionDes")
+    @Produces("application/json")
+    public String desecharNotificacion ( String datos) throws  SQLException {
+        JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
+        PreparedStatement ps = conexion.prepareStatement( "UPDATE notificacion SET not_desechado = true " +
+                                                                "WHERE not_id = ?;");
+        ps.setInt(1, jsonDatos.get("not_id").getAsInt());
+        ps.executeQuery();
+        Sql.bdClose(conexion);
+        return datos;
     }
 
 
