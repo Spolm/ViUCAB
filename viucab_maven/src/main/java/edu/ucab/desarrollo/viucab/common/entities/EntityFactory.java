@@ -1,6 +1,7 @@
-<<<<<<< HEAD
+
 package edu.ucab.desarrollo.viucab.common.entities;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 /**
@@ -63,6 +64,35 @@ public class EntityFactory
     }
 
     //endregion
+
+    //region M07
+
+    static public Entity insertEtiqueta(String valor){
+        return new Etiquetas(valor);
+    }
+
+    static public Entity eliminarEtiqueta(int id){
+        return new Etiquetas(id);
+    }
+
+    static public Entity consultarVideos(int id){
+        return new Etiquetas(id);
+    }
+
+    //endregion
+
+    //region M08
+
+
+   // static public Video suscripcionUsuario (ArrayList<Usuario> listaUsuarios)
+    //{
+     //  return new  //Usuario(listaUsuarios);
+    //}
+     static public Usuario suscripcionUsuario (String login /*, Image avatar */){return new Usuario(login/*,avatar*/);  }
+
+     static public Suscripcion suscripcion (int suscriptor, int suscripcion){return new Suscripcion(suscriptor,suscripcion);  }
+
+    //final M08
 
 }
 

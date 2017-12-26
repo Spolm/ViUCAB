@@ -1,19 +1,13 @@
 package edu.ucab.desarrollo.viucab.common.exceptions.M08;
 
-/**
- * creada por johan
- */
-public class BdConnectException extends Exception {
+public class PlConnectException extends Exception {
+    public final String ERROR_MSG = "Ha ocurrido un error el  Store Procedure en la Base de datos";
 
 
-    public final String ERROR_MSG = "Ha ocurrido un error con la conexión a la base de datos";
-
-
-    public BdConnectException( Exception e )
+    public PlConnectException( Exception e )
     {
-        super( e );
+        super(e);
     }
-
 
     @Override
     public String toString()

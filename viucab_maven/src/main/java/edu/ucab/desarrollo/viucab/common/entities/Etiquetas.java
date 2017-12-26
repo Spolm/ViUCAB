@@ -1,4 +1,4 @@
-package edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas;
+package edu.ucab.desarrollo.viucab.common.entities;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import java.util.List;
  * @author Daniel Da Silva y Luis Martinez Mod 7
  */
 
-public class Etiquetas {
+public class Etiquetas extends Entity{
     private int id;
     private List<Video_Etiq> videoEtiqList;
     private List<Cat_Fil_Etiq> catFilEtiqList;
