@@ -4,10 +4,13 @@ import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Estadistica;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -17,7 +20,7 @@ import javax.ws.rs.QueryParam;
 
 @Path("/Estadistica")
 public class M11_Estadistica {
-
+    private static Logger logger = LoggerFactory.getLogger( M11_Estadistica.class );
     Gson gson = new Gson();
 //a a recibir un int
     //Ver de Etiquetas más utilizadas
@@ -34,13 +37,32 @@ public class M11_Estadistica {
     public String estadistica1(@QueryParam("username") String username)
     {
 
+
+
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica1(estadisticaObject);
         GetEstadistica1 cmd = (GetEstadistica1) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
+
+
+
+
     }
 
     /***
@@ -57,10 +79,23 @@ public class M11_Estadistica {
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica2(estadisticaObject);
         GetEstadistica2 cmd = (GetEstadistica2) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
     }
 
 
@@ -78,10 +113,24 @@ public class M11_Estadistica {
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica3(estadisticaObject);
         GetEstadistica3 cmd = (GetEstadistica3) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
+
     }
 
     /***
@@ -98,10 +147,24 @@ public class M11_Estadistica {
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica4(estadisticaObject);
         GetEstadistica4 cmd = (GetEstadistica4) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
+
     }
 
     /***
@@ -118,10 +181,24 @@ public class M11_Estadistica {
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica5(estadisticaObject);
         GetEstadistica5 cmd = (GetEstadistica5) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
+
     }
     /***
      * web service que es llamado a traves del fronten para Ver Estadísticas número de personas que te siguen por mes
@@ -138,10 +215,23 @@ public class M11_Estadistica {
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica6(estadisticaObject);
         GetEstadistica6 cmd = (GetEstadistica6) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
     }
 
     /***
@@ -159,10 +249,24 @@ public class M11_Estadistica {
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica7(estadisticaObject);
         GetEstadistica7 cmd = (GetEstadistica7) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
+
     }
     /***
      * web service que es llamado a traves del fronten para listar cual video tiene mas categorias lusto
@@ -174,16 +278,29 @@ public class M11_Estadistica {
     @Path("/Estadistica8")
     @Produces("text/plain")
     public String estadistica8(@QueryParam("username") String username,
-                               @QueryParam("date") String date)
-    {
+                               @QueryParam("date") String date)  {
 
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica8(estadisticaObject);
         GetEstadistica8 cmd = (GetEstadistica8) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
+
     }
     /***
      * web service que es llamado a traves del fronten para listar cual video tiene mas categorias lusto
@@ -201,9 +318,23 @@ public class M11_Estadistica {
         Entity estadisticaObject = EntityFactory.estadistica("pepe");
         Command commandEstadistica = CommandsFactory.instanciateEstadistica9(estadisticaObject);
         GetEstadistica9 cmd = (GetEstadistica9) commandEstadistica;
-        cmd.execute();
-        Entity result = cmd.Return();
-        Estadistica json = (Estadistica) result;
-        return gson.toJson(json);
+
+        try {
+            cmd.execute();
+            Entity result = cmd.Return();
+            Estadistica json = (Estadistica) result;
+            return gson.toJson(json);
+
+        } catch (VIUCABException e) {
+
+            estadisticaObject.set_errorCode( e.ERROR_CODE );
+            estadisticaObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "getTrainingDetail", e.toString() );
+            return gson.toJson( estadisticaObject );
+
+
+
+        }
+
     }
 }

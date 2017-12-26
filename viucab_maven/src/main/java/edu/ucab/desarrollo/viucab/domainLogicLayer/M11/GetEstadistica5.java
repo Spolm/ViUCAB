@@ -1,10 +1,13 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M11;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
+
+import java.sql.SQLException;
 
 /**
  * Created by Daniel on 25/11/2017.
@@ -22,19 +25,14 @@ public class GetEstadistica5 extends Command {
      * metodo execute que llama al dao para guardar los datos de la fabrica
      */
     @Override
-    public void execute() {
+    public void execute() throws VIUCABException {
 
-        try {
+
             GetEstadisticaDao dao =  DaoFactory.instanciateDaoEstadistica1();
             Entity  estadistica = dao.GetEstadistica5(est);
             est =estadistica;
 
 
-        }
-        catch (Exception e){
-            est = new Entity();
-
-        }
     }
     /***
      * metodo execute que llama al dao para obtener los datos

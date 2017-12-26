@@ -9,6 +9,9 @@ public class Estadistica extends Entity {
     private String[] label;
     private String[] data;
     private String nombre;
+    private int _errorCode;
+    private String _errorMsg;
+
 
     /***
      * constructor
@@ -65,4 +68,21 @@ public class Estadistica extends Entity {
     {
     this.nombre = nombre;
     }
+
+    public void set_errorCode( int _errorCode )
+    {
+        this._errorCode = _errorCode;
+    }
+
+    public String get_errorMsg()
+    {
+        return _errorMsg;
+    }
+
+    public void set_errorMsg( String _errorMsg )
+    {
+        this._errorMsg = _errorMsg;
+    }
+
+
 }

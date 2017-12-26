@@ -2,7 +2,10 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M011;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Estadistica;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
@@ -17,6 +20,7 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
     }
 
+    private static Logger logger = LoggerFactory.getLogger(GetEstadisticaDao.class );
 
     @Override
     public Entity create(Entity e) {
@@ -40,9 +44,9 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica1(Entity e) throws SQLException {
+    public Entity GetEstadistica1(Entity e) throws VIUCABException {
         Estadistica estadistica = (Estadistica) e;
-
+try{
 
        // llaman la con aqui
         Connection conn = Dao.getBdConnect();
@@ -83,7 +87,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         }
         estadistica.setNombre("Etiquetas más utilizadas");
-
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
         return estadistica;
 
 
@@ -96,12 +103,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica2(Entity e) throws SQLException {
+    public Entity GetEstadistica2(Entity e) throws VIUCABException {
 
 
 
         Estadistica estadistica = (Estadistica) e;
-
+try{
 
         // llaman la con aqui
         Connection conn = Dao.getBdConnect();
@@ -143,6 +150,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         }
         estadistica.setNombre("Videos con más likes");
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
 
         return estadistica;
 
@@ -155,7 +166,7 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica3(Entity e) throws SQLException {
+    public Entity GetEstadistica3(Entity e)throws VIUCABException {
 
 
 
@@ -163,7 +174,7 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         Estadistica estadistica = (Estadistica) e;
 
-
+try{
         // llaman la con aqui
         Connection conn = Dao.getBdConnect();
 
@@ -204,7 +215,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         }
         estadistica.setNombre("videos  más Vistos");
-
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
         return estadistica;
 
 
@@ -221,11 +235,11 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica4(Entity e) throws SQLException {
+    public Entity GetEstadistica4(Entity e) throws VIUCABException {
         Estadistica estadistica = (Estadistica) e;
 
 
-
+try{
 
         // llaman la con aqui
         Connection conn = Dao.getBdConnect();
@@ -269,7 +283,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         }
         estadistica.setNombre("Usuarios con mas Videos");
-
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
         return estadistica;
 
 
@@ -283,11 +300,11 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica5(Entity e) throws SQLException {
+    public Entity GetEstadistica5(Entity e) throws VIUCABException {
         Estadistica estadistica = (Estadistica) e;
 
 
-
+try{
 
         // llaman la con aqui
         Connection conn = Dao.getBdConnect();
@@ -332,7 +349,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         }
         estadistica.setNombre("Personas Seguidas ");
-
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
         return estadistica;
 
     }
@@ -344,11 +364,11 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica6(Entity e) throws SQLException {
+    public Entity GetEstadistica6(Entity e) throws VIUCABException{
         Estadistica estadistica = (Estadistica) e;
 
 
-
+try{
 
         // llaman la con aqui
         Connection conn = Dao.getBdConnect();
@@ -393,7 +413,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         }
         estadistica.setNombre("Personas que te Siguieron ");
-
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
         return estadistica;
 
     }
@@ -406,13 +429,13 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-      public Entity GetEstadistica7(Entity e) throws SQLException {
+      public Entity GetEstadistica7(Entity e) throws VIUCABException {
 
 
         Estadistica estadistica = (Estadistica) e;
 
 
-
+try{
 
         // llaman la con aqui
         Connection conn = Dao.getBdConnect();
@@ -456,7 +479,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
 
         }
-
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
 
         return estadistica;
 
@@ -469,11 +495,12 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica8(Entity e) throws SQLException {
+    public Entity GetEstadistica8(Entity e) throws  VIUCABException {
         Estadistica estadistica = (Estadistica) e;
 
 
-
+try
+{
 
 
         // llaman la con aqui
@@ -521,7 +548,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
 
         }
-
+    } catch (Exception _e) {
+        logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+        throw new VIUCABException( _e );
+    }
 
         return estadistica;
     }
@@ -533,7 +563,7 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
      * @throws SQLException
      */
     @Override
-    public Entity GetEstadistica9(Entity e) throws SQLException {
+    public Entity GetEstadistica9(Entity e) throws VIUCABException {
         Estadistica estadistica = (Estadistica) e;
 
 
@@ -543,7 +573,11 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
         // llaman la con aqui
         Connection conn = Dao.getBdConnect();
 
-        CallableStatement stm = conn.prepareCall("{? = Call M11_ESTADISTICA8() }");
+        CallableStatement stm = null;
+        try {
+            stm = conn.prepareCall("{? = Call M11_ESTADISTICA8() }");
+
+
 
         stm.setInt(1, 1);
 
@@ -587,7 +621,10 @@ public class GetEstadisticaDao extends Dao implements IDaoEstadistica{
 
         }
 
-
+        } catch (Exception _e) {
+            logger.error( "Metodo: {} {}", "createTraining", e.toString() );
+            throw new VIUCABException( _e );
+        }
         return estadistica;
     }
 }

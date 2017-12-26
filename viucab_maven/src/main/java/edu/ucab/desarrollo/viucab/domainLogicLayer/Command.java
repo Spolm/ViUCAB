@@ -3,7 +3,9 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -15,7 +17,7 @@ public abstract class Command
     /***
      * metodo abstracto que es extendido en las clases particulares  de patrones
      */
-    public abstract void execute() ;
+    public abstract void execute() throws VIUCABException, Exception;
 
     /***
      * metodo abstracto que es extendido en las clases particulares  de patrones
