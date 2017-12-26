@@ -27,7 +27,7 @@ export class EstadisticaPage {
 
   private aux: any
     private aux2: any
-    respu : any =  {"username":"","label":[],"data":[],"nombre":"","_id":""}
+    respu : any =  {"username":"","label":[],"data":[],"nombre":"","_id":"","_errorCode" :"550","_errorMsg":"No Se puede Cargar la informacion"}
     respu1 : any
     respu2 : any
     respu3 : any
@@ -261,7 +261,9 @@ public metodo (id:any)
 
   public   CrearGrafica ()
  {
-
+    if (this.respu._errorCode != 550)
+    {
+    
   if (this.respu.label != null)
 {
     if (this.barChart != null)
@@ -348,9 +350,13 @@ public metodo (id:any)
  
 }
  }
+ else
+{
+    alert (this.respu._errorMsg)
+}
 
 
-
+}
 
 
 
