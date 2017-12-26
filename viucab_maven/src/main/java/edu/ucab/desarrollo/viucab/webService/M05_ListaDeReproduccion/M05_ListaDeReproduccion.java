@@ -21,16 +21,23 @@ public class M05_ListaDeReproduccion {
     @GET
     @Path("/editPlaylist")
     @Produces("text/plain")
-    public String obtenerLista(@QueryParam("id") int idLista)
+    public ListaDeReproduccion obtenerLista(@QueryParam("id") int idLista)
     {
+        try {
+            Entity listaObject = EntityFactory.listaDeReproduccion(1); //SE LE ESTA PASANDO MANUALMENTE
+            Command commandGetLista = CommandsFactory.instanciaGetLista(listaObject);
+            GetListaComando cmd = (GetListaComando) commandGetLista;
+            return (ListaDeReproduccion) cmd.execute();
+            /*Entity result = cmd.Return();
+            ListaDeReproduccion json = (ListaDeReproduccion) result;*/
 
-        Entity listaObject = EntityFactory.listaDeReproduccion(1); //SE LE ESTA PASANDO MANUALMENTE
-        Command commandGetLista = CommandsFactory.instanciaGetLista(listaObject);
-        GetListaComando cmd = (GetListaComando) commandGetLista;
-        cmd.execute();
-        Entity result = cmd.Return();
-        ListaDeReproduccion json = (ListaDeReproduccion) result;
-        return gson.toJson(json);
+
+        } catch (ViUCABException e) {
+            //TODO: handle exception
+           throw new WebFault(e.Mensaje, e.codigo);
+        }
+
+       
     }
 
 

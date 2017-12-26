@@ -4,12 +4,15 @@ import edu.ucab.desarrollo.viucab.common.entities.*;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  *
  */
-public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReproduccion {
+public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReproducciones {
 
     public GetListaDeReproduccionDao() {
 
@@ -39,7 +42,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
     public Entity GetLista(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
-        Integer idLista = lista.getIdLista();
+        Integer idLista_ = lista.getIdLista();
         Entity listaRecibida = null;
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
@@ -51,7 +54,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
             //Invocando el SP
             preStatement = conn.prepareCall("{call m05_obtenerListaDeReproduccion(?)}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
             //Seteo lo que le estoy mandando al procedimiento con ese "?"
-            preStatement.setInt(1,idLista);
+            preStatement.setInt(1,idLista_);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
@@ -69,8 +72,13 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
             resultSet.close();
 
         } catch (SQLException e1) {
-            e1.printStackTrace();
-        } finally {
+            throw new ViUcabException(e1.mensaje, e1.codigo);
+        } 
+        catch(Exception ex)
+        {
+            throw new ViUcabException(e1.mensaje, e1.codigo)
+        }
+        finally {
             closeConnection();
         }
         return listaRecibida;

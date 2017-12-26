@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {EditListPage} from "../edit-list/edit-list";
 
 /**
  * Generated class for the ViewListPage page.
@@ -26,6 +27,10 @@ export class ViewListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ViewListPage');
+  }
+
+  public goToEditList(){
+    this.navCtrl.push(EditListPage);
   }
 
 }

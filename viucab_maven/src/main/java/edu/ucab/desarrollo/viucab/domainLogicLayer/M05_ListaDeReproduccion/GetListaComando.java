@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  */
 public class GetListaComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetListaComando.class);
     private static Entity est;
 
     public GetListaComando(Entity est)
@@ -20,19 +20,19 @@ public class GetListaComando extends Command {
     }
 
     @Override
-    public void execute() {
+    public ListaReproduccion execute() {
 
-        try {
+        /*try {*/
             GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion();
             Entity  lista = dao.GetLista(est);
             est = lista;
 
 
-        }
+        /*}
         catch (Exception e){
             est = new Entity();
 
-        }
+        }*/
     }
 
     @Override
