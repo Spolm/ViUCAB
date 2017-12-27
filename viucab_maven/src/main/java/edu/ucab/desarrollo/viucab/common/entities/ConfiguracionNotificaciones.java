@@ -1,6 +1,6 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-public class ConfiguracionNotificaciones {
+public class ConfiguracionNotificaciones extends Entity{
     private int id;
     private boolean activado;
     private boolean boletin;
@@ -8,6 +8,17 @@ public class ConfiguracionNotificaciones {
     private boolean etiquetados;
     private boolean estadisticas;
     private boolean preferencias;
+
+    public ConfiguracionNotificaciones(int id, boolean activado, boolean boletin, boolean subscripciones,
+                                       boolean etiquetados, boolean estadisticas, boolean preferencias) {
+        this.id = id;
+        this.activado = activado;
+        this.boletin = boletin;
+        this.subscripciones = subscripciones;
+        this.etiquetados = etiquetados;
+        this.estadisticas = estadisticas;
+        this.preferencias = preferencias;
+    }
 
     public int getId() {
         return id;

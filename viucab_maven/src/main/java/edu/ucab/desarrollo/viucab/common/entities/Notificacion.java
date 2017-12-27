@@ -9,6 +9,14 @@ public class Notificacion {
     private boolean desechado;
     private Date fecha;
 
+    public Notificacion(int id, Video video, Usuario usuario, boolean desechado, Date fecha) {
+        this.id = id;
+        this.video = video;
+        this.usuario = usuario;
+        this.desechado = desechado;
+        this.fecha = fecha;
+    }
+
     public int getId() {
         return id;
     }
@@ -52,6 +60,5 @@ public class Notificacion {
     public Notificacion(){
 
     }
-
 
 }
