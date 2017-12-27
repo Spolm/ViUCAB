@@ -4,7 +4,9 @@ import edu.ucab.desarrollo.viucab.webService.*;
 import edu.ucab.desarrollo.viucab.webService.M02_Home.M02_Home;
 import edu.ucab.desarrollo.viucab.webService.M02_Home.M02_HomePatrones;
 import edu.ucab.desarrollo.viucab.webService.M07_Etiqueta.M07_Etiqueta;
+import edu.ucab.desarrollo.viucab.webService.M08_Suscripcion.M08_Suscripcion;
 import edu.ucab.desarrollo.viucab.webService.M11_Estadistica.M11_Estadistica;
+import edu.ucab.desarrollo.viucab.webService.M05_ListaDeReproduccion.M05_ListaDeReproduccion;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -22,6 +24,8 @@ public class ViUcab extends Application {
         h.add(M02_HomePatrones.class);
         h.add(M07_Etiqueta.class);
         h.add(M11_Estadistica.class);
+        h.add(M05_ListaDeReproduccion.class);
+        h.add(M08_Suscripcion.class);
 
 
         return h;

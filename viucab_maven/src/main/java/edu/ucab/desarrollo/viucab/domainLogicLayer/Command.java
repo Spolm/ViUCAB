@@ -3,6 +3,8 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
 
 import java.util.ArrayList;
 
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 public abstract class Command
 {
 
-    public abstract void execute() ;
+    public abstract void execute() throws BdConnectException, PlConnectException;
 
     public abstract Entity Return() ;
 
