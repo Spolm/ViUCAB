@@ -44,13 +44,14 @@ public class M02_HomePatrones {
         public String obtenerPreferencia (@QueryParam("id")  int idUsuario){
 
             Entity videoObject = EntityFactory.homeUsuario(idUsuario);
-         /*   Command commadHome = CommandsFactory.instanciateGetPreferenciasComando(videoObject);
+            Command commadHome = CommandsFactory.instanciateGetPreferenciasComando(videoObject);
             GetPreferenciasComando cmd = (GetPreferenciasComando) commadHome;
-            cmd.execute();
-            Entity result = cmd.Return();
-            ArrayList<Video> json = (ArrayListVideo) result;
-            return gson.toJson(json);*/
-          return null;
+            try {
+                cmd.execute();
+                return gson.toJson(cmd.get_listVideo());
+            } catch (Exception ex) {
+                return gson.toJson( null );//nuevo
+            }
         }
 
         @GET

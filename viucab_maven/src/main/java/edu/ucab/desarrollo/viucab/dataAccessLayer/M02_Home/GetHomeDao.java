@@ -126,7 +126,6 @@ public class GetHomeDao extends Dao implements IDaoHome {
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
                 resultlist.add(video);
-                video.setListaVideo(resultlist);
 
             }
             resultSet.close();
@@ -176,7 +175,6 @@ public class GetHomeDao extends Dao implements IDaoHome {
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
                 resultlist.add(video);
-                video.setListaVideo(resultlist);
 
             }
             resultSet.close();
@@ -224,7 +222,6 @@ public class GetHomeDao extends Dao implements IDaoHome {
 
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
                 resultlist.add(video);
-                video.setListaVideo(resultlist);
 
             }
             resultSet.close();
