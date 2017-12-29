@@ -67,6 +67,7 @@ export class ConfiguracionContenidoPage {
 
    guardarConfig() {
       console.log("se guardaron los filtros");
+      alert("prubea");
     }
 
  
