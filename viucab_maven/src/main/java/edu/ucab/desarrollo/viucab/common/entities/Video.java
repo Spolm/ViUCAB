@@ -2,47 +2,15 @@ package edu.ucab.desarrollo.viucab.common.entities;
 
         import java.awt.*;
         import java.io.InputStream;
-<<<<<<< HEAD
-=======
+
         import java.util.ArrayList;
->>>>>>> Develop
+
 
 /**
  * Created by estefania on 10/11/2017.
  */
-public class Video {
+public class Video extends Entity {
 
-<<<<<<< HEAD
-    int id;
-    String nombre;
-    String fecha;
-    int visitas;
-    String descripcion;
-    String imagen;
-    String url;
-    String _valorCategoria;
-    int usuario;
-    int categoria;
-
-    public int getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
-    }
-
-    public int getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(int categoria) {
-        this.categoria = categoria;
-    }
-
-    public Video() {
-
-=======
     private int id;
     private String nombre;
     private String fecha;
@@ -53,6 +21,7 @@ public class Video {
     private String _valorCategoria;
     private String usuario;
     private ArrayList<Video> listaVideo;
+    private int id_categoria;
 
     public Video() {
     }
@@ -62,7 +31,7 @@ public class Video {
     }
 
     public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
-                 String url) {
+                 String url, int id_categoria) {
         this.descripcion=descripcion;
         this.id=id;
         this.fecha=fecha;
@@ -70,7 +39,16 @@ public class Video {
         this.imagen=imagen;
         this.url=url;
         this.visitas=visitas;
->>>>>>> Develop
+        this.id_categoria = id_categoria;
+
+    }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
     }
 
     public String get_valorCategoria() {
@@ -136,8 +114,7 @@ public class Video {
     public void setUrl(String url) {
         this.url = url;
     }
-<<<<<<< HEAD
-=======
+
 
     public String getUsuario() {
         return usuario;
@@ -154,5 +131,5 @@ public class Video {
     public void setListaVideo(ArrayList<Video> listaVideo) {
         this.listaVideo = listaVideo;
     }
->>>>>>> Develop
+
 }

@@ -101,7 +101,7 @@ public class Estadistica extends Entity {
 
     public void setFecha(ArrayList<String> fecha) {
         this.fecha = fecha;
-=======
+
     public String [] getLabel() {
         return label;
     }
@@ -116,6 +116,6 @@ public class Estadistica extends Entity {
 
     public void setData(String [] data) {
         this.data = data;
->>>>>>> Develop
+
     }
 }

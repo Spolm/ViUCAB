@@ -124,7 +124,7 @@ public class Dao{
                 video.setFecha(rs.getString("vid_fecha"));
                 video.setVisitas(rs.getInt("vid_visitas"));
                 video.setUsuario(rs.getInt("vid_usuario"));
-                video.setCategoria(rs.getInt("vid_categoria"));
+                video.setId_categoria(rs.getInt("vid_categoria"));
                 lista.add(video);
 
             }

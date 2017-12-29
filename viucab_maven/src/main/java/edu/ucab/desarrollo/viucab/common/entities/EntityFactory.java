@@ -1,8 +1,12 @@
-<<<<<<< HEAD
-package edu.ucab.desarrollo.viucab.common.entities;/** * Fabrica de Entidades creada por M011 */public class EntityFactory{}
-=======
-
+import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.entities.Estadistica;
+import edu.ucab.desarrollo.viucab.common.entities.Video;
 package edu.ucab.desarrollo.viucab.common.entities;
+
+/**
+ * Fabrica de Entidades creada por M011
+ */
+
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -96,6 +100,15 @@ public class EntityFactory
      static public Suscripcion suscripcion (int suscriptor, int suscripcion){return new Suscripcion(suscriptor,suscripcion);  }
 
     //final M08
+
+    //region M09
+
+    static public Entity getSugerenciasLike(int id, String titulo, String descripcion, String imagen,String url, String fecha,int visitas, int id_Categoria){
+
+        return new Video(id,titulo,descripcion,imagen,fecha,visitas,url, id_Categoria);
+    }
+
+    //final M09
 
 }
 
