@@ -40,6 +40,16 @@ public class M05_ListaDeReproduccion {
        
     }
 
+    @GET
+    @Path("/holamundo")
+    @Produces("text/plain")
+    public String ejemplo()
+    {
+        return "Soy una putica loca";
+
+       
+    }
+
 
 
 }
