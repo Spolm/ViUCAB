@@ -11,7 +11,7 @@ import 'rxjs/add/operator/do';
 
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8889/viucab';
+const URL = 'http://localhost:8888/viucab';
 //const URL = 'http://localhost:8889/viucab';
 
 @Injectable()
