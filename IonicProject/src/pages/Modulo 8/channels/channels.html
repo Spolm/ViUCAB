@@ -25,13 +25,13 @@
 
     <ion-list>
 
-        <ion-item *ngFor="let item of items ; let i = index" >
+        <ion-item *ngFor="let item of listaSuscripcion ; let i = index" >
             <ion-avatar item-start >
                 <img [src]="item.img">
             </ion-avatar>
-            <h2> {{ item.nombre }} </h2>
+            <h2> {{ item._name_user }} </h2>
             <p>Suscritos {{item.suscritos}}</p>
-            <button ion-button color= {{item.color}} item-right (click)="showConfirm(item.nombre, i)" > {{item.estado}}</button>
+            <button ion-button color= {{item.color}} item-right (click)="showConfirm(item._name_user, item._id_user)" > {{item._id_user}}</button>
 
         </ion-item>
      </ion-list>

@@ -12,7 +12,7 @@ import java.sql.SQLException;
 /**
  *
  */
-public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReproduccion {
+public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReproducciones {
 
     public GetListaDeReproduccionDao() {
 

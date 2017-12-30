@@ -53,14 +53,17 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             while (resultSet.next()) {
-             
+
+                  int id = resultSet.getInt("idusuario");
                   String login = resultSet.getString("nombreusuario");
+
                  // Byte avatar = resultSet.getByte("imagenusuario");
                   //String avatar = resultSet.getString("USU_AVATAR");
                 System.out.println("ESTO ES LO QUE ARROJA LA COSNSULTA---> "+ login);
 
 /**/
-                usuario = EntityFactory.suscripcionUsuario(login);
+                usuario = EntityFactory.suscripcionUsuario(id, login);
+               // usuario = EntityFactory.suscripcionUsuario(login);
                 System.out.println("ESTO ES LO QUE TIENE EL OBJETO usuario"+usuario.get_name_user());
                 listaSuscripcion.add(usuario);
                 System.out.println("ESTE ES LA LISTA-->  "+listaSuscripcion);

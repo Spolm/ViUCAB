@@ -12,10 +12,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import javax.xml.ws.WebFault;
 import java.util.ArrayList;
 
@@ -26,7 +23,8 @@ public class M08_Suscripcion {
     /**
      * Metodo que me comunico con el comando : SetSuscripcionComando
      * el cual suscribe una persona al usuario logueado.
-     * @param id
+     * @param idSuscriptor
+     * @param idLogueado
      * @return
      * @throws BdConnectException
      * @throws PlConnectException
@@ -35,10 +33,10 @@ public class M08_Suscripcion {
     @GET
     @Path("/SetSuscripcion")
     @Produces("text/plain")
-    public String SetSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException  {
+    public String SetSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BdConnectException, PlConnectException, WebFaulException  {
 
         try {
-            Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(1, id); //OJO: cable para insertar en el usuario 1, una suscripcion de otro usuario(id)
+            Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(idLogueado, idSuscriptor);
             SetSuscripcionComando cmd = (SetSuscripcionComando) comandSuscripcion;
             cmd.execute();
         }
@@ -71,20 +69,21 @@ public class M08_Suscripcion {
     /**
      * Metodo que me comunico con el comando : UpdateSuscripcionComando
      * el cual elimina la suscripcion del usuario logueado.
-     * @param id
+     * @param idLogueado
+     * @param idSuscriptor
      * @return
      * @throws BdConnectException
      * @throws PlConnectException
      * @throws WebFaulException
      */
-    @GET
+    @DELETE
     @Path("/UpdateSuscripcion")
-    @Produces("text/plain")
-    public String UpdateSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException {
+    @Produces("application/json")
+    public String UpdateSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BdConnectException, PlConnectException, WebFaulException {
 
         try {
 
-            Command comandSuscripcion = CommandsFactory.instanciaUpdateSuscripcionComando(1, id); //OJO:cable para eliminar en el usuario 1, una suscripcion de otro usuario(id)
+            Command comandSuscripcion = CommandsFactory.instanciaUpdateSuscripcionComando(idLogueado, idSuscriptor);
             UpdateSuscripcionComando cmd = (UpdateSuscripcionComando) comandSuscripcion;
             cmd.execute();
 

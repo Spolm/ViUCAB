@@ -6,9 +6,13 @@ import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8888/viucab';
+const URL = 'http://localhost:8889/viucab';
+//const URL = 'http://localhost:8889/viucab';
 
 @Injectable()
 export class RestApiService {
@@ -16,6 +20,14 @@ export class RestApiService {
   constructor(
     private http: Http
   ) { }
+
+  public datosMapa(res: Response){
+    return res.json();
+  }
+  public p ( res: Response ){
+    return console.log(res);
+  }
+
 
   //Metodo GET: /direccion
   //Accede al metodo que se encuentra en direccion y devuelve la respuesta
@@ -126,7 +138,7 @@ export class RestApiService {
   }
 
 
-//Metodo para obtener todos los videos
+//Mentodo para obtener todos los videos
   public getVideos(direccion): Observable<any> {
     return this.http.get(URL+'/'+direccion)
         .map((data: any) => data.json())
@@ -141,5 +153,23 @@ export class RestApiService {
       .get(URL+'/'+direccion)
  
   }
+/////////////////
+ //Metodo DELETE: /direccion
+   //Elimina en una direccion
+   public deleteSus(direccion){
+    return this.http
+    .delete(URL+'/'+direccion)
+    .map((data: any) => data.json())
+    .catch(this.handleError);
+   }
 
+
+  /*getDato( direccion)
+  {   
+      return this.http.get( URL+'/'+direccion )   
+     //.map( this.datosMapa )    
+     //.map((data: any) => data.json())
+     .do( this.p ) 
+  }
+*/
 }

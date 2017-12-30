@@ -88,8 +88,8 @@ public class EntityFactory
     //{
      //  return new  //Usuario(listaUsuarios);
     //}
-     static public Usuario suscripcionUsuario (String login /*, Image avatar */){return new Usuario(login/*,avatar*/);  }
-
+     //static public Usuario suscripcionUsuario (String login /*, Image avatar */){return new Usuario(login/*,avatar*/);  }
+     static public Usuario suscripcionUsuario (int id, String login /*, Image avatar */){return new Usuario(id, login/*,avatar*/);  }
      static public Suscripcion suscripcion (int suscriptor, int suscripcion){return new Suscripcion(suscriptor,suscripcion);  }
 
     //final M08

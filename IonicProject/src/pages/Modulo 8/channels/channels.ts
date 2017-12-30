@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component , ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angular';
+import { RestApiService } from '../../../app/rest-api.service';
+
+
 /**
  * Generated class for the ChannelsPage page.
  *
@@ -11,22 +14,31 @@ import { IonicPage, NavController, NavParams , AlertController} from 'ionic-angu
 @Component({
   selector: 'page-channels',
   templateUrl: 'channels.html',
+  providers: [RestApiService]
 })
 export class ChannelsPage {
 // analizar donde se va a colocar
 
   buscarQuery : string ='';
-
+  listaSuscripcion: Array<{}>;
+  
   items: any[];
   botones: any[];
   color: string ='primary';
   estadoSus:string ='Suscrito';
   suscrito:boolean = true;
+  respu : any;
+  idUser : number = 1;
 
+  arreglo :Array<{_id_user: number,_name_user:string,_user_token:boolean}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
-      this.initializeItems();
-
+  @ViewChild('NAV')nav : NavController;
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              public alertCtrl: AlertController,
+              public api : RestApiService) {
+      //this.initializeItems();
+      this.prue();
   }
 // pendiente arreglar el metodo buscar lun 18/ dic/2017
 
@@ -34,11 +46,53 @@ export class ChannelsPage {
 // realizacion de busqueda mediante arreglos
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChannelsPage');
+    this.prue();
+   // this.arreglo = this.prue1();
+   // this.initializeItems();
+  // this.items;
+  }
+/**
+ *  metodo que carga a lista de usuarios suscritos
+ *
+ */
+  public prue ()
+  {
+      this.api.geta('Suscripcion/GetSuscripcion?id='+ this.idUser)
+     /* .subscribe( response => {
+        this.listaSuscripcion = response;
+        console.log(this.listaSuscripcion);
+    })*/
+
+      .subscribe((data) => { // Success
+          this.listaSuscripcion = data.json()
+          console.log (this.listaSuscripcion)
+         },
+         (error) =>{
+           console.error(error);
+         });
+
+  }
+  public borrar (idSuscriptor: number)
+  {
+      this.api.deleteSus('Suscripcion/UpdateSuscripcion?idLogueado='+this.idUser+'&idSuscriptor='+idSuscriptor)
+     /* .subscribe( response => {
+        this.listaSuscripcion = response;
+        console.log(this.listaSuscripcion);
+    })*/
+
+      .subscribe((data) => { // Success
+              
+         },
+         (error) =>{
+           console.error(error);
+         });
+
   }
 
   initializeItems(){
-     // this.items = [
-
+     // this.items = this.listaSuscripcion;
+     // this.items = [];
+/*
        this.items =[
         {
            nombre: 'Jesus Yepes',
@@ -65,52 +119,72 @@ export class ChannelsPage {
           img:'https://www.lapatilla.com/site/wp-content/uploads/2017/08/Meme.x43795.jpg'
         },
       ]
+
+      */
+
   }
 
   getItems(ev: any){
     //Reset items back to all of the items
-    this.initializeItems();
-
+   // this.initializeItems();
+   
+   this.items = this.listaSuscripcion;
+   // this.prue();
+   
+    let i :number;
+    console.log('hola');
+    console.log(this.listaSuscripcion);
         // set val to the value of the searchbar
         let val = ev.target.value;
-
-        // if the value is an empty string don't filter the items
-        if (val && val.trim() != '') {
-          this.items = this.items.filter((item) => {
-            return (item.nombre.toLowerCase().indexOf(val.toLowerCase()) > -1);
-          })
+        console.log(val);
+     
+          if (val && val.trim() != '') {
+            this.items = this.items.filter((item) => {
+              return (item._name_user.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            })
+          this.listaSuscripcion = this.items;
+          console.log('chao ');
+          console.log(this.listaSuscripcion);
+          
         }
+        else {this.prue();}
   }
 
 // Realizacion del mensaje de confirmacion
 
-showConfirm(usuarioSelected : any, idx : number){
-
-      if(this.items[idx].flag)
-      {
+//showConfirm(usuarioSelected : any,idx : number){
+  /**
+   * 
+   * @param nombreSelected 
+   * @param idSuscriptor 
+   */
+  showConfirm(nombreSelected : string, idSuscriptor :number){
+     // if(this.items[idx].flag)
+     // {
         let confirm = this.alertCtrl.create(
           {
             title: 'Cancelar suscripcion ?',
-            message: 'Deseas cancelar la suscripcion a ' + usuarioSelected,
+            message: 'Deseas cancelar la suscripcion a ' + nombreSelected,
             buttons:
               [
                 {
                   text: 'Cancelar',
                   handler: () => {
                     console.log('presiono no');
-                    this.items[idx].color = 'primary';
+                    //this.items[idx].color = 'primary';
                     this.estadoSus = 'Suscrito';
-                    this.items[idx].estado = this.estadoSus
+                    //this.items[idx].estado = this.estadoSus
                   }
 
                 },
                 {    //this.verificarEstado(false,usuarioSelected);
                   text: 'Eliminar Suscripcion', // llamar a los metodos necesarios
                   handler: () => {
-                    console.log('presiono si');
-                    this.items[idx].color = 'claro';
-                    this.estadoSus = 'Suscribirse';
-                    this.items[idx].estado = this.estadoSus;
+                    this.borrar(idSuscriptor);
+                    console.log('presiono si suscripcion cancelada');
+                   // this.items[idx].color = 'claro';
+                   // this.estadoSus = 'Suscribirse';
+                   // this.items[idx].estado = this.estadoSus;
 
                   }
                 }
@@ -119,15 +193,15 @@ showConfirm(usuarioSelected : any, idx : number){
           });
         confirm.present();
         // this.estadoNombre='Suscrito';
-        this.items[idx].flag=false;
-      }
-      else
-      {
-        this.items[idx].color = 'primary';
-        this.estadoSus = 'Suscrito';
-        this.items[idx].estado = this.estadoSus;
-        this.items[idx].flag=true;
-      }
+       // this.items[idx].flag=false;
+     // }
+     // else
+    //  {
+   //     this.items[idx].color = 'primary';
+   //     this.estadoSus = 'Suscrito';
+    //    this.items[idx].estado = this.estadoSus;
+   //     this.items[idx].flag=true;
+    //  }
   }
 
 
@@ -154,4 +228,45 @@ showConfirm(usuarioSelected : any, idx : number){
 //this.items.splice(idx,1);this.items[1]
     }
   }
+
+ //public lineChartColors:Array<any>
+  public  prue1(): Array<{_id_user: number,_name_user:string,_user_token:boolean}> 
+  {
+    let arregloLista : Array<{_id_user: number,_name_user:string,_user_token:boolean}>;
+      this.api.geta('Suscripcion/GetSuscripcion?id='+ this.idUser)
+     /* .subscribe( response => {
+        this.listaSuscripcion = response;
+        console.log(this.listaSuscripcion);
+    })*/
+    //comparar(item._id_user)
+
+      .subscribe((data) => { // Success
+          arregloLista = data.json()
+          console.log (arregloLista)
+         },
+         (error) =>{
+           console.error(error);
+         });
+   return arregloLista;    
+  }
+
+  //
+  public comparar (idSuscriptorAux: number) : string
+  {
+      
+      let i :number;
+      this.arreglo = this.prue1();
+      while ( i < 3 )
+      {
+        if(this.arreglo[i]._id_user == idSuscriptorAux)
+             return 'suscrito';
+              console.log(this.arreglo[i]._id_user + 'hh' +idSuscriptorAux);
+              i++;
+      }
+      return 'suscribirse';
+  }
+  
+  //Array<{id: number, titulo: string, descripion: string, img:string, instructor:string, fecha: string, duracion: number, hora:string, capacidad:number, disponibilidad:number}>;
+
+
 }
