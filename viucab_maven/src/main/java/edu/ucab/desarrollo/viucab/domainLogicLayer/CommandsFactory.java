@@ -70,11 +70,11 @@ public class CommandsFactory {
     // Fin instancias M02
 
     //region M05
-
+/*
     public static Command instanciaGetLista (Entity lista){
         return new GetListaComando(lista);
     }
-
+*/
     //endregion
 
     //region M07

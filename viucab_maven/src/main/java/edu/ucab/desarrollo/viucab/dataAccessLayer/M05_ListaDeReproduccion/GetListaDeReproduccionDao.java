@@ -72,11 +72,11 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
             resultSet.close();
 
         } catch (SQLException e1) {
-            throw new ViUcabException(e1.mensaje, e1.codigo);
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
         } 
         catch(Exception ex)
         {
-            throw new ViUcabException(e1.mensaje, e1.codigo)
+            //throw new ViUcabException(e1.mensaje, e1.codigo)
         }
         finally {
             closeConnection();

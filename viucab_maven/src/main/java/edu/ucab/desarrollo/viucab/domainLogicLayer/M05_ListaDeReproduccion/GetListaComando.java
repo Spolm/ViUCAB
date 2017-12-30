@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 /**
  *
  */
-public class GetListaComando extends Command {
+public abstract class GetListaComando extends Command {
 
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetListaComando.class);
     private static Entity est;
@@ -18,22 +18,22 @@ public class GetListaComando extends Command {
     {
         this.est = est;
     }
-
+/*
     @Override
     public ListaReproduccion execute() {
 
-        /*try {*/
+        /*try {*//*
             GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion();
             Entity  lista = dao.GetLista(est);
-            est = lista;
+            est = lista;*/
 
 
         /*}
         catch (Exception e){
             est = new Entity();
 
-        }*/
-    }
+        }
+    }*/
 
     @Override
     public Entity Return() {

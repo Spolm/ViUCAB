@@ -17,7 +17,7 @@ import javax.ws.rs.QueryParam;
 public class M05_ListaDeReproduccion {
 
     Gson gson = new Gson();
-
+/*
     @GET
     @Path("/editPlaylist")
     @Produces("text/plain")
@@ -31,21 +31,22 @@ public class M05_ListaDeReproduccion {
             /*Entity result = cmd.Return();
             ListaDeReproduccion json = (ListaDeReproduccion) result;*/
 
-
+/*
         } catch (ViUCABException e) {
             //TODO: handle exception
            throw new WebFault(e.Mensaje, e.codigo);
         }
 
        
-    }
+    }*/
+
 
     @GET
-    @Path("/holamundo")
+    @Path("/holaperra")
     @Produces("text/plain")
     public String ejemplo()
     {
-        return "Soy una putica loca";
+        return "Soy una putica loca, demasiado loca";
 
        
     }
