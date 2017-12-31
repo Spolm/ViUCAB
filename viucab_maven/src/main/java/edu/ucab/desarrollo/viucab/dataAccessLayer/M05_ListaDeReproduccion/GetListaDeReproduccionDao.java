@@ -75,6 +75,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
 
         } catch (SQLException e1) {
             //throw new ViUcabException(e1.mensaje, e1.codigo);
+
             System. out. println(e1.getMessage());
         }
         catch(Exception ex)

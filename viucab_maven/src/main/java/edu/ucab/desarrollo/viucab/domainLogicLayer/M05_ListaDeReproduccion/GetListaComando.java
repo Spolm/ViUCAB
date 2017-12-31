@@ -25,6 +25,7 @@ public class GetListaComando extends Command {
         this.est = est;
     }
 
+
     public GetListaComando(ArrayList<Entity> resultado) {
         this._resultado = resultado;
     }
@@ -35,9 +36,9 @@ public class GetListaComando extends Command {
     }
 
 
-
     @Override
     public void execute() throws BdConnectException, PlConnectException {
+
 
         try {
             GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion();
@@ -45,12 +46,12 @@ public class GetListaComando extends Command {
             //Entity  lista = dao.GetLista(est);
             _resultado = listas;
 
-
         }
         catch (Exception e){
             est = new Entity();
 
         }
+
 
     }
 

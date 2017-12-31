@@ -24,7 +24,9 @@ import java.util.ArrayList;
 public class M05_ListaDeReproduccion {
 
     Gson gson = new Gson();
+
     private static Logger logger = LoggerFactory.getLogger( M05_ListaDeReproduccion.class );
+
 /*
     @GET
     @Path("/editPlaylist")
@@ -40,13 +42,15 @@ public class M05_ListaDeReproduccion {
             ListaDeReproduccion json = (ListaDeReproduccion) result;*/
 
 /*
+
         } catch (Exception e) {//ViUCABException e) {
-            //TODO: handle exception
+
            //throw new WebFault(e.Mensaje, e.codigo);
         }
 
        
     }*/
+
 
     @GET
     @Path("/editPlaylist")
@@ -86,12 +90,15 @@ public class M05_ListaDeReproduccion {
 
     }
 
+
     @GET
-    @Path("/holamundo")
+    @Path("/holaperra")
     @Produces("text/plain")
     public String ejemplo()
     {
+
         return "Soy una putica loca loca de verdad";
+
 
        
     }
