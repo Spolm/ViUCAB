@@ -30,7 +30,7 @@ export class ChannelsPage {
   respu : any;
   idUser : number = 1;
 
-  arreglo :Array<{_id_user: number,_name_user:string,_user_token:boolean}>;
+  //arreglo :Array<{_id_user: number,_name_user:string,_user_token:boolean}>;
 
   @ViewChild('NAV')nav : NavController;
   constructor(public navCtrl: NavController, 
@@ -75,11 +75,7 @@ export class ChannelsPage {
   public borrar (idSuscriptor: number)
   {
       this.api.deleteSus('Suscripcion/UpdateSuscripcion?idLogueado='+this.idUser+'&idSuscriptor='+idSuscriptor)
-     /* .subscribe( response => {
-        this.listaSuscripcion = response;
-        console.log(this.listaSuscripcion);
-    })*/
-
+  
       .subscribe((data) => { // Success
               
          },
@@ -158,7 +154,7 @@ export class ChannelsPage {
    * @param nombreSelected 
    * @param idSuscriptor 
    */
-  showConfirm(nombreSelected : string, idSuscriptor :number){
+  showConfirm(nombreSelected : string, idSuscriptor :number , idx : number){
      // if(this.items[idx].flag)
      // {
         let confirm = this.alertCtrl.create(
@@ -171,6 +167,7 @@ export class ChannelsPage {
                   text: 'Cancelar',
                   handler: () => {
                     console.log('presiono no');
+                   // console.log(idx);
                     //this.items[idx].color = 'primary';
                     this.estadoSus = 'Suscrito';
                     //this.items[idx].estado = this.estadoSus
@@ -180,10 +177,11 @@ export class ChannelsPage {
                 {    //this.verificarEstado(false,usuarioSelected);
                   text: 'Eliminar Suscripcion', // llamar a los metodos necesarios
                   handler: () => {
-                    this.borrar(idSuscriptor);
+                    //this.borrar(idSuscriptor);
                     console.log('presiono si suscripcion cancelada');
+                   // console.log(idx);
                    // this.items[idx].color = 'claro';
-                   // this.estadoSus = 'Suscribirse';
+                    this.estadoSus = 'Suscribirse';
                    // this.items[idx].estado = this.estadoSus;
 
                   }
@@ -202,6 +200,8 @@ export class ChannelsPage {
     //    this.items[idx].estado = this.estadoSus;
    //     this.items[idx].flag=true;
     //  }
+
+    console.log(idx);
   }
 
 
@@ -251,18 +251,19 @@ export class ChannelsPage {
   }
 
   //
-  public comparar (idSuscriptorAux: number) : string
+  public comparar (idSuscriptorAux: number , idx : number) : string
   {
       
       let i :number;
-      this.arreglo = this.prue1();
-      while ( i < 3 )
-      {
-        if(this.arreglo[i]._id_user == idSuscriptorAux)
+      this.botones = this.prue1();
+     // while ( i < 3 )
+     // {
+       console.log(this.botones);
+        if(this.botones[i]._id_user == idSuscriptorAux)
              return 'suscrito';
-              console.log(this.arreglo[i]._id_user + 'hh' +idSuscriptorAux);
-              i++;
-      }
+              console.log(this.botones[i]._id_user + 'hh' +idSuscriptorAux);
+           //   i++;
+      //}
       return 'suscribirse';
   }
   
