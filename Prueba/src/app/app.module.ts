@@ -11,7 +11,25 @@ import { RegristrarsePageModule} from '../pages/regristrarse/regristrarse.module
 import { InvitacionTwitterPageModule} from '../pages/invitacion-twitter/invitacion-twitter.module';
 import {HomecablePageModule } from '../pages/homecable/homecable.module';
 
+
+
+
+import { AngularFireModule } from 'angularfire2';
 import  {Facebook} from '@ionic-native/facebook';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+
+import { AngularFireAuth } from 'angularfire2/auth'
+
+
+const firebaseAuth = {
+  apiKey: "AIzaSyD5QOpTS7_8zgRSu3dBaG-V6B9QmQpD_Uc",
+  authDomain: "test-project-9ca72.firebaseapp.com",
+  databaseURL: "https://test-project-9ca72.firebaseio.com",
+  projectId: "test-project-9ca72",
+  storageBucket: "test-project-9ca72.appspot.com",
+  messagingSenderId: "438129532489"
+};
 
 @NgModule({
   declarations: [
@@ -25,7 +43,9 @@ import  {Facebook} from '@ionic-native/facebook';
     RegristrarsePageModule,
      InvitacionTwitterPageModule,
      HomecablePageModule,
-
+    
+     AngularFireModule.initializeApp(firebaseAuth) ,
+     AngularFireAuthModule,
     
     IonicModule.forRoot(MyApp)
   ],
@@ -37,9 +57,10 @@ import  {Facebook} from '@ionic-native/facebook';
   providers: [
     StatusBar,
     SplashScreen,
-  
+   AngularFireAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     Facebook
+    
   ]
 })
 export class AppModule {}

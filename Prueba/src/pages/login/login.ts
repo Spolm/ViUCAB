@@ -2,15 +2,20 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OlvidarContraseñaPage }from '../olvidar-contraseña/olvidar-contraseña';
 import { RegristrarsePage } from '../regristrarse/regristrarse';
-import { HomecablePage } from '../homecable/homecable';
+
 
 import { AlertController } from 'ionic-angular';
+
 /**
  * Generated class for the LoginPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
+
+ 
+import { AngularFireAuth } from 'angularfire2/auth';
+import { HomecablePage } from '../homecable/homecable';
 
 @IonicPage()
 @Component({
@@ -23,13 +28,43 @@ export class LoginPage {
 @ViewChild('Contrasena') passw;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
+  constructor(private fire:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams,public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
+alert(message:string){
+  this.alertCtrl.create({
+    title: 'Info!',
+    subTitle: message,
+    buttons: ['OK']
+
+  }).present();
+}
+
+
 IniciarS(){
+this.fire.auth.signInWithEmailAndPassword(this.usu.value, this.passw.value)
+.then ( data =>{
+  console.log('agarra la data ', this.fire.auth.currentUser)
+  this.alert('Exito! tu te logeaste');
+  this.navCtrl.setRoot( HomecablePage);
+  
+  //el usuario es logeado
+})
+.catch(error =>{
+console.log('encontramos error', error );
+this.alert(error.message);
+})
+  console.log('Iniciar sesion con', this.usu.value, this.passw.value);
+  
+
+ // console.log(this.usu.value, this.passw.value)
+
+
+  // -------codigo para validacion-----
+  /*
 if(this.usu.value == "luis" && this.passw.value == "admin"){
   let alert = this.alertCtrl.create({
 
@@ -51,7 +86,7 @@ if(this.usu.value == "luis" && this.passw.value == "admin"){
       });
       alert.present();
 
-}
+}*/
 }
   goPaginaOlvidarcontra():void {
     this.navCtrl.push(OlvidarContraseñaPage);

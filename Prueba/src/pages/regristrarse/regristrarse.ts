@@ -1,14 +1,20 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { HomecablePage } from '../homecable/homecable';
 import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
+import { AlertController } from 'ionic-angular';
+
+import { AngularFireAuth } from 'angularfire2/auth';
 @IonicPage()
 @Component({
   selector: 'page-regristrarse',
   templateUrl: 'regristrarse.html',
 })
 export class RegristrarsePage {
+  @ViewChild('Usuario') usu;
+@ViewChild('Contrasena') passw;
+
   userData=null;
   formgroup:FormGroup;
   Usuario:AbstractControl;
@@ -16,7 +22,7 @@ export class RegristrarsePage {
   Contraseña:AbstractControl;
   RepetirContraseña:AbstractControl;
 
-  constructor( public navCtrl: NavController, public navParams: NavParams,private facebook: Facebook,
+  constructor(public alertCtrl: AlertController, private fire: AngularFireAuth,  public navCtrl: NavController, public navParams: NavParams,private facebook: Facebook,
   public formbuilder: FormBuilder) {
 this.formgroup = formbuilder.group({
   Usuario:['',Validators.required],
@@ -36,11 +42,37 @@ this.RepetirContraseña = this.formgroup.controls['RepetirContraseña'];
 
 
   }
-//public navCtrl: NavController, public navParams: NavParams,
- // ionViewDidLoad() {
-   // console.log('ionViewDidLoad RegristrarsePage');
-  //}
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RegristrarsePage');
+  }
+
+ 
   //PARA EL WS
+  alert(message:string){
+  this.alertCtrl.create({
+    title: 'Info!',
+    subTitle: message,
+    buttons: ['OK']
+
+  }).present();
+}
+
+   registerUser(){
+     
+     this.fire.auth.createUserWithEmailAndPassword(this.usu.value, this.passw.value)
+     .then(data=>{
+      console.log('agarre  data ',data);
+      this.alert('Registrado!');
+     })
+.catch(error =>{
+console.log('got error', error);
+this.alert(error.message);
+});
+
+
+console.log('registrar con',this.usu.value, this.passw.value);
+
+  }
 loginWithFB() {
   
    this.facebook.login(['email', 'public_profile','user_friends']).then((Response: FacebookLoginResponse)=>	 {
@@ -50,6 +82,8 @@ loginWithFB() {
     }  )
   } )
 
+
+ 
   
 
 }

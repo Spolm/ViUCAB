@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @IonicPage()
 @Component({
@@ -8,8 +9,13 @@ import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
   templateUrl: 'homecable.html',
 })
 export class HomecablePage {
+//declarando el srting pra recibir
+email:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App) {
+  constructor(private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams, public app: App) {
+  //
+  this.email = fire.auth.currentUser.email;
+  
   }
 
   ionViewDidLoad() {
