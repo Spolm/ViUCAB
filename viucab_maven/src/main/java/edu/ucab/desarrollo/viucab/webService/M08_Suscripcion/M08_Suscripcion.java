@@ -9,6 +9,7 @@ import edu.ucab.desarrollo.viucab.common.exceptions.M08.WebFaulException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 
@@ -134,10 +135,29 @@ public class M08_Suscripcion {
         {
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
+    }
+
+    @GET
+    @Path("/GetUsuarios")
+    @Produces("application/json")
+    public String GetUsuarios(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException {
+
+        try{
+                Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando();
+                GetUsuariosComando cmd = (GetUsuariosComando) comandSuscripcion;
+                cmd.execute();
+                ArrayList<Usuario> result = cmd.get_listUsuario();
+                return   gson.toJson(result);
 
 
 
-
+        }catch (BdConnectException ex)
+        {   ex.printStackTrace();
+            throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
+        }catch (PlConnectException ex)
+        {
+            throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
+        }
     }
 
 

@@ -25,7 +25,67 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
     public SuscripcionDao() {
 
     }
+    /**
+     * Carga las suscripciones de un Usuario
+     *
+     * @param
+     * @return resultlist
+     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     */
+    public ArrayList<Usuario> listaUsuarios() throws BdConnectException, PlConnectException {
+        CallableStatement preStatement = null;
+        //Creando la lista q corresponde a usuarios
+        ArrayList<Usuario> listaUsers  = new ArrayList<>();
 
+        ResultSet resultSet = null;
+        Usuario usuario;
+        Connection conn;
+        try {
+
+            //Creando la instancia de Conexion a la BD
+            conn = getBdConnect();
+            //Invocando el SPa
+            preStatement = conn.prepareCall("{call m08_get_usuarios()}");
+            //Metiendo los parametros al SP
+           // preStatement.setInt(1,idUsuario);
+            //Ejecucion del query
+            resultSet = preStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt("idusuario");
+                String login = resultSet.getString("nombreusuario");
+/**/
+                usuario = EntityFactory.suscripcionUsuario(id, login);
+                // usuario = EntityFactory.suscripcionUsuario(login);
+                System.out.println("ESTO ES LO QUE TIENE EL OBJETO usuario"+usuario.get_name_user());
+                listaUsers.add(usuario);
+                System.out.println("ESTE ES LA LISTA-->  "+listaUsers);
+                //usuario.setListaUsuario(listaSuscripcion);
+
+            }
+            resultSet.close();
+
+        } catch (PSQLException e){
+            e.printStackTrace();
+            // throw new PlConnectException(e);
+            //e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // throw new BdConnectException (e);
+
+        }
+        catch (Exception e)
+        {e.printStackTrace();
+            // throw new BdConnectException (e);
+        }
+        finally {
+            closeConnection();
+        } System.out.println("AQUI IMPRIME EL RETURN DEL METODO OSEA LA LISTA"+listaUsers);
+        return listaUsers;
+
+
+    }
     /**
      * Carga las suscripciones de un Usuario
      *
