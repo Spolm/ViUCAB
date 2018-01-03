@@ -66,19 +66,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){
-            e.printStackTrace();
-            // throw new PlConnectException(e);
-            //e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // throw new BdConnectException (e);
-
-        }
-        catch (Exception e)
-        {e.printStackTrace();
-            // throw new BdConnectException (e);
-        }
+        } catch (PSQLException e){   throw new PlConnectException();     }
+          catch (SQLException e) {   throw new BdConnectException();       }
+          catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
         } System.out.println("AQUI IMPRIME EL RETURN DEL METODO OSEA LA LISTA"+listaUsers);
@@ -132,19 +122,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){
-            e.printStackTrace();
-           // throw new PlConnectException(e);
-            //e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-           // throw new BdConnectException (e);
-
-        }
-        catch (Exception e)
-        {e.printStackTrace();
-           // throw new BdConnectException (e);
-        }
+        } catch (PSQLException e){   throw new PlConnectException();     }
+          catch (SQLException e) {   throw new BdConnectException();       }
+          catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
         } System.out.println("AQUI IMPRIME EL RETURN DEL METODO OSEA LA LISTA"+listaSuscripcion);
@@ -178,19 +158,11 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
 
             resultSet.close();
 
-        } catch (PSQLException e){
-
-            throw new PlConnectException(e); //Excepcion si ocuerre algun error con el SP
-            //e.printStackTrace();
-        } catch (SQLException e) {
-
-            throw new BdConnectException (e);//Excepcion si ocuerre algun error con la BD
-
         }
-        catch (Exception e)
-        {
-            throw new BdConnectException (e); //Excepcion si ocuerre algun error con el SP
-        } finally {
+          catch (PSQLException e){   throw new PlConnectException();     }
+          catch (SQLException e) {   throw new BdConnectException();       }
+          catch (Exception e)    {   e.printStackTrace();    }
+        finally {
             closeConnection();
         }
 
@@ -222,19 +194,10 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
 
             resultSet.close();
 
-        } catch (PSQLException e){
-
-            throw new PlConnectException(e); //Excepcion si ocuerre algun error con el SP
-            //e.printStackTrace();
-        } catch (SQLException e) {
-
-            throw new BdConnectException (e);//Excepcion si ocuerre algun error con la BD
-
-        }
-        catch (Exception e)
-        {
-            throw new BdConnectException (e); //Excepcion si ocuerre algun error con el SP
-        } finally {
+        }  catch (PSQLException e){   throw new PlConnectException();     }
+           catch (SQLException e) {   throw new BdConnectException();       }
+           catch (Exception e)    {   e.printStackTrace();    }
+            finally {
             closeConnection();
         }
 
