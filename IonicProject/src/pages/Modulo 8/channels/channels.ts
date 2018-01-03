@@ -8,7 +8,14 @@ import { RestApiService } from '../../../app/rest-api.service';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
- */
+ */2
+export interface SusAuxInterface {
+  idUsuario: number;
+  nombreUsuario: number;
+  estado: string;
+  cantidadSus: number;
+}
+
 
 @IonicPage()
 @Component({
@@ -23,6 +30,7 @@ export class ChannelsPage {
   listaSuscripcion: Array<{}>;
   
   items: any[];
+  itemsAux : SusAuxInterface [];
   botones: any[];
   color: string ='primary';
   estadoSus:string ='Suscrito';
@@ -37,7 +45,7 @@ export class ChannelsPage {
               public navParams: NavParams, 
               public alertCtrl: AlertController,
               public api : RestApiService) {
-      //this.initializeItems();
+      this.initializeItems();
       this.prue();
   }
 // pendiente arreglar el metodo buscar lun 18/ dic/2017
@@ -87,8 +95,8 @@ export class ChannelsPage {
 
   initializeItems(){
      // this.items = this.listaSuscripcion;
-     // this.items = [];
-/*
+      /*this.items = [];
+
        this.items =[
         {
            nombre: 'Jesus Yepes',
@@ -120,7 +128,9 @@ export class ChannelsPage {
 
   }
 
+  // pendiente por arreglar
   getItems(ev: any){
+    
     //Reset items back to all of the items
    // this.initializeItems();
    
@@ -146,7 +156,7 @@ export class ChannelsPage {
         else {this.prue();}
   }
 
-// Realizacion del mensaje de confirmacion
+// Realizacion del mensaje de confirmacion 19/dic/2017
 
 //showConfirm(usuarioSelected : any,idx : number){
   /**
@@ -202,6 +212,9 @@ export class ChannelsPage {
     //  }
 
     console.log(idx);
+    this.itemsAux[0].estado = 's';
+    console.log(this.itemsAux[0].estado);
+    //console.log(this.items[idx].suscritos);
   }
 
 
@@ -255,6 +268,7 @@ export class ChannelsPage {
   {
       
       let i :number;
+      this.itemsAux[0].estado = 'suscribirse';
       this.botones = this.prue1();
      // while ( i < 3 )
      // {
@@ -268,6 +282,8 @@ export class ChannelsPage {
   }
   
   //Array<{id: number, titulo: string, descripion: string, img:string, instructor:string, fecha: string, duracion: number, hora:string, capacidad:number, disponibilidad:number}>;
+//
+
 
 
 }
