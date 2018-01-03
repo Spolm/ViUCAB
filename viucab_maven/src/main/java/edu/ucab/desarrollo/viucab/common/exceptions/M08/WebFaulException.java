@@ -7,6 +7,6 @@ public class WebFaulException extends Throwable {
 
 
     public WebFaulException(String mensaje) {
-        super(mensaje);
+        super("ERROR EN LA CAPA DE PRESENTACION: "+mensaje);
     }
 }
