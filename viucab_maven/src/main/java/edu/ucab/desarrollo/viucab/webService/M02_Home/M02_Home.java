@@ -3,6 +3,8 @@ package edu.ucab.desarrollo.viucab.webService.M02_Home;
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 
 import javax.ws.rs.GET;
@@ -21,33 +23,38 @@ import java.util.ArrayList;
 public class M02_Home {
 
     Gson gson = new Gson();
-    Connection conn = conectarADb();
+    Connection conn= Sql.getConInstance();
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/cargarTodo")
     @Produces("application/json")
     /**
      * @Param id
      * Devuelve todos los Videos dado un id
      */
-    public String obtenerVideo (@QueryParam("id")  String horainicio
+    public String obtenerVideo (
     ){
 
-        String query = "select * from video";
+        String query = "select * from video ";
         try{
-
-            //Lista del objeto video para almacenar todos los videos a cargar
             ArrayList<Video> listaVideos= new ArrayList<>();
-            Statement st = conn.createStatement();
-            ResultSet rs =  st.executeQuery(query);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
                 Video resultado = new Video();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
+                resultado.setDescripcion(rs.getString("vid_descripcion"));
+                resultado.setImagen(rs.getString("vid_imagen"));
+                resultado.setUrl(rs.getString("vid_url"));
+                resultado.setFecha(rs.getString("vid_fecha"));
+                resultado.setVisitas(rs.getInt("vid_visitas"));
+                resultado.setUsuario("Bárbara Fernández");
                 listaVideos.add(resultado);
-
             }
+
 
             return gson.toJson(listaVideos);
 
@@ -62,6 +69,7 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/ObtenerPreferencias")
     @Produces("application/json")
     /**
@@ -80,14 +88,17 @@ public class M02_Home {
                                 "AND video_cat.idcat=preferencia.id_cat " +
                                 "AND usuario.usu_id='"+idUsuario+"'";
 
+        //GetPreferenciasComando cmd =CommandsFactory.instanciateGetPreferenciasComando(idUsuario);
 
 
         try {
-
+            //cmd.execute();
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos = new ArrayList<>();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            ArrayList<Video> listaVideos= new ArrayList<>();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+
+
 
             while (rs.next()) {
                 Video resultado = new Video();
@@ -115,6 +126,7 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/MasVistos")
     @Produces("application/json")
     /**
@@ -129,9 +141,9 @@ public class M02_Home {
         try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos = new ArrayList<>();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            ArrayList<Video> listaVideos= new ArrayList<>();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Video resultado = new Video();
@@ -158,12 +170,13 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/Suscritos")
     @Produces("application/json")
     /**
      * Obtiene los ultimos videos subidos por los canales a los cuales
      * esta suscrito el usuario
-     *@Param id del Usuario
+     *@Param id del Usuario suscrito
      */
     public String obtenerVideosSuscritos (@QueryParam("id") int idUser)
     {
@@ -178,9 +191,9 @@ public class M02_Home {
         try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos = new ArrayList<>();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            ArrayList<Video> listaVideos= new ArrayList<>();
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 Video resultado = new Video();
@@ -208,6 +221,7 @@ public class M02_Home {
     }
 
     @GET
+	@CrossOrigin(origins = "http://localhost:8100")
     @Path("/Busqueda")
     @Produces("application/json")
     /**
@@ -242,8 +256,8 @@ public class M02_Home {
 
             //Lista del objeto video para almacenar todos los videos a cargar
             ArrayList<Video> listaVideos= new ArrayList<>();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(query);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
 
 
             while (rs.next() ) {
@@ -272,41 +286,6 @@ public class M02_Home {
 
     }
 
-
-    /**
-     * Metodo que crea el conector de la base de datos
-     * @return un conector para hacer llamadas a la BD
-     */
-    private Connection conectarADb()
-    {
-        Connection conn = null;
-        try
-        {
-            //llamo al driver de Postgre (el primer import que muestro en el video)
-            Class.forName("org.postgresql.Driver");
-            //el string de conexion de la db el formato es el siguiente:
-            //jdbc:postgresql://HOST//NOMBRE_DE_LA_DB
-            String url = "jdbc:postgresql://localhost/VIUCAB";
-            //parametros de la conexion que basicamente es el usuario en mi caso es postgres y la clave es root
-            // NO DEBEN DEJAR ESTO ASI POR DEFECTO
-            conn = DriverManager.getConnection(url,"postgres", "postgres");
-        }
-        catch (ClassNotFoundException e)
-        {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-            System.exit(2);
-        }
-        return conn;
-    }
-
-
-
-
     /**
      * Metodo que dado un nombre de usuario devuelve
      * la id correspondiente
@@ -322,9 +301,8 @@ public class M02_Home {
         Usuario resultado = new Usuario();
 
         try{
-            Connection conn = conectarADb();
-            Statement    st = conn.createStatement();
-            ResultSet    rs =  st.executeQuery(query);
+            PreparedStatement ps = conn.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
 

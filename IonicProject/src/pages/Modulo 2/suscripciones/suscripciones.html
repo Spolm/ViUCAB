@@ -8,11 +8,6 @@
       <ion-title>
         <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
         
-        <ion-buttons class= 'centrado-Lupa'  >   
-          <button  >
-           <ion-icon name="search"></ion-icon>
-        </button>
-        </ion-buttons>   
   
         <ion-buttons class= 'centrado-porcentual'  >
             <button  >
@@ -24,6 +19,7 @@
       </ion-title>
       
     </ion-navbar>
+    <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>  
   </ion-header>
    
   <ion-content padding>

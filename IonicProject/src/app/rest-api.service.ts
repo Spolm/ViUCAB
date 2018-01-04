@@ -1,5 +1,5 @@
 //Clase que se encarga de enviar las solicitudes al servidor Rest Java
-//En periodo de prueba, no se ha validado que funciona, pero es la estructura basica. 
+//En periodo de prueba, no se ha validado que funciona, pero es la estructura basica.
 
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
@@ -123,4 +123,22 @@ export class RestApiService {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
+
+
+//Metodo para obtener todos los videos
+  public getVideos(direccion): Observable<any> {
+    return this.http.get(URL+'/'+direccion)
+        .map((data: any) => data.json())
+        .do(data => console.log("get Countries from json: " + JSON.stringify(data)))
+        .catch(this.handleError);
+  }
+
+
+
+  public geta(direccion){
+    return this.http
+      .get(URL+'/'+direccion)
+
+  }
+
 }
