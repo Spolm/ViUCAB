@@ -8,6 +8,7 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -39,11 +40,11 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @param
      * @return resultlist
      */
-    public Entity GetLista(Entity e) throws SQLException {
+    public ArrayList<Entity> GetLista(Entity e) throws SQLException {
 
+        ArrayList<Entity> listaContenedora= new ArrayList<>();
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
-        Integer idLista_ = lista.getIdLista();
-        Entity listaRecibida = null;
+        Integer idUsuario = lista.getIdUsuario();
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Connection conn;
@@ -52,9 +53,9 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
-            preStatement = conn.prepareCall("{call m05_obtenerListaDeReproduccion(?)}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
+            preStatement = conn.prepareCall("{call M05_OBTENERLISTA(?)}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
             //Seteo lo que le estoy mandando al procedimiento con ese "?"
-            preStatement.setInt(1,idLista_);
+            preStatement.setInt(1,idUsuario);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
@@ -66,16 +67,24 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
                 String fechaCreacion = resultSet.getString("LIS_REP_FECHA");
                 int numReproducciones = resultSet.getInt("LIS_REP_NUMREP");
 
-                listaRecibida = EntityFactory.listaDeReproduccion(idLista, nombre, descripcion, numReproducciones, fechaCreacion);
+                lista = (ListaDeReproduccion) EntityFactory.listaDeReproduccion(idLista, nombre, descripcion, numReproducciones, fechaCreacion);
+                listaContenedora.add(lista);
 
             }
             resultSet.close();
 
         } catch (SQLException e1) {
-            e1.printStackTrace();
-        } finally {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+
+            System. out. println(e1.getMessage());
+        }
+        catch(Exception ex)
+        {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+        }
+        finally {
             closeConnection();
         }
-        return listaRecibida;
+        return listaContenedora;
     }
 }
