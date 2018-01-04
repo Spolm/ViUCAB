@@ -28,7 +28,9 @@ export class ChannelsPage {
 
   buscarQuery : string ='';
   listaSuscripcion: Array<{}>;
-  
+  listaUsuarios : Array<{}>;
+  mostrarUsuarios : boolean;
+  mostrarSuscripciones : boolean;  
   items: any[];
   itemsAux : SusAuxInterface [];
   botones: any[];
@@ -55,6 +57,7 @@ export class ChannelsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChannelsPage');
     this.prue();
+    this.cargarUsuarios();
    // this.arreglo = this.prue1();
    // this.initializeItems();
   // this.items;
@@ -65,6 +68,8 @@ export class ChannelsPage {
  */
   public prue ()
   {
+      this.mostrarSuscripciones=true;
+      this.mostrarUsuarios =false;
       this.api.geta('Suscripcion/GetSuscripcion?id='+ this.idUser)
      /* .subscribe( response => {
         this.listaSuscripcion = response;
@@ -92,6 +97,29 @@ export class ChannelsPage {
          });
 
   }
+
+  //---------------------------- 4/ 01/2018 -----------
+
+  public cargarUsuarios ()
+  {
+    this.mostrarSuscripciones=true;
+    this.mostrarUsuarios =false;
+      this.api.geta('Suscripcion/GetUsuarios')
+     /* .subscribe( response => {
+        this.listaSuscripcion = response;
+        console.log(this.listaSuscripcion);
+    })*/
+
+      .subscribe((data) => { // Success
+          this.listaUsuarios = data.json()
+          console.log (this.listaUsuarios)
+         },
+         (error) =>{
+           console.error(error);
+         });
+
+  }
+ //---------------------------------------------------------------
 
   initializeItems(){
      // this.items = this.listaSuscripcion;
@@ -155,6 +183,40 @@ export class ChannelsPage {
         }
         else {this.prue();}
   }
+
+  //-------------------------------------------------------------------------------------------------
+
+  // pendiente por arreglar
+  getItems1(ev: any){
+    
+    //Reset items back to all of the items
+   // this.initializeItems();
+   this.mostrarSuscripciones=false;
+    this.mostrarUsuarios =true;
+   this.items = this.listaUsuarios;
+   // this.prue();
+   
+    let i :number;
+    console.log('hola');
+    console.log(this.listaUsuarios);
+        // set val to the value of the searchbar
+        let val = ev.target.value;
+        console.log(val);
+     
+          if (val && val.trim() != '') {
+            this.items = this.items.filter((item) => {
+              return (item._name_user.toLowerCase().indexOf(val.toLowerCase()) > -1);
+            })
+          this.listaUsuarios = this.items;
+          console.log('chao ');
+          console.log(this.listaUsuarios);
+          
+        }
+        else {this.cargarUsuarios();}
+  }
+
+  //------------------------------------------------------------------------------------------------
+
 
 // Realizacion del mensaje de confirmacion 19/dic/2017
 
@@ -264,22 +326,38 @@ export class ChannelsPage {
   }
 
   //
-  public comparar (idSuscriptorAux: number , idx : number) : string
+  public comparar (idSuscriptorAux: number ) : string
   {
       
       let i :number;
       this.itemsAux[0].estado = 'suscribirse';
       this.botones = this.prue1();
-     // while ( i < 3 )
+      for(let indice in this.botones)
+      {
+        //while ( i < 3 )
      // {
+  
        console.log(this.botones);
-        if(this.botones[i]._id_user == idSuscriptorAux)
+        if(this.botones[indice]._id_user == idSuscriptorAux)
              return 'suscrito';
-              console.log(this.botones[i]._id_user + 'hh' +idSuscriptorAux);
+                console.log(this.botones[indice]._id_user + 'hh' +idSuscriptorAux);
            //   i++;
       //}
       return 'suscribirse';
+      }
   }
+public compararLista (){
+      let arregloAux : any[];
+      this.api.geta('Suscripcion/GetUsuarios')
+             .subscribe((data) => { // Success
+           arregloAux = data.json()
+           console.log (arregloAux)
+          },
+          (error) =>{
+            console.error(error);
+          });
+
+      }
   
   //Array<{id: number, titulo: string, descripion: string, img:string, instructor:string, fecha: string, duracion: number, hora:string, capacidad:number, disponibilidad:number}>;
 //
