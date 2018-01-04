@@ -66,8 +66,8 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){   throw new PlConnectException();     }
-          catch (SQLException e) {   throw new BdConnectException();       }
+        } catch (PSQLException e){   throw new PlConnectException(e);     }
+          catch (SQLException e) {   throw new BdConnectException(e);       }
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
@@ -122,8 +122,8 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){   throw new PlConnectException();     }
-          catch (SQLException e) {   throw new BdConnectException();       }
+        } catch (PSQLException e){   throw new PlConnectException(e);     }
+          catch (SQLException e) {   throw new BdConnectException(e);       }
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
@@ -139,12 +139,12 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      * @return resultlist
      * @throws PlConnectException , BdConnectException Exepcion personalizada
      */
-    public void insertarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
+    public String insertarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
         Connection conn;
-
+        String respuesta=null;
         try {
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
@@ -157,13 +157,15 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             resultSet.close();
-
+            return respuesta="lo inserto";
         }
-          catch (PSQLException e){   throw new PlConnectException();     }
-          catch (SQLException e) {   throw new BdConnectException();       }
+          catch (PSQLException e){   throw new PlConnectException(e);     }
+          catch (SQLException e) {   throw new BdConnectException(e);       }
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
+            if(respuesta==null) respuesta="ya esta insertado";
+            return respuesta;
         }
 
     }
@@ -175,12 +177,12 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      * @return resultlist
      * @throws PlConnectException , BdConnectException Exepcion personalizada
      */
-    public void eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
+    public String eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
         Connection conn;
-
+        String respuesta=null;
         try {
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
@@ -193,12 +195,16 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             resultSet.close();
+            return respuesta="lo elimino";
 
-        }  catch (PSQLException e){   throw new PlConnectException();     }
-           catch (SQLException e) {   throw new BdConnectException();       }
+        }  catch (PSQLException e){   throw new PlConnectException(e);     }
+           catch (SQLException e) {   throw new BdConnectException(e);       }
            catch (Exception e)    {   e.printStackTrace();    }
             finally {
             closeConnection();
+
+            return respuesta;
+
         }
 
     }

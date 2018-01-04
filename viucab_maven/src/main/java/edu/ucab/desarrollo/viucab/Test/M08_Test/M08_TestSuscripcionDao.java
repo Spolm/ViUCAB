@@ -22,6 +22,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class M08_TestSuscripcionDao {
 
@@ -57,7 +59,7 @@ public class M08_TestSuscripcionDao {
             resultSet = preStatement.executeQuery();
             resultSet.close();
 
-        } catch (PSQLException e){throw new PlConnectException();}
+        } catch (PSQLException e){throw new PlConnectException(e);}
 
     }
 
@@ -77,7 +79,8 @@ public class M08_TestSuscripcionDao {
             resultSet = preStatement.executeQuery();
             resultSet.close();
 
-        } catch (SQLException e) {throw new BdConnectException();  }
+        } catch (SQLException e) {throw new BdConnectException(e);
+          }
     }
 
 }

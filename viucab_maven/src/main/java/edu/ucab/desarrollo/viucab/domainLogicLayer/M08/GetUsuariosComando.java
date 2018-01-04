@@ -16,6 +16,8 @@ public class GetUsuariosComando extends Command {
     private  int idSuscriptor;
 
     private static Entity est;
+
+    //constructores:
     public GetUsuariosComando() {
 
     }
@@ -27,12 +29,19 @@ public class GetUsuariosComando extends Command {
         this._resultado = _resultado;
     }
 
+
+
+    /**
+     * Metoto que Devuelve la lista de  Usuarios
+     *
+     */
+
     public ArrayList<Usuario> get_listUsuario()
     {
         return _resultado;
     }
 
-    //constructores:
+
 
 
     @Override
