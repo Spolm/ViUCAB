@@ -51,7 +51,7 @@ public class M02_Home {
                 resultado.setUrl(rs.getString("vid_url"));
                 resultado.setFecha(rs.getString("vid_fecha"));
                 resultado.setVisitas(rs.getInt("vid_visitas"));
-                resultado.setUsuario("Bárbara Fernández");
+                resultado.setNombre("Bárbara Fernández");
                 listaVideos.add(resultado);
             }
 

@@ -71,8 +71,11 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String url = resultSet.getString("urlvideo");
                 String fecha = resultSet.getString("fechavideo");
                 int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 listaVideos.add(video);
 
 
@@ -123,8 +126,11 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String url = resultSet.getString("urlvideo");
                 String fecha = resultSet.getString("fechavideo");
                 int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }
@@ -172,8 +178,11 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String url = resultSet.getString("urlvideo");
                 String fecha = resultSet.getString("fechavideo");
                 int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }
@@ -219,8 +228,11 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String url = resultSet.getString("urlvideo");
                 String fecha = resultSet.getString("fechavideo");
                 int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }

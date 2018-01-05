@@ -3,9 +3,9 @@ package edu.ucab.desarrollo.viucab.webService.M08_Suscripcion;
 
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.*;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.WebFaulException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.WebFaulException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
@@ -16,7 +16,6 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.xml.ws.WebFault;
 import java.util.ArrayList;
 
 @Path("/Suscripcion")
