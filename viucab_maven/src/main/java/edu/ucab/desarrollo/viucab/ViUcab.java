@@ -9,7 +9,7 @@ import edu.ucab.desarrollo.viucab.webService.M08_Suscripcion.M08_Suscripcion;
 import edu.ucab.desarrollo.viucab.webService.M11_Estadistica.M11_Estadistica;
 import edu.ucab.desarrollo.viucab.webService.M05_ListaDeReproduccion.M05_ListaDeReproduccion;
 
-import javax.mail.Multipart;
+import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -28,6 +28,8 @@ public class ViUcab extends Application {
         h.add(M11_Estadistica.class);
         h.add(M05_ListaDeReproduccion.class);
         h.add(M08_Suscripcion.class);
+        h.add(MultiPartFeature.class);
+
 
         return h;
     }
