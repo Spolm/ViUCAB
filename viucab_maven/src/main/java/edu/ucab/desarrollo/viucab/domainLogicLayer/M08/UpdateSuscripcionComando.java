@@ -10,18 +10,26 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 public class UpdateSuscripcionComando extends Command {
     private int suscriptor;
     private int suscripcion;
+    private String resp;
+
+    public UpdateSuscripcionComando(String resp) {
+        this.resp = resp;
+    }
 
     public UpdateSuscripcionComando(int suscriptor, int suscripcion) {
         this.suscriptor = suscriptor;
         this.suscripcion = suscripcion;
     }
-
-
+    public UpdateSuscripcionComando() {
+        resp = ObtenerRespuesta();
+    }
+    public String ObtenerRespuesta(){return resp; };
 
     @Override
     public void execute() throws BdConnectException , PlConnectException {
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-        dao.eliminarSuscriptor(suscriptor,suscripcion);
+        resp= dao.eliminarSuscriptor(suscriptor,suscripcion);
+        System.out.println("ESOOO ES LOO Q AROOOJAAAAA DIABLON"+resp);
 
     }
 

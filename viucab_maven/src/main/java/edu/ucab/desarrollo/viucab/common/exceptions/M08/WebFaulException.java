@@ -7,6 +7,7 @@ public class WebFaulException extends Throwable {
 
 
     public WebFaulException(String mensaje) {
-        super("ERROR EN LA CAPA DE PRESENTACION: "+mensaje);
+        super(mensaje);
+        System.out.println("ERROR 500 EN LA CAPA DE PRESENTACION: "+mensaje);
     }
 }

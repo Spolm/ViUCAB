@@ -36,6 +36,11 @@ public class GetSuscripcionComando extends Command {
     }
 
 
+
+        /**
+         * Metoto que Devuelve la lista de Suscricpiones de un Usuario
+         *
+         */
     public ArrayList<Usuario> get_listUsuario()
     {
         return _resultado;
@@ -79,6 +84,6 @@ public class GetSuscripcionComando extends Command {
     */
     @Override
     public Entity Return() {
-        return est; //EN ESTE RETURN ES DONDE DEBO DEVOLVER LA LISTA DE SUSCRIPCIONES
+        return est;
     }
 }

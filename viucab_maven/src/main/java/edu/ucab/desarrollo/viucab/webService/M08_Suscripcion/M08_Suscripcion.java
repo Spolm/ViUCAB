@@ -40,13 +40,14 @@ public class M08_Suscripcion {
             Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(idLogueado, idSuscriptor);
             SetSuscripcionComando cmd = (SetSuscripcionComando) comandSuscripcion;
             cmd.execute();
+            return cmd.ObtenerRespuesta();
         }
         catch (BdConnectException ex)
-        {
+        { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
         catch (PlConnectException ex)
-        {
+        { ex.getMessage();
             /*
             catch (ViUCABException e) {
 
@@ -62,7 +63,7 @@ public class M08_Suscripcion {
       //  cmd.execute();
      //   Entity result = cmd.Return();
       //  Suscripcion json = (Suscripcion) result;
-        return "LO INSERTO EXITOSAMENTE";
+
 
 
     }
@@ -79,7 +80,7 @@ public class M08_Suscripcion {
      */
     @GET
     @Path("/UpdateSuscripcion")
-    @Produces("application/json")
+    @Produces("text/plain")
     public String UpdateSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BdConnectException, PlConnectException, WebFaulException {
 
         try {
@@ -87,14 +88,14 @@ public class M08_Suscripcion {
             Command comandSuscripcion = CommandsFactory.instanciaUpdateSuscripcionComando(idLogueado, idSuscriptor);
             UpdateSuscripcionComando cmd = (UpdateSuscripcionComando) comandSuscripcion;
             cmd.execute();
-
-            return "LO ELIMINO EXITOSAMENTE";
+            System.out.println(cmd.ObtenerRespuesta());
+            return cmd.ObtenerRespuesta();
 
         }catch (BdConnectException ex)
-        {
+        { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }catch (PlConnectException ex)
-        {
+        { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
 
@@ -129,10 +130,10 @@ public class M08_Suscripcion {
 
 
         }catch (BdConnectException ex)
-        {   ex.printStackTrace();
+        {   ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }catch (PlConnectException ex)
-        {
+        {    ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
     }
@@ -152,10 +153,10 @@ public class M08_Suscripcion {
 
 
         }catch (BdConnectException ex)
-        {   ex.printStackTrace();
+        {    ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }catch (PlConnectException ex)
-        {
+        { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
     }
