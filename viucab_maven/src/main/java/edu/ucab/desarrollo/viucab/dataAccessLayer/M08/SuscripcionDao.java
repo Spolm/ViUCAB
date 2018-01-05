@@ -4,8 +4,8 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Suscripcion;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import org.postgresql.util.PSQLException;
 
