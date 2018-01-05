@@ -8,6 +8,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
 
@@ -102,4 +103,33 @@ public class CommandsFactory {
 
 
     //Fin instancias M08
+     
+     
+     // M04
+     
+     public static Command instanciarComandoGetVideoInfo(int idvideo) {
+         return new ComandoGetVideoInfo(idvideo);
+     }
+     
+     public static Command instanciarComandoGetVideosRelacionados(int idvideo) {
+         return new ComandoGetVideosRelacionados(idvideo);
+     }
+     
+     public static Command instanciarComandoGetComentarios(int idvideo) {
+         return new ComandoGetComentarios(idvideo);
+     }
+     
+     public static Command instanciarComandoGetVideoYCanal(int idvideo) {
+         return new ComandoGetVideoYCanal(idvideo);
+     }
+     
+     public static Command instanciarComandoAddVisita(int idvideo) {
+         return new ComandoAddVisita(idvideo);
+     }
+     
+     public static Command instanciarComandoAgregarComentario(int idvideo) {
+         return new ComandoAgregarComentario(idvideo);
+     }
+     
+     // Fin M04
 }

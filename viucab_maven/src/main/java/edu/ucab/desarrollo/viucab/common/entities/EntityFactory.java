@@ -1,7 +1,6 @@
 
 package edu.ucab.desarrollo.viucab.common.entities;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -64,9 +63,9 @@ public class EntityFactory
         return new ListaDeReproduccion(nombre, descripcion, numReproducciones, fechaCreacion);
     }
 
-    static public Entity listaDeReproduccion (Integer idLista)
+    static public Entity obtenerLista(Integer id_lista, Integer id_usu)
     {
-        return new ListaDeReproduccion(idLista);
+        return new ListaDeReproduccion(id_lista, id_usu);
     }
 
     //endregion

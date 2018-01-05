@@ -21,6 +21,8 @@ import { ConfiguracionNotificacionesPage } from '../pages/configuracion-notifica
 import { ChannelsPage } from '../pages/Modulo 8/channels/channels';
 //Fin modificado
 
+import {ReproductorPage} from "../pages/reproductor/reproductor"
+
 @NgModule({
   declarations: [
     MyApp,
@@ -31,7 +33,8 @@ import { ChannelsPage } from '../pages/Modulo 8/channels/channels';
     CreateNewListPage,
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
-    ChannelsPage
+    ChannelsPage,
+    ReproductorPage
 
   ],
   imports: [
@@ -50,7 +53,8 @@ import { ChannelsPage } from '../pages/Modulo 8/channels/channels';
     CreateNewListPage,
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
-    ChannelsPage
+    ChannelsPage,
+    ReproductorPage
   ],
   providers: [
     StatusBar,
