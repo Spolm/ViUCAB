@@ -158,7 +158,7 @@ export class RestApiService {
    //Elimina en una direccion
    public deleteSus(direccion){
     return this.http
-    .delete(URL+'/'+direccion)
+    .get(URL+'/'+direccion)
     .map((data: any) => data.json())
     .catch(this.handleError);
    }

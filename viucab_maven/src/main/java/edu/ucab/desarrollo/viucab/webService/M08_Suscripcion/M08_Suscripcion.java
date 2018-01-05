@@ -77,7 +77,7 @@ public class M08_Suscripcion {
      * @throws PlConnectException
      * @throws WebFaulException
      */
-    @DELETE
+    @GET
     @Path("/UpdateSuscripcion")
     @Produces("application/json")
     public String UpdateSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BdConnectException, PlConnectException, WebFaulException {

@@ -49,6 +49,7 @@ export class ChannelsPage {
               public api : RestApiService) {
       this.initializeItems();
       this.prue();
+    //  this.cargarUsuarios(); //---------------------------probando
   }
 // pendiente arreglar el metodo buscar lun 18/ dic/2017
 
@@ -61,6 +62,7 @@ export class ChannelsPage {
    // this.arreglo = this.prue1();
    // this.initializeItems();
   // this.items;
+  this.comparar(2);
   }
 /**
  *  metodo que carga a lista de usuarios suscritos
@@ -105,10 +107,6 @@ export class ChannelsPage {
     this.mostrarSuscripciones=true;
     this.mostrarUsuarios =false;
       this.api.geta('Suscripcion/GetUsuarios')
-     /* .subscribe( response => {
-        this.listaSuscripcion = response;
-        console.log(this.listaSuscripcion);
-    })*/
 
       .subscribe((data) => { // Success
           this.listaUsuarios = data.json()
@@ -249,7 +247,7 @@ export class ChannelsPage {
                 {    //this.verificarEstado(false,usuarioSelected);
                   text: 'Eliminar Suscripcion', // llamar a los metodos necesarios
                   handler: () => {
-                    //this.borrar(idSuscriptor);
+                    this.borrar(idSuscriptor);
                     console.log('presiono si suscripcion cancelada');
                    // console.log(idx);
                    // this.items[idx].color = 'claro';
@@ -274,8 +272,8 @@ export class ChannelsPage {
     //  }
 
     console.log(idx);
-    this.itemsAux[0].estado = 's';
-    console.log(this.itemsAux[0].estado);
+    //this.itemsAux[0].estado = 's';
+    //console.log(this.itemsAux[0].estado);
     //console.log(this.items[idx].suscritos);
   }
 
@@ -330,8 +328,10 @@ export class ChannelsPage {
   {
       
       let i :number;
-      this.itemsAux[0].estado = 'suscribirse';
+     // this.itemsAux[0].estado = 'suscribirse';
       this.botones = this.prue1();
+      console.log('this.botones');
+      console.log(this.botones);
       for(let indice in this.botones)
       {
         //while ( i < 3 )
@@ -346,6 +346,9 @@ export class ChannelsPage {
       return 'suscribirse';
       }
   }
+
+  //------------------------------
+
 public compararLista (){
       let arregloAux : any[];
       this.api.geta('Suscripcion/GetUsuarios')
@@ -355,10 +358,23 @@ public compararLista (){
           },
           (error) =>{
             console.error(error);
-          });
-
+          });        
       }
-  
+//------------------------------------------------
+/*
+public recorrerLista(){
+     this.cargarUsuarios();
+     for(let i =0; i< this.listaUsuarios.length ; i ++){
+       if(this.listaUsuarios  == 1)
+       {
+            console.log('');
+       }
+     }
+
+}
+  */
+
+
   //Array<{id: number, titulo: string, descripion: string, img:string, instructor:string, fecha: string, duracion: number, hora:string, capacidad:number, disponibilidad:number}>;
 //
 
