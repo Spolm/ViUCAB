@@ -141,4 +141,10 @@ export class RestApiService {
 
   }
 
+  public getReproduccion(direccion){
+    return this.http
+      .get(URL+'/'+direccion)
+
+  }
+
 }
