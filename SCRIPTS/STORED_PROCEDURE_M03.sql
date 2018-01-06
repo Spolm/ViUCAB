@@ -1,17 +1,17 @@
-CREATE OR REPLACE  FUNCTION M10_AddWater( tm timestamp, gt integer, fkP integer,
-                                 OUT res integer)
+CREATE OR REPLACE  FUNCTION M03_AddVideo( titu varchar, des varchar, 
+	                                     ima varchar, url varchar , fec date , vis integer ,
+	                                       fkP integer, OUT res integer)
 AS $$
 DECLARE  
-max integer;
 BEGIN
 		
-	INSERT INTO glass_historic(
-	 GLASSTIME, GLASSTYPE, fk_person)
-	VALUES ( tm, gt, fkp);
+	INSERT INTO video(
+	 VID_TITULO, VID_DESCRIPCION, VID_IMAGEN, VID_URL, VID_FECHA, VID_VISITAS, VID_USUARIO)
+	VALUES ( titu, des, ima, url, fec, vis, fkp);
 
-    
-
-    res = (SELECT Count(t.glasshistoricid) FROM glass_historic as t WHERE DATE(t.GLASSTIME) = DATE(tm) and fk_person = fkp);
+    res = (SELECT Count(t.vid_id) FROM video as t WHERE t.VID_URL = url and VID_USUARIO = fkp);
 
 END;
 $$ LANGUAGE plpgsql VOLATILE;
+SELECT m03_addvideo( 'titulo', 'descripcion', 'imagen','url' , '1-1-2017' , 5 ,
+	                                       1) AS HOLA;
