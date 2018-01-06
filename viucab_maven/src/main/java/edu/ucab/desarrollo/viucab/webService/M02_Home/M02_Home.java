@@ -3,6 +3,7 @@ package edu.ucab.desarrollo.viucab.webService.M02_Home;
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.common.entities.VideoAux;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
@@ -38,12 +39,12 @@ public class M02_Home {
 
         String query = "select * from video ";
         try{
-            ArrayList<Video> listaVideos= new ArrayList<>();
+            ArrayList<VideoAux> listaVideos= new ArrayList<>();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                Video resultado = new Video();
+                VideoAux resultado = new VideoAux();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
                 resultado.setDescripcion(rs.getString("vid_descripcion"));
@@ -94,14 +95,14 @@ public class M02_Home {
         try {
             //cmd.execute();
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos= new ArrayList<>();
+            ArrayList<VideoAux> listaVideos= new ArrayList<>();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
 
 
             while (rs.next()) {
-                Video resultado = new Video();
+                VideoAux resultado = new VideoAux();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
                 resultado.setDescripcion(rs.getString("vid_descripcion"));
@@ -141,12 +142,12 @@ public class M02_Home {
         try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos= new ArrayList<>();
+            ArrayList<VideoAux> listaVideos= new ArrayList<>();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Video resultado = new Video();
+                VideoAux resultado = new VideoAux();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
                 resultado.setDescripcion(rs.getString("vid_descripcion"));
@@ -191,12 +192,12 @@ public class M02_Home {
         try {
 
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos= new ArrayList<>();
+            ArrayList<VideoAux> listaVideos= new ArrayList<>();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Video resultado = new Video();
+                VideoAux resultado = new VideoAux();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
                 resultado.setDescripcion(rs.getString("vid_descripcion"));
@@ -255,13 +256,13 @@ public class M02_Home {
         try{
 
             //Lista del objeto video para almacenar todos los videos a cargar
-            ArrayList<Video> listaVideos= new ArrayList<>();
+            ArrayList<VideoAux> listaVideos= new ArrayList<>();
             PreparedStatement ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
 
 
             while (rs.next() ) {
-                Video resultado = new Video();
+                VideoAux resultado = new VideoAux();
                 resultado.setId(rs.getInt("vid_id"));
                 resultado.setNombre(rs.getString("vid_titulo"));
                 resultado.setDescripcion(rs.getString("vid_descripcion"));

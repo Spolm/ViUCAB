@@ -22,20 +22,29 @@ public class EntityFactory
 
     //region M02
 
-    static public Video homeUsuario ()
+    static public VideoAux homeUsuario ()
     {
-        return new Video();
+        return new VideoAux();
     }
-    static public Video homeUsuario (ArrayList<Video> listaVideos)
+    static public VideoAux homeUsuario (ArrayList<VideoAux> listaVideos)
     {
-        return new Video(listaVideos);
+        return new VideoAux(listaVideos);
     }
 
-    static public Video homeUsuario( int id, String titulo, String descripcion,
+    static public VideoAux homeUsuario( int id, String titulo, String descripcion,
                                      String imagen,String url, String fecha,int visitas){
-        return new Video(id,titulo,descripcion,imagen,fecha,visitas,url);
+        return new VideoAux(id,titulo,descripcion,imagen,fecha,visitas,url);
     }
     //final M02
+
+    //Modulo 3
+
+    static public Video instantiateVideo(){ return new Video();}
+
+    static public Video instantiateVideo(String titulo, String descripcion, String url, int usuario ){
+        return new Video(titulo,descripcion,url,usuario);
+    }
+    //End Modulo 3
 
     //region M05
 

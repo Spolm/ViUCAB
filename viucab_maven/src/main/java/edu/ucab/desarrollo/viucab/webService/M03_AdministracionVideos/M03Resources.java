@@ -24,7 +24,7 @@ public class M03Resources {
     static Connection conn = Sql.getConInstance();
     private static final String FOLDER_DIR = "C:/Users/andre/Desktop/img/";
 
-    @PUT
+    @POST
     @Path("/uploadImage")
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces("application/json")
@@ -39,7 +39,7 @@ public class M03Resources {
 
     }
 
-    @PUT
+    @POST
     @Path("/uploadVideo")
     @Produces("application/json")
     public String uploadVideo(@FormDataParam("file") InputStream uploadedInputStream,

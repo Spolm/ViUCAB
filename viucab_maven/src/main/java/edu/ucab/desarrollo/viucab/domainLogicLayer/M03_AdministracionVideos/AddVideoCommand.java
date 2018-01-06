@@ -6,8 +6,17 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 public class AddVideoCommand extends Command {
 
 
+    Entity _video;
+
+
+    public AddVideoCommand(Entity video){
+        _video = video;
+    }
+
     @Override
     public void execute() throws Exception {
+
+
 
     }
 

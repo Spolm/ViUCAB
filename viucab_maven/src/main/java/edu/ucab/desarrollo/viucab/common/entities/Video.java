@@ -1,120 +1,68 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-        import java.awt.*;
-        import java.io.InputStream;
-        import java.util.ArrayList;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
 
-/**
- * Created by estefania on 10/11/2017.
- */
-public class Video {
+public class Video extends Entity {
 
-    private int id;
-    private String nombre;
-    private String fecha;
-    private int visitas;
-    private String descripcion;
-    private String imagen;
-    private String url;
-    private String _valorCategoria;
-    private String usuario;
-    private ArrayList<Video> listaVideo;
+    private int _id;
+    private String _titulo;
+    private String _descripcion;
+    private String _imagen;
+    private String _url;
+    private String _fecha;
+    private int _visitas;
+    private int _usuario;
 
-    public Video() {
+
+    private static final String FOLDER_DIR = "C:/Users/andre/Desktop";
+
+
+    public Video() {}
+
+    public Video(String titulo, String descripcion, String url, int usuario) {
+
+        _titulo = titulo;
+        _descripcion = descripcion;
+        _url = url;
+        _usuario = usuario;
+
     }
 
-    public Video(ArrayList<Video> listaVideo) {
-        this.listaVideo = listaVideo;
+    public String saveVideo(InputStream uploadedInputStream, int usuario ){
+
+
+        int idVideo=0;//Llamar a stores procedure que te da el siguiente id de video
+
+        String name = idVideo +".mp4";
+        String filePath = FOLDER_DIR + "/vid/" + name;
+        saveFile(uploadedInputStream,filePath);
+
+        return name;
     }
 
-    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
-                 String url) {
-        this.descripcion=descripcion;
-        this.id=id;
-        this.fecha=fecha;
-        this.nombre=titulo;
-        this.imagen=imagen;
-        this.url=url;
-        this.visitas=visitas;
+    public String saveImage(InputStream uploadedInputStream, int usuario ){
+
+
+        int idVideo=0;//Llamar a stores procedure que te da el siguiente id de video
+
+        String name = idVideo +".mp4";
+        String filePath = FOLDER_DIR + "/img/" + name;
+        saveFile(uploadedInputStream,filePath);
+
+        return name;
     }
 
-    public String get_valorCategoria() {
-        return _valorCategoria;
-    }
+    private void saveFile(InputStream uploadedInputStream, String serverLocation) {
 
-    public void set_valorCategoria(String _valorCategoria) {
-        this._valorCategoria = _valorCategoria;
-    }
+        java.nio.file.Path path = FileSystems.getDefault().getPath(serverLocation);
+        try {
+            Files.copy(uploadedInputStream, path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getVisitas() {
-        return visitas;
-    }
-
-    public void setVisitas(int visitas) {
-        this.visitas = visitas;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    public ArrayList<Video> getListaVideo() {
-        return listaVideo;
-    }
-
-    public void setListaVideo(ArrayList<Video> listaVideo) {
-        this.listaVideo = listaVideo;
     }
 }
