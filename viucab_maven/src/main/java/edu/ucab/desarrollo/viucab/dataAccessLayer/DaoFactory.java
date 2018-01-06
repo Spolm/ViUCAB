@@ -2,6 +2,7 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.DaoVideo;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
@@ -27,6 +28,10 @@ public class DaoFactory
         return new GetHomeDao();
     }
     //endregion
+
+    //M03 Video
+    static public DaoVideo instantiateDaoVideo(){ return new DaoVideo();}
+    //Fin M03 Video
 
     //region M05
 

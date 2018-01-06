@@ -22,10 +22,11 @@ public class Video extends Entity {
 
     public Video() {}
 
-    public Video(String titulo, String descripcion, String url, int usuario) {
+    public Video(String titulo, String descripcion, String imagen, String url, int usuario) {
 
         _titulo = titulo;
         _descripcion = descripcion;
+        _imagen = imagen;
         _url = url;
         _usuario = usuario;
 
@@ -48,7 +49,7 @@ public class Video extends Entity {
 
         int idVideo=0;//Llamar a stores procedure que te da el siguiente id de video
 
-        String name = idVideo +".mp4";
+        String name = idVideo +".jpg";
         String filePath = FOLDER_DIR + "/img/" + name;
         saveFile(uploadedInputStream,filePath);
 
@@ -64,5 +65,25 @@ public class Video extends Entity {
             e.printStackTrace();
         }
 
+    }
+
+    public String get_titulo() {
+        return _titulo;
+    }
+
+    public String get_descripcion() {
+        return _descripcion;
+    }
+
+    public String get_imagen() {
+        return _imagen;
+    }
+
+    public String get_url() {
+        return _url;
+    }
+
+    public int get_usuario() {
+        return _usuario;
     }
 }
