@@ -29,9 +29,9 @@
 
                 </p> 
             </ion-row>
-            <ion-row>
+            <ion-row *ngIf="usuario">
                 <ion-col text-center col-6 (click)="updateLike()">
-                    <ion-icon name="thumbs-up"></ion-icon><br> 
+                    <ion-icon name="thumbs-up" color="{{color}}"></ion-icon><br> 
                     {{video.likes}}
                 </ion-col>
                 <ion-col text-center col-6 > 
@@ -40,6 +40,12 @@
 
                         Añadir a lista
                     </p>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="!usuario">
+                <ion-col text-center col-12 >
+                    {{video.likes}} &nbsp;
+                    <ion-icon name="thumbs-up" color="{{color}}"></ion-icon>
                 </ion-col>
             </ion-row>
         </ion-item>
@@ -81,6 +87,7 @@
                     {{comentario.comentario}}
                 </p>
             </div>
+             <ion-icon name="trash" item-end color="danger" *ngIf="comentario.correo==usuario"  (click)="deleteComentario(comentario.idcomentario, comentario.comentario)"></ion-icon>
         </ion-item>
     </ion-list>
 

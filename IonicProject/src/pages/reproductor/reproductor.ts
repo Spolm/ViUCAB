@@ -19,11 +19,11 @@ import {Subscription} from 'rxjs/Subscription';
 export class ReproductorPage implements OnInit {
     public video: any[]
     subscription: Subscription;
-    errorMessage = '';
     public comentario = '';
     private path = 'Modulo2';
-    public usuario = 'aledavid21@gmail.com';
-    public response: any[];
+    public usuario = 'erbintune@gmail.com';
+    //    public response: any[];
+    public color = 'black';
     //    public video =                //PRUEBA CON DATOS ESTATICOS
     //    {
     //        title: 'Subiendo a Galipan',
@@ -57,32 +57,50 @@ export class ReproductorPage implements OnInit {
     //        comentarios: [
     //            {
     //                iduser: '25',
+    //                correo: 'aledavid21@gmail.com'
     //                urlimg: 'http://localhost:2018/foto2.jpg',
     //                nombre: 'Coquetos',
+    //                idcomentario: '1'
     //                comentario: 'The Loading component is an overlay that prevents user interaction while indicating activity. By default, it shows a spinner based on the mode. Dynamic content can be passed and displayed with the spinner. The spinner can be hidden or customized to use several predefined options. The loading indicator is presented on top of other content even during navigation.'
     //            },
     //            {
     //                iduser: '25',
+    //                correo: 'aledavid21@gmail.com'
     //                urlimg: 'http://localhost:2018/foto2.jpg',
     //                nombre: 'Coquetos',
+    //                idcomentario: '1'
     //                comentario: 'The Loading component is an overlay that prevents user interaction while indicating activity. By default, it shows a spinner based on the mode. Dynamic content can be passed and displayed with the spinner. The spinner can be hidden or customized to use several predefined options. The loading indicator is presented on top of other content even during navigation.'
     //            },
     //            {
     //                iduser: '25',
+    //                correo: 'aledavid21@gmail.com'
     //                urlimg: 'http://localhost:2018/foto2.jpg',
     //                nombre: 'Coquetos',
+    //                idcomentario: '1'
     //                comentario: 'The Loading component is an overlay that prevents user interaction while indicating activity. By default, it shows a spinner based on the mode. Dynamic content can be passed and displayed with the spinner. The spinner can be hidden or customized to use several predefined options. The loading indicator is presented on top of other content even during navigation.'
     //            },
     //            {
     //                iduser: '25',
+    //                correo: 'aledavid21@gmail.com'
     //                urlimg: 'http://localhost:2018/foto2.jpg',
     //                nombre: 'Coquetos',
+    //                idcomentario: '1'
     //                comentario: 'The Loading component is an overlay that prevents user interaction while indicating activity. By default, it shows a spinner based on the mode. Dynamic content can be passed and displayed with the spinner. The spinner can be hidden or customized to use several predefined options. The loading indicator is presented on top of other content even during navigation.'
     //            },
     //            {
     //                iduser: '25',
+    //                correo: 'aledavid21@gmail.com'
     //                urlimg: 'http://localhost:2018/foto2.jpg',
     //                nombre: 'Coquetos',
+    //                idcomentario: '1'
+    //                comentario: 'The Loading component is an overlay that prevents user interaction while indicating activity. By default, it shows a spinner based on the mode. Dynamic content can be passed and displayed with the spinner. The spinner can be hidden or customized to use several predefined options. The loading indicator is presented on top of other content even during navigation.'
+    //            },
+    //            {
+    //                iduser: '25',
+    //                correo: 'aledavid21@gmail.com'
+    //                urlimg: 'http://localhost:2018/foto2.jpg',
+    //                nombre: 'Coquetos',
+    //                idcomentario: '1'
     //                comentario: 'The Loading component is an overlay that prevents user interaction while indicating activity. By default, it shows a spinner based on the mode. Dynamic content can be passed and displayed with the spinner. The spinner can be hidden or customized to use several predefined options. The loading indicator is presented on top of other content even during navigation.'
     //            }
     //        ],
@@ -108,13 +126,24 @@ export class ReproductorPage implements OnInit {
     }
 
     ngOnInit() {
-        this.api.getReproduccion(this.path+'/addVisita?idvideo=' + this.navParams.data).subscribe();
-        this.api.getReproduccion(this.path+'/getVideoInfo?idvideo=' + this.navParams.data).subscribe((data) => { // Success
+        this.api.getReproduccion(this.path + '/addVisita?idvideo=' + this.navParams.data).subscribe();
+        this.api.getReproduccion(this.path + '/getVideoInfo?idvideo=' + this.navParams.data).subscribe((data) => { // Success
             this.video = data.json();
+
         },
             (error) => {
                 console.error(error);
             });
+
+        if (this.usuario) {
+            this.api.getReproduccion(this.path + '/getIfLike?idvideo=' + this.navParams.data + '&usuario=' + this.usuario).subscribe((data) => {
+                if (data.json().result != '0') {
+                    this.color = 'primary';
+                }
+            }
+
+            )
+        }
 
     }
 
@@ -126,7 +155,7 @@ export class ReproductorPage implements OnInit {
 
 
     sentComment() {
-        this.api.getReproduccion(this.path+'/addComentario?idvideo=' + this.navParams.data + '&usuario=' + this.usuario + '&comentario=' + this.comentario).subscribe((data) => {
+        this.api.getReproduccion(this.path + '/addComentario?idvideo=' + this.navParams.data + '&usuario=' + this.usuario + '&comentario=' + this.comentario).subscribe((data) => {
             if (data.json().result != '0') {
                 this.showAlert('Comentario agregado exitosamente!');
                 this.openVideo(this.navParams.data);
@@ -145,11 +174,40 @@ export class ReproductorPage implements OnInit {
         });
         alert.present();
     }
-    
-    
-    updateLike(){
+
+
+    updateLike() {
         this.api.getReproduccion(this.path + '/updateLike?idvideo=' + this.navParams.data + '&usuario=' + this.usuario).subscribe();
         this.openVideo(this.navParams.data);
+    }
+
+    deleteComentario(idcom, com) {
+        let confirm = this.alertCtrl.create({
+            title: '¿Seguro que desea eliminar este comentario?',
+            message: com,
+            buttons: [
+                {
+                    text: 'Eliminar',
+                    handler: () => {
+                        this.api.getReproduccion(this.path + '/deleteComentario?idcomentario=' + idcom).subscribe((data) => {
+                            if (data.json().result == '0') {
+                                this.showAlert('Comentario eliminado exitosamente!');
+                                this.openVideo(this.navParams.data);
+                            }
+                            else {
+                                this.showAlert('Hubo un error intentando eliminar su comentario :(. Intentelo de nuevo');
+                            }
+                        });
+                    }
+                },
+                {
+                    text: 'Cancelar',
+                    handler: () => {
+                    }
+                }
+            ]
+        });
+        confirm.present();
     }
 
 }
