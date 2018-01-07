@@ -74,6 +74,7 @@ public class VideoDao extends Dao implements IDaoVideo {
         CallableStatement stmt;
         try {
             stmt = conn.prepareCall("{call getVideosRelacionados(?)}");
+            //Metiendo los parametros al SP
             stmt.setInt(1, idvideo);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
@@ -100,13 +101,16 @@ public class VideoDao extends Dao implements IDaoVideo {
         CallableStatement stmt;
         try {
             stmt = conn.prepareCall("{call getComentarios(?)}");
+            //Metiendo los parametros al SP
             stmt.setInt(1, idvideo);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 JsonObject json = new JsonObject();
                 json.addProperty("iduser", rs.getString("iduser"));
+                json.addProperty("correo", rs.getString("correo"));
                 json.addProperty("urlimg", "../../assets/imgs/advance-card-bttf.png");
                 json.addProperty("nombre", rs.getString("nombre"));
+                json.addProperty("idcomentario", rs.getString("idcomentario"));
                 json.addProperty("comentario", rs.getString("comentario"));
                 jsonArray.add(json);
             }
@@ -166,6 +170,45 @@ public class VideoDao extends Dao implements IDaoVideo {
         } catch (SQLException ex) {
             Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public int getIfLike(int idvideo, String usuario) {
+        Connection conn;
+        conn = getBdConnect();
+        CallableStatement stmt;
+        int result = 0;
+        try {
+            stmt = conn.prepareCall("{call getIfLike(?,?)}");
+            stmt.setInt(1, idvideo);
+            stmt.setString(2, usuario);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    @Override
+    public int deleteComentario(int idcom) {
+        Connection conn;
+        conn = getBdConnect();
+        CallableStatement stmt;
+        int result = 0;
+        try {
+            stmt = conn.prepareCall("{call deleteComentario(?)}");
+            stmt.setInt(1, idcom);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 
 }

@@ -21,4 +21,8 @@ public interface IDaoVideo extends IDao{
     public int addComentario(int idvideo, String usuario, String comentario);
     
     public void updateLike(int idvideo, String usuario);
+    
+    public int getIfLike(int idvideo, String usuario);
+    
+    public int deleteComentario(int idcom);
 }

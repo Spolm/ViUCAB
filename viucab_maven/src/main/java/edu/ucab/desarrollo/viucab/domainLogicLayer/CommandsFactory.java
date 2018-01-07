@@ -134,6 +134,14 @@ public class CommandsFactory {
      public static Command instanciarComandoUpdateLike(int idvideo,String usuario) {
          return new ComandoUpdateLike(idvideo,usuario);
      }
+        
+     public static Command instanciarComandoGetIfLike(int idvideo,String usuario) {
+         return new ComandoGetIfLike(idvideo,usuario);
+     }
+        
+     public static Command instanciarComandoDeleteComentario(int idcom) {
+         return new ComandoDeleteComentario(idcom);
+     }
      
      // Fin M04
 }
