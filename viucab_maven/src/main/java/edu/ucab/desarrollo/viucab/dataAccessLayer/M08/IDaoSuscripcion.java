@@ -2,7 +2,7 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M08;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.IDao;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 
 import java.sql.SQLException;
 
