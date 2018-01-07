@@ -10,10 +10,10 @@ public class Sql {
     private Connection _conn =bdConnect();
     private Statement _st;
     private ResultSet _rs;
-    private static String BD_USER = "viucab";
-    private static String BD_PASSWORD = "viucab";
-    private static String BD_URL = "jdbc:postgresql://localhost/viucabdb";
-    private static String BD_CLASS_FOR_NAME = "org.postgresql.Driver";
+    public static String BD_USER = "ViUCAB";
+    public static String BD_PASSWORD = "viucab";
+    public static String BD_URL = "jdbc:postgresql://localhost:5432/VIUCAB";
+    public static String BD_CLASS_FOR_NAME = "org.postgresql.Driver";
 
     /**
      * Metodo para devolver una unica instancia de la conexion

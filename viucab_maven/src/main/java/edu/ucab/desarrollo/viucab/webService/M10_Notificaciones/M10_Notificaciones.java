@@ -7,46 +7,53 @@ import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.MailNotificacion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
+import org.apache.http.client.HttpClient;
+import org.apache.http.protocol.HTTP;
+
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
-                @Path("/Notificaciones")
-                public class M10_Notificaciones {
-                    Gson gson = new Gson();
-                    Connection conexion = Sql.getConInstance();
+@Path("/Notificaciones")
+public class M10_Notificaciones {
+    Gson gson = new Gson();
+    Connection conexion = Sql.getConInstance();
 
-                    @POST
-                    @Path("/notificacionMail")
-                    @Produces("text/plain")
-                    public String obtenerWebo (@QueryParam("userCliId") String userCli, @QueryParam("userSuscrId") String userSuscr){
-
-                        String usuarioCliente= null;
-                        String correo = null;
-                        String usuarioSuscripcion= null;
-                        try{
-                            Statement stmt = conexion.createStatement();
-                            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userCli);
-                            if(rs.next()){
-                                usuarioCliente = rs.getString(2);
-                                correo = rs.getString(6);
-                            }
-                            rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userSuscr);
-                            if(rs.next()){
-                                usuarioSuscripcion = rs.getString(2);
-                            }
+    @POST
+    @Path("/notificacionMail")
+    @Produces("application/json")
+    public Response enviarMail (@QueryParam("userCliId") String userCli, @QueryParam("userSuscrId") String userSuscr){
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
+        String usuarioCliente= null;
+        String correo = null;
+        String usuarioSuscripcion= null;
+        try{
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userCli);
+            if(rs.next()){
+                usuarioCliente = rs.getString(2);
+                correo = rs.getString(6);
+            }
+            rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userSuscr);
+            if(rs.next()){
+                usuarioSuscripcion = rs.getString(2);
+            }
             MailNotificacion mail = new MailNotificacion();
             mail.enviarNotificacion(correo,"Hola " + usuarioCliente + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + usuarioSuscripcion +" ha subido un nuevo video titulado: Vamos a pasar desarrollo verdad?","Actividad reciente");
             rs.close();
             stmt.close();
+            rb.header("El webo","Peludo?");
+            rb.tag("mochalo");
+            rb.entity("Me pica elwe");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             Sql.bdClose(conexion);
         }
-        return "Holiwis\n";
+        return rb.build();
     }
 
 
@@ -124,7 +131,7 @@ import java.util.List;
             ResultSet result = ps.executeQuery();
             List<ConfiguracionNotificaciones> list = new ArrayList<ConfiguracionNotificaciones>();
             while(result.next()) {
-                ConfiguracionNotificaciones config = new ConfiguracionNotificaciones();
+                ConfiguracionNotificaciones config = new ConfiguracionNotificaciones(0,true,true,true,true,true,true);
                 config.setId(result.getInt("con_not_id"));
                 config.setBoletin(result.getBoolean("con_not_boletin"));
                 config.setPreferencias(result.getBoolean("con_not_preferencias"));
