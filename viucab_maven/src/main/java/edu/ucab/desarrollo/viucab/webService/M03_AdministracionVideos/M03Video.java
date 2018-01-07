@@ -3,6 +3,9 @@ package edu.ucab.desarrollo.viucab.webService.M03_AdministracionVideos;
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
+import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.AddVideoCommand;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
@@ -28,11 +31,23 @@ public class M03Video {
                            @FormDataParam("usuario") int usuario
                             ){
 
-        Entity video = EntityFactory.instantiateVideo(titulo,descripcion,url,usuario);
+        //SALVAR IMAGEN Y OBTENER SU URL
+        Video videoAux = (Video) EntityFactory.instantiateVideo();
+
+        String imgUrl = videoAux.saveImage(imagen,usuario);
+
+        Entity video = EntityFactory.instantiateVideo(titulo,descripcion,imgUrl,url,usuario);
+
+        AddVideoCommand cmd = (AddVideoCommand) CommandsFactory.intantiateAddVideoCommand(video);
+
+        try {
+            cmd.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
-
-        return gson.toJson("addVideo");
+        return gson.toJson(cmd._returned);
     }
 
     @POST
