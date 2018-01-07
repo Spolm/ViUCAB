@@ -36,6 +36,11 @@ public class ConsultarVideos extends Command{
         return eti;
     }
 
+    @Override
+    public ArrayList<Entity> executeCommand() {
+        return null;
+    }
+
     public List<Entity> ReturnList(){
         return vid;
     }

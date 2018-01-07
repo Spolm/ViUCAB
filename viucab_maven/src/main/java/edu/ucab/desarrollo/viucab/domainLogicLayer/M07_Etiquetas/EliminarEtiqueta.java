@@ -6,6 +6,8 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+
 
 public class EliminarEtiqueta extends Command {
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(EliminarEtiqueta.class);
@@ -31,5 +33,10 @@ public class EliminarEtiqueta extends Command {
     @Override
     public Entity Return() {
         return eti;
+    }
+
+    @Override
+    public ArrayList<Entity> executeCommand() {
+        return null;
     }
 }

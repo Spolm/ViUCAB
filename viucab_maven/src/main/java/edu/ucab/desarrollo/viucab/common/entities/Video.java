@@ -2,14 +2,12 @@ package edu.ucab.desarrollo.viucab.common.entities;
 
         import java.awt.*;
         import java.io.InputStream;
-
         import java.util.ArrayList;
-
 
 /**
  * Created by estefania on 10/11/2017.
  */
-public class Video extends Entity {
+public class Video extends Entity{
 
     private int id;
     private String nombre;
@@ -20,14 +18,31 @@ public class Video extends Entity {
     private String url;
     private String _valorCategoria;
     private String usuario;
-    private ArrayList<Video> listaVideo;
     private int id_categoria;
+    private ArrayList<Video> listaVideo;
+    private int id_usuario;
 
     public Video() {
     }
 
+    public Video (int id_usuario, String categoria){
+        this.id_usuario = id_usuario;
+        this._valorCategoria = categoria;
+    }
+
     public Video(ArrayList<Video> listaVideo) {
         this.listaVideo = listaVideo;
+    }
+
+    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
+                 String url) {
+        this.descripcion=descripcion;
+        this.id=id;
+        this.fecha=fecha;
+        this.nombre=titulo;
+        this.imagen=imagen;
+        this.url=url;
+        this.visitas=visitas;
     }
 
     public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
@@ -40,16 +55,23 @@ public class Video extends Entity {
         this.url=url;
         this.visitas=visitas;
         this.id_categoria = id_categoria;
-
     }
 
-    public int getId_categoria() {
-        return id_categoria;
-    }
-
-    public void setId_categoria(int id_categoria) {
+    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
+                 String url,int usuario,  int id_categoria) {
+        this.descripcion=descripcion;
+        this.id=id;
+        this.fecha=fecha;
+        this.nombre=titulo;
+        this.imagen=imagen;
+        this.url=url;
+        this.visitas=visitas;
         this.id_categoria = id_categoria;
+        this.id_usuario = usuario;
+
     }
+
+
 
     public String get_valorCategoria() {
         return _valorCategoria;
@@ -115,7 +137,6 @@ public class Video extends Entity {
         this.url = url;
     }
 
-
     public String getUsuario() {
         return usuario;
     }
@@ -132,4 +153,19 @@ public class Video extends Entity {
         this.listaVideo = listaVideo;
     }
 
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
 }

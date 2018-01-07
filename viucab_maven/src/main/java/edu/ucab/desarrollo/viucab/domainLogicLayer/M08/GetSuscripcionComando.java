@@ -81,4 +81,9 @@ public class GetSuscripcionComando extends Command {
     public Entity Return() {
         return est; //EN ESTE RETURN ES DONDE DEBO DEVOLVER LA LISTA DE SUSCRIPCIONES
     }
+
+    @Override
+    public ArrayList<Entity> executeCommand() {
+        return null;
+    }
 }

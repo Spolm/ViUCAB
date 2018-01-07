@@ -24,18 +24,6 @@ public class hola {
             return "hola" + username;
     }
 
-<<<<<<< HEAD
-    @GET
-    @Path("/mundo")
-    @Produces("text/plain")
-    public String mundo()
-    {
-        //pasan el valor con ?username= y lo que quieran capturar |
-        return "hola";
-    }
-
-=======
->>>>>>> Develop
 
 
 

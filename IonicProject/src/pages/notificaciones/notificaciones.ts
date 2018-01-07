@@ -21,7 +21,7 @@ export class NotificacionesPage {
     console.log('ionViewDidLoad NotificacionesPage');
   }
 
-  goToConfiguracionNotificaciones(){
+   goToConfiguracionNotificaciones(){
     this.navCtrl.push(ConfiguracionNotificacionesPage);
   }
 

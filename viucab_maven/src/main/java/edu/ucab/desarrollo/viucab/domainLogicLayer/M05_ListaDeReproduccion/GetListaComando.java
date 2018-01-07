@@ -6,6 +6,8 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetLis
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
+
 /**
  *
  */
@@ -38,5 +40,10 @@ public class GetListaComando extends Command {
     @Override
     public Entity Return() {
         return est;
+    }
+
+    @Override
+    public ArrayList<Entity> executeCommand() {
+        return null;
     }
 }

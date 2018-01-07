@@ -1,12 +1,5 @@
-import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.Estadistica;
-import edu.ucab.desarrollo.viucab.common.entities.Video;
+
 package edu.ucab.desarrollo.viucab.common.entities;
-
-/**
- * Fabrica de Entidades creada por M011
- */
-
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -101,15 +94,19 @@ public class EntityFactory
 
     //final M08
 
-    //region M09
+    //Mregion M09
 
-    static public Entity getSugerenciasLike(int id, String titulo, String descripcion, String imagen,String url, String fecha,int visitas, int id_Categoria){
+    static public Entity sugerenciasVideo (){return new Video();}
 
-        return new Video(id,titulo,descripcion,imagen,fecha,visitas,url, id_Categoria);
+    static public Entity nuevoVideo (int id, String titulo, String descripcion, String imagen,String url, String fecha,int visitas,int usuario, int id_categoria) {
+        return new Video(id, titulo, descripcion, imagen, fecha, visitas, url,usuario, id_categoria);
     }
+
+    static public Entity instaciateVideo (int id_usuario, String categoria) {return new Video(id_usuario, categoria);}
+
+
 
     //final M09
 
 }
 
->>>>>>> Develop

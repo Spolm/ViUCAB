@@ -33,7 +33,7 @@ export class MenuPage {
     //Aqui van los links de las paginas principales de los demas grupos
     //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
     //{ title: 'Mi canal', pageName: 'CanalPage', icon: 'play' },
-    { title: 'Mis listas', pageName: 'PlaylistPage', icon: 'star-half' },
+    { title: 'Mis listas', pageName: 'Modulo9Page', icon: 'star-half' },
     { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
   ];
  

@@ -1,18 +1,16 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-<<<<<<< HEAD
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
-=======
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasLikeComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
->>>>>>> Develop
 
 /**
  * Fabrica de comandos creada por M011
@@ -60,8 +58,6 @@ public class CommandsFactory {
 
     //endregion
 
-<<<<<<< HEAD
-=======
     //M02 Instancias
 
     public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando(criterio);}
@@ -107,5 +103,12 @@ public class CommandsFactory {
 
 
     //Fin instancias M08
->>>>>>> Develop
+
+    //regin M09
+
+    public static Command instaciateSugerenciasLike (Entity video) {return new GetSugerenciasLikeComando(video);}
+
+    public static Command instaciateSugerenciasSuscripcion (Entity video) {return new GetSugerenciasSuscripcionComando(video);}
+
+    //fin M09
 }

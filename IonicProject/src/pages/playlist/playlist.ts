@@ -3,11 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EditListPage} from "./edit-list/edit-list";
 import { PopoverController } from 'ionic-angular';
 import {ViewListPage} from "./view-list/view-list";
-<<<<<<< HEAD
-import { Modulo9Page } from '../modulo9/modulo9';
-=======
 
->>>>>>> Develop
 import {PopOverListasReproduccionPage} from '../playlist/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 import {AddListPage} from "./add-list/add-list";
 
@@ -32,10 +28,7 @@ export class PlaylistPage {
     { title: 'Lista numero 3', amount: '1', duration: '39:05 min' , img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho'},
   ];
 
-<<<<<<< HEAD
-=======
 
->>>>>>> Develop
   constructor(public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController) {
   }
 
@@ -44,13 +37,7 @@ export class PlaylistPage {
     console.log('ionViewDidLoad ListasPage');
     this.tab = 'mias';
   }
-<<<<<<< HEAD
-  probando(){
-this.navCtrl.push(Modulo9Page);
-  }
-=======
 
->>>>>>> Develop
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopOverListasReproduccionPage);
     popover.present({
@@ -58,13 +45,10 @@ this.navCtrl.push(Modulo9Page);
     });
   }
 
-<<<<<<< HEAD
-=======
   public goToEditList(){
     this.navCtrl.push(EditListPage);
   }
 
->>>>>>> Develop
   public goToViewList(){
     this.navCtrl.push(ViewListPage);
   }

@@ -1,36 +1,46 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.Like;
-import edu.ucab.desarrollo.viucab.common.entities.Usuario;
-import edu.ucab.desarrollo.viucab.common.entities.Video;
-import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
+import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M09_Sugerencias.GetSugerenciasDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.GetEstadistica1;
+import org.slf4j.LoggerFactory;
 
-import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class GetSugerenciasLikeComando implements Command {
+public class GetSugerenciasLikeComando extends Command {
 
-    Like like;
-    Usuario user;
-    Video vid;
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
+    private static Entity est;
+    ArrayList<Entity> e = null;
 
-    public GetSugerenciasLikeComando(){
-        like = new Like();
-        user = new Usuario();
-        vid = new Video();
-    }
+    public GetSugerenciasLikeComando(Entity est){this.est = est;}
+
+    public GetSugerenciasLikeComando(){this.e = e;}
 
     @Override
-    public String execute(int usuario, String categoria) throws SQLException {
-        Dao dao = new Dao();
-        return dao.getSugerenciasLike(usuario, categoria);
-      //  return dao.getSugerenciasLike(usuario, categoria);
+    public void execute() throws BdConnectException, PlConnectException {
+                try{
+                    GetSugerenciasDao dao = DaoFactory.instaciateDaoSugerencias();
+                    ArrayList<Entity> lista = dao.sugerenciasLike(est);
+                    e = lista;
+                }
+                catch (Exception e){
+                    est = new Entity();
+                }
     }
-/*
+
     @Override
     public Entity Return() {
-        return null;
+        return est;
     }
-*/
+
+    @Override
+    public ArrayList<Entity> executeCommand() {
+
+        return e;
+    }
 }
