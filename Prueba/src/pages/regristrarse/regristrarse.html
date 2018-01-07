@@ -66,21 +66,52 @@ SE DEBE VALIDAR QUE SEAN MINIMO 6 CARACTERES
         <h6 style="color:#000000;font-weight:600;text-align:center;">Tambien puedes ingresar a traves de : </h6>
       
         
-            
+
         <!-- Float the icon left -->
-<button ion-button icon-left inline>
+<button ion-button icon-left inline (click)="loginWithGoogle()" *ngIf ="!provider.loggedin">
     <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>
     Google+
   </button>
+
+
+
   
   <!-- Float the icon right -->
-  <button ion-button icon-left inline>
+  <button ion-button icon-left inline (click)="loginWithTwitter()" *ngIf ="!provider.loggedin">
     Twitter
     <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
   </button>
   
-  <button ion-button inline (click)="loginWithFB()"><ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+
+
+
+
+
+  <button ion-button inline (click)="loginWithFacebook()" *ngIf ="!provider.loggedin"><ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
     Facebook</button>
+    
+    <ion-card  *ngIf ="provider.loggedin">   
+        <img src="{{ provider.profilePicture }}"/>
+        <ion-card-content>
+          <ion-card-title>
+           {{ provider.name }}
+            </ion-card-title>
+          <p style="text-align: center">
+       {{provider.email }}
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+
+
+
+    <button ion-button inline (click)="logout()" *ngIf ="provider.loggedin"><ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
+     salir </button>
+    
+    
+    
+    
+    <!--
   <ion-card *ngIf="userData" >
     <ion-card-header>{{ userData.username }}</ion-card-header>
     <img [src]="userData.picture">
@@ -88,7 +119,7 @@ SE DEBE VALIDAR QUE SEAN MINIMO 6 CARACTERES
       <p> Email: {{ userData.email }} </p>
       <p> First Name: {{ userData.first_name }} </p>
     </ion-card-content>
-  </ion-card>
+  </ion-card> -->
 
 
   <!-- Only icon (no text) -->
@@ -100,4 +131,8 @@ SE DEBE VALIDAR QUE SEAN MINIMO 6 CARACTERES
       <ion-card-header>{{userData.username }}</ion-card-header>
 
   </ion-card>-->
+
+
+
+  
 </ion-content>
