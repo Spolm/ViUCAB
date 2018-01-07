@@ -1,17 +1,30 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+
 import { HomecablePage } from '../homecable/homecable';
 import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { AlertController } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
+import firebase from 'firebase';
+
 @IonicPage()
 @Component({
   selector: 'page-regristrarse',
   templateUrl: 'regristrarse.html',
 })
 export class RegristrarsePage {
+//objeto para facebook
+provider = {
+    
+    name: '',
+    profilePicture: '',
+    email: '',
+    loggedin: false
+  }
+
+
+
   @ViewChild('Usuario') usu;
 @ViewChild('Contrasena') passw;
 
@@ -22,8 +35,9 @@ export class RegristrarsePage {
   Contraseña:AbstractControl;
   RepetirContraseña:AbstractControl;
 
-  constructor(public alertCtrl: AlertController, private fire: AngularFireAuth,  public navCtrl: NavController, public navParams: NavParams,private facebook: Facebook,
+  constructor(public alertCtrl: AlertController, private fire: AngularFireAuth,  public navCtrl: NavController, public navParams: NavParams,
   public formbuilder: FormBuilder) {
+
 this.formgroup = formbuilder.group({
   Usuario:['',Validators.required],
   email:['',Validators.required],
@@ -48,6 +62,7 @@ this.RepetirContraseña = this.formgroup.controls['RepetirContraseña'];
 
  
   //PARA EL WS
+  //----para los mensajes de alerta
   alert(message:string){
   this.alertCtrl.create({
     title: 'Info!',
@@ -56,7 +71,7 @@ this.RepetirContraseña = this.formgroup.controls['RepetirContraseña'];
 
   }).present();
 }
-
+//--Registrar usuario normal
    registerUser(){
      
      this.fire.auth.createUserWithEmailAndPassword(this.usu.value, this.passw.value)
@@ -73,20 +88,69 @@ this.alert(error.message);
 console.log('registrar con',this.usu.value, this.passw.value);
 
   }
-loginWithFB() {
+//--Registrar por facebook google twitter
+    loginWithFacebook(){
+        this.fire.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then( res =>{
+         this.provider.loggedin = true;
+         this.provider.name= res.user.displayName;
+         this.provider.email = res.user.email;
+         this.provider.profilePicture = res.user.photoURL;
+          console.log(res);
+          this.navCtrl.setRoot( HomecablePage);
+        })
+}
+
+
+
+loginWithGoogle(){
+this.fire.auth.signInWithPopup (new firebase.auth.GoogleAuthProvider())
+.then( res=>{
+  console.log('fdesde --google--');
+console.log(res);
+this.provider.loggedin = true;
+this.provider.name= res.user.displayName;
+this.provider.email = res.user.email;
+this.provider.profilePicture = res.user.photoURL;
+ console.log(res);
+ this.navCtrl.setRoot( HomecablePage);
+
+})
   
-   this.facebook.login(['email', 'public_profile','user_friends']).then((Response: FacebookLoginResponse)=>	 {
-    this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)',[]).then(profile =>{
+}
+
+
+
+//--deslogear desde fb twtter y google
+
     
-    this.userData ={email: profile['email'], first_name: profile['first_name'],picture: profile['picture_large']['data']['url'], username:profile['name'] };
-    }  )
-  } )
+
+    logout(){
+        this.fire.auth.signOut();
+
+        this.provider.loggedin = false;
+    }
+
+
+
+
+
+
+  //-Primer login de fb sin firebase---------------
+//loginWithFB() {
+  
+  // this.facebook.login(['email', 'public_profile','user_friends']).then((Response: FacebookLoginResponse)=>	 {
+  //  this.facebook.api('me?fields=id,name,email,first_name,picture.width(720).height(720).as(picture_large)',[]).then(profile =>{
+    
+  //  this.userData ={email: profile['email'], first_name: profile['first_name'],picture: profile['picture_large']['data']['url'], username:profile['name'] };
+  //  }  )
+ // } )
 
 
  
   
 
-}
+//}
 
 /*
 loginWithFB() {
