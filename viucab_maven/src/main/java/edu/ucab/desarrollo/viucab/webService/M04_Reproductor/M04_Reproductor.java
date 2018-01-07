@@ -11,7 +11,9 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.ComandoAddVisita;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.ComandoAgregarComentario;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.ComandoGetVideoInfo;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.ComandoUpdateLike;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.webService.M02_Home.CrossOrigin;
 import java.util.logging.Level;
@@ -123,6 +125,39 @@ public class M04_Reproductor {
             Logger.getLogger(M04_Reproductor.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "";
+    }
+
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/addComentario")
+    @Produces("application/json")
+    public String addComentario(@QueryParam("idvideo") String idvideo, @QueryParam("usuario") String usuario, @QueryParam("comentario") String comentario) {
+        Command comando = CommandsFactory.instanciarComandoAgregarComentario(Integer.parseInt(idvideo), usuario, comentario);
+        ComandoAgregarComentario cmd = (ComandoAgregarComentario) comando;
+        try {
+            cmd.execute();
+            JsonObject jsonObj = new JsonObject();
+            jsonObj.addProperty("result", cmd.result);
+            return gson.toJson(jsonObj);
+        } catch (Exception ex) {
+            Logger.getLogger(M04_Reproductor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "";
+    }
+
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/updateLike")
+    @Produces("application/json")
+    public void updateLike(@QueryParam("idvideo") String idvideo, @QueryParam("usuario") String usuario) {
+        Command comando = CommandsFactory.instanciarComandoUpdateLike(Integer.parseInt(idvideo), usuario);
+        ComandoUpdateLike cmd = (ComandoUpdateLike) comando;
+        try {
+            cmd.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(M04_Reproductor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

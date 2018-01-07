@@ -126,8 +126,12 @@ public class CommandsFactory {
          return new ComandoAddVisita(idvideo);
      }
      
-     public static Command instanciarComandoAgregarComentario(int idvideo) {
-         return new ComandoAgregarComentario(idvideo);
+     public static Command instanciarComandoAgregarComentario(int idvideo,String usuario, String comentario) {
+         return new ComandoAgregarComentario(idvideo,usuario,comentario);
+     }
+        
+     public static Command instanciarComandoUpdateLike(int idvideo,String usuario) {
+         return new ComandoUpdateLike(idvideo,usuario);
      }
      
      // Fin M04
