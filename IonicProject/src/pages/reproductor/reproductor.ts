@@ -20,7 +20,10 @@ export class ReproductorPage implements OnInit {
     public video: any[]
     subscription: Subscription;
     errorMessage = '';
-    public tab: string;
+    public comentario = '';
+    private path = 'Modulo2';
+    public usuario = 'aledavid21@gmail.com';
+    public response: any[];
     //    public video =                //PRUEBA CON DATOS ESTATICOS
     //    {
     //        title: 'Subiendo a Galipan',
@@ -102,12 +105,11 @@ export class ReproductorPage implements OnInit {
 
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public alertCtrl: AlertController, public api: RestApiService) {
-        console.log(this.video);
     }
 
     ngOnInit() {
-        this.api.getReproduccion('Reproductor/addVisita?idvideo=' + this.navParams.data).subscribe();
-        this.api.getReproduccion('Reproductor/getVideoInfo?idvideo=' + this.navParams.data).subscribe((data) => { // Success
+        this.api.getReproduccion(this.path+'/addVisita?idvideo=' + this.navParams.data).subscribe();
+        this.api.getReproduccion(this.path+'/getVideoInfo?idvideo=' + this.navParams.data).subscribe((data) => { // Success
             this.video = data.json();
         },
             (error) => {
@@ -123,14 +125,31 @@ export class ReproductorPage implements OnInit {
     @ViewChild('myNav') nav: NavController;
 
 
+    sentComment() {
+        this.api.getReproduccion(this.path+'/addComentario?idvideo=' + this.navParams.data + '&usuario=' + this.usuario + '&comentario=' + this.comentario).subscribe((data) => {
+            if (data.json().result != '0') {
+                this.showAlert('Comentario agregado exitosamente!');
+                this.openVideo(this.navParams.data);
+            }
+            else {
+                this.showAlert('Hubo un error enviando tu comentario :(. Intentelo de nuevo');
+            }
+        });
+    }
 
 
-    showAlert() {
+    showAlert(title) {
         let alert = this.alertCtrl.create({
-            title: 'Comentario agregado exitosamente!',
+            title: title,
             buttons: ['OK']
         });
         alert.present();
+    }
+    
+    
+    updateLike(){
+        this.api.getReproduccion(this.path + '/updateLike?idvideo=' + this.navParams.data + '&usuario=' + this.usuario).subscribe();
+        this.openVideo(this.navParams.data);
     }
 
 }

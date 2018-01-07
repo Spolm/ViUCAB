@@ -15,9 +15,9 @@
 <ion-content *ngIf="video">
 
     <ion-list>
-        <ion-item>
+        <ion-item> 
             <ion-row>
-                <video  width="100%"  src="{{video.url}}" controls  height="250" style="margin-top: -20px"></video>
+                <video  width="100%"  src="{{video.url}}" controls  height="250" ></video>
                 <h4>
                     {{video.title}} <br>
 
@@ -30,11 +30,11 @@
                 </p> 
             </ion-row>
             <ion-row>
-                <ion-col text-center col-6>
-                    <ion-icon name="thumbs-up"></ion-icon><br>
+                <ion-col text-center col-6 (click)="updateLike()">
+                    <ion-icon name="thumbs-up"></ion-icon><br> 
                     {{video.likes}}
                 </ion-col>
-                <ion-col text-center col-6 (click)="showLists()"> 
+                <ion-col text-center col-6 > 
                          <ion-icon name="add"></ion-icon><br>
                     <p style="white-space: normal; color: black">
 
@@ -68,7 +68,7 @@
 
 
     <ion-list>
-        <ion-item-divider color="light">Comentarios - 15k</ion-item-divider>
+        <ion-item-divider color="light">Comentarios</ion-item-divider>
 
         <ion-item *ngFor="let comentario of video.comentarios">
             <ion-avatar item-start>
@@ -88,13 +88,13 @@
         <ion-list-header>
             <h5>Escribir Comentario</h5>
 
-            <button ion-button clear item-end (click)="showAlert()">
+            <button ion-button clear item-end (click)="sentComment()">
                     <ion-icon name="add"></ion-icon>Enviar
             </button>
         </ion-list-header>
         <ion-item>
             <ion-label fixed>Comentario:</ion-label>
-            <ion-input type="text" value=""></ion-input>
+            <ion-input type="text" value="" [value]="comentario" [(ngModel)]="comentario"></ion-input>
         </ion-item>
     </ion-list>
 
