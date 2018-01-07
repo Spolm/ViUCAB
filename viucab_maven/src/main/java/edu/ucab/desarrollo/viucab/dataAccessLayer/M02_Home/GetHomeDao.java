@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * Created by estefania on 13/12/2017.
@@ -39,22 +40,22 @@ public class GetHomeDao extends Dao implements IDaoHome {
     }
 
     /**
-     * Carga los Videos Mas Vistosdel Sistema
-     *
-     * @param
+     * Metodo que busca los video con mas visitas
      * @return resultlist
+     * @throws SQLException
      */
-    public ArrayList<Video> listaVideoTop() {
-
-        CallableStatement preStatement = null;
-        ArrayList<Video> resultlist = null;
-        ResultSet resultSet = null;
+    @Override
+    public ArrayList<Video> GetMasVistosComando() throws SQLException {
         Video video;
+        CallableStatement preStatement = null;
+        ArrayList<Video> listaVideos= new ArrayList<>();
+        ResultSet resultSet = null;
+
         Connection conn;
 
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new ArrayList<Video>();
+
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -63,17 +64,19 @@ public class GetHomeDao extends Dao implements IDaoHome {
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
 
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
-                resultlist.add(video);
-                video.setListaVideo(resultlist);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                listaVideos.add(video);
 
 
             }
@@ -84,20 +87,24 @@ public class GetHomeDao extends Dao implements IDaoHome {
         } finally {
             closeConnection();
         }
-        return resultlist;
-    }
+        return listaVideos;
 
+    }
+/*
     /**
-     * Dado el id del usuario devuelve videos asoiados a sus preferencias
-     *
-     * @param idUsuario
+     * Obtiene en funcion del id del usuario los videos que cumplan
+     * con sus preferencias
+     * @param entidad
      * @return resultlist
      */
-    public ArrayList<Video> listaVideoPreferencias(int idUsuario) {
+    @Override
+    public ArrayList<Video> GetPreferenciasComando(Entity entidad) {
+        Usuario usuario =(Usuario) entidad;
+        int idU=usuario.get_id_user();
+        Video video = null;
         CallableStatement preStatement = null;
         ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
-        Video video;
         Connection conn;
         try {
             //Creando la lista q corresponde a videos
@@ -107,22 +114,24 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Invocando el SP
             preStatement = conn.prepareCall("{call m02_obtenerpreferencias(?)}");
             //Metiendo los parametros al SP
-            preStatement.setInt(1,idUsuario);
+            preStatement.setInt(1,idU);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
 
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
-                video.setListaVideo(resultlist);
 
             }
             resultSet.close();
@@ -135,12 +144,16 @@ public class GetHomeDao extends Dao implements IDaoHome {
     }
 
     /**
-     * Carga los ultimos videos subidos a canales a los que
-     * el usuario esta suscrito
-     * @param idUsuario
+     * Obtiene los ultimos videos que han sido subidos por los canales a los
+     * que el usuario se encuentra suscrito
+     * @param entidad
      * @return resultlist
      */
-    public ArrayList<Video> listaVideoSuscritos(int idUsuario) {
+    @Override
+    public ArrayList<Video> GetSuscritosComando(Entity entidad) {
+
+        Usuario usuario =(Usuario) entidad;
+        int idU=usuario.get_id_user();
         CallableStatement preStatement = null;
         ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
@@ -154,21 +167,23 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Invocando el SP
             preStatement = conn.prepareCall("{call m02_obtenersuscripciones(?)}");
             //Metiendo los parametros al SP
-            preStatement.setInt(1,idUsuario);
+            preStatement.setInt(1,idU);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
-                video.setListaVideo(resultlist);
 
             }
             resultSet.close();
@@ -181,12 +196,14 @@ public class GetHomeDao extends Dao implements IDaoHome {
         return resultlist;
     }
 
+
     /**
-     * Realiza la busqueda de videos por titulo etiqueta o genero
-     * @param Parametro
+     * Realiza Busque por etiqueta titulo y/o categoria
+     * @param parametro
      * @return resultlist
      */
-    public ArrayList<Video> listaVideoBusqueda(String Parametro){
+    @Override
+    public ArrayList<Video> GetBusquedaComando(String parametro) {
         CallableStatement preStatement = null;
         ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
@@ -200,21 +217,23 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Invocando el SP
             preStatement = conn.prepareCall("{call m02_buscarvideo(?)}");
             //Metiendo los parametros al SP
-            preStatement.setString(1,Parametro);
+            preStatement.setString(1,parametro);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
-                int id = resultSet.getInt("vid_id");
-                String nombre = resultSet.getString("vid_titulo");
-                String descripcion = resultSet.getString("vid_descripcion");
-                String imagen = resultSet.getString("vid_imagen");
-                String url = resultSet.getString("vid_url");
-                String fecha = resultSet.getString("vid_fecha");
-                int visitas = resultSet.getInt("vid_visitas");
+                int id = resultSet.getInt("idvideo");
+                String nombre = resultSet.getString("nombrevideo");
+                String descripcion = resultSet.getString("descripcionvideo");
+                String imagen = resultSet.getString("imagenvideo");
+                String url = resultSet.getString("urlvideo");
+                String fecha = resultSet.getString("fechavideo");
+                int visitas = resultSet.getInt("visitasvideo");
+                String nombreusu = resultSet.getString("nombreusuario");
+                String imagenusuario = resultSet.getString("imagenusuario");
 
-                video = EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas);
+
+                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
-                video.setListaVideo(resultlist);
 
             }
             resultSet.close();
@@ -225,6 +244,6 @@ public class GetHomeDao extends Dao implements IDaoHome {
             closeConnection();
         }
         return resultlist;
-
     }
+
 }

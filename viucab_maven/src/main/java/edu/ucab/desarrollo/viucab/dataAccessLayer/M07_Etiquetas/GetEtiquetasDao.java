@@ -83,7 +83,7 @@ public class GetEtiquetasDao extends Dao implements IDaoEtiqueta {
             while(rs.next()){
                 int _id = rs.getInt("ID_ETIQ");
                 int _idVid = rs.getInt("ID_VID");
-                Video_Etiq video_etiq = new Video_Etiq(_id, _idVid);
+                Video_Etiq video_etiq = new Video_Etiq(_idVid, _id);
                 list.add(video_etiq);
             }
         }

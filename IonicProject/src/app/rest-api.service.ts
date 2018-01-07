@@ -1,18 +1,14 @@
 //Clase que se encarga de enviar las solicitudes al servidor Rest Java
-//En periodo de prueba, no se ha validado que funciona, pero es la estructura basica. 
+//En periodo de prueba, no se ha validado que funciona, pero es la estructura basica.
 
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/do';
 
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8888/viucab';
-//const URL = 'http://localhost:8889/viucab';
+const URL = 'http://localhost:8080/viucab';
 
 @Injectable()
 export class RestApiService {
@@ -147,11 +143,11 @@ export class RestApiService {
   }
 
 
- 
+
   public geta(direccion){
     return this.http
       .get(URL+'/'+direccion)
- 
+
   }
 /////////////////
  //Metodo DELETE: /direccion
@@ -163,13 +159,4 @@ export class RestApiService {
     .catch(this.handleError);
    }
 
-
-  /*getDato( direccion)
-  {   
-      return this.http.get( URL+'/'+direccion )   
-     //.map( this.datosMapa )    
-     //.map((data: any) => data.json())
-     .do( this.p ) 
-  }
-*/
 }

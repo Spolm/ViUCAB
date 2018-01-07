@@ -1,0 +1,111 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-buttons start>
+            <button ion-button menuToggle>
+                <ion-icon name="menu"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>
+            <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
+        </ion-title>
+
+    </ion-navbar>
+</ion-header>
+
+<ion-content *ngIf="video">
+
+    <ion-list>
+        <ion-item> 
+            <ion-row>
+                <video  width="100%"  src="{{video.url}}" controls  height="250" ></video>
+                <h4>
+                    {{video.title}} <br>
+
+                </h4> 
+            </ion-row>
+            <ion-row>
+                <p>
+                    {{video.visitas}} visitas
+
+                </p> 
+            </ion-row>
+            <ion-row *ngIf="usuario">
+                <ion-col text-center col-6 (click)="updateLike()">
+                    <ion-icon name="thumbs-up" color="{{color}}"></ion-icon><br> 
+                    {{video.likes}}
+                </ion-col>
+                <ion-col text-center col-6 > 
+                         <ion-icon name="add"></ion-icon><br>
+                    <p style="white-space: normal; color: black">
+
+                        Añadir a lista
+                    </p>
+                </ion-col>
+            </ion-row>
+            <ion-row *ngIf="!usuario">
+                <ion-col text-center col-12 >
+                    {{video.likes}} &nbsp;
+                    <ion-icon name="thumbs-up" color="{{color}}"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-item>
+
+        <ion-item>
+            <ion-avatar item-start>
+                <img src="{{video.imgowner}}">
+            </ion-avatar>
+            <h2>{{video.owner}}</h2>
+            <p>{{video.subscripciones}} Subscripciones</p>
+        </ion-item>
+
+        <ion-item-divider   color="light">Videos Relacionados</ion-item-divider>
+
+        <ion-item *ngFor="let relacion of video.relacionados" (click)="openVideo(relacion.id)">
+            
+                <ion-thumbnail item-start>
+                    <img src="{{relacion.urlimg}}">
+                </ion-thumbnail>
+                <h2>{{relacion.nombre}}</h2>
+                <p>{{relacion.canal}}</p>
+         
+        </ion-item>
+
+    </ion-list>
+
+
+    <ion-list>
+        <ion-item-divider color="light">Comentarios</ion-item-divider>
+
+        <ion-item *ngFor="let comentario of video.comentarios">
+            <ion-avatar item-start>
+                <img src="{{comentario.urlimg}}">
+            </ion-avatar>
+            <div>
+
+                <h2 style="white-space: normal">{{comentario.nombre}}</h2>
+                <p style="white-space: normal; padding-left: 5px; font-size: 11px">
+                    {{comentario.comentario}}
+                </p>
+            </div>
+             <ion-icon name="trash" item-end color="danger" *ngIf="comentario.correo==usuario"  (click)="deleteComentario(comentario.idcomentario, comentario.comentario)"></ion-icon>
+        </ion-item>
+    </ion-list>
+
+    <ion-list>
+        <ion-list-header>
+            <h5>Escribir Comentario</h5>
+
+            <button ion-button clear item-end (click)="sentComment()">
+                    <ion-icon name="add"></ion-icon>Enviar
+            </button>
+        </ion-list-header>
+        <ion-item>
+            <ion-label fixed>Comentario:</ion-label>
+            <ion-input type="text" value="" [value]="comentario" [(ngModel)]="comentario"></ion-input>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+
+
+
