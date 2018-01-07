@@ -3,9 +3,9 @@ package edu.ucab.desarrollo.viucab.webService.M08_Suscripcion;
 
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.*;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.WebFaulException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.WebFaulException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
@@ -14,7 +14,6 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 
 import javax.ws.rs.*;
-import javax.xml.ws.WebFault;
 import java.util.ArrayList;
 
 @Path("/Suscripcion")
@@ -27,14 +26,14 @@ public class M08_Suscripcion {
      * @param idSuscriptor
      * @param idLogueado
      * @return
-     * @throws BdConnectException
-     * @throws PlConnectException
+     * @throws BDConnectException1
+     * @throws PLConnectException1
      * @throws WebFaulException
      */
     @GET
     @Path("/SetSuscripcion")
     @Produces("text/plain")
-    public String SetSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BdConnectException, PlConnectException, WebFaulException  {
+    public String SetSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BDConnectException1, PLConnectException1, WebFaulException  {
 
         try {
             Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(idLogueado, idSuscriptor);
@@ -42,11 +41,11 @@ public class M08_Suscripcion {
             cmd.execute();
             return cmd.ObtenerRespuesta();
         }
-        catch (BdConnectException ex)
+        catch (BDConnectException1 ex)
         { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
-        catch (PlConnectException ex)
+        catch (PLConnectException1 ex)
         { ex.getMessage();
             /*
             catch (ViUCABException e) {
@@ -74,14 +73,14 @@ public class M08_Suscripcion {
      * @param idLogueado
      * @param idSuscriptor
      * @return
-     * @throws BdConnectException
-     * @throws PlConnectException
+     * @throws BDConnectException1
+     * @throws PLConnectException1
      * @throws WebFaulException
      */
     @DELETE
     @Path("/UpdateSuscripcion")
     @Produces("text/plain")
-    public String UpdateSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BdConnectException, PlConnectException, WebFaulException {
+    public String UpdateSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BDConnectException1, PLConnectException1, WebFaulException {
 
         try {
 
@@ -91,10 +90,10 @@ public class M08_Suscripcion {
             System.out.println(cmd.ObtenerRespuesta());
             return cmd.ObtenerRespuesta();
 
-        }catch (BdConnectException ex)
+        }catch (BDConnectException1 ex)
         { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
-        }catch (PlConnectException ex)
+        }catch (PLConnectException1 ex)
         { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
@@ -106,15 +105,15 @@ public class M08_Suscripcion {
      * el cual lista las suscripciones del usuario logueado.
      * @param id
      * @return
-     * @throws BdConnectException
-     * @throws PlConnectException
+     * @throws BDConnectException1
+     * @throws PLConnectException1
      * @throws WebFaulException
      */
 
     @GET
     @Path("/GetSuscripcion")
     @Produces("application/json")
-    public String GetSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException {
+    public String GetSuscripcion(@QueryParam("id") int id) throws BDConnectException1, PLConnectException1, WebFaulException {
 
         try{
 
@@ -129,10 +128,10 @@ public class M08_Suscripcion {
 
 
 
-        }catch (BdConnectException ex)
+        }catch (BDConnectException1 ex)
         {   ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
-        }catch (PlConnectException ex)
+        }catch (PLConnectException1 ex)
         {    ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
@@ -141,7 +140,7 @@ public class M08_Suscripcion {
     @GET
     @Path("/GetUsuarios")
     @Produces("application/json")
-    public String GetUsuarios(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException {
+    public String GetUsuarios(@QueryParam("id") int id) throws BDConnectException1, PLConnectException1, WebFaulException {
 
         try{
                 Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando();
@@ -152,10 +151,10 @@ public class M08_Suscripcion {
 
 
 
-        }catch (BdConnectException ex)
+        }catch (BDConnectException1 ex)
         {    ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
-        }catch (PlConnectException ex)
+        }catch (PLConnectException1 ex)
         { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }

@@ -1,14 +1,10 @@
 package edu.ucab.desarrollo.viucab.Test.M08_Test;
 
-import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import org.junit.Test;
 import org.postgresql.util.PSQLException;
 
@@ -22,13 +18,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class M08_TestSuscripcionDao {
 
     @Test
-    public void  TestlistaSuscripciones() throws PlConnectException, BdConnectException {
+    public void  TestlistaSuscripciones() throws PLConnectException1, BDConnectException1 {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
         ArrayList<Usuario> user = dao.listaSuscripciones(1);
@@ -36,15 +30,15 @@ public class M08_TestSuscripcionDao {
     }
 
     @Test
-    public void  TestlistaUsuarios() throws PlConnectException, BdConnectException {
+    public void  TestlistaUsuarios() throws PLConnectException1, BDConnectException1 {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
         ArrayList<Usuario> user = dao.listaUsuarios();
         assertNotNull(user);
     }
 
-    @Test(expected = PlConnectException.class)
-    public void testPlConnectException() throws PlConnectException, BdConnectException, SQLException {
+    @Test(expected = PLConnectException1.class)
+    public void testPlConnectException() throws PLConnectException1, BDConnectException1, SQLException {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Connection conn;
@@ -59,12 +53,12 @@ public class M08_TestSuscripcionDao {
             resultSet = preStatement.executeQuery();
             resultSet.close();
 
-        } catch (PSQLException e){throw new PlConnectException(e);}
+        } catch (PSQLException e){throw new PLConnectException1(e);}
 
     }
 
-    @Test(expected = BdConnectException.class)
-    public void testBdConnectException() throws PlConnectException, BdConnectException, SQLException {
+    @Test(expected = BDConnectException1.class)
+    public void testBdConnectException() throws PLConnectException1, BDConnectException1, SQLException {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Connection conn;
@@ -79,7 +73,7 @@ public class M08_TestSuscripcionDao {
             resultSet = preStatement.executeQuery();
             resultSet.close();
 
-        } catch (SQLException e) {throw new BdConnectException(e);
+        } catch (SQLException e) {throw new BDConnectException1(e);
           }
     }
 

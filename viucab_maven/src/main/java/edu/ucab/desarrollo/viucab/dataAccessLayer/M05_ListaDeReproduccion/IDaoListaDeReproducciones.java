@@ -10,6 +10,6 @@ import java.sql.SQLException;
  */
 public interface IDaoListaDeReproducciones extends IDao {
 
-    Entity GetLista(Entity e) throws SQLException; //throws SQLException, BdConnectException;
+    Entity GetLista(Entity e) throws SQLException; //throws SQLException, BDConnectException1;
 
 }

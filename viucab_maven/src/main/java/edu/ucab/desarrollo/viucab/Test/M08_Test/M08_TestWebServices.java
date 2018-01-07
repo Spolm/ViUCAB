@@ -1,26 +1,17 @@
 package edu.ucab.desarrollo.viucab.Test.M08_Test;
 
 
-import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
-import edu.ucab.desarrollo.viucab.common.entities.Usuario;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.WebFaulException;
-import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
-import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.WebFaulException;
 import edu.ucab.desarrollo.viucab.webService.M08_Suscripcion.M08_Suscripcion;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 public class M08_TestWebServices {
 
     @Test
-    public void  TestDaolistaSuscripciones() throws PlConnectException, BdConnectException, WebFaulException {
+    public void  TestDaolistaSuscripciones() throws PLConnectException1, BDConnectException1, WebFaulException {
 
         M08_Suscripcion a = new  M08_Suscripcion();
         assertNotNull(a.GetSuscripcion(1));

@@ -4,8 +4,8 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Suscripcion;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import org.postgresql.util.PSQLException;
 
@@ -30,9 +30,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
-     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public ArrayList<Usuario> listaUsuarios() throws BdConnectException, PlConnectException {
+    public ArrayList<Usuario> listaUsuarios() throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
         //Creando la lista q corresponde a usuarios
         ArrayList<Usuario> listaUsers  = new ArrayList<>();
@@ -66,8 +66,8 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){   throw new PlConnectException(e);     }
-          catch (SQLException e) {   throw new BdConnectException(e);       }
+        } catch (PSQLException e){   throw new PLConnectException1(e);     }
+          catch (SQLException e) {   throw new BDConnectException1(e);       }
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
@@ -81,9 +81,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
-     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-      public ArrayList<Usuario> listaSuscripciones(int idUsuario) throws BdConnectException, PlConnectException {
+      public ArrayList<Usuario> listaSuscripciones(int idUsuario) throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
           //Creando la lista q corresponde a usuarios
         ArrayList<Usuario> listaSuscripcion  = new ArrayList<>();
@@ -122,8 +122,8 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){   throw new PlConnectException(e);     }
-          catch (SQLException e) {   throw new BdConnectException(e);       }
+        } catch (PSQLException e){   throw new PLConnectException1(e);     }
+          catch (SQLException e) {   throw new BDConnectException1(e);       }
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
@@ -137,9 +137,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
-     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public String insertarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
+    public String insertarSuscriptor (int idUsuario, int idsuscripcion) throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
@@ -159,8 +159,8 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet.close();
             return respuesta="lo inserto";
         }
-          catch (PSQLException e){   throw new PlConnectException(e);     }
-          catch (SQLException e) {   throw new BdConnectException(e);       }
+          catch (PSQLException e){   throw new PLConnectException1(e);     }
+          catch (SQLException e) {   throw new BDConnectException1(e);       }
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
@@ -175,9 +175,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
-     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public String eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
+    public String eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
@@ -197,8 +197,8 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet.close();
             return respuesta="lo elimino";
 
-        }  catch (PSQLException e){   throw new PlConnectException(e);     }
-           catch (SQLException e) {   throw new BdConnectException(e);       }
+        }  catch (PSQLException e){   throw new PLConnectException1(e);     }
+           catch (SQLException e) {   throw new BDConnectException1(e);       }
            catch (Exception e)    {   e.printStackTrace();    }
             finally {
             closeConnection();
@@ -210,17 +210,17 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
     }
 
     @Override
-    public Entity suscripcion(Entity e) throws SQLException, BdConnectException {
+    public Entity suscripcion(Entity e) throws SQLException, BDConnectException1 {
         return null;
     }
 
     @Override
-    public void agregarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BdConnectException {
+    public void agregarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BDConnectException1 {
 
     }
 
     @Override
-    public void eliminarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BdConnectException {
+    public void eliminarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BDConnectException1 {
 
     }
 

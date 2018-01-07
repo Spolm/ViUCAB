@@ -3,10 +3,8 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
-
-import java.util.List;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 
 /**
  * Patron Comando creada por M011
@@ -14,7 +12,7 @@ import java.util.List;
 public abstract class Command
 {
 
-    public abstract void execute() throws BdConnectException, PlConnectException;
+    public abstract void execute() throws BDConnectException1, PLConnectException1;
 
     public abstract Entity Return() ;
 
