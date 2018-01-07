@@ -98,7 +98,12 @@ console.log('registrar con',this.usu.value, this.passw.value);
          this.provider.profilePicture = res.user.photoURL;
           console.log(res);
           this.navCtrl.setRoot( HomecablePage);
+          this.alert('Exito! tu te logeaste');
         })
+        .catch(error =>{
+          console.log('encontramos error', error );
+          this.alert(error.message);
+          })
 }
 
 
@@ -113,11 +118,34 @@ this.provider.name= res.user.displayName;
 this.provider.email = res.user.email;
 this.provider.profilePicture = res.user.photoURL;
  console.log(res);
+ 
  this.navCtrl.setRoot( HomecablePage);
-
+ this.alert('Exito! tu te logeaste');
 })
-  
+.catch(error =>{
+  console.log('encontramos error', error );
+  this.alert(error.message);
+  })
 }
+
+loginWithTwitter(){
+  this.fire.auth.signInWithPopup (new firebase.auth.TwitterAuthProvider())
+  .then( res=>{
+    console.log('fdesde --twitter--');
+  console.log(res);
+  this.provider.loggedin = true;
+  this.provider.name= res.user.displayName;
+  this.provider.email = res.user.email;
+  this.provider.profilePicture = res.user.photoURL;
+ 
+   this.navCtrl.setRoot( HomecablePage);
+   this.alert('Exito! tu te logeaste');
+  })
+  .catch(error =>{
+    console.log('encontramos error', error );
+    this.alert(error.message);
+    })
+  }
 
 
 

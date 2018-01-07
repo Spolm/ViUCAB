@@ -66,7 +66,7 @@ SE DEBE VALIDAR QUE SEAN MINIMO 6 CARACTERES
         <h6 style="color:#000000;font-weight:600;text-align:center;">Tambien puedes ingresar a traves de : </h6>
       
         
-            
+
         <!-- Float the icon left -->
 <button ion-button icon-left inline (click)="loginWithGoogle()" *ngIf ="!provider.loggedin">
     <ion-icon ios="logo-googleplus" md="logo-googleplus"></ion-icon>
@@ -75,10 +75,9 @@ SE DEBE VALIDAR QUE SEAN MINIMO 6 CARACTERES
 
 
 
-
   
   <!-- Float the icon right -->
-  <button ion-button icon-left inline>
+  <button ion-button icon-left inline (click)="loginWithTwitter()" *ngIf ="!provider.loggedin">
     Twitter
     <ion-icon ios="logo-twitter" md="logo-twitter"></ion-icon>
   </button>
