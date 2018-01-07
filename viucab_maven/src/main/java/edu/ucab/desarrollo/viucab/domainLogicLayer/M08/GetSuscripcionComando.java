@@ -60,27 +60,7 @@ public class GetSuscripcionComando extends Command {
         _resultado=user;
     }
 
-    /*
-        @Override
-        public  ArrayList<Suscripciones>  execute() {
 
-            // Eliminar el manejo de excepciones del comando y colocarlo en presentacion
-
-
-            ////Echo por bismarck
-            SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-            return dao.insertarSuscriptor(suscriptor,suscripcion);
-            /////
-
-
-               SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-
-                ArrayList<Usuario> user = dao.listaSuscripciones(1);
-
-               // est=
-
-        }
-    */
     @Override
     public Entity Return() {
         return est;

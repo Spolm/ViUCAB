@@ -56,7 +56,7 @@ public class GetUsuariosComando extends Command {
 
     @Override
     public Entity Return() {
-        return est; //EN ESTE RETURN ES DONDE DEBO DEVOLVER LA LISTA DE USUARIOS
+        return est;
     }
 
 }

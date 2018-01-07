@@ -58,9 +58,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
 /**/
                 usuario = EntityFactory.suscripcionUsuario(id, login);
                 // usuario = EntityFactory.suscripcionUsuario(login);
-                System.out.println("ESTO ES LO QUE TIENE EL OBJETO usuario"+usuario.get_name_user());
+
                 listaUsers.add(usuario);
-                System.out.println("ESTE ES LA LISTA-->  "+listaUsers);
+
                 //usuario.setListaUsuario(listaSuscripcion);
 
             }
@@ -71,7 +71,7 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
-        } System.out.println("AQUI IMPRIME EL RETURN DEL METODO OSEA LA LISTA"+listaUsers);
+        }
         return listaUsers;
 
 
@@ -107,17 +107,10 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
                   int id = resultSet.getInt("idusuario");
                   String login = resultSet.getString("nombreusuario");
 
-                 // Byte avatar = resultSet.getByte("imagenusuario");
-                  //String avatar = resultSet.getString("USU_AVATAR");
-                System.out.println("ESTO ES LO QUE ARROJA LA COSNSULTA---> "+ login);
-
-/**/
                 usuario = EntityFactory.suscripcionUsuario(id, login);
-               // usuario = EntityFactory.suscripcionUsuario(login);
-                System.out.println("ESTO ES LO QUE TIENE EL OBJETO usuario"+usuario.get_name_user());
+
                 listaSuscripcion.add(usuario);
-                System.out.println("ESTE ES LA LISTA-->  "+listaSuscripcion);
-                //usuario.setListaUsuario(listaSuscripcion);
+
 
             }
             resultSet.close();
@@ -127,7 +120,7 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
           catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
-        } System.out.println("AQUI IMPRIME EL RETURN DEL METODO OSEA LA LISTA"+listaSuscripcion);
+        }
         return listaSuscripcion;
 
 

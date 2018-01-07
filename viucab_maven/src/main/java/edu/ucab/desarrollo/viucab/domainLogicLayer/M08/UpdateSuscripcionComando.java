@@ -23,13 +23,18 @@ public class UpdateSuscripcionComando extends Command {
     public UpdateSuscripcionComando() {
         resp = ObtenerRespuesta();
     }
+
+    /**
+     * Metoto que Devuelve respuesta
+     *
+     */
     public String ObtenerRespuesta(){return resp; };
 
     @Override
     public void execute() throws BDConnectException1, PLConnectException1 {
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
         resp= dao.eliminarSuscriptor(suscriptor,suscripcion);
-        System.out.println("ESOOO ES LOO Q AROOOJAAAAA DIABLON"+resp);
+
 
     }
 

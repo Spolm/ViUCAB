@@ -47,23 +47,9 @@ public class M08_Suscripcion {
         }
         catch (PLConnectException1 ex)
         { ex.getMessage();
-            /*
-            catch (ViUCABException e) {
 
-           throw new WebFault(e.Mensaje, e.codigo);
-        } */
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
-
-
-   //     Entity suscripcionObject = EntityFactory.suscripcion(1, id);
-   //     Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(suscripcionObject);
-    //    SetSuscripcionComando cmd = (SetSuscripcionComando) comandSuscripcion;
-      //  cmd.execute();
-     //   Entity result = cmd.Return();
-      //  Suscripcion json = (Suscripcion) result;
-
-
 
     }
 

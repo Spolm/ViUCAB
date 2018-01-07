@@ -26,6 +26,10 @@ public class SetSuscripcionComando extends Command {
         resp = ObtenerRespuesta();
     }
 
+    /**
+     * Metoto que Devuelve respuesta
+     *
+     */
     public String ObtenerRespuesta(){return resp; };
 
 
