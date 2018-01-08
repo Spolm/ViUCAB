@@ -4,22 +4,13 @@ import { RestApiService } from '../../../app/rest-api.service';
 import { Refresher } from 'ionic-angular/components/refresher/refresher';
 import { Content } from 'ionic-angular';
 import { NullAstVisitor } from '@angular/compiler';
-
 /**
  * Generated class for the ChannelsPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-export interface SusAuxInterface {
-  idUsuario: number;
-  nombreUsuario: number;
-  estado: string;
-  cantidadSus: number;
-}
 
-  
-  
   
 
 @IonicPage()
@@ -37,7 +28,6 @@ export class ChannelsPage {
   mostrarUsuarios : boolean;
   mostrarSuscripciones : boolean;  
   items: any[];
-  itemsAux : SusAuxInterface [];
   botones: any[];
   color: string ='primary';
   estadoSus:string ='Suscrito';
@@ -111,7 +101,7 @@ export class ChannelsPage {
     
     this.mostrarSuscripciones=true;
     this.mostrarUsuarios =false;
-    this.api.geta('Suscripcion/GetUsuarios')
+    this.api.geta('Suscripcion/GetUsuarios?id='+this.idUser)
 
       .subscribe((data) => { // Success
           this.listaUsuarios = data.json()

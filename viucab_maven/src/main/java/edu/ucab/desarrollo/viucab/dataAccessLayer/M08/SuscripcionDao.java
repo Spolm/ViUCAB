@@ -32,7 +32,7 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      * @return resultlist
      * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public ArrayList<Usuario> listaUsuarios() throws BDConnectException1, PLConnectException1 {
+    public ArrayList<Usuario> listaUsuarios(int idUsuario) throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
         //Creando la lista q corresponde a usuarios
         ArrayList<Usuario> listaUsers  = new ArrayList<>();
@@ -45,9 +45,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SPa
-            preStatement = conn.prepareCall("{call m08_get_usuarios()}");
+            preStatement = conn.prepareCall("{call m08_get_usuarios(?)}");
             //Metiendo los parametros al SP
-           // preStatement.setInt(1,idUsuario);
+            preStatement.setInt(1,idUsuario);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
 

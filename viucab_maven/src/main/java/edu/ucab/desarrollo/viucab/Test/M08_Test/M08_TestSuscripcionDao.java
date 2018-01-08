@@ -33,7 +33,7 @@ public class M08_TestSuscripcionDao {
     public void  TestlistaUsuarios() throws PLConnectException1, BDConnectException1 {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-        ArrayList<Usuario> user = dao.listaUsuarios();
+        ArrayList<Usuario> user = dao.listaUsuarios(1); // probando con el usuario 1
         assertNotNull(user);
     }
 

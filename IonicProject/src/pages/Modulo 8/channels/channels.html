@@ -33,7 +33,7 @@
   <ion-list *ngIf= "mostrarSuscripciones">
         <ion-item *ngFor="let item of listaSuscripcion ; let i = index " >
             <ion-avatar item-start > 
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa">
+                <img src="../../../assets/imgs/defaultavatar.png">
             </ion-avatar>
             <h2> {{ item._name_user }} </h2>
              <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
@@ -44,7 +44,7 @@
   <ion-list *ngIf= "mostrarUsuarios">
     <ion-item  *ngFor="let item of listaUsuarios ; let ix = index  " >
         <ion-avatar item-start > 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa">
+            <img src="../../../assets/imgs/defaultavatar.png">
         </ion-avatar>
         <h2> {{ item._name_user }} </h2>
         <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->

@@ -129,7 +129,7 @@ public class M08_Suscripcion {
     public String GetUsuarios(@QueryParam("id") int id) throws BDConnectException1, PLConnectException1, WebFaulException {
 
         try{
-                Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando();
+                Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando(id);
                 GetUsuariosComando cmd = (GetUsuariosComando) comandSuscripcion;
                 cmd.execute();
                 ArrayList<Usuario> result = cmd.get_listUsuario();

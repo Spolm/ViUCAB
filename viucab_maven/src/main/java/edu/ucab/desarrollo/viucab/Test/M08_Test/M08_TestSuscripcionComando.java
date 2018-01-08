@@ -31,7 +31,7 @@ public class M08_TestSuscripcionComando {
 
     @Test
     public  void TestGetUsuariosComando() throws PLConnectException1, BDConnectException1 {
-        Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando();
+        Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando(1); // probando con el usuario 1
         GetUsuariosComando cmd = (GetUsuariosComando) comandSuscripcion;
         cmd.execute();
         ArrayList<Usuario> result = cmd.get_listUsuario();

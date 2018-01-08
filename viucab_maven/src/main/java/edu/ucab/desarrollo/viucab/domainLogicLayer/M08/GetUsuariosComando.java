@@ -25,8 +25,13 @@ public class GetUsuariosComando extends Command {
         this._resultado = _resultado;
         this.idSuscriptor = idSuscriptor;
     }
+
     public GetUsuariosComando(ArrayList<Usuario> _resultado) {
         this._resultado = _resultado;
+    }
+
+    public GetUsuariosComando(int idSuscriptor)  {
+        this.idSuscriptor = idSuscriptor;
     }
 
 
@@ -48,7 +53,7 @@ public class GetUsuariosComando extends Command {
     public void execute() throws BDConnectException1, PLConnectException1 {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-        ArrayList<Usuario> user = dao.listaUsuarios();
+        ArrayList<Usuario> user = dao.listaUsuarios(idSuscriptor);
 
         //Guardamos lo que devuelve el DAO
         _resultado=user;
