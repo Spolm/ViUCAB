@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomecablePage } from '../homecable/homecable';
 import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { AlertController } from 'ionic-angular';
-
+//
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
 
@@ -15,6 +15,7 @@ import firebase from 'firebase';
 })
 export class RegristrarsePage {
 //objeto para facebook
+//
 provider = {
     
     name: '',
