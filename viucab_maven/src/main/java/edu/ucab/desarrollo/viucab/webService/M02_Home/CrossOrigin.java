@@ -6,4 +6,3 @@ package edu.ucab.desarrollo.viucab.webService.M02_Home;
 public @interface CrossOrigin {
     String origins();
 }
-

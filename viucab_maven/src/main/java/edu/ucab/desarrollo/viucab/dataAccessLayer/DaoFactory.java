@@ -6,6 +6,7 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M04_Reproductor.VideoDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M12_ModeracionContenido.GetModeracionContenidoDao;
 
 /**
  * Fabrica para instanciar los DAO creada por M011
@@ -64,5 +65,10 @@ public class DaoFactory
     }
     
     // FIN M04
+
+    // M12
+    static  public GetModeracionContenidoDao instanciarModeracionContenidoDao(){return new GetModeracionContenidoDao();}
+
+    //Fin M12
 }
 

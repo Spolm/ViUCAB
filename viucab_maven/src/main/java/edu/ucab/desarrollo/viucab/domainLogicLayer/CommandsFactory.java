@@ -3,7 +3,6 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
@@ -12,6 +11,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.*;
 
 /**
  * Fabrica de comandos creada por M011
@@ -102,7 +102,7 @@ public class CommandsFactory {
 
      public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
 
-     public static Command instanciaGetUsuariosComando () {return  new GetUsuariosComando();}
+
     //Fin instancias M08
      
      
@@ -145,4 +145,11 @@ public class CommandsFactory {
      }
      
      // Fin M04
+
+
+
+    //M12
+    public  static  Command instanciarGetFiltrosDeUsuarioComando(Integer id) {return  new GetFiltrosDeUsuarioComando(id);}
+
+    // Fin M12
 }
