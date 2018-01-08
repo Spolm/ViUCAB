@@ -87,27 +87,43 @@ public class M03Video {
     @GET
     @Path("/get")
     @Produces("application/json")
-    public String getVideo(@QueryParam("userId") String videoId){
+    public String getVideo(@QueryParam("videoId") int videoId){
 
-        return gson.toJson("getVideo");
+        GetVideoCommand cmd = CommandsFactory.intantiateGetVideoCommand(videoId);
+        try {
+            cmd.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.toJson(cmd._returned);
     }
 
     @GET
     @Path("/getAll")
     @Produces("application/json")
-    public String getAllVideoFromUser(@QueryParam("userID") int userID){
+    public String getAllVideoFromUser(@QueryParam("userId") int userId){
 
 
-        GetAllVideoByIdCommand cmd = CommandsFactory.intantiateGetAllVideoByIdCommand(userID);
-
-        return gson.toJson("getAllFromUser");
+        GetAllVideoByIdCommand cmd = CommandsFactory.intantiateGetAllVideoByIdCommand(userId);
+        try {
+            cmd.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.toJson(cmd._returned);
     }
 
     @DELETE
     @Produces("application/json")
-    public String deleteVideo(/*@QueryParam("videoId") String videoId*/){
+    public String deleteVideo(@QueryParam("videoId") int videoId){
 
-        return gson.toJson("DeleteVideo");
+        DeleteVideoCommand cmd = CommandsFactory.intantiateDeleteVideoCommand(videoId);
+        try {
+            cmd.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gson.toJson(cmd._returned);
     }
 
 

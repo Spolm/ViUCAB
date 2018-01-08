@@ -8,17 +8,17 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import java.util.ArrayList;
 
-public class GetAllVideoByIdCommand extends Command {
+public class GetVideoCommand extends Command {
 
 
-    private int _usuario;
+    private int _videoId;
 
-    public ArrayList<Video> _returned;
+    public Video _returned;
 
 
-    public GetAllVideoByIdCommand(int usuario){
+    public GetVideoCommand(int videoId){
 
-        _usuario = usuario;
+        _videoId = videoId;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class GetAllVideoByIdCommand extends Command {
 
         IDaoVideo daoVideo = DaoFactory.instantiateDaoVideo();
 
-        _returned = daoVideo.getAllVideoById(_usuario);
+        _returned = daoVideo.getVideo(_videoId);
 
     }
 

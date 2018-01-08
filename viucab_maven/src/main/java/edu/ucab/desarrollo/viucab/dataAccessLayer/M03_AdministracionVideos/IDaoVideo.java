@@ -9,11 +9,11 @@ import java.util.ArrayList;
 
 public interface IDaoVideo extends IDao{
 
-    public int addVideo(Entity e) throws SQLException;
-    public Entity getVideo(int idVideo) throws SQLException;
-    public ArrayList<Video> getAllVideoById(int idUsuario) throws SQLException;
-    public int updateVideo(Entity e) throws SQLException;
-    public Entity deleteVideo (Entity e) throws SQLException;
-    public int getLastId() throws SQLException;
+    int addVideo(Entity e) throws SQLException;
+    Video getVideo(int idVideo) throws SQLException;
+    ArrayList<Video> getAllVideoById(int idUsuario) throws SQLException;
+    int updateVideo(Entity e) throws SQLException;
+    int deleteVideo (int idVideo) throws SQLException;
+    int getLastId() throws SQLException;
 
 }

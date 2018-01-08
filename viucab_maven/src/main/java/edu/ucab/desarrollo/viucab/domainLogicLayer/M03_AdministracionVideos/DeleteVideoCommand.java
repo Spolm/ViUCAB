@@ -1,24 +1,21 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoVideo;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
-import java.util.ArrayList;
-
-public class GetAllVideoByIdCommand extends Command {
+public class DeleteVideoCommand extends Command {
 
 
-    private int _usuario;
+    private int _video;
 
-    public ArrayList<Video> _returned;
+    public String _returned;
 
 
-    public GetAllVideoByIdCommand(int usuario){
+    public DeleteVideoCommand(int videoId){
 
-        _usuario = usuario;
+        _video = videoId;
     }
 
     @Override
@@ -26,7 +23,8 @@ public class GetAllVideoByIdCommand extends Command {
 
         IDaoVideo daoVideo = DaoFactory.instantiateDaoVideo();
 
-        _returned = daoVideo.getAllVideoById(_usuario);
+        _returned = Integer.toString(daoVideo.deleteVideo(_video));
+
 
     }
 

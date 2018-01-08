@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class Video extends Entity {
 
-    private int _id;
+
     private String _titulo;
     private String _descripcion;
     private String _imagen;
@@ -36,8 +36,9 @@ public class Video extends Entity {
 
     }
 
-    public Video(String titulo, String descripcion, String imagen, String url, String fecha, int visitas) {
+    public Video(int id, String titulo, String descripcion, String imagen, String url, String fecha, int visitas) {
 
+        _id = id;
         _titulo = titulo;
         _descripcion = descripcion;
         _imagen = imagen;
@@ -92,7 +93,7 @@ public class Video extends Entity {
         int response=0;
         IDaoVideo daoVideo = DaoFactory.instantiateDaoVideo();
         try {
-            response = daoVideo.getLastId() + 1;
+            response = daoVideo.getLastId();
         } catch (SQLException e) {
             e.printStackTrace();
         }

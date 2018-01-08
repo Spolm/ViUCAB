@@ -46,15 +46,17 @@ $$ LANGUAGE plpgsql VOLATILE;
 SELECT M03_getLastId('');
 
 CREATE OR REPLACE  FUNCTION M03_GetAllVideoById(id integer)
-RETURNS TABLE (titu varchar(1000), des varchar(1000), 
+RETURNS TABLE (id integer,
+			   titu varchar(1000), des varchar(1000), 
 	           ima varchar(1000), url varchar(1000) , 
-	           fec date , vis integer
+	           fec varchar(1000) , vis integer
 	           )
 AS $$
   
 BEGIN
 		RETURN QUERY
-		SELECT t.VID_TITULO,
+		SELECT t.VID_ID,
+			   t.VID_TITULO,
 		       t.VID_DESCRIPCION,
 		       t.VID_IMAGEN,
 		       t.VID_URL,
@@ -68,3 +70,31 @@ END;
 $$ LANGUAGE plpgsql;		     
 
 SELECT M03_GetAllVideoById(1) AS HOLA;
+
+
+
+CREATE OR REPLACE  FUNCTION M03_GetVideo(id integer)
+RETURNS TABLE (id integer,
+			   titu varchar(1000), des varchar(1000), 
+	           ima varchar(1000), url varchar(1000) , 
+	           fec varchar(1000) , vis integer
+	           )
+AS $$
+  
+BEGIN
+		RETURN QUERY
+		SELECT t.VID_ID,
+			   t.VID_TITULO,
+		       t.VID_DESCRIPCION,
+		       t.VID_IMAGEN,
+		       t.VID_URL,
+		       t.VID_FECHA,
+		       t.VID_VISITAS
+		       
+
+		FROM video t
+		WHERE t.VID_ID = id ; 
+END;
+$$ LANGUAGE plpgsql;	
+
+SELECT M03_GetVideo(5) AS HOLA;

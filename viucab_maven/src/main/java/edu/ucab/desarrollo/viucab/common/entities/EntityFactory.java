@@ -47,8 +47,8 @@ public class EntityFactory
         return new Video(titulo,descripcion,imgUrl,url,usuario);
     }
 
-    static public Video instantiateVideo(String titulo, String descripcion, String imgUrl,String url, String fecha, int visitas){
-        return new Video(titulo,descripcion,imgUrl,url,fecha,visitas);
+    static public Video instantiateVideo(int id, String titulo, String descripcion, String imgUrl,String url, String fecha, int visitas){
+        return new Video(id,titulo,descripcion,imgUrl,url,fecha,visitas);
     }
 
     static public Video instantiateVideo( ){

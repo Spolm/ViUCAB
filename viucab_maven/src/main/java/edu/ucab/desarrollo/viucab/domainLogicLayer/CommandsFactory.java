@@ -80,6 +80,14 @@ public class CommandsFactory {
         return new GetAllVideoByIdCommand(userID);
     }
 
+    public static GetVideoCommand intantiateGetVideoCommand(int videoId) {
+        return new GetVideoCommand(videoId);
+    }
+
+    public static DeleteVideoCommand intantiateDeleteVideoCommand(int videoId) {
+        return new DeleteVideoCommand(videoId);
+    }
+
     //Fin M03
 
     //region M05

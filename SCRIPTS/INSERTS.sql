@@ -1,5 +1,6 @@
-﻿INSERT INTO USUARIO VALUES (1, 'sevelindoparado', '123456789', 'leToken', true, 'seve@gmail.com');
-INSERT INTO USUARIO VALUES (4, 'betoreveron', '12345', 'cualquier vaina', true, 'beto@gmail');
+﻿INSERT INTO USUARIO VALUES (1, 'sevelindoparado', '123456789', 'leToken', false, 'seve@gmail.com');
+INSERT INTO USUARIO VALUES (2, 'edver', '12345', 'any shit', false, 'edvergalin@gmail');
+INSERT INTO USUARIO VALUES (4, 'betoreveron', '12345', 'cualquier vaina', false, 'beto@gmail');
 
 
 INSERT INTO LISTA_REPRODUCCION values (50,'Lista de sancionados', 'what',null, 25, '2017/12/15', 4);
