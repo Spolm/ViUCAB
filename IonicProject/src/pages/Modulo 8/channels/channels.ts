@@ -8,7 +8,7 @@ import { RestApiService } from '../../../app/rest-api.service';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
- */2
+ */
 export interface SusAuxInterface {
   idUsuario: number;
   nombreUsuario: number;
