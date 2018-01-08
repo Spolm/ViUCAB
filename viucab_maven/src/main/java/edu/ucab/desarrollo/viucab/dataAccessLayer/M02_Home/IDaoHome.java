@@ -16,7 +16,6 @@ public interface IDaoHome extends IDao {
     public ArrayList<Video> GetMasVistosComando()throws SQLException;
     public ArrayList<Video> GetPreferenciasComando(Entity entidad) throws  SQLException;
     public ArrayList<Video> GetSuscritosComando(Entity entidad) throws  SQLException;
-    public ArrayList<Video> GetBusquedaComando(String parametro) throws SQLException;
-
+    public ArrayList<Video> GetBusquedaComando(Entity entidad) throws SQLException;
 
 }

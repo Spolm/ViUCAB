@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Created by estefania on 13/12/2017.
@@ -75,7 +74,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 listaVideos.add(video);
 
 
@@ -130,7 +129,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }
@@ -182,7 +181,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
                 //Casteo del entity a video del resultado del sp
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }
@@ -199,14 +198,17 @@ public class GetHomeDao extends Dao implements IDaoHome {
 
     /**
      * Realiza Busque por etiqueta titulo y/o categoria
-     * @param parametro
+     * @param entidad
      * @return resultlist
      */
     @Override
-    public ArrayList<Video> GetBusquedaComando(String parametro) {
+    public ArrayList<Video> GetBusquedaComando(Entity entidad) {
         CallableStatement preStatement = null;
         ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
+        Video param = (Video) entidad;
+        String parametroBusqueda= param.getBusqueda();
+
         Video video;
         Connection conn;
         try {
@@ -217,7 +219,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Invocando el SP
             preStatement = conn.prepareCall("{call m02_buscarvideo(?)}");
             //Metiendo los parametros al SP
-            preStatement.setString(1,parametro);
+            preStatement.setString(1,parametroBusqueda);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
@@ -229,10 +231,10 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String fecha = resultSet.getString("fechavideo");
                 int visitas = resultSet.getInt("visitasvideo");
                 String nombreusu = resultSet.getString("nombreusuario");
-                String imagenusuario = resultSet.getString("imagenusuario");
+                String imagenusuario = resultSet.getString("fotousuario");
 
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }

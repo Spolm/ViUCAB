@@ -16,33 +16,26 @@ import java.util.LinkedList;
  */
 public class GetBusquedaComando extends Command{
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetMasVistosComando.class);
-    String _criterio;
     ArrayList<Video>_resultado=null;
+    Entity est;
 
-    public GetBusquedaComando(ArrayList<Video> resultado) {
-        this._resultado = resultado;
-    }
-    public GetBusquedaComando() {
-        _resultado=get_listVideo();
+    public GetBusquedaComando(Entity est) {
+        this.est = est;
     }
 
     /**
      * Obtiene Resultaddo de las Busquedas
      * @return ListVideo
      */
-    public ArrayList<Video> get_listVideo()
-    {
-        return _resultado;
-    }
+    public ArrayList<Video> get_listVideo() {return _resultado;}
 
 
     @Override
     public void execute() {
         try {
-            GetHomeDao dao =DaoFactory.instanciateGetBusquedaComando();
-            ArrayList<Video> video=dao.GetBusquedaComando(_criterio);
-
-            _resultado =video;
+            GetHomeDao dao =  DaoFactory.instanciateGetBusquedaComando();
+            ArrayList<Video> video = dao.GetBusquedaComando(est);
+            _resultado = video;
         }
         catch (Exception e){
 
