@@ -1,11 +1,9 @@
 //Clase que se encarga de enviar las solicitudes al servidor Rest Java
 //En periodo de prueba, no se ha validado que funciona, pero es la estructura basica.
-
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
-
 
 //Direccion del servidor donde esta la BDD
 const URL = 'http://localhost:8080/viucab';
@@ -16,14 +14,6 @@ export class RestApiService {
   constructor(
     private http: Http
   ) { }
-
-  public datosMapa(res: Response){
-    return res.json();
-  }
-  public p ( res: Response ){
-    return console.log(res);
-  }
-
 
   //Metodo GET: /direccion
   //Accede al metodo que se encuentra en direccion y devuelve la respuesta
@@ -127,14 +117,13 @@ export class RestApiService {
    }
 
    //Manejo de erorres
-
    private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
 
 
-//Mentodo para obtener todos los videos
+//Metodo para obtener todos los videos
   public getVideos(direccion): Observable<any> {
     return this.http.get(URL+'/'+direccion)
         .map((data: any) => data.json())
@@ -149,6 +138,13 @@ export class RestApiService {
       .get(URL+'/'+direccion)
 
   }
+
+  public getReproduccion(direccion){
+    return this.http
+      .get(URL+'/'+direccion)
+
+  }
+  
 /////////////////
  //Metodo DELETE: /direccion
    //Elimina en una direccion
@@ -158,5 +154,6 @@ export class RestApiService {
     .map((data: any) => data.json())
     .catch(this.handleError);
    }
+  
 
 }

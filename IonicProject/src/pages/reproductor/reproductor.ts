@@ -120,7 +120,6 @@ export class ReproductorPage implements OnInit {
     //        ]
     //    };
 
-
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public alertCtrl: AlertController, public api: RestApiService) {
     }
