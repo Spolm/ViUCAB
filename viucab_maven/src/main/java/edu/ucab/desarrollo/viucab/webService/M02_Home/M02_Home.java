@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetBusquedaComando;
@@ -20,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -40,13 +42,26 @@ public class M02_Home {
          * @Param id
          * Devuelve todos los Videos en funcion de las preferencias dado un id
          */
-        public String obtenerPreferencia (@QueryParam("id")  int idUsuario)  {
+        public String obtenerPreferencia (@QueryParam("id")  int idUsuario) {
 
             Entity videoObject = EntityFactory.homeVideo(idUsuario);
             Command commadHome = CommandsFactory.instanciateGetPreferenciasComando(videoObject);
             GetPreferenciasComando cmd = (GetPreferenciasComando) commadHome;
-            cmd.execute();
-            return gson.toJson(cmd.get_listVideo());
+            try{
+                cmd.execute();
+                return gson.toJson(cmd.get_listVideo());
+            }
+            catch (VIUCABException e){
+                videoObject.set_errorCode( e.ERROR_CODE );
+                videoObject.set_errorMsg( e.ERROR_MSG );
+                logger.error( "Metodo: {} {}", "obtenerPreferencia", e.toString() );
+                return gson.toJson( videoObject );
+            }
+            catch (Exception e){
+               e.printStackTrace();
+            }
+
+            return null;
         }
 
         @GET
@@ -58,16 +73,24 @@ public class M02_Home {
          */
         public String obtenerMasVistos ()
         {
+            Command commandVideoMasVisto = CommandsFactory.instanciateGetMasVistosComando();
+            GetMasVistosComando cmd = (GetMasVistosComando) commandVideoMasVisto;
+            Entity videoObject =null;
             try {
 
-                Command commandVideoMasVisto = CommandsFactory.instanciateGetMasVistosComando();
-                GetMasVistosComando cmd = (GetMasVistosComando) commandVideoMasVisto;
+
                 cmd.execute();
-                ArrayList<Video> result =cmd.get_listVideo();
+                ArrayList<Video> result = cmd.get_listVideo();
                 return gson.toJson(result);
             }
-            catch (Exception e){
-
+            catch (VIUCABException e){
+                videoObject.set_errorCode( e.ERROR_CODE );
+                videoObject.set_errorMsg( e.ERROR_MSG );
+                logger.error( "Metodo: {} {}", "obtenerMasVistos", e.toString() );
+                return gson.toJson( videoObject );
+            }
+            catch(Exception e){
+                e.printStackTrace();
             }
             return null;
         }
@@ -89,7 +112,14 @@ public class M02_Home {
             try {
                 cmd.execute();
                 return gson.toJson(cmd.get_listVideo());
-            } catch (Exception ex) {
+            }
+            catch(VIUCABException e){
+                videoObject.set_errorCode( e.ERROR_CODE );
+                videoObject.set_errorMsg( e.ERROR_MSG );
+                logger.error( "Metodo: {} {}", "obtenerVideosSuscritos", e.toString() );
+                return gson.toJson( videoObject );
+            }
+            catch (Exception ex) {
                 return gson.toJson( null );
             }
         }
@@ -111,9 +141,16 @@ public class M02_Home {
             try {
                 cmd.execute();
                 return gson.toJson(cmd.get_listVideo());
-            } catch (Exception ex) {
-                return gson.toJson( null );
             }
+             catch(VIUCABException e){
+                    videoObject.set_errorCode( e.ERROR_CODE );
+                    videoObject.set_errorMsg( e.ERROR_MSG );
+                    logger.error( "Metodo: {} {}", "obtenerVideosSuscritos", e.toString() );
+                    return gson.toJson( videoObject );
+                }
+            catch (Exception ex) {
+                    return gson.toJson( null );
+                }
 
 
         }
