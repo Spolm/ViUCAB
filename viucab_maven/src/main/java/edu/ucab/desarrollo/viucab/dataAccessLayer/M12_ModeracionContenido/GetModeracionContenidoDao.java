@@ -40,6 +40,7 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
 
         ArrayList<Filtro> listaFiltros= new ArrayList<>();
         Connection conn= getConInstance();
+        Filtro resultado;
 
             try{
                 String query = "SELECT * FROM FILTRO, USU_FIL WHERE FILTRO.FIL_ID=USU_FIL.ID_FIL AND USU_FIL.ID_USU="+id;
@@ -47,13 +48,13 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
                 ResultSet rs = ps.executeQuery();
 
                 while(rs.next()){
-                    Filtro resultado = new Filtro();
+                   
 
                    int fil_id = rs.getInt("fil_id");
                    String fil_tipo = rs.getString("fil_tipo");
                    String fil_descripcion = rs.getString("fil_descripcion");
                    
-                   resultado = EntityFactory.filtro(fil_id,fil_tipo,fil_descripcion);
+                   resultado = (Filtro) EntityFactory.filtro(fil_id,fil_tipo,fil_descripcion);
                    listaFiltros.add(resultado);
                 }
                 rs.close();
