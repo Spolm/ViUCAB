@@ -11,6 +11,12 @@ public class Filtro {
 
     }
 
+    public Filtro(Integer id, String tipo, String descripcion){
+        this.id=id;
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+    }
+
     public Integer getId() {
         return id;
     }

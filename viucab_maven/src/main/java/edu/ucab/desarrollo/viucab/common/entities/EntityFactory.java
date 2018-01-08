@@ -99,5 +99,9 @@ public class EntityFactory
 
     //final M08
 
+    //M12
+
+    static public Filtro filtro (int id, String tipo, String descripcion){ return new Filtro(id,tipo,descripcion);}
+    //endregion
 }
 

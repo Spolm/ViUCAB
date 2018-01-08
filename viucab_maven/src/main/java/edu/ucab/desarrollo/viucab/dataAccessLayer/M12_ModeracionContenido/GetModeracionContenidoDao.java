@@ -48,10 +48,13 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
 
                 while(rs.next()){
                     Filtro resultado = new Filtro();
-                    resultado.setId(rs.getInt("fil_id"));
-                    resultado.setTipo(rs.getString("fil_tipo"));
-                    resultado.setDescripcion(rs.getString("fil_descripcion"));
-                    listaFiltros.add(resultado);
+
+                   int fil_id = rs.getInt("fil_id");
+                   String fil_tipo = rs.getString("fil_tipo");
+                   String fil_descripcion = rs.getString("fil_descripcion");
+                   
+                   resultado = EntityFactory.filtro(fil_id,fil_tipo,fil_descripcion);
+                   listaFiltros.add(resultado);
                 }
                 rs.close();
 
