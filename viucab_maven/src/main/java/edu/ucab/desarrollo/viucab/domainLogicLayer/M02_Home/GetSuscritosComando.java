@@ -34,7 +34,7 @@ public class GetSuscritosComando extends Command {
     public void execute() {
         GetHomeDao dao =  DaoFactory.instanciateGetSuscritosComando();
         ArrayList<Video> video = dao.GetSuscritosComando(est);
-        _resultado =video;
+        _resultado = video;
 
     }
 

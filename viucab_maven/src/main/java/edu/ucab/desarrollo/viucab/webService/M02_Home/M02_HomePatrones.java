@@ -10,6 +10,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetBusquedaComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetMasVistosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetSuscritosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 
 import javax.ws.rs.GET;
@@ -90,13 +91,15 @@ public class M02_HomePatrones {
          */
         public String obtenerVideosSuscritos (@QueryParam("id") int idUser)
         {
-
-
-
-
-        return null;
-
-
+            Entity videoObject = EntityFactory.homeUsuario(idUser);
+            Command commadHome = CommandsFactory.instanciateGetSuscritosComando (videoObject);
+            GetSuscritosComando cmd = (GetSuscritosComando) commadHome;
+            try {
+                cmd.execute();
+                return gson.toJson(cmd.get_listVideo());
+            } catch (Exception ex) {
+                return gson.toJson( null );
+            }
         }
 
         @GET

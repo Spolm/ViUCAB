@@ -181,7 +181,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String nombreusu = resultSet.getString("nombreusuario");
                 String imagenusuario = resultSet.getString("imagenusuario");
 
-
+                //Casteo del entity a video del resultado del sp
                 video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
