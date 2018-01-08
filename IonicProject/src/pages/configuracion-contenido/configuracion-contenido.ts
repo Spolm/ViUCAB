@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { RestApiService } from '../../app/rest-api.service';
 /**
  * Generated class for the ConfiguracionContenidoPage page.
  *
@@ -52,7 +52,7 @@ export class ConfiguracionContenidoPage {
 
     filtros =[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public servicio: RestApiService) {
   }
 
 
@@ -66,11 +66,16 @@ export class ConfiguracionContenidoPage {
   }
 
    guardarConfig() {
-      console.log("se guardaron los filtros");
-      alert("prubea");
-      alert("prueba2");
+      console.log("llamando al wss");
+
+      this.servicio.m12prueba().then((result) => {
+       console.log(result);
+     }, (err) =>{
+       console.log(err);
+     });
+
     }
 
- 
+
 
 }
