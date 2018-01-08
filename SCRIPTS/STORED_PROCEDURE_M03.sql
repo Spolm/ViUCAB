@@ -16,7 +16,7 @@ $$ LANGUAGE plpgsql VOLATILE;
 SELECT m03_updatevideo( 'titulo', 'descripcion', 'imagenNUEVA', 1) AS HOLA;
 
 CREATE OR REPLACE  FUNCTION M03_AddVideo( titu varchar, des varchar, 
-	                                     ima varchar, url varchar , fec varchar(1000) , vis integer ,
+	                                     ima varchar, url varchar , fec varchar , vis integer ,
 	                                       fkP integer, OUT res integer)
 AS $$
 DECLARE  
@@ -30,8 +30,20 @@ BEGIN
 
 END;
 $$ LANGUAGE plpgsql VOLATILE;
-SELECT m03_addvideo( 'titulo', 'descripcion', 'imagen','url' , '1-1-2017' , 5 ,
-	                                       1) AS HOLA;
+
+SELECT m03_addvideo( 'titulo', 'descripcion', 'imagen','url' , '1-1-2017' , 5 ,1) AS HOLA;
+
+
+CREATE OR REPLACE  FUNCTION M03_getLastId(basura varchar,OUT res integer)
+AS $$
+DECLARE  
+BEGIN
+		
+    res = (SELECT CASE WHEN is_called THEN last_value + 1 ELSE last_value END FROM VIDEO_VID_ID_seq);
+
+END;
+$$ LANGUAGE plpgsql VOLATILE;
+SELECT M03_getLastId('');
 
 CREATE OR REPLACE  FUNCTION M03_GetAllVideoById(id integer)
 RETURNS TABLE (titu varchar(1000), des varchar(1000), 
@@ -55,4 +67,4 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;		     
 
-SELECT M03_getAllVideo(1) AS HOLA;
+SELECT M03_GetAllVideoById(1) AS HOLA;

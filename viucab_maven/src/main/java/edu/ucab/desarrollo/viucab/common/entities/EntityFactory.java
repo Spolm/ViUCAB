@@ -39,10 +39,20 @@ public class EntityFactory
 
     //Modulo 3
 
-    static public Entity instantiateVideo(){ return new Video();}
+    static public Video instantiateVideo(int videoId, String titulo, String descripcion, String imgUrl){
+        return new Video(videoId,titulo,descripcion,imgUrl);
+    }
 
-    static public Entity instantiateVideo(String titulo, String descripcion,String imgUrl, String url, int usuario ){
+    static public Video instantiateVideo(String titulo, String descripcion,String imgUrl, String url, int usuario ){
         return new Video(titulo,descripcion,imgUrl,url,usuario);
+    }
+
+    static public Video instantiateVideo(String titulo, String descripcion, String imgUrl,String url, String fecha, int visitas){
+        return new Video(titulo,descripcion,imgUrl,url,fecha,visitas);
+    }
+
+    static public Video instantiateVideo( ){
+        return new Video();
     }
     //End Modulo 3
 

@@ -5,13 +5,14 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.AddVideoCommand;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 
@@ -32,13 +33,13 @@ public class M03Video {
                             ){
 
         //SALVAR IMAGEN Y OBTENER SU URL
-        Video videoAux = (Video) EntityFactory.instantiateVideo();
+        Video videoAux = EntityFactory.instantiateVideo();
 
-        String imgUrl = videoAux.saveImage(imagen,usuario);
+        String imgUrl = videoAux.saveImage(imagen);
 
         Entity video = EntityFactory.instantiateVideo(titulo,descripcion,imgUrl,url,usuario);
 
-        AddVideoCommand cmd = (AddVideoCommand) CommandsFactory.intantiateAddVideoCommand(video);
+        AddVideoCommand cmd = CommandsFactory.intantiateAddVideoCommand(video);
 
         try {
             cmd.execute();
@@ -51,16 +52,42 @@ public class M03Video {
     }
 
     @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces("application/json")
-    public String updateVideo(/*@QueryParam("videoId") String videoId*/){
+    public String updateVideo(@FormDataParam("file") InputStream imagen,
+                              @FormDataParam("titulo") String titulo,
+                              @FormDataParam("descripcion") String descripcion,
+                              @FormDataParam("oldImgUrl") String oldImgUrl,
+                              @FormDataParam("videoId") int videoId
+                              ){
 
-        return gson.toJson("updateVideo");
+        //Si viene el input stream con algo, SALVAR IMAGEN Y OBTENER SU URL
+        String imgUrl=oldImgUrl;
+
+            if(imagen!=null){
+                Video videoAux = EntityFactory.instantiateVideo();
+                 imgUrl = videoAux.saveImage(imagen);
+            }
+
+
+        Entity video = EntityFactory.instantiateVideo(videoId,titulo,descripcion,imgUrl);
+
+
+        UpdateVideoCommand cmd = CommandsFactory.intantiateUpdateVideoCommand(video);
+
+        try {
+            cmd.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return gson.toJson(cmd._returned);
     }
 
     @GET
     @Path("/get")
     @Produces("application/json")
-    public String getVideo(/*@QueryParam("videoId") String videoId*/){
+    public String getVideo(@QueryParam("userId") String videoId){
 
         return gson.toJson("getVideo");
     }
@@ -68,7 +95,10 @@ public class M03Video {
     @GET
     @Path("/getAll")
     @Produces("application/json")
-    public String getAllVideoFromUser(/*@QueryParam("userID") String userID*/){
+    public String getAllVideoFromUser(@QueryParam("userID") int userID){
+
+
+        GetAllVideoByIdCommand cmd = CommandsFactory.intantiateGetAllVideoByIdCommand(userID);
 
         return gson.toJson("getAllFromUser");
     }

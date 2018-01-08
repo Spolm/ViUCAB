@@ -1,9 +1,13 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
+import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoVideo;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
+import java.sql.SQLException;
 
 public class Video extends Entity {
 
@@ -32,10 +36,27 @@ public class Video extends Entity {
 
     }
 
+    public Video(String titulo, String descripcion, String imagen, String url, String fecha, int visitas) {
+
+        _titulo = titulo;
+        _descripcion = descripcion;
+        _imagen = imagen;
+        _url = url;
+        _fecha = fecha;
+        _visitas = visitas;
+
+    }
+
+    public Video(int videoId, String titulo, String descripcion, String imgUrl) {
+        _id = videoId;
+        _titulo = titulo;
+        _descripcion = descripcion;
+        _imagen = imgUrl;
+    }
+
     public String saveVideo(InputStream uploadedInputStream, int usuario ){
 
-
-        int idVideo=0;//Llamar a stores procedure que te da el siguiente id de video
+        int idVideo= getLastId();
 
         String name = idVideo +".mp4";
         String filePath = FOLDER_DIR + "/vid/" + name;
@@ -44,10 +65,10 @@ public class Video extends Entity {
         return name;
     }
 
-    public String saveImage(InputStream uploadedInputStream, int usuario ){
+    public String saveImage(InputStream uploadedInputStream){
 
-
-        int idVideo=0;//Llamar a stores procedure que te da el siguiente id de video
+        int idVideo= getLastId();
+        ;//Llamar a stores procedure que te da el siguiente id de video
 
         String name = idVideo +".jpg";
         String filePath = FOLDER_DIR + "/img/" + name;
@@ -67,6 +88,20 @@ public class Video extends Entity {
 
     }
 
+    private int getLastId(){
+        int response=0;
+        IDaoVideo daoVideo = DaoFactory.instantiateDaoVideo();
+        try {
+            response = daoVideo.getLastId() + 1;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public int get_id() {
+        return _id;
+    }
     public String get_titulo() {
         return _titulo;
     }

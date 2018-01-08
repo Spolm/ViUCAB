@@ -2,7 +2,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.AddVideoCommand;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
@@ -72,7 +72,13 @@ public class CommandsFactory {
 
     //M03 Video
 
-    public static Command intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);};
+    public static AddVideoCommand intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);}
+
+    public static UpdateVideoCommand intantiateUpdateVideoCommand (Entity e){return new UpdateVideoCommand(e);}
+
+    public static GetAllVideoByIdCommand intantiateGetAllVideoByIdCommand(int userID) {
+        return new GetAllVideoByIdCommand(userID);
+    }
 
     //Fin M03
 
@@ -105,6 +111,7 @@ public class CommandsFactory {
      public  static  Command instanciaSetSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new SetSuscripcionComando(idsuscriptor,idsuscripcion);}
 
      public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
+
 
 
     //Fin instancias M08
