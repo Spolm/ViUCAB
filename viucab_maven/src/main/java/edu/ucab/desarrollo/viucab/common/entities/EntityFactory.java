@@ -102,8 +102,13 @@ public class EntityFactory
     static public ConfiguracionNotificaciones configuracionNotificaciones(int id, boolean activado, boolean boletin, boolean subscripciones, boolean etiquetados, boolean estadisticas, boolean preferencias){
         return new ConfiguracionNotificaciones(id, activado, boletin, subscripciones, etiquetados, estadisticas, preferencias);  }
 
-    static public Notificacion notificacion(int id, Video video, Usuario usuario, boolean desechado, Date fecha) {
-        return new Notificacion(id, video, usuario, desechado, fecha);  }
+    static public Notificacion notificacion () {
+        return new Notificacion();
+    }
+
+    static public Notificacion notificacion (int id, Video video, Usuario usuario, boolean desechado, Date fecha){
+        return new Notificacion(id, video, usuario, desechado, fecha);
+    }
     //Fin M10
 
 }

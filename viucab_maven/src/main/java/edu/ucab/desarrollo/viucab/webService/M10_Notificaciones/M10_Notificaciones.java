@@ -1,14 +1,12 @@
 package edu.ucab.desarrollo.viucab.webService.M10_Notificaciones;
 
 import com.google.gson.*;
-import edu.ucab.desarrollo.viucab.common.entities.ConfiguracionNotificaciones;
-import edu.ucab.desarrollo.viucab.common.entities.Notificacion;
-import edu.ucab.desarrollo.viucab.common.entities.Video;
-import edu.ucab.desarrollo.viucab.common.entities.Usuario;
+import edu.ucab.desarrollo.viucab.common.entities.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetNotificaciones;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.MailNotificacion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
-import org.apache.http.client.HttpClient;
-import org.apache.http.protocol.HTTP;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -21,7 +19,7 @@ import java.util.List;
 public class M10_Notificaciones {
     Gson gson = new Gson();
     Connection conexion = Sql.getConInstance();
-
+    private Response _response;
     @POST
     @Path("/notificacionMail")
     @Produces("application/json")
@@ -63,59 +61,35 @@ public class M10_Notificaciones {
     //Recibe como parametro el id del usuario que inicio sesion
     public String obtenerNotificacion (){
 
-        String select="SELECT n.not_id, n.not_fecha, n.not_desechado, v.vid_url, v.vid_imagen, v.vid_titulo, " +
-                "v.vid_descripcion, u.usu_login " +
-                "FROM notificacion n, video v, usuario u " +
-                "WHERE (not_desechado=false and n.vid_id=v.vid_id and n.usu_id=1 and v.usu_id= u.usu_id) " +
-                "ORDER BY not_fecha DESC";
-
-        try{
-            ArrayList<Notificacion> listaNotificaciones = new ArrayList<>();
-            Statement st = conexion.createStatement();
-            ResultSet result =  st.executeQuery(select);
-
-
-            while(result.next()){
-                Notificacion not = new Notificacion();
-                Video vid= new Video();
-                Usuario usu = new Usuario();
-                vid.setUrl(result.getString( "vid_url"));
-                vid.setDescripcion(result.getString("vid_descripcion"));
-                vid.setImagen(result.getString("vid_imagen"));
-                vid.setNombre(result.getString("vid_titulo"));
-                usu.set_name_user(result.getString("usu_login"));
-                not.setId(result.getInt("not_id"));
-                not.setVideo(vid);
-                not.setUsuario(usu);
-                not.setFecha(result.getDate("not_fecha"));
-                not.setDesechado(result.getBoolean("not_desechado"));
-                listaNotificaciones.add(not);
-
-            }
-
-            return gson.toJson(listaNotificaciones);
-
-        } catch (SQLException e) {
-            return e.getMessage();
-        } finally {
-            Sql.bdClose(conexion);
-        }
+        Entity notificacionObject = EntityFactory.notificacion();
+        Command commandNotificacion = CommandsFactory.instanciateGetNotificaciones(notificacionObject);
+        GetNotificaciones cmd = (GetNotificaciones) commandNotificacion;
+        cmd.execute();
+        List<Entity> result = cmd.ReturnListNot();
+        //List<Video_Etiq> json = new ArrayList<Video_Etiq>();
+        //json.addAll((Collection<? extends Video_Etiq>) result);
+        return gson.toJson(result);
     }
 
+    /** Metodo que desecha la notificacion una vez se ha interactuado con ella
+     *
+     * @param datos
+     * @return YES
+     * @throws SQLException
+     */
     //Desechar Notificacion
     @GET
     @Path("/notificacionDes")
-    @Produces("application/json")
-    public String desecharNotificacion ( String datos) throws  SQLException {
+    @Consumes("application/json")
+    @Produces("text/plain")
+    public Response desecharNotificacion (String datos) throws  SQLException {
         JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
-        PreparedStatement ps = conexion.prepareStatement( "UPDATE notificacion SET not_desechado = true " +
-                                                                "WHERE not_id = ?;");
-        ps.setInt(1, jsonDatos.get("not_id").getAsInt());
-        ps.executeQuery();
+        PreparedStatement ps = conexion.prepareCall( "{? = CALL m10_desecharnotificacion()}");
+        ps.setInt(1, 1/*jsonDatos.get("not_id").getAsInt()*/);
+        ps.executeUpdate();
         Sql.bdClose(conexion);
-        return datos;
+        return _response;
     }
-
 
     //Configuracion de Notificaciones
     @GET
@@ -172,7 +146,7 @@ public class M10_Notificaciones {
         ps.setBoolean(5,jsonDatos.get("etiquetados").getAsBoolean());
         ps.setBoolean(6, jsonDatos.get("estadisticas").getAsBoolean());
         ps.setInt(7, jsonDatos.get("id").getAsInt());
-        ps.executeQuery();
+        ps.executeUpdate();
         Sql.bdClose(conexion);
         return datos;
 
