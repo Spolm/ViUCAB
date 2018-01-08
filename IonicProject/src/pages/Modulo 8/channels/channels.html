@@ -22,7 +22,14 @@
 
 <ion-content padding>
 
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Deslice para Actualizar"
+      refreshingSpinner="circles"
+      refreshingText="Actualizando...">
+    </ion-refresher-content>
+</ion-refresher>
   <ion-list *ngIf= "mostrarSuscripciones">
         <ion-item *ngFor="let item of listaSuscripcion ; let i = index " >
             <ion-avatar item-start > 
@@ -41,7 +48,7 @@
         </ion-avatar>
         <h2> {{ item._name_user }} </h2>
         <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
-        <button ion-button color= {{item.color}} item-right (click)="showConfirm(item._name_user, item._id_user, ix )" > {{ estadoSus }}</button>
+        <button ion-button color= {{item.color}} item-right (click)="showAlert(item._name_user, item._id_user, ix )" > {{ estadoSus }}</button>
     </ion-item>
   </ion-list>
 
