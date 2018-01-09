@@ -25,15 +25,15 @@ export class ChannelsPage {
   buscarQuery : string ='';
   listaSuscripcion: Array<{}>;
   listaUsuarios : Array<{}>;
-  mostrarUsuarios : boolean;
-  mostrarSuscripciones : boolean;  
+  mostrarUsuarios : boolean; // bandera que muestra o no en el html la lista de usuarios
+  mostrarSuscripciones : boolean;  // bandera que muestra o no en el html la lista de suscripciones
   items: any[];
   botones: any[];
   color: string ='primary';
   estadoSus:string ='Suscrito';
   suscrito:boolean = true;
   respu : any;
-  idUser : number = 1;
+  idUser : number = 1; // usuario cableado con id =1
 
   //arreglo :Array<{_id_user: number,_name_user:string,_user_token:boolean}>;
 
@@ -43,17 +43,19 @@ export class ChannelsPage {
               public alertCtrl: AlertController,
               public api : RestApiService) {
 
-      this.prue();
+      this.cargarSuscripciones(); // metodo que llena la lista de suscripciones 
       
     //  this.cargarUsuarios(); //---------------------------probando
   }
-// pendiente arreglar el metodo buscar lun 18/ dic/2017
 
-
-// realizacion de busqueda mediante arreglos
+/**
+ * Metodo que inicializa las dos listas de usuarios 
+ * @author : Modulo 08
+ * modificado el dia 8/enne/2018
+ */
   ionViewDidLoad() {
     console.log('ionViewDidLoad ChannelsPage');
-    this.prue();
+    this.cargarSuscripciones();
     this.cargarUsuarios();
  
   }
@@ -61,7 +63,7 @@ export class ChannelsPage {
  *  metodo que carga a lista de usuarios suscritos
  *
  */
-  public prue ()
+  public cargarSuscripciones ()
   {
       this.estadoSus ='Suscrito';
       this.mostrarSuscripciones=true;
@@ -81,6 +83,11 @@ export class ChannelsPage {
          });
 
   }
+  /**
+   * 
+   * @param idSuscriptor : recibe el idi del usuario del acan en la cual se quiere desuscribir
+   * @author Modulo 08
+   */
   public borrar (idSuscriptor: number)
   {
       this.api.deleteSus('Suscripcion/UpdateSuscripcion?idLogueado='+this.idUser+'&idSuscriptor='+idSuscriptor)
@@ -94,8 +101,14 @@ export class ChannelsPage {
 
   }
 
-  //---------------------------- 4/ 01/2018 -----------
-
+//---------------------------- 4/ 01/2018 -----------
+/**
+ * Llena la lista de usuario para mostrarlos en la lista
+ * solo muestra los usuarios registrados en el sistema
+ * con la condicion que aparece solo los usuarios no suscritos al usuario logueado
+ * ni el usuario logueado
+ * @author : Jesus Yepes
+ */
   public cargarUsuarios ()
   {
     
@@ -117,23 +130,25 @@ export class ChannelsPage {
   * @author Modulo 08
   * @param refresher :
   *  8/ene/2018
+  *  Actualiza la vista
   */
  doRefresh(refresher) {
   console.log('Begin async operation', refresher);
-  
-
-  setTimeout(() => {
+    setTimeout(() => {
     console.log('Async operation has ended');
     refresher.complete();
-    this.prue();
-  }, 1500);
+    this.cargarSuscripciones();
+  }, 1500); // tarda en actualizar 1.5 segundos
 }
 
 
-  
   //-------------------------------------------------------------------------------------------------
+/**
+ * @author Modulo 08
+ * metodo que es llamado por el buscador a traves del evento de entrada
+ * que busca los usuarios en el sistema, por medio de la lista de usuarios
+ */
 
-  // pendiente por arreglar
   getItems1(ev: any){
     this.estadoSus ='Suscribirse';
     //Reset items back to all of the items
@@ -141,7 +156,7 @@ export class ChannelsPage {
    this.mostrarSuscripciones=false;
     this.mostrarUsuarios =true;
    this.items = this.listaUsuarios;
-   // this.prue();
+   // this.cargarSuscripciones();
    
     let i :number;
     console.log('hola');
@@ -165,18 +180,19 @@ export class ChannelsPage {
 
   //------------------------------------------------------------------------------------------------
 
-
 // Realizacion del mensaje de confirmacion 19/dic/2017
 
-//showConfirm(usuarioSelected : any,idx : number){
-  /**
-   * 
-   * @param nombreSelected 
-   * @param idSuscriptor 
-   */
+
+ /**
+  * @author  modulo 08
+  * @param nombreSelected : nombre del canal seleccionaddo 
+  * @param idSuscriptor :  id del usuario canal del usuario seleccionado
+  * @param idx : indice que indica la posicion de la lista en la que se encuentra
+    el elemento seleccionado
+    
+  */
   showConfirm(nombreSelected : string, idSuscriptor :number , idx : number){
-     // if(this.items[idx].flag)
-     // {
+   
         let confirm = this.alertCtrl.create(
           {
             title: 'Cancelar suscripcion ?',
@@ -186,26 +202,19 @@ export class ChannelsPage {
                 {
                   text: 'Cancelar',
                   handler: () => {
-                    console.log('presiono no');
-                   // console.log(idx);
-                    //this.items[idx].color = 'primary';
-                  
+                    console.log('presiono no');                  
                     this.estadoSus = 'Suscrito';
-                    //this.items[idx].estado = this.estadoSus
+
                   }
 
                 },
-                {    //this.verificarEstado(false,usuarioSelected);
+                {    
                   text: 'Eliminar Suscripcion', // llamar a los metodos necesarios
                   handler: () => {
                   this.borrar(idSuscriptor);
                   console.log('presiono si suscripcion cancelada');
                   this.listaSuscripcion.splice(idx,1);
-                   // console.log(idx);
-                   // this.items[idx].color = 'claro';
-                    //this.estadoSus = 'Suscribirse';
-                   // this.items[idx].estado = this.estadoSus;
-
+                  
                   }
                 }
 
@@ -220,9 +229,9 @@ export class ChannelsPage {
 //--------------------------------------------------------------------------
 /**
  * 
- * @param nombreSelected 
- * @param idSuscriptor 
- * @param idx 
+ * @param nombreSelected nombre del usuario seleccionado para mostrarlo en pantalla
+ * @param idSuscriptor : id del usuario selecccionado a suscribir
+ * @param idx : indice que indica la posiicion del usuario en la lista para borrarlo de la lista de usuarios
  */
 showAlert(nombreSelected : string, idSuscriptor :number , idx : number){
     let alert = this.alertCtrl.create({
@@ -237,8 +246,9 @@ showAlert(nombreSelected : string, idSuscriptor :number , idx : number){
 // ---------------------------------------------------------------------------
 /**
  * Pendiente cambiar get por put o post ---------------******** en la ws tambn
+ * @author Modulo 08
  * @param usuarioLogueado 
- * @param usuarioCanal 
+ * @param usuarioCanal : id del usuario a suscribir
  */
 suscribirUsuario(usuarioLogueado : number, usuarioCanal :number){
       this.api.geta('Suscripcion/SetSuscripcion?idLogueado='+usuarioLogueado+'&idSuscriptor='+usuarioCanal)     
