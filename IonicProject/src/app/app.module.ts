@@ -6,11 +6,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { ChartsModule } from 'ng2-charts';
 
-import {EditListPage} from '../pages/playlist/edit-list/edit-list';
-import {ViewListPage} from '../pages/playlist/view-list/view-list';
-import {CreateNewListPage} from '../pages/playlist/create-new-list/create-new-list';
-import {AddListPage} from '../pages/playlist/add-list/add-list';
-
 // Modificado Grupo 10
 import { HttpModule } from '@angular/http';
 import { NotificacionesPage } from '../pages/notificaciones/notificaciones';
@@ -24,10 +19,6 @@ import { ChannelsPage } from '../pages/Modulo 8/channels/channels';
 @NgModule({
   declarations: [
     MyApp,
-    EditListPage,
-    ViewListPage,
-    AddListPage,
-    CreateNewListPage,
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,
@@ -42,10 +33,6 @@ import { ChannelsPage } from '../pages/Modulo 8/channels/channels';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    EditListPage,
-    ViewListPage,
-    AddListPage,
-    CreateNewListPage,
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,

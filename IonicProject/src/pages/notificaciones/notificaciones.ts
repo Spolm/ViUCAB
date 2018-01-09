@@ -3,8 +3,12 @@ import { IonicPage, NavController, Nav, NavParams } from 'ionic-angular';
 import { Toast } from '@ionic-native/toast';
 import { ConfiguracionNotificacionesPage } from '../configuracion-notificaciones/configuracion-notificaciones';
 import { RestApiService } from '../../app/rest-api.service';
-import { CanalPage } from'../Modulo 2/canal/canal';
+import { CanalPage } from '../Modulo 2/canal/canal';
+import { Notificacion } from '../../model/notificacionModel';
+
 const URL = 'Notificaciones/notificacion';
+const URLdes = 'Notificaciones/notificacionDes';
+
 @IonicPage()
 
 @Component({
@@ -15,67 +19,32 @@ const URL = 'Notificaciones/notificacion';
 
 export class NotificacionesPage {
 
-  private notificacion: {
-    id: number,
-    fecha: Date,
-    desechado: boolean ,
-    video: {
-      id: number,
-      nombre: string,
-      url: string,
-      imagen:string,
-      descripcion: string  
-    },
-    usuario: {
-      _name_user: string
-    }
-    };
-  private notificacionList = Array<{
-    id: number,
-    fecha: Date,
-    desechado: boolean ,
-    video: {
-      id: number,
-      nombre:string,
-      url: string,
-      imagen: string,
-      descripcion: string
-    },
-    usuario: {
-      _name_user: string
-    }
-     }>();
+  private notificacionList = Array<Notificacion>();
   private toast: Toast;
   private response: any;
+  private vacio: boolean;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public restApi: RestApiService) {
-    this.notificacion = {
-      id: 0,
-      fecha: null,
-      desechado: false,
-      video: {
-        id: 0,
-        nombre: '',
-        url: '',
-        imagen: '',
-        descripcion: ''
-      },
-      usuario: {
-        _name_user: ''
-      }
-    };
-    
-    this.notificacionList.push(this.notificacion);
-    this.restApi.getTodo(URL).subscribe( (data) => {
+    this.vacio = true;
+    this.restApi.getTodo(URL).subscribe((data) => {
       this.notificacionList = data;
-      console.log(this.notificacionList);
+      if (this.notificacionList.length > 0) {
+        this.vacio = false;
+      }
     });
   }
-  
-  goToConfiguracionNotificaciones(){
+
+  public goToConfiguracionNotificaciones() {
     this.navCtrl.push(ConfiguracionNotificacionesPage);
   }
-public goToVideo() {
+
+  public goToVideo(n: Notificacion) {
+    // console.log(n);
+    // this.restApi.getUno(URLdes, n.id).subscribe((data) => {
+    //  console.log(n.id);
+    //  console.log(data);
+    // });
     this.navCtrl.push(CanalPage);
-}
+  }
 
 }
