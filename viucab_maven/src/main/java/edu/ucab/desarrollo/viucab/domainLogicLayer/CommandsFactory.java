@@ -78,8 +78,20 @@ public class CommandsFactory {
         return new GetListaComando(lista);
     }
 
+    public static Command instanciaGetEspecificList (Entity lista){
+        return new GetEspecificListComando(lista);
+    }
+
     public static Command instanciaAddListComando (Entity lista){
         return new AddListComando(lista);
+    }
+
+    public static Command instanciaModifyListComando (Entity lista){
+        return new ModifyListComando(lista);
+    }
+
+    public static Command instanciaDeleteListComando (Entity lista){
+        return new DeleteListComando(lista);
     }
 
     //endregion

@@ -54,19 +54,19 @@ public class EntityFactory
      * @param fechaCreacion
      * @return nombre,descripcion,numReproducciones,fechaCreacion
      */
-    static public Entity listaDeReproduccion (Integer idLista, String nombre, String descripcion, Integer numReproducciones, String fechaCreacion)
+    static public Entity listaDeReproduccion (Integer idLista, String nombre, String descripcion, String imgUrl, Integer numReproducciones, String fechaCreacion, Integer idUsuario)
     {
-        return new ListaDeReproduccion(idLista, nombre, descripcion, numReproducciones, fechaCreacion);
+        return new ListaDeReproduccion(idLista, nombre, descripcion, imgUrl, numReproducciones, fechaCreacion, idUsuario);
     }
 
-    static public Entity listaDeReproduccion (String nombre, String descripcion, Integer numReproducciones, String fechaCreacion)
+    static public Entity getLista(Integer id_usu)
     {
-        return new ListaDeReproduccion(nombre, descripcion, numReproducciones, fechaCreacion);
+        return new ListaDeReproduccion(id_usu);
     }
 
-    static public Entity getLista(Integer id_lista, Integer id_usu)
+    static public Entity getListaEspecifica(Integer id_lista)
     {
-        return new ListaDeReproduccion(id_lista, id_usu);
+        return new ListaDeReproduccion(id_lista, 1);
     }
 
     static public Entity createLista(String lis_rep_nombre, String lis_rep_descripcion, String lis_rep_img, Integer lis_rep_numrep,
@@ -74,6 +74,18 @@ public class EntityFactory
     {
         return new ListaDeReproduccion(lis_rep_nombre, lis_rep_descripcion, lis_rep_img, lis_rep_numrep,
         lis_rep_fecha, id_usu);
+    }
+
+    static public Entity modifyLista(Integer lis_rep_id, String lis_rep_nombre, String lis_rep_descripcion, String lis_rep_img)
+    {
+        return new ListaDeReproduccion(lis_rep_id, lis_rep_nombre, lis_rep_descripcion, lis_rep_img, 1,
+                "2018-01-11", 4);
+    }
+
+    static public Entity deleteList(Integer lis_rep_id)
+    {
+        return new ListaDeReproduccion(lis_rep_id, "", "", "", 1,
+                "2018-01-11", 4);
     }
 
     //endregion

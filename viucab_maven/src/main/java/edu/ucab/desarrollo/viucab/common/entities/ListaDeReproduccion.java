@@ -18,10 +18,10 @@ public class ListaDeReproduccion extends Entity {
 
     /**
      * constructor
-     * @param idLista
+     * @param idUsuario
      */
-    public ListaDeReproduccion(Integer idLista) {
-        this.idLista = idLista;
+    public ListaDeReproduccion(Integer idUsuario) {
+        this.idUsuario = idUsuario;
     }
 
     /**
@@ -61,27 +61,16 @@ public class ListaDeReproduccion extends Entity {
      * @param numReproducciones
      * @param fechaCreacion
      */
-    public ListaDeReproduccion(Integer idLista, String nombre, String descripcion, Integer numReproducciones, String fechaCreacion) {
+    public ListaDeReproduccion(Integer idLista, String nombre, String descripcion, String urlImg, Integer numReproducciones, String fechaCreacion, Integer idUsuario) {
         this.idLista = idLista;
         this.nombre = nombre;
         this.descripcion = descripcion;
+        this.urlImg = urlImg;
         this.numReproducciones = numReproducciones;
         this.fechaCreacion = fechaCreacion;
+        this.idUsuario = idUsuario;
     }
 
-    /**
-     * Constructor de ListaDeReproduccion
-     * @param nombre
-     * @param descripcion
-     * @param numReproducciones
-     * @param fechaCreacion
-     */
-    public ListaDeReproduccion(String nombre, String descripcion, Integer numReproducciones, String fechaCreacion) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.numReproducciones = numReproducciones;
-        this.fechaCreacion = fechaCreacion;
-    }
 
     /**
      * Getter

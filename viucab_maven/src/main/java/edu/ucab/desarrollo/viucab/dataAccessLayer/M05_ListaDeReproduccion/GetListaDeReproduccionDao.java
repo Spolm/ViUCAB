@@ -65,11 +65,12 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
                 int idLista = resultSet.getInt("LIS_REP_ID");
                 String nombre = resultSet.getString("LIS_REP_NOMBRE");
                 String descripcion = resultSet.getString("LIS_REP_DESCRIPCION");
-                //String imagen = resultSet.getString("LIS_REP_IMG");   AUN NO ESTA IMPLEMENTADO QUE SE TRAIGA LA IMAGEN
+                String imagen = resultSet.getString("LIS_REP_IMG");
                 String fechaCreacion = resultSet.getString("LIS_REP_FECHA");
                 int numReproducciones = resultSet.getInt("LIS_REP_NUMREP");
+                int idUsuarioF = resultSet.getInt("id_usu");
 
-                lista = (ListaDeReproduccion) EntityFactory.listaDeReproduccion(idLista, nombre, descripcion, numReproducciones, fechaCreacion);
+                lista = (ListaDeReproduccion) EntityFactory.listaDeReproduccion(idLista, nombre, descripcion, imagen, numReproducciones, fechaCreacion, idUsuarioF);
                 listaContenedora.add(lista);
 
             }
@@ -91,6 +92,59 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
     }
 
     /**
+     * Metodo DAO para obtener una lista en especifico
+     * @param e
+     * @return
+     * @throws SQLException
+     */
+    public Entity GetEspecificList(Entity e) throws SQLException {
+
+        ListaDeReproduccion lista = (ListaDeReproduccion) e;
+        Integer idListaBuscada = lista.getIdLista();
+        CallableStatement preStatement = null;
+        ResultSet resultSet = null;
+        Connection conn;
+
+        try {
+            //Creando la instancia de Conexion a la BD
+            conn = getBdConnect();
+            //Invocando el SP
+            preStatement = conn.prepareCall("{call m05_obtenerlistaespecifica(?)}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
+            //Seteo lo que le estoy mandando al procedimiento con ese "?"
+            preStatement.setInt(1,idListaBuscada);
+            //Ejecucion del query
+            resultSet = preStatement.executeQuery();
+            while (resultSet.next()) {
+
+                int idLista = resultSet.getInt("LIS_REP_ID");
+                String nombre = resultSet.getString("LIS_REP_NOMBRE");
+                String descripcion = resultSet.getString("LIS_REP_DESCRIPCION");
+                String imagen = resultSet.getString("LIS_REP_IMG");
+                String fechaCreacion = resultSet.getString("LIS_REP_FECHA");
+                int numReproducciones = resultSet.getInt("LIS_REP_NUMREP");
+                int idUsuario = resultSet.getInt("id_usu");
+
+                lista = (ListaDeReproduccion) EntityFactory.listaDeReproduccion(idLista, nombre, descripcion, imagen, numReproducciones, fechaCreacion, idUsuario);
+
+            }
+            resultSet.close();
+
+        } catch (SQLException e1) {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+
+            System. out. println(e1.getMessage());
+        }
+        catch(Exception ex)
+        {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+        }
+        finally {
+            closeConnection();
+        }
+        return lista;
+    }
+
+    /**
      * Metodo para crear una lista
      * @param e
      * @return
@@ -101,7 +155,6 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
         /*EN LA BD LA FUNCION RECIBE ESTO =
         lis_rep_nombre character varying, lis_rep_descripcion character varying,
         list_rep_img character varying, lis_rep_numrep integer, lis_rep_fecha date, id_usu integer*/
-
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
         String lis_rep_nombre = lista.getNombre();
@@ -151,5 +204,110 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
             closeConnection();
         }
         return insertado;
+    }
+
+    /**
+     * Metodo para actualizar una lista de reproduccion
+     * @param e
+     * @return
+     * @throws SQLException
+     */
+    public Boolean modifyLista(Entity e) throws SQLException {
+
+
+        ListaDeReproduccion lista = (ListaDeReproduccion) e;
+        String lis_rep_nombre = lista.getNombre();
+        String lis_rep_descripcion = lista.getDescripcion();
+        String list_rep_img = lista.getUrlImg();
+        Integer idListaModificar = lista.getIdLista();
+        Boolean modificado = false;
+
+        CallableStatement preStatement = null;
+        ResultSet resultSet = null;
+        Connection conn;
+
+        try {
+            //Creando la instancia de Conexion a la BD
+            conn = getBdConnect();
+            //Invocando el SP
+            preStatement = conn.prepareCall("{call m05_modificarLista(?,?,?,?)}");
+            //Seteo lo que le estoy mandando al procedimiento con ese "?"
+            preStatement.setInt(1,idListaModificar);
+            preStatement.setString(2,lis_rep_nombre);
+            preStatement.setString(3,lis_rep_descripcion);
+            preStatement.setString(4,list_rep_img);
+
+            //Ejecucion del query
+            resultSet = preStatement.executeQuery();
+
+            if (resultSet.next())
+                modificado = true;
+
+
+            resultSet.close();
+
+        } catch (SQLException e1) {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+
+            System. out. println(e1.getMessage());
+        }
+        catch(Exception ex)
+        {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+        }
+        finally {
+            closeConnection();
+        }
+        return modificado;
+    }
+
+
+    /**
+     *
+     * @param e
+     * @return
+     * @throws SQLException
+     */
+    public Boolean deleteList(Entity e) throws SQLException {
+
+
+        ListaDeReproduccion lista = (ListaDeReproduccion) e;
+        Integer idListaEliminar = lista.getIdLista();
+        Boolean eliminado = false;
+
+        CallableStatement preStatement = null;
+        ResultSet resultSet = null;
+        Connection conn;
+
+        try {
+            //Creando la instancia de Conexion a la BD
+            conn = getBdConnect();
+            //Invocando el SP
+            preStatement = conn.prepareCall("{call m05_eliminarLista(?)}");
+            //Seteo lo que le estoy mandando al procedimiento con ese "?"
+            preStatement.setInt(1,idListaEliminar);
+
+            //Ejecucion del query
+            resultSet = preStatement.executeQuery();
+
+            if (resultSet.next())
+                eliminado = true;
+
+
+            resultSet.close();
+
+        } catch (SQLException e1) {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+
+            System. out. println(e1.getMessage());
+        }
+        catch(Exception ex)
+        {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+        }
+        finally {
+            closeConnection();
+        }
+        return eliminado;
     }
 }
