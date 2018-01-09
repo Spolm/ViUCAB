@@ -1,6 +1,8 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
 
+import java.util.Date;
+
 /**
  * Clase que extiende de entidad para lista de reproduccion
  */
@@ -9,6 +11,7 @@ public class ListaDeReproduccion extends Entity {
     private Integer idLista;
     private String nombre;
     private String descripcion;
+    private String urlImg;
     private Integer numReproducciones;
     private String fechaCreacion;
     private Integer idUsuario;
@@ -32,21 +35,22 @@ public class ListaDeReproduccion extends Entity {
     }
 
     /**
-     * Constructor de ListaDeReproduccion
-     * @param idLista
-     * @param nombre
-     * @param descripcion
-     * @param numReproducciones
-     * @param fechaCreacion
-     * @param idUsuario
+     * Constructor
+     * @param lis_rep_nombre
+     * @param lis_rep_descripcion
+     * @param lis_rep_img
+     * @param lis_rep_numrep
+     * @param lis_rep_fecha
+     * @param id_usu
      */
-    public ListaDeReproduccion(Integer idLista, String nombre, String descripcion, Integer numReproducciones, String fechaCreacion, Integer idUsuario) {
-        this.idLista = idLista;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.numReproducciones = numReproducciones;
-        this.fechaCreacion = fechaCreacion;
-        this.idUsuario = idUsuario;
+    public ListaDeReproduccion(String lis_rep_nombre, String lis_rep_descripcion, String lis_rep_img, int lis_rep_numrep,
+                               String lis_rep_fecha, Integer id_usu) {
+        this.nombre = lis_rep_nombre;
+        this.descripcion = lis_rep_descripcion;
+        this.urlImg = lis_rep_img;
+        this.numReproducciones = lis_rep_numrep;
+        this.fechaCreacion = lis_rep_fecha;
+        this.idUsuario = id_usu;
     }
 
     /**
@@ -131,7 +135,11 @@ public class ListaDeReproduccion extends Entity {
         this.idUsuario = idUsuario;
     }
 
-    //private Object imagen; ACA DEBE IR LA IMAGEN
+    public String getUrlImg() {
+        return this.urlImg;
+    }
 
-
+    public void setUrlImg(String urlImg) {
+        this.urlImg = urlImg;
+    }
 }
