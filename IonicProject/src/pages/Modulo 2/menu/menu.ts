@@ -3,6 +3,9 @@ import {TendenciasPage } from './../tendencias/tendencias';
 import {SuscripcionesPage} from './../suscripciones/suscripciones';
 import {UsuarioPage} from './../usuario/usuario';
 import {InfovideoPage} from './../../Modulo3/infovideo/infovideo';
+import {CargarVideoPage} from './../../Modulo3/cargar-video/cargar-video';
+import { MisVideosPage } from './../../Modulo3/mis-videos/mis-videos';
+import { ListarmisvideosPage } from './../../Modulo3/listarmisvideos/listarmisvideos';
 import {ListasPage} from './../listas/listas';
 import {EstadisticaPage} from './../estadistica/estadistica';
 import { TabsPage } from './../tabs/tabs';
@@ -39,7 +42,7 @@ export class MenuPage {
     { title: 'Inicio', pageName: 'TabsPage', tabComponent: 'InicioPage', index: 0, icon: 'home' },
     //Aqui van los links de las paginas principales de los demas grupos
     //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
-    { title: 'Mis videos', pageName: 'InfovideoPage', icon: 'play' },
+    { title: 'Mis videos', pageName: 'ListarmisvideosPage', icon: 'play' },
     { title: 'Mis listas', pageName: 'PlaylistPage', icon: 'star-half' },
     { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
   ];
@@ -92,6 +95,13 @@ export class MenuPage {
     this.SettingsSubmenu = !this.SettingsSubmenu;
     this.MyChannelSubmenu = false;
   }
+
+  //Modificado por Modulo 3
+  openMisVideos() {
+    this.nav.push(ListarmisvideosPage);
+    this.MyChannelItemHandler();
+  }
+  //Fin modificado por Modulo 3
 
   //Modificado por Modulo 10
   openNotificaciones(){
