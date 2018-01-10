@@ -1,0 +1,1 @@
+﻿ALTER TABLE usuario ALTER COLUMN usu_clave  DROP  NOT NULL;
