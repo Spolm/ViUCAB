@@ -1,6 +1,7 @@
 package edu.ucab.desarrollo.viucab.webService.M03_AdministracionVideos;
 
 import com.google.gson.Gson;
+import com.sun.org.apache.xpath.internal.SourceTree;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
@@ -124,25 +125,5 @@ public class M03Resources {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        /*try {
-            OutputStream outputStream;
-            int read = 0;
-            byte[] bytes = new byte[2048];
-
-            outputStream = new FileOutputStream(new File(serverLocation));
-            while ((read = uploadedInputStream.read(bytes)) != -1) {
-                outputStream.write(bytes, 0, read);
-            }
-
-            outputStream.flush();
-            outputStream.close();
-
-            uploadedInputStream.close();
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
-*/
     }
 }
