@@ -1,8 +1,7 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-        import java.awt.*;
-        import java.io.InputStream;
-        import java.util.ArrayList;
+
+import java.util.ArrayList;
 
 /**
  * Created by estefania on 10/11/2017.

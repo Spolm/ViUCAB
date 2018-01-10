@@ -3,8 +3,6 @@ package edu.ucab.desarrollo.viucab.webService.M02_Home;
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 
 import javax.ws.rs.GET;
