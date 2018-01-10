@@ -53,7 +53,7 @@ export class PlaylistPage {
     this.api.geta('playlist/getAllPlaylist?id_usu='+ this.userid)
 
       .subscribe((data) => { // Success
-          console.log (data);
+          console.log (data.json());
          },
          (error) =>{
            console.error(error);
