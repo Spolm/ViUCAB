@@ -11,7 +11,9 @@ public class StatusMessage {
     /**
      * Constructor vacio
      */
-    public StatusMessage() {
+    public  StatusMessage() {
+
+
     }
 
     /**

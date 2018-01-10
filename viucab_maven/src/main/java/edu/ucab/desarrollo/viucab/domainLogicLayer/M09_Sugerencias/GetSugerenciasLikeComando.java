@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class GetSugerenciasLikeComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetEstadistica1.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetSugerenciasLikeComando.class);
     private static Entity est;
     ArrayList<Entity> e = null;
 
@@ -22,15 +22,15 @@ public class GetSugerenciasLikeComando extends Command {
     public GetSugerenciasLikeComando(){this.e = e;}
 
     @Override
-    public void execute() throws BdConnectException, PlConnectException {
+    public void execute()  {
                 try{
                     GetSugerenciasDao dao = DaoFactory.instaciateDaoSugerencias();
                     ArrayList<Entity> lista = dao.sugerenciasLike(est);
                     e = lista;
-                }
-                catch (Exception e){
+                } catch (Exception e){
                     est = new Entity();
                 }
+
     }
 
     @Override
