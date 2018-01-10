@@ -15,28 +15,23 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
  *
  * @author AlejandroNegrin
  */
-public class ComandoAgregarComentario extends Command {
-
-    private int idvideo;
-    private String usuario;
-    private String comentario;
+public class ComandoDeleteComentario extends Command{
+    private int idcom;
     public int result;
 
-    public ComandoAgregarComentario(int idvideo, String usuario, String comentario) {
-        this.idvideo = idvideo;
-        this.usuario = usuario;
-        this.comentario = comentario;
+    public ComandoDeleteComentario(int idcom) {
+        this.idcom = idcom;
     }
-
+    
     @Override
     public void execute() throws VIUCABException, Exception {
         VideoDao dao = DaoFactory.instanciarVideoDao();
-        this.result = dao.addComentario(this.idvideo, this.usuario, this.comentario);
+        this.result = dao.deleteComentario(this.idcom);
     }
 
     @Override
     public Entity Return() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

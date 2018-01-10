@@ -15,28 +15,25 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
  *
  * @author AlejandroNegrin
  */
-public class ComandoAgregarComentario extends Command {
-
+public class ComandoGetIfLike extends Command{
     private int idvideo;
     private String usuario;
-    private String comentario;
     public int result;
 
-    public ComandoAgregarComentario(int idvideo, String usuario, String comentario) {
+    public ComandoGetIfLike(int idvideo, String usuario) {
         this.idvideo = idvideo;
         this.usuario = usuario;
-        this.comentario = comentario;
     }
 
     @Override
     public void execute() throws VIUCABException, Exception {
         VideoDao dao = DaoFactory.instanciarVideoDao();
-        this.result = dao.addComentario(this.idvideo, this.usuario, this.comentario);
+        this.result = dao.getIfLike(this.idvideo,this.usuario);
     }
 
     @Override
     public Entity Return() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
+    
 }

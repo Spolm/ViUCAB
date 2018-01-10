@@ -3,6 +3,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
@@ -77,6 +78,34 @@ public class CommandsFactory {
         return new GetListaComando(lista);
     }
 
+    public static Command instanciaGetEspecificList (Entity lista){
+        return new GetEspecificListComando(lista);
+    }
+
+    public static Command instanciaAddListComando (Entity lista){
+        return new AddListComando(lista);
+    }
+
+    public static Command instanciaModifyListComando (Entity lista){
+        return new ModifyListComando(lista);
+    }
+
+    public static Command instanciaDeleteListComando (Entity lista){
+        return new DeleteListComando(lista);
+    }
+
+    public static Command instanciaAddVideoToListComando (Entity lista){
+        return new AddVideoToListComando(lista);
+    }
+
+    public static Command instanciaDeleteVideoToListComando (Entity lista){
+        return new DeleteVideoToListComando(lista);
+    }
+
+    public static Command instanciaGetVideosFromList (Entity lista){
+        return new GetVideosFromListComando(lista);
+    }
+
     //endregion
 
     //region M07
@@ -101,7 +130,7 @@ public class CommandsFactory {
 
      public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
 
-
+     public static Command instanciaGetUsuariosComando () {return  new GetUsuariosComando();}
     //Fin instancias M08
      
      
@@ -127,8 +156,20 @@ public class CommandsFactory {
          return new ComandoAddVisita(idvideo);
      }
      
-     public static Command instanciarComandoAgregarComentario(int idvideo) {
-         return new ComandoAgregarComentario(idvideo);
+     public static Command instanciarComandoAgregarComentario(int idvideo,String usuario, String comentario) {
+         return new ComandoAgregarComentario(idvideo,usuario,comentario);
+     }
+        
+     public static Command instanciarComandoUpdateLike(int idvideo,String usuario) {
+         return new ComandoUpdateLike(idvideo,usuario);
+     }
+        
+     public static Command instanciarComandoGetIfLike(int idvideo,String usuario) {
+         return new ComandoGetIfLike(idvideo,usuario);
+     }
+        
+     public static Command instanciarComandoDeleteComentario(int idcom) {
+         return new ComandoDeleteComentario(idcom);
      }
      
      // Fin M04

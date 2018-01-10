@@ -38,14 +38,6 @@ public class VideoDao extends Dao implements IDaoVideo {
 
     @Override
     public JsonObject getVideoYCanal(int idvideo) {
-//        System.out.println("LLEGUE A VIDEO CANAL CONSULTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-//        System.out.println("c");
-//        System.out.println("c");
-//        System.out.println("c");
-//        System.out.println("c");
-//        System.out.println("c");
-//        System.out.println("c");
-//        System.out.println("con idvideo= "+idvideo);
         Connection conn;
         conn = getBdConnect();
         JsonObject json = new JsonObject();
@@ -115,8 +107,10 @@ public class VideoDao extends Dao implements IDaoVideo {
             while (rs.next()) {
                 JsonObject json = new JsonObject();
                 json.addProperty("iduser", rs.getString("iduser"));
+                json.addProperty("correo", rs.getString("correo"));
                 json.addProperty("urlimg", "../../assets/imgs/advance-card-bttf.png");
                 json.addProperty("nombre", rs.getString("nombre"));
+                json.addProperty("idcomentario", rs.getString("idcomentario"));
                 json.addProperty("comentario", rs.getString("comentario"));
                 jsonArray.add(json);
             }
@@ -139,7 +133,82 @@ public class VideoDao extends Dao implements IDaoVideo {
         } catch (SQLException ex) {
             Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Metiendo los parametros al SP
+    }
+
+    @Override
+    public int addComentario(int idvideo, String usuario, String comentario) {
+        Connection conn;
+        conn = getBdConnect();
+        CallableStatement stmt;
+        int result = 0;
+        try {
+            stmt = conn.prepareCall("{call addComentario(?,?,?)}");
+            stmt.setInt(1, idvideo);
+            stmt.setString(2, usuario);
+            stmt.setString(3, comentario);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    @Override
+    public void updateLike(int idvideo, String usuario) {
+        System.out.println("LLEGUE A UPDATELIKE");
+        Connection conn;
+        conn = getBdConnect();
+        CallableStatement stmt;
+        try {
+            stmt = conn.prepareCall("{call updateLike(?,?)}");
+            stmt.setInt(1, idvideo);
+            stmt.setString(2, usuario);
+            stmt.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @Override
+    public int getIfLike(int idvideo, String usuario) {
+        Connection conn;
+        conn = getBdConnect();
+        CallableStatement stmt;
+        int result = 0;
+        try {
+            stmt = conn.prepareCall("{call getIfLike(?,?)}");
+            stmt.setInt(1, idvideo);
+            stmt.setString(2, usuario);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
+
+    @Override
+    public int deleteComentario(int idcom) {
+        Connection conn;
+        conn = getBdConnect();
+        CallableStatement stmt;
+        int result = 0;
+        try {
+            stmt = conn.prepareCall("{call deleteComentario(?)}");
+            stmt.setInt(1, idcom);
+            stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            return rs.getInt(1);
+        } catch (SQLException ex) {
+            Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
     }
 
 }

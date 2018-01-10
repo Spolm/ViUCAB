@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {EditListPage} from "../edit-list/edit-list";
+import {ViewListPage} from "../view-list/view-list";
 
 /**
  * Generated class for the PopOverListasReproduccionPage page.
@@ -25,6 +26,11 @@ export class PopOverListasReproduccionPage {
 
   public goToEditList(){
     this.navCtrl.push(EditListPage);
+  }
+
+  public goToViewList(){
+    
+    this.navCtrl.push(ViewListPage);
   }
 
 }

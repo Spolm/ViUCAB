@@ -1,23 +1,24 @@
-package edu.ucab.desarrollo.viucab.webService.M07_Etiqueta;
 
-import com.google.gson.Gson;
-import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
-import edu.ucab.desarrollo.viucab.common.entities.Etiquetas;
-import edu.ucab.desarrollo.viucab.common.entities.Video_Etiq;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
+        package edu.ucab.desarrollo.viucab.webService.M07_Etiqueta;
+
+        import com.google.gson.Gson;
+        import edu.ucab.desarrollo.viucab.common.entities.Entity;
+        import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
+        import edu.ucab.desarrollo.viucab.common.entities.Etiquetas;
+        import edu.ucab.desarrollo.viucab.common.entities.Video_Etiq;
+        import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
+        import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+        import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
 
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+        import javax.ws.rs.GET;
+        import javax.ws.rs.Path;
+        import javax.ws.rs.Produces;
+        import javax.ws.rs.QueryParam;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.Collection;
+        import java.util.List;
 
 @Path("/Etiqueta")
 public class M07_Etiqueta {

@@ -1,6 +1,5 @@
 //Clase que se encarga de enviar las solicitudes al servidor Rest Java
 //En periodo de prueba, no se ha validado que funciona, pero es la estructura basica.
-
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -118,7 +117,6 @@ export class RestApiService {
    }
 
    //Manejo de erorres
-
    private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
@@ -146,5 +144,16 @@ export class RestApiService {
       .get(URL+'/'+direccion)
 
   }
+  
+/////////////////
+ //Metodo DELETE: /direccion
+   //Elimina en una direccion
+   public deleteSus(direccion){
+    return this.http
+    .get(URL+'/'+direccion)
+    .map((data: any) => data.json())
+    .catch(this.handleError);
+   }
+  
 
 }
