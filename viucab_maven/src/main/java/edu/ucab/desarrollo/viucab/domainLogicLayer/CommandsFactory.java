@@ -61,7 +61,7 @@ public class CommandsFactory {
 
     //M02 Instancias
 
-    public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando();}
+    public  static  Command instanciateGetBusquedaComando     (Entity est) {return  new GetBusquedaComando(est);}
 
     //Mas Vistos no recibe Parametros
     public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}
@@ -76,6 +76,34 @@ public class CommandsFactory {
 
     public static Command instanciaGetLista (Entity lista){
         return new GetListaComando(lista);
+    }
+
+    public static Command instanciaGetEspecificList (Entity lista){
+        return new GetEspecificListComando(lista);
+    }
+
+    public static Command instanciaAddListComando (Entity lista){
+        return new AddListComando(lista);
+    }
+
+    public static Command instanciaModifyListComando (Entity lista){
+        return new ModifyListComando(lista);
+    }
+
+    public static Command instanciaDeleteListComando (Entity lista){
+        return new DeleteListComando(lista);
+    }
+
+    public static Command instanciaAddVideoToListComando (Entity lista){
+        return new AddVideoToListComando(lista);
+    }
+
+    public static Command instanciaDeleteVideoToListComando (Entity lista){
+        return new DeleteVideoToListComando(lista);
+    }
+
+    public static Command instanciaGetVideosFromList (Entity lista){
+        return new GetVideosFromListComando(lista);
     }
 
     //endregion

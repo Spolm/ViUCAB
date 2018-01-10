@@ -16,7 +16,13 @@ import {EditListPage} from "../edit-list/edit-list";
 })
 export class ViewListPage {
 
+  public VideosDeLista:any = [];
+  public NombreLista:any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.VideosDeLista = this.navParams.get('VideosDeLista');
+    this.NombreLista = this.navParams.get('NombreLista');
+    console.log(this.VideosDeLista,this.VideosDeLista);
   }
 
   public ListaDeVideos = [

@@ -31,28 +31,28 @@
 
 <ion-content padding>
 
-  <h2 class="TituloLista">Nombre de la lista</h2>
+  <h2 class="TituloLista">{{ NombreLista }}</h2>
 
     <ion-list >
-        <ion-item *ngFor="let video of ListaDeVideos" >
+        <ion-item *ngFor="let video of VideosDeLista" >
           <ion-thumbnail item-start id="List-img">
-            <img [src]="video.img">
+            <img [src]="video.imagen">
           </ion-thumbnail>
           <ion-grid>
             <ion-row>
               <ion-col col-10 class="nopadding" >
                 <ion-row >
                   <div class="ellipsis">
-                    <span class="List-title">{{video.title}}</span>
+                    <span class="List-title">{{video.nombre}}</span>
                   </div>
     
                 </ion-row>
                 <ion-row>
-                  <span class="List-amount">{{video.plays}} plays</span>
+                  <span class="List-amount">{{video.visitas}} plays</span>
                 </ion-row>
-                <ion-row>
+               <!-- <ion-row>
                   <span class="List-duration">{{video.duration}}</span>
-                </ion-row>
+                </ion-row> -->
               </ion-col>
               <ion-col col-2 class="nopadding" align="right">
                 <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
