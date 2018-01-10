@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8080/viucab';
+const URL = 'http://192.168.1.116:8080/viucab';
 
 @Injectable()
 export class RestApiService {
@@ -127,7 +127,7 @@ export class RestApiService {
   public getVideos(direccion): Observable<any> {
     return this.http.get(URL+'/'+direccion)
         .map((data: any) => data.json())
-        .do(data => console.log("get Countries from json: " + JSON.stringify(data)))
+        .do(data => console.log("get Videos from json: " + JSON.stringify(data)))
         .catch(this.handleError);
   }
 

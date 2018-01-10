@@ -14,7 +14,7 @@
       <ion-title>
           <ion-row>
               <ion-col col-9 class="nopadding">
-                  Lista numero 1
+                  {{ NombreLista }}
      
               </ion-col>
               <ion-col col-3 class="nopadding" align="right">
@@ -54,7 +54,7 @@
                   <span class="List-duration">{{video.duration}}</span>
                 </ion-row> -->
               </ion-col>
-              <ion-col col-2 class="nopadding" align="right">
+              <ion-col (click)="deleteVideo(video.id)" col-2 class="nopadding" align="right">
                 <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
               </ion-col>
             </ion-row>
