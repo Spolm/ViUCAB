@@ -94,6 +94,18 @@ public class CommandsFactory {
         return new DeleteListComando(lista);
     }
 
+    public static Command instanciaAddVideoToListComando (Entity lista){
+        return new AddVideoToListComando(lista);
+    }
+
+    public static Command instanciaDeleteVideoToListComando (Entity lista){
+        return new DeleteVideoToListComando(lista);
+    }
+
+    public static Command instanciaGetVideosFromList (Entity lista){
+        return new GetVideosFromListComando(lista);
+    }
+
     //endregion
 
     //region M07

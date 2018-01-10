@@ -27,6 +27,7 @@ export class PlaylistPage {
 
   public tab: string;
   public respu:any;
+  public userid = 4;
   public ListasDeReproduccion = [
     { title: 'Lista numero 1', amount: '13', duration: '30:00 min', img:'https://www.lapatilla.com/site/wp-content/uploads/2017/08/Meme.x43795.jpg'},
     { title: 'Lista numero 2', amount: '3', duration: '3:00 min' , img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho'},
@@ -49,23 +50,18 @@ export class PlaylistPage {
 
   getPlaylists(){
 
-    this.api.getPlaylists('playlist/getAllPlaylist',4).subscribe((data) => { // Success
+    this.api.geta('playlist/getAllPlaylist?id_usu='+ this.userid)
 
-      console.log(data);
-     },
-     (error) =>{
-       console.error(error);
-     });
+      .subscribe((data) => { // Success
+          console.log (data);
+         },
+         (error) =>{
+           console.error(error);
+         });
 
-    // this.api.getTodoParam('playlist/getAllPlaylist',4);
-    /*
-    .map((data) => {
-      console.log (data);
-     },
-     (error) =>{
-       console.error(error);
-     });
-     */
+  
+
+  
   }
 
   

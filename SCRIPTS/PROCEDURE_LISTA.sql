@@ -131,16 +131,17 @@ COST 100;
 
 -- FUNCION PARA OBTENER VIDEOS DE UNA LISTA
 
-CREATE OR REPLACE FUNCTION public.m05_obtenervideoslista(idlista integer)
-  RETURNS TABLE(lis_rep_id integer, lis_rep_nombre character varying, lis_rep_descripcion character varying, lis_rep_numrep integer, lis_rep_fecha character varying) AS
+CREATE OR REPLACE FUNCTION public.m05_obtenervideoslista(IN idlista integer)
+  RETURNS TABLE(vid_id integer, vid_titulo character varying, vid_descripcion character varying, vid_imagen character varying, vid_url character varying, vid_fecha date, vid_visitas integer, vid_usuario integer) AS
 $BODY$
 BEGIN
 RETURN QUERY
-SELECT  L.LIS_REP_ID, L.LIS_REP_NOMBRE, L.LIS_REP_DESCRIPCION, L.LIS_REP_NUMREP, L.LIS_REP_FECHA
-		FROM LISTA_REPRODUCCION AS L, USUARIO AS U
-		WHERE L.ID_USU = U.USU_ID AND U.USU_ID = usuario
-		ORDER BY L.LIS_REP_FECHA DESC;
+SELECT  V.vid_id, V.vid_titulo, V.vid_descripcion, V.vid_imagen, V.vid_url, V.vid_fecha, V.vid_visitas, V.vid_usuario
+    FROM VIDEO AS V, VIDEO_LISTA AS VL
+    WHERE  VL.id_vid = V.vid_id AND VL.id_lis = idlista
+    ORDER BY V.vid_fecha DESC;
 
+ 
 END;
 $BODY$
   LANGUAGE plpgsql VOLATILE

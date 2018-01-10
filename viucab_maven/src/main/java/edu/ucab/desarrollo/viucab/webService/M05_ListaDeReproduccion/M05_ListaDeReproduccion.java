@@ -11,6 +11,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 
+import edu.ucab.desarrollo.viucab.webService.M02_Home.CrossOrigin;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +34,7 @@ public class M05_ListaDeReproduccion {
 
 
     @GET
+    @CrossOrigin(origins = "http://localhost:8100")
     @Path("/getAllPlaylist")
     @Produces("text/plain")
     public String obtenerLista(@QueryParam("id_usu") int id_usu)
@@ -71,6 +73,7 @@ public class M05_ListaDeReproduccion {
     }
 
     @GET
+    @CrossOrigin(origins = "http://localhost:8100")
     @Path("/createPlaylist")
     @Produces("text/plain")
     public String agregarLista(@QueryParam("id_usu") int id_usu, @QueryParam("lis_rep_nombre") String lis_rep_nombre,
@@ -113,6 +116,7 @@ public class M05_ListaDeReproduccion {
     }
 
     @GET
+    @CrossOrigin(origins = "http://localhost:8100")
     @Path("/getPlaylist")
     @Produces("text/plain")
     public String obtenerListaEspecifica(@QueryParam("lis_rep_id") int lis_rep_id)
@@ -151,6 +155,7 @@ public class M05_ListaDeReproduccion {
     }
 
     @GET
+    @CrossOrigin(origins = "http://localhost:8100")
     @Path("/editPlaylist")
     @Produces("text/plain")
     public String modificarLista(@QueryParam("lis_rep_id") int lis_rep_id, @QueryParam("lis_rep_nombre") String lis_rep_nombre, @QueryParam("lis_rep_descripcion") String lis_rep_descripcion, @QueryParam("list_rep_img") String list_rep_img)
@@ -187,6 +192,7 @@ public class M05_ListaDeReproduccion {
     }
 
     @GET
+    @CrossOrigin(origins = "http://localhost:8100")
     @Path("/deletePlaylist")
     @Produces("text/plain")
     public String eliminarLista(@QueryParam("lis_rep_id") int lis_rep_id)
@@ -198,6 +204,118 @@ public class M05_ListaDeReproduccion {
         try {
             cmd.execute();
             Boolean resultados = cmd.getResultado();
+            return gson.toJson(resultados);
+/*
+        } catch (VIUCABException e) {
+
+            listaObject.set_errorCode(e.ERROR_CODE);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);*/
+        } catch (PlConnectException e) {
+            e.printStackTrace();
+            listaObject.set_errorCode(550);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);
+        } catch (BdConnectException e) {
+            e.printStackTrace();
+            listaObject.set_errorCode(550);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);
+        }
+    }
+
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/addVideoToPlaylist")
+    @Produces("text/plain")
+    public String agregarVideoLista(@QueryParam("vid_id") int vid_id, @QueryParam("lis_rep_id") int lis_rep_id)
+    {
+        Entity listaObject = EntityFactory.addOrDeleteVideoToList(lis_rep_id, vid_id);
+        Command commandAddVideoToList = CommandsFactory.instanciaAddVideoToListComando(listaObject);
+        AddVideoToListComando cmd = (AddVideoToListComando) commandAddVideoToList;
+
+        try {
+            cmd.execute();
+            Boolean resultados = cmd.getResultado();
+            return gson.toJson(resultados);
+/*
+        } catch (VIUCABException e) {
+
+            listaObject.set_errorCode(e.ERROR_CODE);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);*/
+        } catch (PlConnectException e) {
+            e.printStackTrace();
+            listaObject.set_errorCode(550);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);
+        } catch (BdConnectException e) {
+            e.printStackTrace();
+            listaObject.set_errorCode(550);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);
+        }
+    }
+
+
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/deleteVideoFromPlaylist")
+    @Produces("text/plain")
+    public String eliminarVideoLista(@QueryParam("vid_id") int vid_id, @QueryParam("lis_rep_id") int lis_rep_id)
+    {
+        Entity listaObject = EntityFactory.addOrDeleteVideoToList(lis_rep_id, vid_id);
+        Command commandDeleteVideoToList = CommandsFactory.instanciaDeleteVideoToListComando(listaObject);
+        DeleteVideoToListComando cmd = (DeleteVideoToListComando) commandDeleteVideoToList;
+
+        try {
+            cmd.execute();
+            Boolean resultados = cmd.getResultado();
+            return gson.toJson(resultados);
+/*
+        } catch (VIUCABException e) {
+
+            listaObject.set_errorCode(e.ERROR_CODE);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);*/
+        } catch (PlConnectException e) {
+            e.printStackTrace();
+            listaObject.set_errorCode(550);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);
+        } catch (BdConnectException e) {
+            e.printStackTrace();
+            listaObject.set_errorCode(550);
+            listaObject.set_errorMsg(e.ERROR_MSG);
+            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+            return gson.toJson(listaObject);
+        }
+    }
+
+
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/getVideosFromPlaylist")
+    @Produces("text/plain")
+    public String obtenerVideosDeLista(@QueryParam("lis_rep_id") int lis_rep_id)
+    {
+        Entity listaObject = EntityFactory.getVideosFromList(lis_rep_id);
+        Command commandGetVideosFromList = CommandsFactory.instanciaGetVideosFromList(listaObject);
+        GetVideosFromListComando cmd = (GetVideosFromListComando) commandGetVideosFromList;
+
+        try {
+            cmd.execute();
+            /*Entity result = cmd.Return();
+            ListaDeReproduccion json = (ListaDeReproduccion) result;*/
+            ArrayList<Entity> resultados =cmd.getResultados();
             return gson.toJson(resultados);
 /*
         } catch (VIUCABException e) {

@@ -88,6 +88,21 @@ public class EntityFactory
                 "2018-01-11", 4);
     }
 
+    static public Entity addOrDeleteVideoToList(Integer lis_rep_id, Integer idVideo)
+    {
+        return new ListaDeReproduccion(lis_rep_id, idVideo);
+    }
+
+    static public Entity getVideosFromList(Integer lis_rep_id)
+    {
+        return new ListaDeReproduccion(lis_rep_id, null);
+    }
+
+    static public Entity video (Integer idLista, String titulo, String imgUrl, Integer numReproducciones, String fechaCreacion, String urlVideo)
+    {
+        return new Video(idLista, titulo, "", imgUrl, fechaCreacion, numReproducciones,  urlVideo);
+    }
+
     //endregion
 
     //region M07
