@@ -16,42 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GetUsuarios.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M01_Login/GetUsuarios.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GetListaDeReproduccionDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M05_ListaDeReproduccion/GetListaDeReproduccionDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-226">
-              <caret line="14" column="87" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="87" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SuscripcionDao.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M08/SuscripcionDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -109,7 +74,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -160,7 +124,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="viucab" type="462c0819:PsiDirectoryNode" />
               <item name="dataAccessLayer" type="462c0819:PsiDirectoryNode" />
-              <item name="M05_ListaDeReproduccion" type="462c0819:PsiDirectoryNode" />
+              <item name="M01_Login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="viucab" type="b2602c69:ProjectViewProjectNode" />
@@ -170,16 +134,7 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="viucab" type="462c0819:PsiDirectoryNode" />
               <item name="dataAccessLayer" type="462c0819:PsiDirectoryNode" />
-              <item name="M08" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="viucab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="viucab_maven" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="viucab" type="462c0819:PsiDirectoryNode" />
-              <item name="domainLogicLayer" type="462c0819:PsiDirectoryNode" />
+              <item name="M07_Etiquetas" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="viucab" type="b2602c69:ProjectViewProjectNode" />
@@ -200,60 +155,21 @@
               <item name="webService" type="462c0819:PsiDirectoryNode" />
               <item name="M01_Login" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="viucab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="viucab_maven" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="viucab" type="462c0819:PsiDirectoryNode" />
-              <item name="webService" type="462c0819:PsiDirectoryNode" />
-              <item name="M02_Home" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="viucab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="viucab_maven" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="viucab" type="462c0819:PsiDirectoryNode" />
-              <item name="webService" type="462c0819:PsiDirectoryNode" />
-              <item name="M05_ListaDeReproduccion" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="viucab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="viucab_maven" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="viucab" type="462c0819:PsiDirectoryNode" />
-              <item name="webService" type="462c0819:PsiDirectoryNode" />
-              <item name="M08_Suscripcion" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="viucab" type="b2602c69:ProjectViewProjectNode" />
-              <item name="viucab_maven" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="viucab" type="462c0819:PsiDirectoryNode" />
-              <item name="webService" type="462c0819:PsiDirectoryNode" />
-              <item name="M11_Estadistica" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SCRIPTS" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -440,16 +356,16 @@
       <workItem from="1514473219232" duration="1829000" />
       <workItem from="1514913562103" duration="619000" />
       <workItem from="1515529063987" duration="3791000" />
-      <workItem from="1515533003144" duration="5671000" />
+      <workItem from="1515533003144" duration="6137000" />
+      <workItem from="1515611301873" duration="43000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11910000" />
+    <option name="totallyTimeSpent" value="12419000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -460,12 +376,12 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17291667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17291667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -473,8 +389,8 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -495,11 +411,38 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M01_Login/GetUsuarios.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M05_ListaDeReproduccion/GetListaDeReproduccionDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="87" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M08/SuscripcionDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/domainLogicLayer/Command.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="14" column="22" lean-forward="false" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -507,7 +450,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="24" column="13" lean-forward="false" selection-start-line="24" selection-start-column="13" selection-end-line="24" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -515,7 +457,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="14" column="3" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -531,7 +475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -539,7 +482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -567,13 +509,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/M01_Login.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M04_Reproductor/VideoDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M04_Reproductor/VideoDao.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M05_ListaDeReproduccion/IDaoListaDeReproducciones.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -588,26 +524,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/domainLogicLayer/M05_ListaDeReproduccion/AddListComando.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/webService/M02_Home/M02_HomePatrones.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="30" column="13" lean-forward="false" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/domainLogicLayer/M05_ListaDeReproduccion/AddListComando.java" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/webService/M02_Home/M02_HomePatrones.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/domainLogicLayer/Command.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -625,19 +547,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/webService/M04_Reproductor/M04_Reproductor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/webService/M04_Reproductor/M04_Reproductor.java" />
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/webService/hola.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="12" column="13" lean-forward="false" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -645,7 +559,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -661,7 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -669,7 +581,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -681,23 +592,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M07_Etiquetas/GetEtiquetasDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-          <folding>
-            <marker date="1514473024963" expanded="true" signature="768:810" ph="INSERT INTO ETIQUETA... " />
-            <marker date="1514473024963" expanded="true" signature="1439:1478" ph="DELETE FROM ETIQUETA... " />
-            <marker date="1514473024963" expanded="true" signature="2137:2342" ph="SELECT V.VID... VIDEO" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/webService/M02_Home/CrossOrigin.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -706,16 +604,16 @@
         <state relative-caret-position="374">
           <caret line="34" column="7" lean-forward="true" selection-start-line="34" selection-start-column="7" selection-end-line="34" selection-end-column="7" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <marker date="1515556386359" expanded="true" signature="988:1007" ph="select * fro... video" />
-            <marker date="1515556386359" expanded="true" signature="2369:2902" ph="SELECT video... video" />
-            <marker date="1515556386359" expanded="true" signature="4319:4428" ph="SELECT * FRO... VIDEO" />
-            <marker date="1515556386359" expanded="true" signature="5827:6124" ph="SELECT DISTI... video" />
-            <marker date="1515556386359" expanded="true" signature="7567:7867" ph="SELECT video... video" />
-            <marker date="1515556386359" expanded="true" signature="7567:8602" ph="SELECT video... " />
-            <marker date="1515556386359" expanded="true" signature="7932:8235" ph="SELECT video... video" />
-            <marker date="1515556386359" expanded="true" signature="8300:8602" ph="SELECT video... video" />
-            <marker date="1515556386359" expanded="true" signature="9795:9852" ph="SELECT usu_i... usuario" />
+            <element signature="imports" expanded="false" />
+            <marker date="1515611188270" expanded="true" signature="988:1007" ph="select * fro... video" />
+            <marker date="1515611188270" expanded="true" signature="2369:2902" ph="SELECT video... video" />
+            <marker date="1515611188270" expanded="true" signature="4319:4428" ph="SELECT * FRO... VIDEO" />
+            <marker date="1515611188270" expanded="true" signature="5827:6124" ph="SELECT DISTI... video" />
+            <marker date="1515611188270" expanded="true" signature="7567:7867" ph="SELECT video... video" />
+            <marker date="1515611188270" expanded="true" signature="7567:8602" ph="SELECT video... " />
+            <marker date="1515611188270" expanded="true" signature="7932:8235" ph="SELECT video... video" />
+            <marker date="1515611188270" expanded="true" signature="8300:8602" ph="SELECT video... video" />
+            <marker date="1515611188270" expanded="true" signature="9795:9852" ph="SELECT usu_i... usuario" />
           </folding>
         </state>
       </provider>
@@ -725,7 +623,7 @@
         <state relative-caret-position="527">
           <caret line="31" column="5" lean-forward="true" selection-start-line="30" selection-start-column="17" selection-end-line="31" selection-end-column="5" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -762,12 +660,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M01_Login/GetUsuarios.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M07_Etiquetas/GetEtiquetasDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="-391">
+          <caret line="16" column="13" lean-forward="false" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1515611188124" expanded="true" signature="768:810" ph="INSERT INTO ETIQUETA... " />
+            <marker date="1515611188124" expanded="true" signature="1439:1478" ph="DELETE FROM ETIQUETA... " />
+            <marker date="1515611188124" expanded="true" signature="2137:2342" ph="SELECT V.VID... VIDEO" />
           </folding>
         </state>
       </provider>
@@ -775,7 +675,17 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M05_ListaDeReproduccion/GetListaDeReproduccionDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-226">
-          <caret line="14" column="87" lean-forward="true" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="87" />
+          <caret line="14" column="87" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/edu/ucab/desarrollo/viucab/dataAccessLayer/M01_Login/GetUsuarios.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
