@@ -16,24 +16,41 @@
     </ion-title>
 
   </ion-navbar>
-  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar> <!--> Creacion</!-->
+  <ion-searchbar placeholder="Nombre del usuario a buscar " (ionInput)="getItems1($event)"></ion-searchbar> <!--> Creacion</!-->
 </ion-header>
 
 
 <ion-content padding>
 
-
-    <ion-list>
-
-        <ion-item *ngFor="let item of items ; let i = index" >
-            <ion-avatar item-start >
-                <img [src]="item.img">
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Deslice para Actualizar"
+      refreshingSpinner="circles"
+      refreshingText="Actualizando...">
+    </ion-refresher-content>
+</ion-refresher>
+  <ion-list *ngIf= "mostrarSuscripciones">
+        <ion-item *ngFor="let item of listaSuscripcion ; let i = index " >
+            <ion-avatar item-start > 
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa">
             </ion-avatar>
-            <h2> {{ item.nombre }} </h2>
-            <p>Suscritos {{item.suscritos}}</p>
-            <button ion-button color= {{item.color}} item-right (click)="showConfirm(item.nombre, i)" > {{item.estado}}</button>
+            <h2> {{ item._name_user }} </h2>
+             <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+            <button ion-button color= {{item.color}} item-right (click)="showConfirm(item._name_user, item._id_user, i )" > {{ estadoSus }}</button>  
+        </ion-item>            
+  </ion-list>
+ 
+  <ion-list *ngIf= "mostrarUsuarios">
+    <ion-item  *ngFor="let item of listaUsuarios ; let ix = index  " >
+        <ion-avatar item-start > 
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa">
+        </ion-avatar>
+        <h2> {{ item._name_user }} </h2>
+        <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+        <button ion-button color= {{item.color}} item-right (click)="showAlert(item._name_user, item._id_user, ix )" > {{ estadoSus }}</button>
+    </ion-item>
+  </ion-list>
 
-        </ion-item>
-     </ion-list>
 
   </ion-content>

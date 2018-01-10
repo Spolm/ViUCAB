@@ -12,7 +12,7 @@ public class Entity {
          * atributos de la clase padre entidad
          */
         protected int _id;
-
+        private String _cadena;
         private int _errorCode1;
         private String _errorMsg1;
 
@@ -20,6 +20,10 @@ public class Entity {
         public Entity() {
         }
 
+
+        public Entity(String _cadena) {
+                this._cadena = _cadena;
+        }
         public Entity(int _id) {
                 this._id = _id;
         }
@@ -51,5 +55,11 @@ public class Entity {
                 return _errorCode1;
         }
 
+        public String get_cadena() {
+                return _cadena;
+        }
 
+        public void set_cadena(String _cadena) {
+                this._cadena = _cadena;
+        }
 }

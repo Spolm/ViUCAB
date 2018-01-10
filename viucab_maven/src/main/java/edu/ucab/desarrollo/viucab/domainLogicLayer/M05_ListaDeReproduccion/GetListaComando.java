@@ -1,9 +1,8 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.ListaDeReproduccion;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;

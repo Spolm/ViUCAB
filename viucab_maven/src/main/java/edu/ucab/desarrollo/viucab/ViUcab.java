@@ -25,6 +25,7 @@ public class ViUcab extends Application {
         h.add(M02_Home.class);
         h.add(M03Video.class);
         h.add(M03Resources.class);
+        h.add(M07_Etiqueta.class);
         h.add(M11_Estadistica.class);
         h.add(M05_ListaDeReproduccion.class);
         h.add(M08_Suscripcion.class);
