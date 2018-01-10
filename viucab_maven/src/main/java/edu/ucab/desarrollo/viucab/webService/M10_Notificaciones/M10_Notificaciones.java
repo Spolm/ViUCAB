@@ -66,8 +66,6 @@ public class M10_Notificaciones {
         GetNotificaciones cmd = (GetNotificaciones) commandNotificacion;
         cmd.execute();
         List<Entity> result = cmd.ReturnListNot();
-        //List<Video_Etiq> json = new ArrayList<Video_Etiq>();
-        //json.addAll((Collection<? extends Video_Etiq>) result);
         return gson.toJson(result);
     }
 

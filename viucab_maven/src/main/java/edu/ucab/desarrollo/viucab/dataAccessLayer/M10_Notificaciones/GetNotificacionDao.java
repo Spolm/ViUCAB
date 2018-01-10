@@ -57,7 +57,7 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
     }
 
     @Override
-    public List<Notificacion> obtenerNotificaciones(Entity n) throws SQLException {
+    public ArrayList<Notificacion> obtenerNotificaciones(Entity n) throws SQLException {
         Notificacion not = (Notificacion) n;
         ArrayList<Notificacion> listaNotif = new ArrayList<>();
         PreparedStatement preStatement;
