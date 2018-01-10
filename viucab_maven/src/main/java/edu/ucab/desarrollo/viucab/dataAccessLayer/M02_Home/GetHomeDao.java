@@ -2,6 +2,8 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home;
 
 import edu.ucab.desarrollo.viucab.common.entities.*;
 
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
@@ -11,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.postgresql.util.PSQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,11 +48,14 @@ public class GetHomeDao extends Dao implements IDaoHome {
 
     /**
      * Metodo que busca los video con mas visitas
-     * @return resultlist
-     * @throws SQLException,VIUCABException
+     * @return
+     * @throws SQLException
+     * @throws VIUCABException
+     * @throws PLConnectException1
+     * @throws BDConnectException1
      */
     @Override
-    public ArrayList<Video> GetMasVistosComando() throws SQLException,VIUCABException {
+    public ArrayList<Video> GetMasVistosComando() throws SQLException, VIUCABException, PLConnectException1, BDConnectException1 {
         Video video;
         CallableStatement preStatement = null;
         ArrayList<Video> listaVideos= new ArrayList<>();
@@ -86,28 +92,28 @@ public class GetHomeDao extends Dao implements IDaoHome {
             resultSet.close();
 
         }
-        catch (SQLException e1) {
-            e1.printStackTrace();
-        }
-        catch (Exception _e) {
-            logger.error( "Metodo: {} {}", "getMasVistosComando", _e.toString() );
-            throw new VIUCABException( _e );
-        }
+        catch (PSQLException e){   throw new PLConnectException1(e);     }
+        catch (SQLException e) {   throw new BDConnectException1(e);       }
+        catch (Exception e)    {   e.printStackTrace();    }
          finally {
             closeConnection();
         }
         return listaVideos;
 
     }
-/*
+
     /**
      * Obtiene en funcion del id del usuario los videos que cumplan
      * con sus preferencias
      * @param entidad
-     * @return resultlist
+     * @return
+     * @throws VIUCABException
+     * @throws SQLException
+     * @throws PLConnectException1
+     * @throws BDConnectException1
      */
     @Override
-    public ArrayList<Video> GetPreferenciasComando(Entity entidad) throws VIUCABException,SQLException {
+    public ArrayList<Video> GetPreferenciasComando(Entity entidad) throws VIUCABException, SQLException, PLConnectException1, BDConnectException1 {
         Usuario usuario =(Usuario) entidad;
         int idU=usuario.get_id_user();
         Video video = null;
@@ -145,9 +151,8 @@ public class GetHomeDao extends Dao implements IDaoHome {
             }
             resultSet.close();
         }
-         catch (SQLException e1) {
-                e1.printStackTrace();
-            }
+        catch (PSQLException e){   throw new PLConnectException1(e);     }
+        catch (SQLException e) {   throw new BDConnectException1(e);       }
          catch (Exception _e) {
                 logger.error( "Metodo: {} {}", "getPreferenciasComando", _e.toString() );
                 throw new VIUCABException( _e );
@@ -161,7 +166,9 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * Obtiene los ultimos videos que han sido subidos por los canales a los
      * que el usuario se encuentra suscrito
      * @param entidad
-     * @return resultlist
+     * @return
+     * @throws VIUCABException
+     * @throws SQLException
      */
     @Override
     public ArrayList<Video> GetSuscritosComando(Entity entidad) throws VIUCABException,SQLException{
@@ -219,7 +226,8 @@ public class GetHomeDao extends Dao implements IDaoHome {
     /**
      * Realiza Busque por etiqueta titulo y/o categoria
      * @param entidad
-     * @return resultlist
+     * @return
+     * @throws VIUCABException
      */
     @Override
     public ArrayList<Video> GetBusquedaComando(Entity entidad) throws VIUCABException {

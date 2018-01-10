@@ -7,6 +7,7 @@ import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
+import org.postgresql.util.PSQLException;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
@@ -31,9 +32,12 @@ public class GetBusquedaComando extends Command{
      */
     public ArrayList<Video> get_listVideo() {return _resultado;}
 
-
+    /**
+     * Metodo que realiza la llamada a el patron DAO en la clase GetHomeDAO
+     * para almacenar los datos obtenidos en la fabrica
+     */
     @Override
-    public void execute() throws VIUCABException,SQLException {
+    public void execute() throws VIUCABException,SQLException,PSQLException {
             GetHomeDao dao =  DaoFactory.instanciateGetBusquedaComando();
             ArrayList<Video> video = dao.GetBusquedaComando(est);
             _resultado = video;
