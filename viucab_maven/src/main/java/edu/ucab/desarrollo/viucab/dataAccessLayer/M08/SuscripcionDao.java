@@ -4,8 +4,8 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Suscripcion;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
-import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import org.postgresql.util.PSQLException;
 
@@ -25,15 +25,65 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
     public SuscripcionDao() {
 
     }
-
     /**
      * Carga las suscripciones de un Usuario
      *
      * @param
      * @return resultlist
-     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-      public ArrayList<Usuario> listaSuscripciones(int idUsuario) throws BdConnectException, PlConnectException {
+    public ArrayList<Usuario> listaUsuarios() throws BDConnectException1, PLConnectException1 {
+        CallableStatement preStatement = null;
+        //Creando la lista q corresponde a usuarios
+        ArrayList<Usuario> listaUsers  = new ArrayList<>();
+
+        ResultSet resultSet = null;
+        Usuario usuario;
+        Connection conn;
+        try {
+
+            //Creando la instancia de Conexion a la BD
+            conn = getBdConnect();
+            //Invocando el SPa
+            preStatement = conn.prepareCall("{call m08_get_usuarios()}");
+            //Metiendo los parametros al SP
+           // preStatement.setInt(1,idUsuario);
+            //Ejecucion del query
+            resultSet = preStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt("idusuario");
+                String login = resultSet.getString("nombreusuario");
+/**/
+                usuario = EntityFactory.suscripcionUsuario(id, login);
+                // usuario = EntityFactory.suscripcionUsuario(login);
+
+                listaUsers.add(usuario);
+
+                //usuario.setListaUsuario(listaSuscripcion);
+
+            }
+            resultSet.close();
+
+        } catch (PSQLException e){   throw new PLConnectException1(e);     }
+          catch (SQLException e) {   throw new BDConnectException1(e);       }
+          catch (Exception e)    {   e.printStackTrace();    }
+        finally {
+            closeConnection();
+        }
+        return listaUsers;
+
+
+    }
+    /**
+     * Carga las suscripciones de un Usuario
+     *
+     * @param
+     * @return resultlist
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
+     */
+      public ArrayList<Usuario> listaSuscripciones(int idUsuario) throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
           //Creando la lista q corresponde a usuarios
         ArrayList<Usuario> listaSuscripcion  = new ArrayList<>();
@@ -53,38 +103,24 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             while (resultSet.next()) {
-             
-                  String login = resultSet.getString("nombreusuario");
-                 // Byte avatar = resultSet.getByte("imagenusuario");
-                  //String avatar = resultSet.getString("USU_AVATAR");
-                System.out.println("ESTO ES LO QUE ARROJA LA COSNSULTA---> "+ login);
 
-/**/
-                usuario = EntityFactory.suscripcionUsuario(login);
-                System.out.println("ESTO ES LO QUE TIENE EL OBJETO usuario"+usuario.get_name_user());
+                  int id = resultSet.getInt("idusuario");
+                  String login = resultSet.getString("nombreusuario");
+
+                usuario = EntityFactory.suscripcionUsuario(id, login);
+
                 listaSuscripcion.add(usuario);
-                System.out.println("ESTE ES LA LISTA-->  "+listaSuscripcion);
-                //usuario.setListaUsuario(listaSuscripcion);
+
 
             }
             resultSet.close();
 
-        } catch (PSQLException e){
-            e.printStackTrace();
-           // throw new PlConnectException(e);
-            //e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-           // throw new BdConnectException (e);
-
-        }
-        catch (Exception e)
-        {e.printStackTrace();
-           // throw new BdConnectException (e);
-        }
+        } catch (PSQLException e){   throw new PLConnectException1(e);     }
+          catch (SQLException e) {   throw new BDConnectException1(e);       }
+          catch (Exception e)    {   e.printStackTrace();    }
         finally {
             closeConnection();
-        } System.out.println("AQUI IMPRIME EL RETURN DEL METODO OSEA LA LISTA"+listaSuscripcion);
+        }
         return listaSuscripcion;
 
 
@@ -94,14 +130,14 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
-     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public void insertarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
+    public String insertarSuscriptor (int idUsuario, int idsuscripcion) throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
         Connection conn;
-
+        String respuesta=null;
         try {
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
@@ -114,21 +150,15 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             resultSet.close();
-
-        } catch (PSQLException e){
-
-            throw new PlConnectException(e); //Excepcion si ocuerre algun error con el SP
-            //e.printStackTrace();
-        } catch (SQLException e) {
-
-            throw new BdConnectException (e);//Excepcion si ocuerre algun error con la BD
-
+            return respuesta="lo inserto";
         }
-        catch (Exception e)
-        {
-            throw new BdConnectException (e); //Excepcion si ocuerre algun error con el SP
-        } finally {
+          catch (PSQLException e){   throw new PLConnectException1(e);     }
+          catch (SQLException e) {   throw new BDConnectException1(e);       }
+          catch (Exception e)    {   e.printStackTrace();    }
+        finally {
             closeConnection();
+            if(respuesta==null) respuesta="ya esta insertado";
+            return respuesta;
         }
 
     }
@@ -138,14 +168,14 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      *
      * @param
      * @return resultlist
-     * @throws PlConnectException , BdConnectException Exepcion personalizada
+     * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public void eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BdConnectException, PlConnectException{
+    public String eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BDConnectException1, PLConnectException1 {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
         Connection conn;
-
+        String respuesta=null;
         try {
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
@@ -158,37 +188,32 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             resultSet.close();
+            return respuesta="lo elimino";
 
-        } catch (PSQLException e){
-
-            throw new PlConnectException(e); //Excepcion si ocuerre algun error con el SP
-            //e.printStackTrace();
-        } catch (SQLException e) {
-
-            throw new BdConnectException (e);//Excepcion si ocuerre algun error con la BD
-
-        }
-        catch (Exception e)
-        {
-            throw new BdConnectException (e); //Excepcion si ocuerre algun error con el SP
-        } finally {
+        }  catch (PSQLException e){   throw new PLConnectException1(e);     }
+           catch (SQLException e) {   throw new BDConnectException1(e);       }
+           catch (Exception e)    {   e.printStackTrace();    }
+            finally {
             closeConnection();
+
+            return respuesta;
+
         }
 
     }
 
     @Override
-    public Entity suscripcion(Entity e) throws SQLException, BdConnectException {
+    public Entity suscripcion(Entity e) throws SQLException, BDConnectException1 {
         return null;
     }
 
     @Override
-    public void agregarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BdConnectException {
+    public void agregarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BDConnectException1 {
 
     }
 
     @Override
-    public void eliminarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BdConnectException {
+    public void eliminarsuscripcion(int suscriptor, int suscripcion) throws SQLException, BDConnectException1 {
 
     }
 

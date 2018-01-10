@@ -2,6 +2,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
@@ -9,6 +10,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -34,18 +36,13 @@ public class GetMasVistosComando extends Command {
     }
 
     @Override
-    public void execute() {
-        try {
+    public void execute() throws VIUCABException,SQLException{
+
             GetHomeDao dao =  DaoFactory.instanciateGetMasVistosComando();
             ArrayList<Video> video = dao.GetMasVistosComando();
 
             //Guardamos lo que devuelve el DAO
             _resultado=video;
-
-        }
-        catch (Exception e){
-
-        }
 
     }
 

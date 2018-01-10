@@ -10,6 +10,17 @@ public class Video_Etiq extends Entity{
         this.idEtiq = idEtiq;
     }
 
+    @Override
+    public String toString() {
+        return "Video_Etiq{" +
+                "idVid=" + idVid +
+                '}';
+    }
+
+    public Video_Etiq(int idVid){
+        this.idVid = idVid;
+    }
+
     public int getIdVid() {
         return idVid;
     }

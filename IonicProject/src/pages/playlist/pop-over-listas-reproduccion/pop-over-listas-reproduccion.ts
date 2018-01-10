@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import {EditListPage} from "../edit-list/edit-list";
 
 /**
@@ -16,7 +16,11 @@ import {EditListPage} from "../edit-list/edit-list";
 })
 export class PopOverListasReproduccionPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public Lista:any;
+
+  constructor(public events:Events, public navCtrl: NavController, public navParams: NavParams) {
+    this.Lista = this.navParams.get('listapopover');
+    console.log("Mi lista aqui:", this.Lista);
   }
 
   ionViewDidLoad() {
@@ -24,7 +28,22 @@ export class PopOverListasReproduccionPage {
   }
 
   public goToEditList(){
-    this.navCtrl.push(EditListPage);
+    this.navCtrl.pop();
+    this.navCtrl.push(EditListPage,{ListaEdit: this.Lista});
+
   }
+
+  public goToDeleteList(){
+    this.navCtrl.pop();
+    setTimeout(function() {
+      
+    }, 1000);
+    
+    this.events.publish('deletePlaylist',{id: this.Lista.idLista});
+    
+    
+
+  }
+
 
 }

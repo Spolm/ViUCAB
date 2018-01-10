@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import { CreateNewListPage } from '../create-new-list/create-new-list';
 // import { AlertController } from 'ionic-angular';
+import { RestApiService } from "../../../app/rest-api.service";
 
 /**
  * Generated class for the AddListPage page.
@@ -14,10 +15,15 @@ import { CreateNewListPage } from '../create-new-list/create-new-list';
 @Component({
   selector: 'page-add-list',
   templateUrl: 'add-list.html',
+  providers: [RestApiService]
 })
 export class AddListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams/*  , public alertCtrl: AlertController*/) {
+  public ListasDeReproduccion:any =[];
+
+  constructor(public api: RestApiService, public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+    this.ListasDeReproduccion = this.navParams.get('listasAdd');
+    console.log(this.ListasDeReproduccion);
   }
 
 
@@ -25,11 +31,6 @@ export class AddListPage {
     console.log('ionViewDidLoad AddListPage');
   }
 
-  public ListasDeReproduccion = [
-    { title: 'Lista numero 1', amount: '13', duration: '30:00 min', img:'https://www.lapatilla.com/site/wp-content/uploads/2017/08/Meme.x43795.jpg'},
-    { title: 'Lista numero 2', amount: '3', duration: '3:00 min' , img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho'},
-    { title: 'Lista numero 3', amount: '1', duration: '39:05 min' , img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho'},
-  ];
 
 
   /*  showAddListPrompt() {
@@ -66,7 +67,37 @@ export class AddListPage {
   }*/
 
   public goToCreateNewList(){
+    this.navCtrl.pop();
     this.navCtrl.push(CreateNewListPage);
+  }
+
+  presentAlert(title,subTitle) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subTitle
+    });
+    alert.present();
+  }
+
+  public addVideoToList(idLista){
+    console.log("video agregado a esta lista",idLista);
+
+ 
+    this.api.geta('playlist/addVideoToPlaylist?vid_id='+ 1
+  +'&?lis_rep_id='+ idLista).subscribe((data) => { // Success
+      console.log (data.json());
+      if(data.json() == true){
+        this.navCtrl.pop();
+      }else if(data.json() == false){
+        this.presentAlert("Ups","El video no pudo ser agregado a la lista");
+       
+      }
+      
+     },
+     (error) =>{
+       console.error(error);
+     });
+
   }
 
 }
