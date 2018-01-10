@@ -1,7 +1,8 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-        import java.util.ArrayList;
         import java.util.LinkedList;
+
+import java.util.ArrayList;
 
 /**
  * Created by estefania on 10/11/2017.

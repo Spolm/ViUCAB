@@ -37,6 +37,25 @@ public class EntityFactory
 
     //final M02
 
+    //Modulo 3
+
+    static public VideoEntity instantiateVideoEntity(int videoId, String titulo, String descripcion, String imgUrl){
+        return new VideoEntity(videoId,titulo,descripcion,imgUrl);
+    }
+
+    static public VideoEntity instantiateVideoEntity(String titulo, String descripcion, String imgUrl, String url, int usuario ){
+        return new VideoEntity(titulo,descripcion,imgUrl,url,usuario);
+    }
+
+    static public VideoEntity instantiateVideoEntity(int id, String titulo, String descripcion, String imgUrl, String url, String fecha, int visitas){
+        return new VideoEntity(id,titulo,descripcion,imgUrl,url,fecha,visitas);
+    }
+
+    static public VideoEntity instantiateVideoEntity( ){
+        return new VideoEntity();
+    }
+    //End Modulo 3
+
     //region M05
 
     /**

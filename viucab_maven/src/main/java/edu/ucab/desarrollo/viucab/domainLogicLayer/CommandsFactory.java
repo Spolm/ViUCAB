@@ -2,6 +2,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
@@ -71,6 +72,26 @@ public class CommandsFactory {
     public  static  Command instanciateGetSuscritosComando    (Entity est) {return  new GetSuscritosComando(est);}
 
     // Fin instancias M02
+
+    //M03 Video
+
+    public static AddVideoCommand intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);}
+
+    public static UpdateVideoCommand intantiateUpdateVideoCommand (Entity e){return new UpdateVideoCommand(e);}
+
+    public static GetAllVideoByIdCommand intantiateGetAllVideoByIdCommand(int userID) {
+        return new GetAllVideoByIdCommand(userID);
+    }
+
+    public static GetVideoCommand intantiateGetVideoCommand(int videoId) {
+        return new GetVideoCommand(videoId);
+    }
+
+    public static DeleteVideoCommand intantiateDeleteVideoCommand(int videoId) {
+        return new DeleteVideoCommand(videoId);
+    }
+
+    //Fin M03
 
     //region M05
 

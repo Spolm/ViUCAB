@@ -1,0 +1,51 @@
+<!--
+  Generated template for the InfovideoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="morado2">
+    <ion-title>infovideo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-img width="100%" height="57%" src="https://img-9gag-fun.9cache.com/photo/aKDy7Bg_700b_v1.jpg"></ion-img>
+  <ion-list>
+    
+      <ion-item>
+        <ion-label stacked>Titulo</ion-label>
+        <ion-input type="text" placeholder="Vaquero"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label stacked>Descripcion</ion-label>
+        <ion-input type="text" placeholder="Este es un video blabla"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+          <ion-label stacked>Tags</ion-label>
+          <ion-input type="text" placeholder="#vaquero #loco"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+          <ion-label>Categoria</ion-label>
+          <ion-select [(ngModel)]="categories1" multiple="false">
+            <ion-option value="c1">Categoria 1</ion-option>
+            <ion-option value="c2">Categoria 2</ion-option>
+            <ion-option value="c3">Categoria 3</ion-option>
+            <ion-option value="c4">Categoria 4</ion-option>
+            <ion-option value="c5">Categoria 5</ion-option>
+            <ion-option value="c6">Categoria 6</ion-option>
+          </ion-select>
+      </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="getPicture()">Toma una foto</button>
+    <img [src]="image" *ngIf="image" />
+    
+</ion-content>
