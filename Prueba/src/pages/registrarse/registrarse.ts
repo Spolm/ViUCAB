@@ -1,67 +1,67 @@
 import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-import { HomecablePage } from '../homecable/homecable';
 import { FormBuilder, FormGroup, Validators, AbstractControl} from '@angular/forms';
 import { AlertController } from 'ionic-angular';
-//
 import { AngularFireAuth } from 'angularfire2/auth';
+import { CategoriaPage} from '../categoria/categoria';
+import { HomecablePage } from '../homecable/homecable';
 import firebase from 'firebase';
 
 @IonicPage()
 @Component({
-  selector: 'page-regristrarse',
-  templateUrl: 'regristrarse.html',
+  selector: 'page-registrarse',
+  templateUrl: 'registrarse.html',
 })
-export class RegristrarsePage {
+export class RegistrarsePage {
 //objeto para facebook
 //
-provider = {
-    
+//
+//
+//
+provider = {   
     name: '',
     profilePicture: '',
     email: '',
     loggedin: false
   }
 
-
-
-  @ViewChild('Usuario') usu;
-@ViewChild('Contrasena') passw;
-
+  @ViewChild('email') usu;
+  @ViewChild('Contraseña') passw;
+  @ViewChild('RepetirContraseña') passw2;
   userData=null;
-  formgroup:FormGroup;
+  myForm:FormGroup;
   Usuario:AbstractControl;
   email:AbstractControl;
   Contraseña:AbstractControl;
   RepetirContraseña:AbstractControl;
 
-  constructor(public alertCtrl: AlertController, private fire: AngularFireAuth,  public navCtrl: NavController, public navParams: NavParams,
-  public formbuilder: FormBuilder) {
+  constructor(
+    public alertCtrl: AlertController, 
+    private fire: AngularFireAuth,  
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public formbuilder: FormBuilder
+  ) {
+    this.myForm = this.formbuilder.group({
+      email:['',[Validators.required, Validators.email]],
+      Contraseña:['',[Validators.required,Validators.pattern(/^[a-z0-9_-]{6,18}$/)]],
+      RepetirContraseña:['',[Validators.required,Validators.pattern(/^[a-z0-9_-]{6,18}$/)]],
+    });
 
-this.formgroup = formbuilder.group({
-  Usuario:['',Validators.required],
-  email:['',Validators.required],
-  Contraseña:['',Validators.required],
-  RepetirContraseña:['',Validators.required],
-
-});
-
-this.Usuario = this.formgroup.controls['Usuario'];
-
-this.email = this.formgroup.controls['email'];
-this.Contraseña = this.formgroup.controls['Contraseña'];
-this.RepetirContraseña = this.formgroup.controls['RepetirContraseña'];
-
-
-
-
+    this.email = this.myForm.controls['email'];
+    this.Contraseña = this.myForm.controls['Contraseña'];
+    this.RepetirContraseña = this.myForm.controls['RepetirContraseña'];
   }
+
+  saveData(){
+    console.log(this.myForm.value);
+  }
+
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegristrarsePage');
+    console.log('ionViewDidLoad RegistrarsePage');
   }
 
- 
+ //
   //PARA EL WS
   //----para los mensajes de alerta
   alert(message:string){
@@ -79,14 +79,15 @@ this.RepetirContraseña = this.formgroup.controls['RepetirContraseña'];
      .then(data=>{
       console.log('agarre  data ',data);
       this.alert('Registrado!');
+      this.navCtrl.setRoot(CategoriaPage);
      })
-.catch(error =>{
-console.log('got error', error);
-this.alert(error.message);
-});
+    .catch(error =>{
+    console.log('got error', error);
+    this.alert(error.message);
+    });
 
 
-console.log('registrar con',this.usu.value, this.passw.value);
+    console.log('registrar con',this.usu.value, this.passw.value);
 
   }
 //--Registrar por facebook google twitter
@@ -98,7 +99,7 @@ console.log('registrar con',this.usu.value, this.passw.value);
          this.provider.email = res.user.email;
          this.provider.profilePicture = res.user.photoURL;
           console.log(res);
-          this.navCtrl.setRoot( HomecablePage);
+          this.navCtrl.setRoot(HomecablePage);
           this.alert('Exito! tu te logeaste');
         })
         .catch(error =>{

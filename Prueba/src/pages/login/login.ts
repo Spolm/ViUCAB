@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OlvidarContraseñaPage }from '../olvidar-contraseña/olvidar-contraseña';
-import { RegristrarsePage } from '../regristrarse/regristrarse';
+import { RegistrarsePage } from '../registrarse/registrarse';
 import { AlertController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomecablePage } from '../homecable/homecable';
@@ -13,7 +13,7 @@ import { HomecablePage } from '../homecable/homecable';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
+//
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -21,8 +21,8 @@ import { HomecablePage } from '../homecable/homecable';
 })
 export class LoginPage {
 
-@ViewChild('Usuario') usu;
-@ViewChild('Contraseña') passw;
+@ViewChild('email') usu;
+@ViewChild('password') passw;
 
 myForm: FormGroup;
 
@@ -107,7 +107,7 @@ IniciarS(){
     }
 
       goPaginaRegistrar():void {
-        this.navCtrl.push(RegristrarsePage); {
+        this.navCtrl.push(RegistrarsePage); {
         
           } 
         }

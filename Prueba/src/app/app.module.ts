@@ -7,7 +7,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LoginPageModule } from '../pages/login/login.module';
 import { OlvidarContraseñaPageModule } from '../pages/olvidar-contraseña/olvidar-contraseña.module';
-import { RegristrarsePageModule} from '../pages/regristrarse/regristrarse.module';
+import { RegistrarsePageModule} from '../pages/registrarse/registrarse.module';
 import { InvitacionTwitterPageModule} from '../pages/invitacion-twitter/invitacion-twitter.module';
 import {HomecablePageModule } from '../pages/homecable/homecable.module';
 
@@ -40,7 +40,7 @@ const firebaseAuth = {
     BrowserModule,
     LoginPageModule,
     OlvidarContraseñaPageModule,
-    RegristrarsePageModule,
+    RegistrarsePageModule,
      InvitacionTwitterPageModule,
      HomecablePageModule,
     
