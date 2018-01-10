@@ -3,19 +3,17 @@ package edu.ucab.desarrollo.viucab.webService.M08_Suscripcion;
 
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.*;
-import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.WebFaulException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
+import javax.ws.rs.*;
 import java.util.ArrayList;
 
 @Path("/Suscripcion")
@@ -25,75 +23,64 @@ public class M08_Suscripcion {
     /**
      * Metodo que me comunico con el comando : SetSuscripcionComando
      * el cual suscribe una persona al usuario logueado.
-     * @param id
+     * @param idSuscriptor
+     * @param idLogueado
      * @return
-     * @throws BdConnectException
-     * @throws PlConnectException
+     * @throws BDConnectException1
+     * @throws PLConnectException1
      * @throws WebFaulException
      */
     @GET
     @Path("/SetSuscripcion")
     @Produces("text/plain")
-    public String SetSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException  {
+    public String SetSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BDConnectException1, PLConnectException1, WebFaulException  {
 
         try {
-            Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(1, id); //OJO: cable para insertar en el usuario 1, una suscripcion de otro usuario(id)
+            Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(idLogueado, idSuscriptor);
             SetSuscripcionComando cmd = (SetSuscripcionComando) comandSuscripcion;
             cmd.execute();
+            return cmd.ObtenerRespuesta();
         }
-        catch (BdConnectException ex)
-        {
+        catch (BDConnectException1 ex)
+        { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
-        catch (PlConnectException ex)
-        {
-            /*
-            catch (ViUCABException e) {
+        catch (PLConnectException1 ex)
+        { ex.getMessage();
 
-           throw new WebFault(e.Mensaje, e.codigo);
-        } */
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
-
-
-   //     Entity suscripcionObject = EntityFactory.suscripcion(1, id);
-   //     Command comandSuscripcion = CommandsFactory.instanciaSetSuscripcionComando(suscripcionObject);
-    //    SetSuscripcionComando cmd = (SetSuscripcionComando) comandSuscripcion;
-      //  cmd.execute();
-     //   Entity result = cmd.Return();
-      //  Suscripcion json = (Suscripcion) result;
-        return "LO INSERTO EXITOSAMENTE";
-
 
     }
 
     /**
      * Metodo que me comunico con el comando : UpdateSuscripcionComando
      * el cual elimina la suscripcion del usuario logueado.
-     * @param id
+     * @param idLogueado
+     * @param idSuscriptor
      * @return
-     * @throws BdConnectException
-     * @throws PlConnectException
+     * @throws BDConnectException1
+     * @throws PLConnectException1
      * @throws WebFaulException
      */
     @GET
     @Path("/UpdateSuscripcion")
     @Produces("text/plain")
-    public String UpdateSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException {
+    public String UpdateSuscripcion(@QueryParam("idLogueado") int idLogueado , @QueryParam("idSuscriptor") int idSuscriptor) throws BDConnectException1, PLConnectException1, WebFaulException {
 
         try {
 
-            Command comandSuscripcion = CommandsFactory.instanciaUpdateSuscripcionComando(1, id); //OJO:cable para eliminar en el usuario 1, una suscripcion de otro usuario(id)
+            Command comandSuscripcion = CommandsFactory.instanciaUpdateSuscripcionComando(idLogueado, idSuscriptor);
             UpdateSuscripcionComando cmd = (UpdateSuscripcionComando) comandSuscripcion;
             cmd.execute();
+            System.out.println(cmd.ObtenerRespuesta());
+            return cmd.ObtenerRespuesta();
 
-            return "LO ELIMINO EXITOSAMENTE";
-
-        }catch (BdConnectException ex)
-        {
+        }catch (BDConnectException1 ex)
+        { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
-        }catch (PlConnectException ex)
-        {
+        }catch (PLConnectException1 ex)
+        { ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
 
@@ -104,15 +91,15 @@ public class M08_Suscripcion {
      * el cual lista las suscripciones del usuario logueado.
      * @param id
      * @return
-     * @throws BdConnectException
-     * @throws PlConnectException
+     * @throws BDConnectException1
+     * @throws PLConnectException1
      * @throws WebFaulException
      */
 
     @GET
     @Path("/GetSuscripcion")
     @Produces("application/json")
-    public String GetSuscripcion(@QueryParam("id") int id) throws BdConnectException, PlConnectException, WebFaulException {
+    public String GetSuscripcion(@QueryParam("id") int id) throws BDConnectException1, PLConnectException1, WebFaulException {
 
         try{
 
@@ -127,17 +114,36 @@ public class M08_Suscripcion {
 
 
 
-        }catch (BdConnectException ex)
-        {   ex.printStackTrace();
+        }catch (BDConnectException1 ex)
+        {   ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
-        }catch (PlConnectException ex)
-        {
+        }catch (PLConnectException1 ex)
+        {    ex.getMessage();
             throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
         }
+    }
+
+    @GET
+    @Path("/GetUsuarios")
+    @Produces("application/json")
+    public String GetUsuarios(@QueryParam("id") int id) throws BDConnectException1, PLConnectException1, WebFaulException {
+
+        try{
+                Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando();
+                GetUsuariosComando cmd = (GetUsuariosComando) comandSuscripcion;
+                cmd.execute();
+                ArrayList<Usuario> result = cmd.get_listUsuario();
+                return   gson.toJson(result);
 
 
 
-
+        }catch (BDConnectException1 ex)
+        {    ex.getMessage();
+            throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
+        }catch (PLConnectException1 ex)
+        { ex.getMessage();
+            throw new WebFaulException(ex.getMessage()); //recibe errores http error 500
+        }
     }
 
 

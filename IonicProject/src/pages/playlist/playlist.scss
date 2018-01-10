@@ -32,13 +32,17 @@ page-playlist{
     
         .List-title{
             font-weight: 500;
-            font-size: 18px;
+            font-size: 16px;
         }
     
         .List-amount{
             font-weight: 100;
             margin-top: 5px;
             margin-bottom: 5px;
+        }
+
+        .List-duration{
+            font-size: 16px!important;
         }
     
         ion-thumbnail img{
