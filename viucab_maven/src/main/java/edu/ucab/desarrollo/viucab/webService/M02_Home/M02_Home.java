@@ -162,4 +162,45 @@ public class M02_Home {
 
         }
 
+    /**
+     * Obtiene los ultimos videos subidos por los canales a los cuales
+     * esta suscrito el usuario
+     *@Param id del Usuario suscrito
+     */
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/Inicio")
+    @Produces("application/json")
+    public String obtenerVideosInicio (@QueryParam("id") int idUser)
+    {
+        Entity videoObject = EntityFactory.homeVideo(idUser);
+        Command commadHome = CommandsFactory.instanciateGetSuscritosComando (videoObject);
+        Command commandVideoMasVisto = CommandsFactory.instanciateGetMasVistosComando();
+        GetSuscritosComando cmd = (GetSuscritosComando) commadHome;
+        GetMasVistosComando cmd_ = (GetMasVistosComando) commandVideoMasVisto;
+        ArrayList <Video> result = new ArrayList <Video>();
+        try {
+            cmd.execute();
+            cmd_.execute();
+            ArrayList <Video> Suscritos = cmd.get_listVideo();
+            ArrayList <Video> Tendencia = cmd_.get_listVideo();
+            for (Video video : Suscritos) {
+                result.add(video);
+            }
+            for (Video video : Tendencia) {
+                result.add(video);
+            }
+            return gson.toJson(result);
+        }
+        catch(VIUCABException e){
+            videoObject.set_errorCode( e.ERROR_CODE );
+            videoObject.set_errorMsg( e.ERROR_MSG );
+            logger.error( "Metodo: {} {}", "obtenerVideosInicio", e.toString() );
+            return gson.toJson( videoObject );
+        }
+        catch (Exception ex) {
+            return gson.toJson( null );
+        }
+    }
+
 }

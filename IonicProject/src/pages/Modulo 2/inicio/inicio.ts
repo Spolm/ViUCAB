@@ -24,16 +24,17 @@ export class InicioPage {
   color: 'light';
   estadoNombre:string;
   subscription: Subscription;
+  subscription1: Subscription;
   errorMessage = '';
   
 
 //Metodo para llenar el listado de videos inicial
   ngOnInit(): void {
-    /*this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
-        .subscribe(data => this.data = data,
-        error => this.errorMessage = error);
-    this.errorMessage = '';*/
-    this.data = [{                       //DATA DE PRUEBA LOCAL
+    this.subscription = this.api.getVideos('Home/Inicio?id=1') //LLAMADA AL WS
+                        .subscribe(data => this.data = data,
+                        error => this.errorMessage = error);
+                        this.errorMessage = '';
+    /*this.data = [{                       //DATA DE PRUEBA LOCAL
         id: 1,
         nombre: '3 Doors Down - Kryptonite',
         usuario: 'Barbara Fernández',
@@ -117,7 +118,7 @@ export class InicioPage {
         fecha: 'Noviembre 10, 2017',
         imagen: 'assets/imgs/shapeofyou.png',
         visitas: 8
-    }];
+    }];*/
   }
 
 
@@ -165,7 +166,7 @@ export class InicioPage {
     
         if (val === undefined){
             console.log("valor vacio");
-            this.data = [{                       //DATA DE PRUEBA LOCAL
+            /*this.data = [{                       //DATA DE PRUEBA LOCAL
                 id: 1,
                 nombre: '3 Doors Down - Kryptonite',
                 usuario: 'Barbara Fernández',
@@ -249,27 +250,27 @@ export class InicioPage {
                 fecha: 'Noviembre 10, 2017',
                 imagen: 'assets/imgs/shapeofyou.png',
                 visitas: 8
-            }];
-            //this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
-            //                    .subscribe(data => this.data = data,
-            //                    error => this.errorMessage = error);
-            //                    this.errorMessage = '';
+            }];*/
+            this.subscription = this.api.getVideos('Home/Inicio?id=1') //LLAMADA AL WS
+                                .subscribe(data => this.data = data,
+                                error => this.errorMessage = error);
+                                this.errorMessage = '';
         }else if (val != '') {
-            this.data = [{                       //DATA DE PRUEBA LOCAL
+            /*this.data = [{                       //DATA DE PRUEBA LOCAL
                 id: 1,
                 nombre: '3 Doors Down - Kryptonite',
                 usuario: 'Barbara Fernández',
                 fecha: 'Noviembre 5, 2017',
                 imagen: 'assets/imgs/kryptonite.png',
                 visitas: 8
-            }];
-            //this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
-            //                    .subscribe(data => this.data = data,
-            //                    error => this.errorMessage = error);
-            //                    this.errorMessage = '';
+            }];*/
+            this.subscription = this.api.getVideos('Home/Busqueda?parametroBusqueda=' + val)       //LLAMADA WS
+                                .subscribe(data => this.data = data,
+                                error => this.errorMessage = error);
+                                this.errorMessage = '';
         }else if ((val == '')){
             console.log("valor vacio");
-            this.data = [{                       //DATA DE PRUEBA LOCAL
+            /*this.data = [{                       //DATA DE PRUEBA LOCAL
                 id: 1,
                 nombre: '3 Doors Down - Kryptonite',
                 usuario: 'Barbara Fernández',
@@ -353,11 +354,11 @@ export class InicioPage {
                 fecha: 'Noviembre 10, 2017',
                 imagen: 'assets/imgs/shapeofyou.png',
                 visitas: 8
-            }];
-            //this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
-            //                    .subscribe(data => this.data = data,
-            //                    error => this.errorMessage = error);
-            //                    this.errorMessage = '';
+            }];*/
+            this.subscription = this.api.getVideos('Home/Inicio?id=1') //LLAMADA AL WS
+                                .subscribe(data => this.data = data,
+                                error => this.errorMessage = error);
+                                this.errorMessage = '';
         }
   }
 
