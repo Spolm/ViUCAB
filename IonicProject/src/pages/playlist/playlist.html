@@ -46,23 +46,23 @@
     <button ion-button (click)="goToAddList()" >Agregar Lista</button>
 
     <ion-item *ngFor="let lista of ListasDeReproduccion" >
-      <ion-thumbnail item-start id="List-img" (click)="goToViewList()">
-        <img [src]="lista.img">
+      <ion-thumbnail item-start id="List-img">
+        <img [src]="lista.urlImg">
       </ion-thumbnail>
       <ion-grid>
         <ion-row>
-          <ion-col col-10 class="nopadding" (click)="goToViewList()">
+          <ion-col col-10 class="nopadding" (click)="goToViewList(lista.idLista,lista.nombre)">
             <ion-row >
               <div class="ellipsis">
-                <span class="List-title">{{lista.title}}</span>
+                <span class="List-title">{{lista.nombre}}</span>
               </div>
 
             </ion-row>
             <ion-row>
-              <span class="List-amount">{{lista.amount}} videos</span>
+              <span class="List-amount">{{lista.numReproducciones}} plays</span>
             </ion-row>
             <ion-row>
-              <span class="List-duration">{{lista.duration}}</span>
+              <span class="List-duration">{{lista.fechaCreacion}}</span>
             </ion-row>
           </ion-col>
           <ion-col col-2 class="nopadding" align="right">
