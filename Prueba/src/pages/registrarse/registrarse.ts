@@ -79,7 +79,7 @@ provider = {
      .then(data=>{
       console.log('agarre  data ',data);
       this.alert('Registrado!');
-      this.navCtrl.setRoot(CategoriaPage);
+      this.navCtrl.setRoot(HomecablePage);
      })
     .catch(error =>{
     console.log('got error', error);

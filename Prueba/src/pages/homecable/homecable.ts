@@ -21,7 +21,7 @@ email:string;
   ionViewDidLoad() {
     console.log('ionViewDidLoad HomecablePage');
   }
-
+//
   /**
 Se usa para devolverte a una pagina
  */
