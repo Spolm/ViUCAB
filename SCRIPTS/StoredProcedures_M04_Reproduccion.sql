@@ -104,7 +104,7 @@ $$ LANGUAGE 'plpgsql';
 
 
     CREATE OR REPLACE FUNCTION updateLike(idvideo INT, correo varchar)
- RETURNS void AS $$
+ RETURNS int  AS $$
  DECLARE  idusuario int;
  DECLARE cuenta int;
 begin
@@ -119,8 +119,13 @@ ELSE
 	INSERT INTO likes (id_video,id_usuario) VALUES (idvideo, idusuario);
 END IF;
 
+SELECT count(*) INTO cuenta FROM likes where id_video = idvideo;
+
+return cuenta;
+
 end;
 $$ LANGUAGE 'plpgsql';
+
 
     CREATE OR REPLACE FUNCTION getIfLike
  ( idvideo INT, correo varchar)
