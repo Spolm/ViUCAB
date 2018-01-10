@@ -10,39 +10,57 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
+/**
+ * Clase Comando para agregar una lista
+ */
 public class AddListComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(AddListComando.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(AddListComando.class); //seteo el logger
     private static Entity est;
     private Boolean resultado;
 
-
-
+    /**
+     * Constructor para settear entidad
+     * @param est
+     */
     public AddListComando(Entity est)
     {
         this.est = est;
     }
 
 
+    /**
+     * Constructor para setear el resultado
+     * @param result
+     */
     public AddListComando(Boolean result) {
         this.resultado = result;
     }
 
+    /**
+     * metodo para obtener el resultado
+     * @return Boolean
+     */
     public Boolean getResultado()
     {
         return resultado;
     }
 
 
+    /**
+     * Metodo para ejecutar el comando
+     * @throws BdConnectException
+     * @throws PlConnectException
+     */
     @Override
     public void execute() throws BdConnectException, PlConnectException {
 
 
         try {
-            GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion();
+            GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //instancio DAO
             //ArrayList<Entity> listas = dao.GetLista(est);
             //_resultado = listas;
-            resultado = dao.createLista(est);
+            resultado = dao.createLista(est); //llamo al metodo y obtengo el resultado
 
         }
         catch (Exception e){
@@ -54,7 +72,10 @@ public class AddListComando extends Command {
 
     }
 
-
+    /**
+     * Metodo para devolver el resultado con entidad
+     * @return
+     */
     @Override
     public Entity Return() {
         return est;

@@ -8,41 +8,56 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetLis
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Clase comando para eliminar una lista
+ */
 public class DeleteListComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(DeleteListComando.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(DeleteListComando.class); //seteo el logger
     private static Entity est;
     private Boolean resultado;
 
-
+    /**
+     * Constructor para settear entidad
+     * @param est
+     */
     public DeleteListComando(Entity est) {
         this.est = est;
     }
 
-
+    /**
+     * metodo para obtener el resultado
+     * @return Boolean
+     */
     public Boolean getResultado() {
         return resultado;
     }
 
-
+    /**
+     * Metodo para ejecutar el comando
+     * @throws BdConnectException
+     * @throws PlConnectException
+     */
     @Override
     public void execute() throws BdConnectException, PlConnectException {
 
 
         try {
-            GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion();
-            resultado = dao.deleteList(est);
+            GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion(); // instancio dao
+            resultado = dao.deleteList(est); //obtengo el resultado
 
         } catch (Exception e) {
             est = new Entity();
-            resultado = false;
-
+            resultado = false; //devuelvo falso si no se elimino
         }
 
 
     }
 
-
+    /**
+     * Metodo para devolver el resultado con entidad
+     * @return
+     */
     @Override
     public Entity Return() {
         return est;

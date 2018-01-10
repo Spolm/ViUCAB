@@ -8,34 +8,52 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetLis
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Clase comando para eliminar un video de una lista
+ */
 public class DeleteVideoToListComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(DeleteVideoToListComando.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(DeleteVideoToListComando.class); // seteo el logger
     private static Entity est;
     private Boolean resultado;
 
-
+    /**
+     * Constructor para settear entidad
+     * @param est
+     */
     public DeleteVideoToListComando(Entity est) {
         this.est = est;
     }
 
-
+    /**
+     * constructor para setear el resultado
+     * @param result
+     */
     public DeleteVideoToListComando(Boolean result) {
         this.resultado = result;
     }
 
+    /**
+     * metodo para obtener el resultado
+     * @return Boolean
+     */
     public Boolean getResultado() {
         return resultado;
     }
 
 
+    /**
+     * Metodo para ejecutar el comando
+     * @throws BdConnectException
+     * @throws PlConnectException
+     */
     @Override
     public void execute() throws BdConnectException, PlConnectException {
 
 
         try {
-            GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion();
-            resultado = dao.deleteVideoToList(est);
+            GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion(); //seteo el dao
+            resultado = dao.deleteVideoToList(est); //llamo al metodo en dao y obtengo el resultado
 
         } catch (Exception e) {
             est = new Entity();
@@ -46,7 +64,10 @@ public class DeleteVideoToListComando extends Command {
 
     }
 
-
+    /**
+     * Metodo para devolver el resultado con entidad
+     * @return Entity
+     */
     @Override
     public Entity Return() {
         return est;

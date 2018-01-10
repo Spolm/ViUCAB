@@ -10,37 +10,48 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
+/**
+ * Clase comando para obtener todos los videos de una lista
+ */
 public class GetVideosFromListComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetVideosFromListComando.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetVideosFromListComando.class); //seteo el logger
     private static Entity est;
     ArrayList<Entity> _resultado = null;
 
+    /**
+     * Constructor para settear entidad
+     * @param est
+     */
     public GetVideosFromListComando(Entity est)
     {
         this.est = est;
     }
 
-
-    public GetVideosFromListComando(ArrayList<Entity> resultado) {
-        this._resultado = resultado;
-    }
-
+    /**
+     * metodo para obtener el resultado
+     * @return Boolean
+     */
     public ArrayList<Entity> getResultados()
     {
         return _resultado;
     }
 
 
+    /**
+     * Metodo para ejecutar el comando
+     * @throws BdConnectException
+     * @throws PlConnectException
+     */
     @Override
     public void execute() throws BdConnectException, PlConnectException {
 
 
         try {
-            GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion();
-            ArrayList<Entity> listas = dao.GetVideosFromList(est);
+            GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //seteo dao
+            //ArrayList<Entity> listas = dao.GetVideosFromList(est); //llamo al metodo en dao y obtengo la lista con respuestas
             //Entity  lista = dao.GetLista(est);
-            _resultado = listas;
+            _resultado = dao.GetVideosFromList(est); //llamo al metodo en dao y obtengo la lista con respuestas
 
         }
         catch (Exception e){

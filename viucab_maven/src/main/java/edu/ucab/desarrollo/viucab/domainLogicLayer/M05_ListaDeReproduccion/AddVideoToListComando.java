@@ -8,34 +8,52 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetLis
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Clase comando para agregar un video a una lista
+ */
 public class AddVideoToListComando extends Command {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(AddVideoToListComando.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(AddVideoToListComando.class); //seteo el logger
     private static Entity est;
     private Boolean resultado;
 
-
+    /**
+     * Constructor para settear entidad
+     * @param est
+     */
     public AddVideoToListComando(Entity est) {
         this.est = est;
     }
 
-
+    /**
+     * Constructor para setear el resultado
+     * @param result
+     */
     public AddVideoToListComando(Boolean result) {
         this.resultado = result;
     }
 
+    /**
+     * metodo para obtener el resultado
+     * @return Boolean
+     */
     public Boolean getResultado() {
         return resultado;
     }
 
 
+    /**
+     * Metodo para ejecutar el comando
+     * @throws BdConnectException
+     * @throws PlConnectException
+     */
     @Override
     public void execute() throws BdConnectException, PlConnectException {
 
 
         try {
-            GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion();
-            resultado = dao.addVideoToList(est);
+            GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion(); //Instancio dao
+            resultado = dao.addVideoToList(est); //llamo al metodo y obtengo el resultado
 
         } catch (Exception e) {
             est = new Entity();
@@ -46,7 +64,10 @@ public class AddVideoToListComando extends Command {
 
     }
 
-
+    /**
+     * Metodo para devolver el resultado con entidad
+     * @return Entity
+     */
     @Override
     public Entity Return() {
         return est;

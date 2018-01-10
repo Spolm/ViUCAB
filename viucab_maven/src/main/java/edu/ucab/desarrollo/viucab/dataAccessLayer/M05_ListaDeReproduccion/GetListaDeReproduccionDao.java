@@ -42,6 +42,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @param
      * @return resultlist
      */
+    @Override
     public ArrayList<Entity> GetLista(Entity e) throws SQLException {
 
         ArrayList<Entity> listaContenedora= new ArrayList<>();
@@ -97,6 +98,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Entity GetEspecificList(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
@@ -150,6 +152,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean createLista(Entity e) throws SQLException {
 
         /*EN LA BD LA FUNCION RECIBE ESTO =
@@ -212,6 +215,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean modifyLista(Entity e) throws SQLException {
 
 
@@ -268,6 +272,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean deleteList(Entity e) throws SQLException {
 
 
@@ -318,6 +323,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean addVideoToList(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
@@ -369,6 +375,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean deleteVideoToList(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
@@ -412,6 +419,14 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
         return eliminado;
     }
 
+
+    /**
+     * Metodo para obtener un video de una lista
+     * @param e
+     * @return
+     * @throws SQLException
+     */
+    @Override
     public ArrayList<Entity> GetVideosFromList(Entity e) throws SQLException {
 
         ArrayList<Entity> listaContenedora= new ArrayList<>();
