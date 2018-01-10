@@ -157,7 +157,7 @@ public class VideoDao extends Dao implements IDaoVideo {
     }
 
     @Override
-    public void updateLike(int idvideo, String usuario) {
+    public int updateLike(int idvideo, String usuario) {
         System.out.println("LLEGUE A UPDATELIKE");
         Connection conn;
         conn = getBdConnect();
@@ -167,9 +167,13 @@ public class VideoDao extends Dao implements IDaoVideo {
             stmt.setInt(1, idvideo);
             stmt.setString(2, usuario);
             stmt.execute();
+            ResultSet rs = stmt.getResultSet();
+            rs.next();
+            return rs.getInt(1);
         } catch (SQLException ex) {
             Logger.getLogger(VideoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return -1;
     }
 
     @Override

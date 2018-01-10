@@ -2,6 +2,7 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home;
 
 import edu.ucab.desarrollo.viucab.common.entities.*;
 
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
 import java.sql.CallableStatement;
@@ -9,12 +10,15 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by estefania on 13/12/2017.
  */
 public class GetHomeDao extends Dao implements IDaoHome {
+        private static Logger logger = LoggerFactory.getLogger(GetHomeDao.class );
     Entity _entidad;
 
     public GetHomeDao (){
@@ -42,10 +46,10 @@ public class GetHomeDao extends Dao implements IDaoHome {
     /**
      * Metodo que busca los video con mas visitas
      * @return resultlist
-     * @throws SQLException
+     * @throws SQLException,VIUCABException
      */
     @Override
-    public ArrayList<Video> GetMasVistosComando() throws SQLException {
+    public ArrayList<Video> GetMasVistosComando() throws SQLException,VIUCABException {
         Video video;
         CallableStatement preStatement = null;
         ArrayList<Video> listaVideos= new ArrayList<>();
@@ -54,7 +58,6 @@ public class GetHomeDao extends Dao implements IDaoHome {
         Connection conn;
 
         try {
-            //Creando la lista q corresponde a videos
 
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
@@ -75,16 +78,22 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 listaVideos.add(video);
 
 
             }
             resultSet.close();
 
-        } catch (SQLException e1) {
+        }
+        catch (SQLException e1) {
             e1.printStackTrace();
-        } finally {
+        }
+        catch (Exception _e) {
+            logger.error( "Metodo: {} {}", "getMasVistosComando", _e.toString() );
+            throw new VIUCABException( _e );
+        }
+         finally {
             closeConnection();
         }
         return listaVideos;
@@ -98,7 +107,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @return resultlist
      */
     @Override
-    public ArrayList<Video> GetPreferenciasComando(Entity entidad) {
+    public ArrayList<Video> GetPreferenciasComando(Entity entidad) throws VIUCABException,SQLException {
         Usuario usuario =(Usuario) entidad;
         int idU=usuario.get_id_user();
         Video video = null;
@@ -114,7 +123,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Invocando el SP
             preStatement = conn.prepareCall("{call m02_obtenerpreferencias(?)}");
             //Metiendo los parametros al SP
-            preStatement.setInt(1,idU);
+            preStatement.setInt(1, idU);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
@@ -130,14 +139,19 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas, nombreusu, imagenusuario);
                 resultlist.add(video);
 
             }
             resultSet.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+        }
+         catch (SQLException e1) {
+                e1.printStackTrace();
+            }
+         catch (Exception _e) {
+                logger.error( "Metodo: {} {}", "getPreferenciasComando", _e.toString() );
+                throw new VIUCABException( _e );
+            } finally {
             closeConnection();
         }
         return resultlist;
@@ -150,7 +164,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @return resultlist
      */
     @Override
-    public ArrayList<Video> GetSuscritosComando(Entity entidad) {
+    public ArrayList<Video> GetSuscritosComando(Entity entidad) throws VIUCABException,SQLException{
 
         Usuario usuario =(Usuario) entidad;
         int idU=usuario.get_id_user();
@@ -181,16 +195,21 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String nombreusu = resultSet.getString("nombreusuario");
                 String imagenusuario = resultSet.getString("imagenusuario");
 
-
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                //Casteo del entity a video del resultado del sp
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }
             resultSet.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+        }
+        catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        catch (Exception _e) {
+            logger.error( "Metodo: {} {}", "getSuscritosComando", _e.toString() );
+            throw new VIUCABException( _e );
+        }finally {
             closeConnection();
         }
         return resultlist;
@@ -199,14 +218,17 @@ public class GetHomeDao extends Dao implements IDaoHome {
 
     /**
      * Realiza Busque por etiqueta titulo y/o categoria
-     * @param parametro
+     * @param entidad
      * @return resultlist
      */
     @Override
-    public ArrayList<Video> GetBusquedaComando(String parametro) {
+    public ArrayList<Video> GetBusquedaComando(Entity entidad) throws VIUCABException {
         CallableStatement preStatement = null;
         ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
+        Video param = (Video) entidad;
+        String parametroBusqueda= param.getBusqueda();
+
         Video video;
         Connection conn;
         try {
@@ -217,7 +239,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
             //Invocando el SP
             preStatement = conn.prepareCall("{call m02_buscarvideo(?)}");
             //Metiendo los parametros al SP
-            preStatement.setString(1,parametro);
+            preStatement.setString(1,parametroBusqueda);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {
@@ -229,18 +251,24 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String fecha = resultSet.getString("fechavideo");
                 int visitas = resultSet.getInt("visitasvideo");
                 String nombreusu = resultSet.getString("nombreusuario");
-                String imagenusuario = resultSet.getString("imagenusuario");
+                String imagenusuario = resultSet.getString("fotousuario");
 
 
-                video = (Video) EntityFactory.homeUsuario(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }
             resultSet.close();
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+        }
+        catch (SQLException e1) {
+            e1.printStackTrace();
+        }
+        catch (Exception _e) {
+            logger.error( "Metodo: {} {}", "getBusquedaComando", _e.toString() );
+            throw new VIUCABException( _e );
+        }
+        finally {
             closeConnection();
         }
         return resultlist;

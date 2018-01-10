@@ -3,6 +3,7 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M04_Reproductor.VideoDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.DaoVideoEntity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
@@ -33,6 +34,10 @@ public class DaoFactory
     static  public GetHomeDao instanciateGetSuscritosComando(){return new GetHomeDao();}
 
     //endregion
+
+    //M03 Video
+    static public DaoVideoEntity instantiateDaoVideoEntity(){ return new DaoVideoEntity();}
+    //Fin M03 Video
 
     //region M05
 
