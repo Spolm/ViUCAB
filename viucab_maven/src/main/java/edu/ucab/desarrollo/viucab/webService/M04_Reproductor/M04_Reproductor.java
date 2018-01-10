@@ -33,62 +33,6 @@ public class M04_Reproductor {
 
     @GET
     @CrossOrigin(origins = "http://localhost:8100")
-    @Path("/getVideoInfoStatic")
-    @Produces("application/json")
-    public String getVideoInfoStatic() {
-        System.out.print("HOLAAAAAAAAAAAAAAAAAAAAAAAAA");
-        JsonObject jsonObj;
-        JsonArray listaJson;
-
-        JsonObject json = new JsonObject();
-        json.addProperty("title", "Subiendo a Galipan");
-        json.addProperty("url", "http://localhost:2018/video.mp4");
-        json.addProperty("visitas", "58");
-        json.addProperty("likes", "55");
-        json.addProperty("owner", "Cher");
-        json.addProperty("idowner", "5");
-        json.addProperty("imgowner", "../../assets/imgs/advance-card-bttf.png");
-        json.addProperty("subscripciones", "100");
-
-        //agrego videos relacionados
-        listaJson = new JsonArray();
-        for (int i = 0; i < 3; i++) {
-            jsonObj = new JsonObject();
-            jsonObj.addProperty("id", i);
-            jsonObj.addProperty("urlimg", "http://localhost:2018/foto.jpeg");
-            jsonObj.addProperty("nombre", i + "La Bebe de Erbin junto a la gorda del Negro");
-            jsonObj.addProperty("canal", i + "meruvzla4wd");
-            listaJson.add(jsonObj);
-        }
-        json.add("relacionados", listaJson);
-
-        //agrego comentarios
-        listaJson = new JsonArray();
-        for (int i = 0; i < 6; i++) {
-            jsonObj = new JsonObject();
-            jsonObj.addProperty("iduser", i);
-            jsonObj.addProperty("urlimg", "http://localhost:2018/foto2.jpg");
-            jsonObj.addProperty("nombre", i + "Coquetos");
-            jsonObj.addProperty("comentario", i + "The Loading component is an overlay that prevents user interaction while indicating activity. By default, it shows a spinner based on the mode. Dynamic content can be passed and displayed with the spinner. The spinner can be hidden or customized to use several predefined options. The loading indicator is presented on top of other content even during navigation.");
-            listaJson.add(jsonObj);
-        }
-        json.add("comentarios", listaJson);
-
-        //agrego listas de reproduccion
-        listaJson = new JsonArray();
-        for (int i = 0; i < 3; i++) {
-            jsonObj = new JsonObject();
-            jsonObj.addProperty("id", i);
-            jsonObj.addProperty("nombre", "Lista " + i);
-            listaJson.add(jsonObj);
-        }
-        json.add("listas", listaJson);
-
-        return gson.toJson(json);
-    }
-
-    @GET
-    @CrossOrigin(origins = "http://localhost:8100")
     @Path("/getVideoInfo")
     @Produces("application/json")
     public String getVideoInfo(@QueryParam("idvideo") String idvideo) throws Exception {
@@ -151,15 +95,18 @@ public class M04_Reproductor {
     @CrossOrigin(origins = "http://localhost:8100")
     @Path("/updateLike")
     @Produces("application/json")
-    public void updateLike(@QueryParam("idvideo") String idvideo, @QueryParam("usuario") String usuario) {
+    public String updateLike(@QueryParam("idvideo") String idvideo, @QueryParam("usuario") String usuario) {
         Command comando = CommandsFactory.instanciarComandoUpdateLike(Integer.parseInt(idvideo), usuario);
         ComandoUpdateLike cmd = (ComandoUpdateLike) comando;
         try {
             cmd.execute();
+            JsonObject jsonObj = new JsonObject();
+            jsonObj.addProperty("result", cmd.result);
+            return gson.toJson(jsonObj);
         } catch (Exception ex) {
             Logger.getLogger(M04_Reproductor.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return "";
     }
 
     @GET
