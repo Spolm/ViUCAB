@@ -15,9 +15,9 @@ public class Video extends Entity{
     private String descripcion;
     private String imagen;
     private String url;
-    private String _valorCategoria;
     private String videousu;
     private String videoima;
+    private String busqueda;
     private ArrayList<Video> listaVideo;
     private String [] listaRespVideo;
 
@@ -35,6 +35,10 @@ public class Video extends Entity{
         this.url = url;
         this.videousu = videousu;
         this.videoima = videoima;
+    }
+
+    public Video (String busqueda){
+        this.busqueda=busqueda;
     }
 
     public Video(ArrayList listaVideo) {
@@ -59,13 +63,6 @@ public class Video extends Entity{
     public Video(int idUsuario) {
     }
 
-    public String get_valorCategoria() {
-        return _valorCategoria;
-    }
-
-    public void set_valorCategoria(String _valorCategoria) {
-        this._valorCategoria = _valorCategoria;
-    }
 
     public int getId() {
         return id;
@@ -137,6 +134,14 @@ public class Video extends Entity{
 
     public void setVideoima(String videoima) {
         this.videoima = videoima;
+    }
+
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
     }
 
     public ArrayList<Video> getListaVideo() {

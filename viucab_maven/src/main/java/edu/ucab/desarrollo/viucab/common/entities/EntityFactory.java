@@ -24,24 +24,17 @@ public class EntityFactory
 
     //region M02
 
-    static public Entity homeUsuario ()
-    {
-        return new Video();
-    }
-    static public Entity homeUsuario ( int idUsuario) {return new Usuario(idUsuario);}
-    static public Entity homeUsuario (ArrayList<Video> listaVideos)
-    {
-        return new Video(listaVideos);
-    }
+    static public Entity homeVideo(int idUsuario) {return new Usuario(idUsuario);}
 
-    static public Entity homeUsuario( int id, String titulo, String descripcion,
-                                     String imagen,String url, String fecha,int visitas,String nombre , String foto){
+    static public Entity homeVideo(int id, String titulo, String descripcion,
+                                   String imagen, String url, String fecha, int visitas, String nombre , String foto){
         return new Video(id,titulo,fecha,visitas,descripcion,imagen,url,nombre,foto);
     }
 
-    static  public Entity homeUsuario(String parametro){
-        return new Video();
+    static  public Entity homeVideo(String parametro){
+        return new Video(parametro);
     }
+
     //final M02
 
     //region M05
@@ -107,16 +100,21 @@ public class EntityFactory
 
     //region M07
 
-    static public Entity insertEtiqueta(String valor){
-        return new Etiquetas(valor);
+    static public Entity insertEtiqueta(String valor, int idVid){
+        Video_Etiq vid = new Video_Etiq(idVid);
+        return new Etiquetas(valor, vid);
     }
 
-    static public Entity eliminarEtiqueta(int id){
-        return new Etiquetas(id);
+    static public Entity eliminarEtiqueta(int idVid, String valor){
+        Video_Etiq vid = new Video_Etiq(idVid);
+        return new Etiquetas(valor, vid);
     }
 
     static public Entity consultarVideos(int id){
-        return new Etiquetas(id);
+        Video_Etiq vid = new Video_Etiq(id);
+        Etiquetas eti = new Etiquetas();
+        eti.setVideoEtiqList(vid);
+        return eti;
     }
 
     //endregion
