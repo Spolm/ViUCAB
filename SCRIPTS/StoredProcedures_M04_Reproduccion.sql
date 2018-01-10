@@ -1,4 +1,4 @@
-
+﻿
 CREATE OR REPLACE FUNCTION videoinfo(fitrovideo int) 
     RETURNS table(title varchar,url varchar,visitas int,likes int,owner varchar,idowner int, subscripciones int) AS $$
         
@@ -52,22 +52,21 @@ and video.vid_id <> fitrovideo and usuario.usu_id = video.vid_usuario)
     
      LANGUAGE plpgsql;
 
+
 CREATE OR REPLACE FUNCTION getComentarios(fitrovideo int) 
-    RETURNS table(iduser int,urlimg varchar,nombre varchar,comentario varchar, correo varchar, idcomentario int) AS $$
+    RETURNS table(iduser int,urlimg varchar,nombre varchar,comentario varchar) AS $$
         
        DECLARE 
         var record;
         begin
      
-        FOR var in (SELECT usuario.usu_id iduser, usuario.usu_avatar urlimg , usuario.usu_login nombre , comentario.com_descripcion comentario , usuario.usu_correo correo, comentario.com_id idcomentario
+        FOR var in (SELECT usuario.usu_id iduser, usuario.usu_avatar urlimg , usuario.usu_login nombre , comentario.com_descripcion comentario
 FROM comentario , usuario
-WHERE comentario.id_vid = fitrovideo AND comentario.id_usu = usuario.usu_id)
+WHERE comentario.id_vid = 1 AND comentario.id_usu = usuario.usu_id)
         LOOP 
-        iduser := var.iduser;
-        correo := var.correo;
+        iduser:= var.iduser;
         urlimg := var.urlimg;
         nombre := var.nombre;
-        idcomentario := var.idcomentario;
         comentario := var.comentario;
 	
         RETURN NEXT;
@@ -75,7 +74,6 @@ WHERE comentario.id_vid = fitrovideo AND comentario.id_usu = usuario.usu_id)
         end;$$
     
      LANGUAGE plpgsql;
-
 	 
  CREATE OR REPLACE FUNCTION addVisita(id INT) 
     RETURNS void AS $$
@@ -86,67 +84,3 @@ WHERE comentario.id_vid = fitrovideo AND comentario.id_usu = usuario.usu_id)
     END;
     $$ LANGUAGE plpgsql;
 	
-
-    CREATE OR REPLACE FUNCTION addComentario
- ( idvideo INT, correo varchar, comenta varchar)
- RETURNS int AS $$
- DECLARE  idcomentario int ;
-begin
-
-INSERT INTO comentario (com_descripcion,com_id,id_usu,id_vid) VALUES
-	(comenta, (SELECT max(com_id)+1 from comentario), 
-	(SELECT usu_id from usuario where usu_correo = correo), idvideo);
-      
-  SELECT max(com_id) INTO idcomentario FROM comentario where com_descripcion = comenta and id_vid = idvideo; 
- return idcomentario;
-end;
-$$ LANGUAGE 'plpgsql';
-
-
-    CREATE OR REPLACE FUNCTION updateLike(idvideo INT, correo varchar)
- RETURNS void AS $$
- DECLARE  idusuario int;
- DECLARE cuenta int;
-begin
-
-SELECT usu_id INTO idusuario FROM usuario where usu_correo = correo;
-
-SELECT count(*) INTO cuenta FROM likes where id_usuario = idusuario AND id_video = idvideo;
-
-IF (cuenta > 0) THEN
-	DELETE FROM likes WHERE id_usuario = idusuario AND id_video = idvideo;
-ELSE
-	INSERT INTO likes (id_video,id_usuario) VALUES (idvideo, idusuario);
-END IF;
-
-end;
-$$ LANGUAGE 'plpgsql';
-
-    CREATE OR REPLACE FUNCTION getIfLike
- ( idvideo INT, correo varchar)
- RETURNS int AS $$
- DECLARE  cuenta int ;
-begin
-      
-  SELECT count(*) INTO cuenta FROM likes where id_usuario = (SELECT usu_id from usuario where usu_correo = correo) and id_video = idvideo;
-   
- return cuenta;
-end;
-$$ LANGUAGE 'plpgsql';
-
-
-    CREATE OR REPLACE FUNCTION deleteComentario
- ( idcom INT)
- RETURNS int AS $$
- DECLARE  cuenta int ;
-begin
-      
-  DELETE FROM comentario WHERE com_id = idcom;
-
-  SELECT count(*) INTO cuenta FROM comentario where com_id = idcom;
-   
- return cuenta;
-end;
-$$ LANGUAGE 'plpgsql';
-
-
