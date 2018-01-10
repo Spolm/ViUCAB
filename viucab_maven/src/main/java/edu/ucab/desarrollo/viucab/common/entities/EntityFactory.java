@@ -2,7 +2,6 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 /**
  * Fabrica de Entidades creada por M011
@@ -72,16 +71,21 @@ public class EntityFactory
 
     //region M07
 
-    static public Entity insertEtiqueta(String valor){
-        return new Etiquetas(valor);
+    static public Entity insertEtiqueta(String valor, int idVid){
+        Video_Etiq vid = new Video_Etiq(idVid);
+        return new Etiquetas(valor, vid);
     }
 
-    static public Entity eliminarEtiqueta(int id){
-        return new Etiquetas(id);
+    static public Entity eliminarEtiqueta(int idVid, String valor){
+        Video_Etiq vid = new Video_Etiq(idVid);
+        return new Etiquetas(valor, vid);
     }
 
     static public Entity consultarVideos(int id){
-        return new Etiquetas(id);
+        Video_Etiq vid = new Video_Etiq(id);
+        Etiquetas eti = new Etiquetas();
+        eti.setVideoEtiqList(vid);
+        return eti;
     }
 
     //endregion
