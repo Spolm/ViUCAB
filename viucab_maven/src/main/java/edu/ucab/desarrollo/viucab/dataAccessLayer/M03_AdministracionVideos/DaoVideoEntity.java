@@ -2,7 +2,7 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
-import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.common.entities.VideoEntity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import org.slf4j.LoggerFactory;
 
@@ -13,21 +13,21 @@ import java.util.Date;
 
 
 
-public class DaoVideo implements IDaoVideo {
+public class DaoVideoEntity implements IDaoVideoEntity {
 
-    final static org.slf4j.Logger logger = LoggerFactory.getLogger(DaoVideo.class);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(DaoVideoEntity.class);
 
-    public DaoVideo(){
+    public DaoVideoEntity(){
 
     }
 
     @Override
     public int addVideo(Entity e) throws SQLException {
 
-        logger.debug("Debug: Adding Video - DAO");
+        logger.debug("Debug: Adding VideoEntity - DAO");
 
         int respuesta = 0;
-        Video agregar = (Video) e;
+        VideoEntity agregar = (VideoEntity) e;
 
         SimpleDateFormat _sdf = new SimpleDateFormat("dd-MM-yyyy");
         Date fechaActual = new Date();
@@ -66,10 +66,10 @@ public class DaoVideo implements IDaoVideo {
     }
 
     @Override
-    public Video getVideo(int idVideo) throws SQLException {
-        logger.debug("Debug: Getting video from Video Id - DAO");
+    public VideoEntity getVideo(int idVideo) throws SQLException {
+        logger.debug("Debug: Getting video from VideoEntity Id - DAO");
 
-        Video respuesta = null;
+        VideoEntity respuesta = null;
 
         ResultSet rs;
 
@@ -97,10 +97,10 @@ public class DaoVideo implements IDaoVideo {
 
 
     @Override
-    public ArrayList<Video> getAllVideoById(int idUsuario) throws SQLException {
-        logger.debug("Debug: Getting Al videos from user Video - DAO");
+    public ArrayList<VideoEntity> getAllVideoById(int idUsuario) throws SQLException {
+        logger.debug("Debug: Getting Al videos from user VideoEntity - DAO");
 
-        ArrayList<Video> respuesta = null;
+        ArrayList<VideoEntity> respuesta = null;
 
         ResultSet rs;
 
@@ -130,10 +130,10 @@ public class DaoVideo implements IDaoVideo {
 
     @Override
     public int updateVideo(Entity e) throws SQLException {
-        logger.debug("Debug: Updating Video - DAO");
+        logger.debug("Debug: Updating VideoEntity - DAO");
 
         int respuesta = 0;
-        Video update = (Video) e;
+        VideoEntity update = (VideoEntity) e;
 
         ResultSet rs;
 
@@ -165,7 +165,7 @@ public class DaoVideo implements IDaoVideo {
 
     @Override
     public int deleteVideo(int idVideo) throws SQLException {
-        logger.debug("Debug: Deleting video from Video Id - DAO");
+        logger.debug("Debug: Deleting video from VideoEntity Id - DAO");
 
         int respuesta = 0;
 
@@ -195,7 +195,7 @@ public class DaoVideo implements IDaoVideo {
 
     @Override
     public int getLastId() throws SQLException {
-        logger.debug("Debug: getLast Video ID - DAO");
+        logger.debug("Debug: getLast VideoEntity ID - DAO");
 
         int respuesta = 0;
 
@@ -251,11 +251,11 @@ public class DaoVideo implements IDaoVideo {
 
     }
 
-    private ArrayList<Video> getResponseArrayListBD(ResultSet rs) throws SQLException {
-        ArrayList<Video> salida = new ArrayList<Video>();
+    private ArrayList<VideoEntity> getResponseArrayListBD(ResultSet rs) throws SQLException {
+        ArrayList<VideoEntity> salida = new ArrayList<VideoEntity>();
 
         while (rs.next()){
-            Video v = EntityFactory.instantiateVideo(
+            VideoEntity v = EntityFactory.instantiateVideoEntity(
                     rs.getInt("id"),
                     rs.getString("titu"),
                     rs.getString("des"),
@@ -271,11 +271,11 @@ public class DaoVideo implements IDaoVideo {
 
     }
 
-    private Video getResponseVideoBD(ResultSet rs)throws SQLException {
-        Video salida = null;
+    private VideoEntity getResponseVideoBD(ResultSet rs)throws SQLException {
+        VideoEntity salida = null;
 
         while (rs.next()){
-            salida = EntityFactory.instantiateVideo(
+            salida = EntityFactory.instantiateVideoEntity(
                     rs.getInt("id"),
                     rs.getString("titu"),
                     rs.getString("des"),

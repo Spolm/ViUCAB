@@ -1,7 +1,7 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.VideoAux;
+import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
@@ -28,7 +28,7 @@ public class GetMasVistosComando extends Command {
     public void execute() {
         try {
             GetHomeDao dao =  DaoFactory.instanciateGetHome();
-            ArrayList<VideoAux> video = dao.listaVideoTop();
+            ArrayList<Video> video = dao.listaVideoTop();
 
         }
         catch (Exception e){

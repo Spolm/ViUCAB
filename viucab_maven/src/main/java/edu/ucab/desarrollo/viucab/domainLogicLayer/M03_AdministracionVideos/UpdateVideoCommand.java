@@ -2,7 +2,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
-import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoVideo;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoVideoEntity;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 public class UpdateVideoCommand extends Command {
@@ -21,7 +21,7 @@ public class UpdateVideoCommand extends Command {
     @Override
     public void execute() throws Exception {
 
-        IDaoVideo daoVideo = DaoFactory.instantiateDaoVideo();
+        IDaoVideoEntity daoVideo = DaoFactory.instantiateDaoVideoEntity();
 
         _returned = Integer.toString(daoVideo.updateVideo(_video));
 

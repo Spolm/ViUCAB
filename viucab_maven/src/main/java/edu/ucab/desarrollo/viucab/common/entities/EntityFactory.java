@@ -22,37 +22,37 @@ public class EntityFactory
 
     //region M02
 
-    static public VideoAux homeUsuario ()
+    static public Video homeUsuario ()
     {
-        return new VideoAux();
+        return new Video();
     }
-    static public VideoAux homeUsuario (ArrayList<VideoAux> listaVideos)
+    static public Video homeUsuario (ArrayList<Video> listaVideos)
     {
-        return new VideoAux(listaVideos);
+        return new Video(listaVideos);
     }
 
-    static public VideoAux homeUsuario( int id, String titulo, String descripcion,
-                                     String imagen,String url, String fecha,int visitas){
-        return new VideoAux(id,titulo,descripcion,imagen,fecha,visitas,url);
+    static public Video homeUsuario(int id, String titulo, String descripcion,
+                                    String imagen, String url, String fecha, int visitas){
+        return new Video(id,titulo,descripcion,imagen,fecha,visitas,url);
     }
     //final M02
 
     //Modulo 3
 
-    static public Video instantiateVideo(int videoId, String titulo, String descripcion, String imgUrl){
-        return new Video(videoId,titulo,descripcion,imgUrl);
+    static public VideoEntity instantiateVideoEntity(int videoId, String titulo, String descripcion, String imgUrl){
+        return new VideoEntity(videoId,titulo,descripcion,imgUrl);
     }
 
-    static public Video instantiateVideo(String titulo, String descripcion,String imgUrl, String url, int usuario ){
-        return new Video(titulo,descripcion,imgUrl,url,usuario);
+    static public VideoEntity instantiateVideoEntity(String titulo, String descripcion, String imgUrl, String url, int usuario ){
+        return new VideoEntity(titulo,descripcion,imgUrl,url,usuario);
     }
 
-    static public Video instantiateVideo(int id, String titulo, String descripcion, String imgUrl,String url, String fecha, int visitas){
-        return new Video(id,titulo,descripcion,imgUrl,url,fecha,visitas);
+    static public VideoEntity instantiateVideoEntity(int id, String titulo, String descripcion, String imgUrl, String url, String fecha, int visitas){
+        return new VideoEntity(id,titulo,descripcion,imgUrl,url,fecha,visitas);
     }
 
-    static public Video instantiateVideo( ){
-        return new Video();
+    static public VideoEntity instantiateVideoEntity( ){
+        return new VideoEntity();
     }
     //End Modulo 3
 

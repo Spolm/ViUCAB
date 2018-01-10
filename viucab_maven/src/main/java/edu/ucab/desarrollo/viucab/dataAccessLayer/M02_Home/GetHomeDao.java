@@ -44,17 +44,17 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @param
      * @return resultlist
      */
-    public ArrayList<VideoAux> listaVideoTop() {
+    public ArrayList<Video> listaVideoTop() {
 
         CallableStatement preStatement = null;
-        ArrayList<VideoAux> resultlist = null;
+        ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
-        VideoAux video;
+        Video video;
         Connection conn;
 
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new ArrayList<VideoAux>();
+            resultlist = new ArrayList<Video>();
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -93,15 +93,15 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @param idUsuario
      * @return resultlist
      */
-    public ArrayList<VideoAux> listaVideoPreferencias(int idUsuario) {
+    public ArrayList<Video> listaVideoPreferencias(int idUsuario) {
         CallableStatement preStatement = null;
-        ArrayList<VideoAux> resultlist = null;
+        ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
-        VideoAux video;
+        Video video;
         Connection conn;
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new ArrayList<VideoAux>();
+            resultlist = new ArrayList<Video>();
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -140,15 +140,15 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @param idUsuario
      * @return resultlist
      */
-    public ArrayList<VideoAux> listaVideoSuscritos(int idUsuario) {
+    public ArrayList<Video> listaVideoSuscritos(int idUsuario) {
         CallableStatement preStatement = null;
-        ArrayList<VideoAux> resultlist = null;
+        ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
-        VideoAux video;
+        Video video;
         Connection conn;
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new ArrayList<VideoAux>();
+            resultlist = new ArrayList<Video>();
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -186,15 +186,15 @@ public class GetHomeDao extends Dao implements IDaoHome {
      * @param Parametro
      * @return resultlist
      */
-    public ArrayList<VideoAux> listaVideoBusqueda(String Parametro){
+    public ArrayList<Video> listaVideoBusqueda(String Parametro){
         CallableStatement preStatement = null;
-        ArrayList<VideoAux> resultlist = null;
+        ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
-        VideoAux video;
+        Video video;
         Connection conn;
         try {
             //Creando la lista q corresponde a videos
-            resultlist = new ArrayList<VideoAux>();
+            resultlist = new ArrayList<Video>();
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
