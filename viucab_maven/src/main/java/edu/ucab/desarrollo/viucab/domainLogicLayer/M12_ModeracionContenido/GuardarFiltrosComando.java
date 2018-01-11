@@ -19,17 +19,26 @@ public class GuardarFiltrosComando extends Command {
     Entity est;
     String _resultado;
 
+
     public GuardarFiltrosComando(ContenedorIdListaFiltros contenedor) {
         this.id=contenedor.getId();
         this.listaFiltros=contenedor.getListaFiltros();
     }
 
-    public String getResultadoGuardado()
+    /**
+     * Devuelve un String si hubo o o insercion en la base de datos
+     * @return true o false
+     */
+    public  String getResultadoGuardado()
     {
         return _resultado;
     }
 
 
+    /**
+     * Metodo que realiza la llamada a el patron DAO en la clase GetModeracionContenidoDao
+     * para almacenar los datos obtenidos en la fabrica
+     */
     @Override
     public void execute() {
         try {
