@@ -28,11 +28,6 @@ plugins/
 plugins/android.json
 plugins/ios.json
 www/
-*www/
-
-IonicProject/node_modules/
-IonicProject/www/
-IonicProject/.sourcemaps/
 $RECYCLE.BIN/
 
 .DS_Store
@@ -43,7 +38,7 @@ viUCAB/\.directory
 
 viucab_maven/classes/*
 vitucab_maven/target/*
-vitucab_maven/Viucab.iml
+*.iml
 *.log
 
 viucab_maven/out/artifacts/fitucab_war_exploded/
@@ -52,4 +47,4 @@ viucab_maven/out/
 
 
 viucab_maven/target/
-
+/IonicProject/nbproject/private/

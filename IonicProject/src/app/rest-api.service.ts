@@ -128,4 +128,39 @@ export class RestApiService {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
   }
+
+  
+//Metodo para obtener todos los videos
+public getVideos(direccion): Observable<any> {
+  return this.http.get(URL+'/'+direccion)
+      .map((data: any) => data.json())
+      .do(data => console.log("get Videos from json: " + JSON.stringify(data)))
+      .catch(this.handleError);
+}
+
+
+
+public geta(direccion){
+  return this.http
+    .get(URL+'/'+direccion)
+
+}
+
+public getReproduccion(direccion){
+  return this.http
+    .get(URL+'/'+direccion)
+
+}
+
+/////////////////
+//Metodo DELETE: /direccion
+ //Elimina en una direccion
+ public deleteSus(direccion){
+  return this.http
+  .get(URL+'/'+direccion)
+  .map((data: any) => data.json())
+  .catch(this.handleError);
+ }
+
+
 }

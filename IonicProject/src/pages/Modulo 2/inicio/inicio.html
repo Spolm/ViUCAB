@@ -1,3 +1,4 @@
+<div ng-app="myApp" ng-controller="myCtrl" style="height:inherit"> 
 <ion-header>
   <ion-navbar color="primary">
     <ion-buttons start>
@@ -8,12 +9,6 @@
     <ion-title>
       <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
       
-      <ion-buttons class= 'centrado-Lupa'  >   
-        <button  >
-         <ion-icon name="search"></ion-icon>
-      </button>
-      </ion-buttons>   
-
       <ion-buttons class= 'centrado-porcentual'  >
           <button  >
 
@@ -26,53 +21,50 @@
     
     
   </ion-navbar>
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>  
 </ion-header>
 
 
- 
+
 <ion-content padding>
-   
-  <ion-card>
-    
-      <ion-item>
-        
+
+  <ion-card *ngFor="let item of data">
+     
+      <ion-item> 
+        <ion-buttons class= 'centrado-porcentual2'  >
+            <button class="boton">
+          <ion-icon name="add" ></ion-icon>   
+        </button>
+        </ion-buttons>   
         <ion-avatar item-start>
-          <img src="assets/imgs/marty-avatar.png">
+        <img src="assets/imgs/defaultavatar.png">
         </ion-avatar>
 
-        <h2>Marty McFly</h2>
-        <p>November 5, 1955</p>
+        <h2>{{item.usuario}}</h2> <!--Nombre de usuario-->
+        <p>{{item.fecha}}</p> <!--fecha-->
         
       </ion-item>
     
-      <img src="assets/imgs/advance-card-bttf.png">
+      <img src={{item.imagen}}>
     
       <ion-card-content>
-        <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+        <p style="font-size:large">{{item.nombre}}</p> <!--Titulo del video-->
       </ion-card-content>
     
       <ion-row>
         <ion-col>
           <button ion-button icon-left clear small>
-            <ion-icon name="thumbs-up"></ion-icon>
-            <div>12 Likes</div>
+            <ion-icon name="eye"></ion-icon>
+            <div>{{item.visitas}} vista/s</div>
           </button>
-        </ion-col>
-        <ion-col>
-          <button ion-button icon-left clear small>
-            <ion-icon name="text"></ion-icon>
-            <div>4 Comments</div>
-          </button>
-        </ion-col>
-        <ion-col center text-center>
-          <ion-note>
-            11h ago
-          </ion-note>
         </ion-col>
       </ion-row>
     
     </ion-card>
   
+  
 
      
 </ion-content>
+
+</div>
