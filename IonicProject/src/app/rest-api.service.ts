@@ -3,7 +3,7 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import { Http } from '@angular/http';
+import {Http, RequestOptions} from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
 const URL = 'http://192.168.1.116:8080/viucab';
@@ -155,17 +155,30 @@ export class RestApiService {
     .catch(this.handleError);
    }
 
-   public m12prueba(){
-     return new Promise ((resolve, reject) => {
+  guardarFiltros(datos) {
+    /*var headers = new Headers();
+    headers.append('Access-Control-Allow-Origin' , '*');
+    headers.append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+    headers.append('Accept','application/json');
+    headers.append('content-type','application/json');
 
-       this.http.get("http://localhost:8080/viucab/Moderacion/prueba")
-         .subscribe(data => {
-           console.log(data);
-         }, error => {
-           console.log(error);// Error getting the data
-         });
-     });
-   }
+    let options = new RequestOptions({ headers: headers });
+*/
+    let postParams = {"id":1,"listaFiltros":datos};
+   // console.log(postParams);
+    //alert("");
+    return new Promise ((resolve, reject) => {
+      alert("enviado filtros...");
+      //this.http.post("http://localhost:8080/WS_mejorado_war_exploded//guardarFiltrosDeUsuario", postParams, options)
+      this.http.post("http://localhost:8080/viucab/ModeracionContenido/guardarFiltros", postParams)
+
+        .subscribe(data => {
+          console.log(data);
+        }, error => {
+          console.log(error);// Error getting the data
+        });
+    });
+  }
 
 
 }

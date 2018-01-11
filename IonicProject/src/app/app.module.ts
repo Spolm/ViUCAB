@@ -38,7 +38,7 @@ import {ReproductorPage} from "../pages/reproductor/reproductor"
 
 //Modificado por Grupo 12
 import { AccesoConfigContenidoPage } from '../pages/M12_ModeracionContenido/acceso-config-contenido/acceso-config-contenido';
-import { ServicioProvider } from '../providers/servicio/servicio';
+import { RestApiService } from "./../app/rest-api.service";
 //Fin modificación
 
 @NgModule({
@@ -87,7 +87,7 @@ import { ServicioProvider } from '../providers/servicio/servicio';
     FilePath,
     HTTP,
     SplashScreen,
-    ServicioProvider,
+    RestApiService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

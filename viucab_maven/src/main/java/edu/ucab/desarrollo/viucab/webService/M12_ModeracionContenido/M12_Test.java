@@ -32,18 +32,6 @@ public class M12_Test {
     }
 
 
-    //Prueba si el retorno del método guardarFiltros fue true, es decir exitoso
-   @Test
-    public void pruebaRetornoGuardarFiltros() throws Exception {
-        ArrayList<Filtro> filtrosEntrada= new ArrayList<>();
-        filtrosEntrada.add((Filtro) EntityFactory.filtro(4,"filtro","sexo",true));
-        Entity contenedor= EntityFactory.contenedorIdListaFiltros(1,filtrosEntrada);
-        Command commadModeracionContenido = CommandsFactory.instanciarGuardarFiltrosComando((ContenedorIdListaFiltros) contenedor);
-        GuardarFiltrosComando cmd = (GuardarFiltrosComando) commadModeracionContenido;
-        cmd.execute();
-        assertNotNull(cmd.getResultadoGuardado());  // cambiar el estado en el dao de ese metodo, para que devuelva string
-
-    }
 
     //Prueba si el retorno del método cargarVideosPermitidos es no nulo para el usuario de id=1
     @Test
@@ -71,6 +59,18 @@ public class M12_Test {
     }
 
 
+    //Prueba si el retorno del método guardarFiltros es Strng, es decir exitoso
+    @Test
+    public void pruebaRetornoGuardarFiltros() throws Exception {
+        ArrayList<Filtro> filtrosEntrada= new ArrayList<>();
+        filtrosEntrada.add((Filtro) EntityFactory.filtro(4,"filtro","sexo",true));
+        Entity contenedor= EntityFactory.contenedorIdListaFiltros(1,filtrosEntrada);
+        Command commadModeracionContenido = CommandsFactory.instanciarGuardarFiltrosComando((ContenedorIdListaFiltros) contenedor);
+        GuardarFiltrosComando cmd = (GuardarFiltrosComando) commadModeracionContenido;
+        cmd.execute();
+        assertNotNull(cmd.getResultadoGuardado());  // cambiar el estado en el dao de ese metodo, para que devuelva string
+
+    }
 
 
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ServicioProvider } from '../../../providers/servicio/servicio';
+import { RestApiService } from '../../../app/rest-api.service';
 
 /**
  * Generated class for the AccesoConfigContenidoPage page.
@@ -13,18 +13,18 @@ import { ServicioProvider } from '../../../providers/servicio/servicio';
 @Component({
   selector: 'page-acceso-config-contenido',
   templateUrl: 'acceso-config-contenido.html',
-  
+
 })
 export class AccesoConfigContenidoPage {
   private id: number =1;
   private password: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams,public s: ServicioProvider) {
-    
+  constructor(public navCtrl: NavController, public navParams: NavParams,public s: RestApiService) {
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AccesoConfigContenidoPage');
-    
+
   }
 
   continuar(){
