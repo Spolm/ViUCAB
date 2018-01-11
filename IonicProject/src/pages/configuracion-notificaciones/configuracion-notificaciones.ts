@@ -36,8 +36,8 @@ export class ConfiguracionNotificacionesPage {
       subscripciones: true,
       estadisticas: true,
     };
-    this.restApi.getTodo(URL).subscribe( (data) => {
-      this.response = data;
+    this.restApi.getTodo(URL).subscribe((data) => {
+      this.response = data[0];
       this.configuracion = {
         id: this.response.id,
         notificaciones: this.response.activado,
@@ -51,28 +51,26 @@ export class ConfiguracionNotificacionesPage {
   }
 
   public enableToggle(condition) {
-     this.configuracion.recomendados = condition;
-     this.configuracion.etiquetados = condition;
-     this.configuracion.subscripciones = condition;
-     this.configuracion.estadisticas = condition;
+    this.configuracion.recomendados = condition;
+    this.configuracion.etiquetados = condition;
+    this.configuracion.subscripciones = condition;
+    this.configuracion.estadisticas = condition;
   }
 
   public cambiarNotificaciones() {
-    this.configuracion.notificaciones = ! this.configuracion.notificaciones;
-    this.enableToggle( this.configuracion.notificaciones);
+    this.configuracion.notificaciones = !this.configuracion.notificaciones;
+    this.enableToggle(this.configuracion.notificaciones);
   }
 
   public guardar() {
-    this.restApi.postUno(URL, 1, JSON.stringify(this.configuracion), 1).subscribe( (data) => {
+    console.log(this.configuracion);
+    this.restApi.postNotificacion(URL, JSON.stringify(this.configuracion), 1).subscribe((data) => {
+
       this.response = data;
       console.log(this.response);
-      },
+      this.configuracion = this.response;
+    },
     );
-  // this.toast.show(`Guardado con Exito`, '5000', 'bottom').subscribe(
-  //   (toast) => {
-  //    console.log(toast);
-  //    },
-  //  );
   }
 
 }

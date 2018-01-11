@@ -27,7 +27,7 @@
       <ion-label>
         Boletín Semanal
       </ion-label>
-      <ion-toggle color="positive" checked="{{configuracion.boletin}}"></ion-toggle>
+      <ion-toggle color="positive" (click)="configuracion.boletin=!configuracion.boletin"checked="{{configuracion.boletin}}"></ion-toggle>
     </ion-item>
     <div id="mensaje" class="show-list-numbers-and-dots">
         <strong>
@@ -38,25 +38,25 @@
       <ion-label>
         Videos Recomendados
       </ion-label>
-    <ion-toggle color="positive" checked="{{configuracion.recomendados}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+    <ion-toggle color="positive" (click)="configuracion.recomendados = !configuracion.recomendados" checked="{{configuracion.recomendados}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
     </ion-item>
     <ion-item id="subscripciones-toggle">
       <ion-label>
         Videos de Subscripciones
       </ion-label>
-      <ion-toggle color="positive" checked="{{configuracion.subscripciones}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+      <ion-toggle color="positive"(click)="configuracion.subscripciones = !configuracion.subscripciones" checked="{{configuracion.subscripciones}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
     </ion-item>
     <ion-item id="etiquetados-toggle">
       <ion-label>
         Videos Etiquetados
       </ion-label>
-      <ion-toggle color="positive" checked="{{configuracion.etiquetados}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+      <ion-toggle color="positive" (click)="configuracion.etiquetados = !configuracion.etiquetados" checked="{{configuracion.etiquetados}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
     </ion-item>
     <ion-item id="estadisticas-toggle"> 
       <ion-label>
         Estadísticas de Usuario
       </ion-label>
-      <ion-toggle color="positive" checked="{{configuracion.estadisticas}}"disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+      <ion-toggle color="positive" (click)="configuracion.estadisticas = !configuracion.estadisticas" checked="{{configuracion.estadisticas}}"disabled="{{!configuracion.notificaciones}}"></ion-toggle>
     </ion-item>
     <button  (click)="guardar()" ion-button block>Guardar</button>    
   </form>

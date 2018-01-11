@@ -3,13 +3,13 @@
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
 
 //const URL = 'http://192.168.1.116:8080/viucab';
-const URL = 'http://localhost:8080/viucab_war_exploded';
-//const URL = 'http://localhost:8080/viucab';
+//const URL = 'http://localhost:8080/viucab_war_exploded';
+const URL = 'http://localhost:8080/viucab';
 
 
 @Injectable()
@@ -68,11 +68,26 @@ export class RestApiService {
   //Metodo POST: /direccion/id_objeto
   //Actualiza el objeto id en una direccion. Es necesario el enviar el dato nuevo y los parametros
   public postUno(direccion, idObjeto, dato, param) {
+    let headers = new Headers({ 'content-type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    
     return this.http
-    .post(URL+'/'+direccion+"/"+idObjeto, dato, param)
+    .post(URL+'/'+direccion+"/"+idObjeto, dato, options)
     .map((data: any) => data.json())
     .catch(this.handleError);
   }
+
+  public postNotificacion(direccion, dato, param){
+   let headers = new Headers();
+   headers.append("Content-Type", 'application/json');
+   let options =new RequestOptions({headers: headers});
+    return this.http
+    .post(URL+'/'+direccion, dato, options )
+    .map((data: any) => data.json())
+    .catch(this.handleError);
+  }
+
+  
 
   //Metodo PUT: /direccion
   //Agrega en una direccion, envia los datos y el parametro
