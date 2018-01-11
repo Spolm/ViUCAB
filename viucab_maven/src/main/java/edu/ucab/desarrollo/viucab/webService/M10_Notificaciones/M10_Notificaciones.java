@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.DiscardNotificacion;
@@ -23,54 +25,12 @@ public class M10_Notificaciones {
     Gson gson = new Gson();
     Connection conexion = Sql.getConInstance();
     private Response _response;
-    @POST
-    @Path("/notificacionMail")
-    @Produces("application/json")
-    public Response enviarMail (@QueryParam("userCliId") String userCli, @QueryParam("userSuscrId") String userSuscr){
-        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
-        String usuarioCliente= null;
-        String correo = null;
-        String usuarioSuscripcion= null;
-        String video= null;
-        String image= null;
-        try{
-            Statement stmt = conexion.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userCli);
-            if(rs.next()){
-                usuarioCliente = rs.getString(2);
-                correo = rs.getString(6);
-            }
-            rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userSuscr);
-            if(rs.next()){
-                usuarioSuscripcion = rs.getString(2);
-            }
-            ResultSet rs2 = stmt.executeQuery("SELECT * FROM video WHERE usu_id = " + userSuscr);
-            if (rs2.next()){
-                video = rs2.getString(2);
-                image = rs2.getString(8);
-            }
-            MailNotificacion mail = new MailNotificacion();
-            mail.enviarNotificacion(correo,"Hola " + usuarioCliente + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + usuarioSuscripcion +" ha subido un nuevo video titulado: "+video,"Actividad reciente", image);
-            rs.close();
-            rs2.close();
-            stmt.close();
-            rb.header("Content-Type","application/json");
-            rb.entity("El mensaje ha sido enviado correctamente");
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Sql.bdClose(conexion);
-        }
-        return rb.build();
-    }
-
-
 
     @GET
     @Path("/notificacion")
     @Produces("application/json")
     //Recibe como parametro el id del usuario que inicio sesion
-    public Response obtenerNotificacion () {
+    public Response obtenerNotificacion () throws  SQLException, BdConnectException, PlConnectException {
         Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity notificacionObject = EntityFactory.notificacion();
         Command commandNotificacion = CommandsFactory.instanciateGetNotificaciones(notificacionObject);
@@ -83,11 +43,6 @@ public class M10_Notificaciones {
         //return gson.toJson(result);
         return rb.build();
     }
-
-
-
-
-
 
     //Desechar Notificacion
     @GET
@@ -165,4 +120,44 @@ public class M10_Notificaciones {
 
     }
 
+    @POST
+    @Path("/notificacionMail")
+    @Produces("application/json")
+    public Response enviarMail (@QueryParam("userCliId") String userCli, @QueryParam("userSuscrId") String userSuscr){
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
+        String usuarioCliente= null;
+        String correo = null;
+        String usuarioSuscripcion= null;
+        String video= null;
+        String image= null;
+        try{
+            Statement stmt = conexion.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userCli);
+            if(rs.next()){
+                usuarioCliente = rs.getString(2);
+                correo = rs.getString(6);
+            }
+            rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userSuscr);
+            if(rs.next()){
+                usuarioSuscripcion = rs.getString(2);
+            }
+            ResultSet rs2 = stmt.executeQuery("SELECT * FROM video WHERE usu_id = " + userSuscr);
+            if (rs2.next()){
+                video = rs2.getString(2);
+                image = rs2.getString(8);
+            }
+            MailNotificacion mail = new MailNotificacion();
+            mail.enviarNotificacion(correo,"Hola " + usuarioCliente + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + usuarioSuscripcion +" ha subido un nuevo video titulado: "+video,"Actividad reciente", image);
+            rs.close();
+            rs2.close();
+            stmt.close();
+            rb.header("Content-Type","application/json");
+            rb.entity("El mensaje ha sido enviado correctamente");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            Sql.bdClose(conexion);
+        }
+        return rb.build();
+    }
 }

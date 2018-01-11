@@ -63,14 +63,13 @@ export class ConfiguracionNotificacionesPage {
   }
 
   public guardar() {
-    console.log(this.configuracion);
     this.restApi.postNotificacion(URL, JSON.stringify(this.configuracion), 1).subscribe((data) => {
-
       this.response = data;
-      console.log(this.response);
       this.configuracion = this.response;
-    },
+
+    }
     );
+    this.navCtrl.pop();
   }
 
 }

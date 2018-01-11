@@ -3,6 +3,8 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import edu.ucab.desarrollo.viucab.common.entities.*;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
 import java.sql.*;
@@ -60,11 +62,11 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
      *
      * @param n
      * @return ArrayList<Notificacion>
-     * @throws SQLException
+     * @throws SQLException, BdConnectException, PlConnectException
      */
 
     @Override
-    public ArrayList<Notificacion> obtenerNotificaciones(Entity n) throws SQLException {
+    public ArrayList<Notificacion> obtenerNotificaciones(Entity n) throws SQLException, BdConnectException, PlConnectException {
         Notificacion not = (Notificacion) n;
         ArrayList<Notificacion> listaNotif = new ArrayList<>();
         PreparedStatement preStatement;
@@ -98,11 +100,9 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
             listaNotif.add(notif);
         }
         result.close();
-    }
-    catch (SQLException e) {
+    } catch (SQLException e) {
         e.printStackTrace();
-        }
-    finally {
+        } finally {
         closeConnection();
         }
         return listaNotif;
