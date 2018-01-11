@@ -48,8 +48,8 @@ import { Modulo9Page } from '../pages/modulo9/modulo9';
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,
-    ReproductorPage,
-    Modulo9Page
+    ReproductorPage
+    //Modulo9Page
   ],
   imports: [
     BrowserModule,
@@ -69,8 +69,8 @@ import { Modulo9Page } from '../pages/modulo9/modulo9';
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,
-    ReproductorPage,
-    Modulo9Page
+    ReproductorPage
+    //Modulo9Page
   ],
   providers: [
     StatusBar,

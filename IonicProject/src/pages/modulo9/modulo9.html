@@ -27,39 +27,187 @@
     </ion-title>
   </ion-navbar>
 
+  <div>
+    <ion-segment [(ngModel)]="tab">
+      <ion-segment-button value="Deporte">
+        DEPORTES
+      </ion-segment-button>
+      <ion-segment-button value="Arte">
+        ARTE
+      </ion-segment-button>
+      <ion-segment-button value="Videojuegos">
+        VIDEOJUEGOS
+      </ion-segment-button>
+      <ion-segment-button value="Musica">
+        MUSICA
+      </ion-segment-button>
+      <ion-segment-button value="Comedia">
+        COMEDIA
+      </ion-segment-button>
+    </ion-segment>
+  </div>
 </ion-header>
 
 
 <ion-content padding>
 
-
-        <ion-list >
-            <ion-item *ngFor="let video of ListaDesugerencia" >
-              <ion-thumbnail item-start id="List-img">
-                <img [src]="video.img">
-              </ion-thumbnail>
-              <ion-grid>
-                <ion-row>
-                  <ion-col col-10 class="nopadding" >
-                    <ion-row >
-                      <div class="ellipsis">
-                        <span class="List-title">{{video.title}}</span>
-                      </div>
-        
-                    </ion-row>
-                    <ion-row>
-                      <span class="List-amount">{{video.plays}} plays</span>
-                    </ion-row>
-                    <ion-row>
-                      <span class="List-duration">{{video.duration}}</span>
-                    </ion-row>
-                  </ion-col>
-                 <!-- <ion-col col-2 class="nopadding" align="right">
-                    <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
-                  </ion-col>-->
+  <div [ngSwitch]="tab">
+    <ion-list *ngSwitchCase="'Deporte'">
+        <ion-item *ngFor="let item of listaVideo ; let i = index " >
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUft1xyhiO1Rs2-mLBBdtAunTE_DiYjI7GCQiz35l07Pm3ilYI">
+            
+            
+           <ion-grid>
+            <ion-row>
+              <ion-col col-10 class="nopadding" >
+                <ion-row >
+                  <div class="ellipsis">
+                    <span class="List-title">{{item.nombre}}</span>
+                  </div>
+    
                 </ion-row>
-              </ion-grid>
-            </ion-item>
+                <ion-row>
+                  <span class="List-amount">{{item.visitas}} plays</span>
+                </ion-row>
+                <ion-row>
+                  <span class="List-duration">{{item.fecha}}</span>
+                </ion-row>
+              </ion-col>
+             <!-- <ion-col col-2 class="nopadding" align="right">
+                <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
+              </ion-col>-->
+            </ion-row>
+          </ion-grid>
+             <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+        </ion-item>            
+    </ion-list>
+     
+       
         
-          </ion-list>
+         <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+       
+
+  
+    <ion-list no-lines *ngSwitchCase="'Arte'">
+      <ion-item *ngFor="let item of listaVideoArte ; let i = index " >
+          
+      <img src="http://definicion.com.mx/imagenes/arte.jpg">
+            
+        <ion-grid>
+          <ion-row>
+            <ion-col col-10 class="nopadding" >
+              <ion-row >
+                <div class="ellipsis">
+                  <span class="List-title">{{item.nombre}}</span>
+                </div>
+  
+              </ion-row>
+              <ion-row>
+                <span class="List-amount">{{item.visitas}} plays</span>
+              </ion-row>
+              <ion-row>
+                <span class="List-duration">{{item.fecha}}</span>
+              </ion-row>
+            </ion-col>
+           <!-- <ion-col col-2 class="nopadding" align="right">
+              <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
+            </ion-col>-->
+          </ion-row>
+        </ion-grid>
+           <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+      </ion-item>     
+    </ion-list>
+
+    <ion-list no-lines *ngSwitchCase="'Comedia'">
+      <ion-item *ngFor="let item of listaVideoComedia ; let i = index " >
+           
+          <img src=" https://i.pinimg.com/236x/2a/2a/d6/2a2ad69d946ab74c49dd5b7ca5f124e3--eddie-murphy-netflix.jpg">
+          
+        <ion-grid>
+          <ion-row>
+            <ion-col col-10 class="nopadding" >
+              <ion-row >
+                <div class="ellipsis">
+                  <span class="List-title">{{item.nombre}}</span>
+                </div>
+  
+              </ion-row>
+              <ion-row>
+                <span class="List-amount">{{item.visitas}} plays</span>
+              </ion-row>
+              <ion-row>
+                <span class="List-duration">{{item.fecha}}</span>
+              </ion-row>
+            </ion-col>
+           <!-- <ion-col col-2 class="nopadding" align="right">
+              <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
+            </ion-col>-->
+          </ion-row>
+        </ion-grid>
+           <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+      </ion-item>     
+    </ion-list>
+
+    <ion-list no-lines *ngSwitchCase="'Musica'">
+      <ion-item *ngFor="let item of listaVideoMusica ; let i = index " >
+          <img src=" http://4.bp.blogspot.com/-WcFCGfAFqao/UHd3ajEKcYI/AAAAAAAAABo/SrnNbPRoO6Y/s200/musica+mundo.jpg">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-10 class="nopadding" >
+              <ion-row >
+                <div class="ellipsis">
+                  <span class="List-title">{{item.nombre}}</span>
+                </div>
+  
+              </ion-row>
+              <ion-row>
+                <span class="List-amount">{{item.visitas}} plays</span>
+              </ion-row>
+              <ion-row>
+                <span class="List-duration">{{item.fecha}}</span>
+              </ion-row>
+            </ion-col>
+           <!-- <ion-col col-2 class="nopadding" align="right">
+              <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
+            </ion-col>-->
+          </ion-row>
+        </ion-grid>
+           <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+      </ion-item>     
+    </ion-list>
+
+
+    <ion-list no-lines *ngSwitchCase="'Videojuegos'">
+      <ion-item *ngFor="let item of listaVideoJuegos ; let i = index " >
+          <img src="https://i.ebayimg.com/thumbs/images/i/351448955437-0-1/s-l200.jpg">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-10 class="nopadding" >
+              <ion-row >
+                <div class="ellipsis">
+                  <span class="List-title">{{item.nombre}}</span>
+                </div>
+  
+              </ion-row>
+              <ion-row>
+                <span class="List-amount">{{item.visitas}} plays</span>
+              </ion-row>
+              <ion-row>
+                <span class="List-duration">{{item.fecha}}</span>
+              </ion-row>
+            </ion-col>
+           <!-- <ion-col col-2 class="nopadding" align="right">
+              <ion-icon class="f15 color-grey"  ios="ios-trash" md="md-trash"></ion-icon>
+            </ion-col>-->
+          </ion-row>
+        </ion-grid>
+           <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
+      </ion-item>     
+    </ion-list>
+    
+    
+    
+  </div>
+        
+          
 </ion-content>

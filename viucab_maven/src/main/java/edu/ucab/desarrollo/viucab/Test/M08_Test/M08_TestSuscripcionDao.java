@@ -38,7 +38,7 @@ public class M08_TestSuscripcionDao {
     }
 
     @Test(expected = PLConnectException1.class)
-    public void testPlConnectException() throws PLConnectException1, BDConnectException1, SQLException {
+    public void testPnectException() throws PLConnectException1, BDConnectException1, SQLException {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Connection conn;

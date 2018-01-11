@@ -24,4 +24,27 @@ public class MessageException extends RuntimeException{
         return str.toString();
     }
 
+    public int get_code() {
+        return _code;
+    }
+
+    public void set_code(int _code) {
+        this._code = _code;
+    }
+
+    public String get_clase() {
+        return _clase;
+    }
+
+    public void set_clase(String _clase) {
+        this._clase = _clase;
+    }
+
+    public String get_metodo() {
+        return _metodo;
+    }
+
+    public void set_metodo(String _metodo) {
+        this._metodo = _metodo;
+    }
 }

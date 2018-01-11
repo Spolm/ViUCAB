@@ -44,7 +44,8 @@ export class MenuPage {
     //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
     { title: 'Mis videos', pageName: 'ListarmisvideosPage', icon: 'play' },
     { title: 'Mis listas', pageName: 'PlaylistPage', icon: 'star-half' },
-    { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
+    { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' },
+    { title: 'Sugerencias', pageName: 'Modulo9Page', icon: 'play' }
   ];
  
   constructor(public navCtrl: NavController) { }
