@@ -111,24 +111,28 @@ public class M10_Notificaciones {
     @GET
     @Path("/configuracion")
     @Produces("application/json")
-    public String obtenerConfiguracion (){
-
+    public Response obtenerConfiguracion (){
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity configuracionObject = EntityFactory.configuracionNotificaciones();
         Command commandConfiguracion = CommandsFactory.instanciateGetConfiguracion(configuracionObject);
         GetConfiguracion cmd = (GetConfiguracion) commandConfiguracion;
         cmd.execute();
         List<Entity> result = cmd.ReturnListCon();
 //        System.out.println(result);
-        return gson.toJson(result);
+        rb.header("Configuration pulled","SUCCESS");
+        rb.tag("application/json");
+        rb.entity(gson.toJson(result));
+        return rb.build();
     }
 
     @POST
     @Path("/configuracion")
     @Consumes("application/json")
-    @Produces("text/plain")
+    @Produces("application/json")
     //@QueryParam("id") String id
 
-    public String guardarConfiguracion(String datos) throws SQLException {
+    public Response guardarConfiguracion(@QueryParam("datos") String datos) throws SQLException {
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
         PreparedStatement ps = conexion.prepareStatement(
                 "UPDATE config_notificacion SET " +
@@ -144,8 +148,11 @@ public class M10_Notificaciones {
         ps.setBoolean(6, jsonDatos.get("estadisticas").getAsBoolean());
         ps.setInt(7, jsonDatos.get("id").getAsInt());
         ps.executeUpdate();
+        rb.header("Save Conf","SUCCESS");
+        rb.tag("application/json");
+        rb.entity(gson.toJson(datos));
         Sql.bdClose(conexion);
-        return datos;
+        return rb.build();
 
     }
 

@@ -10,7 +10,7 @@ BEGIN
 RETURN QUERY
 SELECT  n.not_id, n.not_fecha, n.not_desechado, u.usu_login, v.vid_titulo, v.vid_descripcion, v.vid_url, v.vid_imagen 
         FROM notificacion n, video v, usuario u
-        WHERE (n.not_desechado=false and n.vid_id=v.vid_id and n.usu_id = usuario and v.usu_id = u.usu_id)
+        WHERE (n.not_desechado=false and n.vid_id=v.vid_id and n.usu_id = usuario and v.vid_usuario = u.usu_id)
         ORDER BY not_fecha DESC;
 END;
 $BODY$
