@@ -185,3 +185,23 @@ END;
 $BODY$
   LANGUAGE plpgsql VOLATILE
   COST 100;
+
+
+
+   -- FUNCION PARA OBTENER TOP 10 DE VIDEOS MAS VISTOS --
+
+CREATE OR REPLACE FUNCTION public.m05_toptenvideo()
+  RETURNS TABLE(vid_id integer, vid_titulo character varying, vid_imagen character varying, vid_url character varying, vid_fecha date, vid_visitas integer) AS
+$BODY$
+BEGIN
+RETURN QUERY
+SELECT X.VID_ID, X.VID_TITULO, X.VID_IMAGEN, X.VID_URL, X.VID_FECHA, X.VID_VISITAS
+  FROM VIDEO AS X
+  ORDER BY X.VID_VISITAS DESC
+  LIMIT 10;
+
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 100
+  ROWS 1000;

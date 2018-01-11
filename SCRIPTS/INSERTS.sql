@@ -52,21 +52,21 @@ insert into etiqueta values (2,'metal');
 INSERT INTO video_etiq VALUES (8,1);
 insert into video_etiq values (8,2);
 
-INSERT INTO LISTA_REPRODUCCION values (1,'Lista de pasados', 'what',null, 25, '2018/01/11', 4);
-INSERT INTO LISTA_REPRODUCCION values (50,'Lista de sancionados', 'what',null, 25, '2017/12/15', 4);
-INSERT INTO lista_reproduccion values (60,'Lista de sancionados2.0', 'what2',null, 45, '2017/12/24', 4);
-INSERT INTO LISTA_REPRODUCCION values (70,'Lista de sancionados3.0', 'what3',null, 65, '2017/12/31', 4);
+INSERT INTO LISTA_REPRODUCCION values (1,'Lista de pasados', 'what','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho', 25, '2018/01/11', 4);
+INSERT INTO LISTA_REPRODUCCION values (50,'Lista 50', 'what','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho', 25, '2017/12/15', 4);
+INSERT INTO lista_reproduccion values (60,'Lista 60', 'what2','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho', 45, '2017/12/24', 4);
+INSERT INTO LISTA_REPRODUCCION values (70,'Lista 70', 'what3','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho', 65, '2017/12/31', 4);
 
 
 
-INSERT INTO VIDEO values (11,'PASAMOS DESARROLLO', 'Pasando desarrollo','goo.gl', 'youtube.com/123', '2018/01/11', 777 , 4);
-INSERT INTO VIDEO values (12,'PASAMOS', 'Pasando ','goo.gl', 'youtube.com/123', '2018/01/11', 777 , 4);
-INSERT INTO VIDEO values (13,'PASAMOS 3', 'Pasando 3','goo.gl','youtube.com/123', '2018/01/11', 777 , 4);
-INSERT INTO VIDEO values (14,'PASAMOS 4', 'Pasando 4','goo.gl','youtube.com/123', '2018/01/11', 777 , 4);
-INSERT INTO VIDEO values (15,'PASAMOS 5', 'Pasando 5','goo.gl','youtube.com/123', '2018/01/11', 777 , 4);
-INSERT INTO VIDEO values (16,'PASAMOS 6', 'Pasando 6','goo.gl','youtube.com/123', '2018/01/11', 777 , 4);
-INSERT INTO VIDEO values (17,'PASAMOS 7', 'Pasando 7','goo.gl','youtube.com/123', '2018/01/11', 777 , 4);
-INSERT INTO VIDEO values (10,'PASAMOS 10', 'Pasando 10','goo.gl','youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (11,'PASAMOS DESARROLLO', 'Pasando desarrollo','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632', 'youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (12,'PASAMOS', 'Pasando ','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632', 'youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (13,'PASAMOS 3', 'Pasando 3','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632','youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (14,'PASAMOS 4', 'Pasando 4','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632','youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (15,'PASAMOS 5', 'Pasando 5','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632','youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (16,'PASAMOS 6', 'Pasando 6','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632','youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (17,'PASAMOS 7', 'Pasando 7','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632','youtube.com/123', '2018/01/11', 777 , 4);
+INSERT INTO VIDEO values (10,'PASAMOS 10', 'Pasando 10','https://birdinflight.imgix.net/wp-content/uploads/2016/07/cassius-interactive-music-video_cover.jpg?auto=format&q=80&fit=crop&crop=faces&w=632','youtube.com/123', '2018/01/11', 777 , 4);
 
 
 INSERT INTO VIDEO_LISTA values (1,50);

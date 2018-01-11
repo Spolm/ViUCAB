@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://192.168.1.116:8080/viucab';
+const URL = 'http://localhost:8080/viucab';
 
 @Injectable()
 export class RestApiService {
