@@ -6,10 +6,7 @@ import java.util.Date;
 import edu.ucab.desarrollo.viucab.common.entities.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.FiltrarVideosComando;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.GetFiltrosDeUsuarioComando;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.GetVideosPermitidosComando;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.GuardarFiltrosComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.*;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -31,6 +28,16 @@ public class M12_Test {
 
     }
 
+    //Prueba si el r
+    @Test
+    public void pruebaValidarClave() throws Exception {
+
+        Command commadModeracionContenido = CommandsFactory.instanciarValidarAccesoComando(1,"123456");
+        ValidarAccesoComando cmd = (ValidarAccesoComando) commadModeracionContenido;
+        cmd.execute();
+        assertTrue(cmd.getValidacion());
+
+    }
 
 
     //Prueba si el retorno del método cargarVideosPermitidos es no nulo para el usuario de id=1

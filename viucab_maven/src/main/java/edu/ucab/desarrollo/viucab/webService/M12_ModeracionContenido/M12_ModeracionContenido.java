@@ -3,6 +3,7 @@ package edu.ucab.desarrollo.viucab.webService.M12_ModeracionContenido;
 import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.ContenedorIdListaFiltros;
 import edu.ucab.desarrollo.viucab.common.entities.ContenedorIdListaVideos;
+import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.*;
@@ -13,7 +14,7 @@ import java.sql.Connection;
 
 @Path("/ModeracionContenido")
 public class M12_ModeracionContenido {
-
+    Entity entidad = null;
     Gson gson = new Gson();
     //Connection conn = Sql.getConInstance();
 
@@ -21,6 +22,7 @@ public class M12_ModeracionContenido {
     @Path("/cargarFiltros")
     @Produces("application/json")
     public String cargarFiltros(@QueryParam("id") Integer id) {
+
         try {
             Command commadModeracionContenido = CommandsFactory.instanciarGetFiltrosDeUsuarioComando(id);
             GetFiltrosDeUsuarioComando cmd = (GetFiltrosDeUsuarioComando) commadModeracionContenido;
@@ -28,7 +30,7 @@ public class M12_ModeracionContenido {
             return gson.toJson(cmd.getFiltros());
 
         } catch (Exception ex) {
-            return gson.toJson("ASD");
+            return gson.toJson(ex.getMessage());
         }
     }
 
