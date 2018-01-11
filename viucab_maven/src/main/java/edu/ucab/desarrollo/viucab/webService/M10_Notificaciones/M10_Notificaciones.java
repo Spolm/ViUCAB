@@ -31,6 +31,8 @@ public class M10_Notificaciones {
         String usuarioCliente= null;
         String correo = null;
         String usuarioSuscripcion= null;
+        String video= null;
+        String image= null;
         try{
             Statement stmt = conexion.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userCli);
@@ -42,13 +44,18 @@ public class M10_Notificaciones {
             if(rs.next()){
                 usuarioSuscripcion = rs.getString(2);
             }
+            ResultSet rs2 = stmt.executeQuery("SELECT * FROM video WHERE usu_id = " + userSuscr);
+            if (rs2.next()){
+                video = rs2.getString(2);
+                image = rs2.getString(8);
+            }
             MailNotificacion mail = new MailNotificacion();
-            mail.enviarNotificacion(correo,"Hola " + usuarioCliente + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + usuarioSuscripcion +" ha subido un nuevo video titulado: Vamos a pasar desarrollo verdad?","Actividad reciente");
+            mail.enviarNotificacion(correo,"Hola " + usuarioCliente + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + usuarioSuscripcion +" ha subido un nuevo video titulado: "+video,"Actividad reciente", image);
             rs.close();
+            rs2.close();
             stmt.close();
-            rb.header("El webo","Peludo?");
-            rb.tag("mochalo");
-            rb.entity("Me pica elwe");
+            rb.header("Content-Type","application/json");
+            rb.entity("El mensaje ha sido enviado correctamente");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -56,6 +63,7 @@ public class M10_Notificaciones {
         }
         return rb.build();
     }
+
 
 
     @GET
