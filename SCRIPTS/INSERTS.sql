@@ -1,16 +1,16 @@
 ﻿INSERT INTO USUARIO VALUES (1, 'Estefania Perez', '12345', 'token3', true, 'esteperez@gmail.com','https://image.ibb.co/dzGNbm/metallica_Perfil.jpg');
 INSERT INTO USUARIO VALUES (2, 'Barbara Fernandez', '12345', 'token', false, 'barbie1@gmail.com','https://image.ibb.co/dzGNbm/metallica_Perfil.jpg');
 INSERT INTO USUARIO VALUES (3, 'Jose Dos Ramos', '12345', 'token2', false, 'jostin@gmail.com','https://image.ibb.co/enaJhR/ironmaiden.jpg');
-INSERT INTO USUARIO VALUES (4, 'betoreveron', '12345', 'cualquier vaina', false, 'beto@gmail');
+INSERT INTO USUARIO VALUES (4, 'betoreveron', '12345', 'cualquier vaina', false, 'beto@gmail','');
 
 INSERT INTO VIDEO VALUES (1, 'Nothing else matters','Derechos Reservados','https://image.ibb.co/hBPB2R/metallicaimagenvideo.jpg','https://www.youtube.com/watch?v=HyrWd_gfQNQ','2017-11-01',100,2);
 INSERT INTO VIDEO VALUES (2, 'I want my tears back','Derechos Reservados','https://image.ibb.co/cGjN96/nigthwish.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-02',99,2);
 INSERT INTO VIDEO VALUES (3, 'Run to the Hills','Derechos Reservados','https://image.ibb.co/enaJhR/ironmaiden.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-03',98,2);
-INSERT INTO VIDEO VALUES (4, 'El rubius hola','Derechos Reservados','https://image.ibb.co/ibzEp6/rubius.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-04',50,2);
-INSERT INTO VIDEO VALUES (5, 'Master of Puppets','Derechos Reservados','https://image.ibb.co/dzGNbm/metallica_Perfil.jpg','https://www.youtube.com/watch?v=HyrWd_gfQNQ','2017-11-05',95,2);
-INSERT INTO VIDEO VALUES (6, 'Aqui no hay quien Viva 1x01','Derechos Reservados','https://image.ibb.co/kDab2R/anhqv.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-07',90,2);
-INSERT INTO VIDEO VALUES (7, 'Caracas armas de Fuego','Derechos Reservados','https://image.ibb.co/enaJhR/ironmaiden.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-10',80,2);
-INSERT INTO VIDEO VALUES (8, 'Fear of the Dark','Derechos Reservados','https://image.ibb.co/enaJhR/ironmaiden.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-01-10',80,2);
+INSERT INTO VIDEO VALUES (4, 'El rubius hola','Derechos Reservados','https://image.ibb.co/ibzEp6/rubius.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-04',50,3);
+INSERT INTO VIDEO VALUES (5, 'Master of Puppets','Derechos Reservados','https://image.ibb.co/dzGNbm/metallica_Perfil.jpg','https://www.youtube.com/watch?v=HyrWd_gfQNQ','2017-11-05',95,3);
+INSERT INTO VIDEO VALUES (6, 'Aqui no hay quien Viva 1x01','Derechos Reservados','https://image.ibb.co/kDab2R/anhqv.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-07',90,3);
+INSERT INTO VIDEO VALUES (7, 'Caracas armas de Fuego','Derechos Reservados','https://image.ibb.co/enaJhR/ironmaiden.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-11-10',80,4);
+INSERT INTO VIDEO VALUES (8, 'Fear of the Dark','Derechos Reservados','https://image.ibb.co/enaJhR/ironmaiden.jpg','https://www.youtube.com/watch?v=LaGyduQBh7M','2017-01-10',80,4);
 
 
 insert into categoria values (1,'comedia');
@@ -31,12 +31,13 @@ insert into video_cat values (1,7);
 insert into video_cat values (2,7);
 insert into video_cat values (8,7);
 insert into video_cat values (8,5);
+insert into video_cat values (4,1);
+
 
 --Usuario con categoria
-insert into preferencia values (1,1);
+insert into preferencia values (1,4);
 insert into preferencia values (1,2);
-insert into preferencia values (2,6);
-insert into preferencia values (1,7);
+
 
 --Usuario con usuario (SUSCRIPCION)
 insert into suscripcion values (1,2);
