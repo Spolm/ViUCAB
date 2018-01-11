@@ -151,6 +151,20 @@ public class EntityFactory
 
     //final M08
 
+    //Mregion M09
+
+    static public Entity sugerenciasVideo (){return new Video();}
+
+    static public Entity nuevoVideo (int id, String titulo, String descripcion, String imagen,String url, String fecha,int visitas,int usuario, int id_categoria) {
+        return new Video(id, titulo, descripcion, imagen, fecha, visitas, url,usuario, id_categoria);
+    }
+
+    static public Entity instaciateVideo (int id_usuario, String categoria) {return new Video(id_usuario, categoria);}
+
+
+
+    //final M09
+
     // M10 Notificaciones
 
     static public ConfiguracionNotificaciones configuracionNotificaciones(int id, boolean activado, boolean boletin, boolean subscripciones, boolean etiquetados, boolean estadisticas, boolean preferencias){
