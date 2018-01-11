@@ -1,8 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams ,AlertController} from 'ionic-angular';
 import {EditListPage} from "./edit-list/edit-list";
 import { PopoverController } from 'ionic-angular';
 import {ViewListPage} from "./view-list/view-list";
+import { RestApiService } from "../../app/rest-api.service";
+import { Content, Events } from 'ionic-angular';
+import { NullAstVisitor } from '@angular/compiler';
 
 import {PopOverListasReproduccionPage} from '../playlist/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 import {AddListPage} from "./add-list/add-list";
@@ -18,43 +21,138 @@ import {AddListPage} from "./add-list/add-list";
 @Component({
   selector: 'page-playlist',
   templateUrl: 'playlist.html',
+  providers: [RestApiService]
 })
 export class PlaylistPage {
 
   public tab: string;
-  public ListasDeReproduccion = [
-    { title: 'Lista numero 1', amount: '13', duration: '30:00 min', img:'https://www.lapatilla.com/site/wp-content/uploads/2017/08/Meme.x43795.jpg'},
-    { title: 'Lista numero 2', amount: '3', duration: '3:00 min' , img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho'},
-    { title: 'Lista numero 3', amount: '1', duration: '39:05 min' , img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho'},
-  ];
+  public respu:any;
+  public userid:any = 4;
+  public ListasDeReproduccion:any = [];
+  public VideosDeLista:any = [];
+  public IdListaBorrar:any;
 
+//constructor de todo
+  constructor(public events:Events, public api: RestApiService, public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController,public alertCtrl: AlertController) {
+  
+    this.events.subscribe('reloadPlaylists',() => {
+      //call methods to refresh content
+      console.log("RELOADEA");
+      this.getPlaylists(); //obtiene las listas
+  });
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController) {
+  this.events.subscribe('deletePlaylist',(data) => { 
+    //call methods to refresh content
+    console.log("BORRAR LISTA",data);
+    this.IdListaBorrar = data.id;
+    this.presentConfirm("Hey","Estas seguro de querer eliminar esta lista?");
+
+    
+});
+
   }
+
+  
 
   @ViewChild('myNav') nav: NavController
   ionViewDidLoad() {
     console.log('ionViewDidLoad ListasPage');
     this.tab = 'mias';
+    console.log("ENtre a playlist");
+    this.getPlaylists();
   }
 
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(PopOverListasReproduccionPage);
+  //metodo para presentar una alerta
+  presentAlert(title,subTitle) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subTitle
+    });
+    alert.present();
+  }
+
+  //metodo para presentar una confirmacion o cancelacion
+  presentConfirm(title,message) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      message: message,
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirmar',
+          handler: () => {
+            console.log('delete clicked');
+            this.deletePlayList();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+
+  //metodo para eliminar una lista
+  deletePlayList(){
+    this.api.geta('playlist/deletePlaylist?lis_rep_id='+ this.IdListaBorrar).subscribe((data) => { // Success
+      console.log (data.json());
+      if(data.json() == true){
+        this.getPlaylists();
+      }else if(data.json() == false){
+        this.presentAlert("Ups","La lista no puedo ser eliminada");
+        console.log("Lista no puede ser eliminada");
+      }
+      
+     },
+     (error) =>{
+       console.error(error);
+     });
+  }
+
+//metodo para obtener las listas
+  getPlaylists(){
+
+    this.api.geta('playlist/getAllPlaylist?id_usu='+ this.userid).subscribe((data) => { // Success
+          console.log (data.json());
+          this.ListasDeReproduccion = data.json();
+         },
+         (error) =>{
+           console.error(error);
+         });
+  }
+
+  //popover
+  presentPopover(myEvent,lista) {
+    let popover = this.popoverCtrl.create(PopOverListasReproduccionPage,{listapopover:lista});
     popover.present({
       ev: myEvent
     });
   }
 
-  public goToEditList(){
-    this.navCtrl.push(EditListPage);
+
+//metodo para ver una lista
+  public goToViewList(id,name){
+    console.log("Lista que vere", id, name);
+
+    this.api.geta('playlist/getVideosFromPlaylist?lis_rep_id='+ id).subscribe((data) => { // Success
+      console.log (data.json());
+      this.VideosDeLista = data.json();
+      this.navCtrl.push(ViewListPage,{VideosDeLista : this.VideosDeLista, NombreLista : name,IdLista:id});
+     },
+     (error) =>{
+       console.error(error);
+     });
+
+    
   }
 
-  public goToViewList(){
-    this.navCtrl.push(ViewListPage);
-  }
-
+  //metodo para agregar una lista
   public goToAddList(){
-    this.navCtrl.push(AddListPage);
+    this.navCtrl.push(AddListPage,{listasAdd: this.ListasDeReproduccion});
   }
 
 }

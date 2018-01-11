@@ -1,7 +1,8 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-        import java.util.ArrayList;
         import java.util.LinkedList;
+
+import java.util.ArrayList;
 
 /**
  * Created by estefania on 10/11/2017.
@@ -15,14 +16,35 @@ public class Video extends Entity{
     private String descripcion;
     private String imagen;
     private String url;
-    private String _valorCategoria;
     private String videousu;
     private String videoima;
+    private String busqueda;
     private ArrayList<Video> listaVideo;
     private String [] listaRespVideo;
+    private int id_categoria;
+    private int id_usuario;
+    private String _valorCategoria;
 
 
     public Video() {
+    }
+
+    public Video (int id_usuario, String categoria){
+        this.id_usuario = id_usuario;
+        this._valorCategoria = categoria;
+    }
+
+    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
+                 String url,int usuario,  int id_categoria) {
+        this.descripcion = descripcion;
+        this.id = id;
+        this.fecha = fecha;
+        this.nombre = titulo;
+        this.imagen = imagen;
+        this.url = url;
+        this.visitas = visitas;
+        this.id_categoria = id_categoria;
+        this.id_usuario = usuario;
     }
 
     public Video(int id, String nombre, String fecha, int visitas, String descripcion, String imagen, String url, String videousu, String videoima) {
@@ -35,6 +57,10 @@ public class Video extends Entity{
         this.url = url;
         this.videousu = videousu;
         this.videoima = videoima;
+    }
+
+    public Video (String busqueda){
+        this.busqueda=busqueda;
     }
 
     public Video(ArrayList listaVideo) {
@@ -59,13 +85,6 @@ public class Video extends Entity{
     public Video(int idUsuario) {
     }
 
-    public String get_valorCategoria() {
-        return _valorCategoria;
-    }
-
-    public void set_valorCategoria(String _valorCategoria) {
-        this._valorCategoria = _valorCategoria;
-    }
 
     public int getId() {
         return id;
@@ -139,6 +158,14 @@ public class Video extends Entity{
         this.videoima = videoima;
     }
 
+    public String getBusqueda() {
+        return busqueda;
+    }
+
+    public void setBusqueda(String busqueda) {
+        this.busqueda = busqueda;
+    }
+
     public ArrayList<Video> getListaVideo() {
         return listaVideo;
     }
@@ -153,5 +180,29 @@ public class Video extends Entity{
 
     public void setListaRespVideo(String[] listaRespVideo) {
         this.listaRespVideo = listaRespVideo;
+    }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+
+    public int getId_usuario() {
+        return id_usuario;
+    }
+
+    public void setId_usuario(int id_usuario) {
+        this.id_usuario = id_usuario;
+    }
+
+    public String get_valorCategoria() {
+        return _valorCategoria;
+    }
+
+    public void set_valorCategoria(String _valorCategoria) {
+        this._valorCategoria = _valorCategoria;
     }
 }

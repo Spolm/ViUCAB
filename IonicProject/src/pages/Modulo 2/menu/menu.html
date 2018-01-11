@@ -15,7 +15,7 @@
                 {{ p.title }}
             </button>
             <button ion-item (click)="MyChannelItemHandler()"> <ion-icon item-start name="contact" color="isActive(this)"></ion-icon> Mi canal</button>
-            <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Mis Videos</ion-item>
+            <button ion-item menuClose submenu-item *ngIf="MyChannelSubmenu" (click)="openMisVideos()">Mis Videos</button>
             <!--> Activacion de la pagina de suscripciones mediante el boton , abriendo la pagina de Channels, @Autor: Modulo 8, sabado 25/nov/2017</-->
             <button ion-item menuClose submenu-item *ngIf="MyChannelSubmenu" (click)="openSuscripciones()">Suscripciones</button>
             <!-- VERSION ORIGINAL <ion-item submenu-item *ngIf="MyChannelSubmenu" (click)="MyChannelItemHandler()">Suscripciones</ion-item><-->

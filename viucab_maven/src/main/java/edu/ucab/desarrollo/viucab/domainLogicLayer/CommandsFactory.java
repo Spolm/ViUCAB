@@ -2,16 +2,21 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasLikeComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.*;
+
 
 /**
  * Fabrica de comandos creada por M011
@@ -61,7 +66,7 @@ public class CommandsFactory {
 
     //M02 Instancias
 
-    public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando();}
+    public  static  Command instanciateGetBusquedaComando     (Entity est) {return  new GetBusquedaComando(est);}
 
     //Mas Vistos no recibe Parametros
     public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}
@@ -72,10 +77,58 @@ public class CommandsFactory {
 
     // Fin instancias M02
 
+    //M03 Video
+
+    public static AddVideoCommand intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);}
+
+    public static UpdateVideoCommand intantiateUpdateVideoCommand (Entity e){return new UpdateVideoCommand(e);}
+
+    public static GetAllVideoByIdCommand intantiateGetAllVideoByIdCommand(int userID) {
+        return new GetAllVideoByIdCommand(userID);
+    }
+
+    public static GetVideoCommand intantiateGetVideoCommand(int videoId) {
+        return new GetVideoCommand(videoId);
+    }
+
+    public static DeleteVideoCommand intantiateDeleteVideoCommand(int videoId) {
+        return new DeleteVideoCommand(videoId);
+    }
+
+    //Fin M03
+
     //region M05
 
     public static Command instanciaGetLista (Entity lista){
         return new GetListaComando(lista);
+    }
+
+    public static Command instanciaGetEspecificList (Entity lista){
+        return new GetEspecificListComando(lista);
+    }
+
+    public static Command instanciaAddListComando (Entity lista){
+        return new AddListComando(lista);
+    }
+
+    public static Command instanciaModifyListComando (Entity lista){
+        return new ModifyListComando(lista);
+    }
+
+    public static Command instanciaDeleteListComando (Entity lista){
+        return new DeleteListComando(lista);
+    }
+
+    public static Command instanciaAddVideoToListComando (Entity lista){
+        return new AddVideoToListComando(lista);
+    }
+
+    public static Command instanciaDeleteVideoToListComando (Entity lista){
+        return new DeleteVideoToListComando(lista);
+    }
+
+    public static Command instanciaGetVideosFromList (Entity lista){
+        return new GetVideosFromListComando(lista);
     }
 
     //endregion
@@ -145,4 +198,17 @@ public class CommandsFactory {
      }
      
      // Fin M04
+
+    //regin M09
+
+    public static Command instaciateSugerenciasLike (Entity video) {return new GetSugerenciasLikeComando(video);}
+
+    public static Command instaciateSugerenciasSuscripcion (Entity video) {return new GetSugerenciasSuscripcionComando(video);}
+
+    //fin M09
+
+    // M10
+    public static Command instanciateGetNotificaciones ( Entity notificacion) {
+        return new GetNotificaciones(notificacion);
+    }
 }
