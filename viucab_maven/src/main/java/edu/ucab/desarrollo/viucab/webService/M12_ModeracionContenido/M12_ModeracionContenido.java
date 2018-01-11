@@ -46,7 +46,7 @@ public class M12_ModeracionContenido {
             return gson.toJson(cmd.getValidacion());
 
         } catch (Exception ex) {
-            return gson.toJson("ASD");
+            return gson.toJson(ex.getMessage());
         }
     }
 
@@ -63,7 +63,7 @@ public class M12_ModeracionContenido {
             return gson.toJson(cmd.getVideosPermitidos());
 
         } catch (Exception ex) {
-            return gson.toJson("ASD");
+            return gson.toJson(ex.getMessage());
         }
 
     }
@@ -81,7 +81,7 @@ public class M12_ModeracionContenido {
             return gson.toJson(cmd.getVideosFiltrados());
 
         } catch (Exception ex) {
-            return gson.toJson("ASD");
+            return gson.toJson(ex.getMessage());
         }
     }
 
@@ -98,7 +98,7 @@ public class M12_ModeracionContenido {
             return cmd.getResultadoGuardado();
 
         } catch (Exception ex) {
-            return gson.toJson("ASD");
+            return gson.toJson(ex.getMessage());
         }
     }
 

@@ -172,8 +172,7 @@ export class RestApiService {
       //this.http.post("http://localhost:8080/WS_mejorado_war_exploded//guardarFiltrosDeUsuario", postParams, options)
       this.http.post("http://localhost:8080/viucab/ModeracionContenido/guardarFiltros", postParams)
 
-        .subscribe(data => {
-          console.log('aqui no');
+        .subscribe(data => {alert("Filtros Guardados");
         }, error => {
           console.log(error);// Error getting the data
         });
