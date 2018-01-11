@@ -16,10 +16,11 @@ public class M03VideoTest {
 
     @Test
     public void test1_addVideo() throws Exception {
-        VideoEntity video = EntityFactory.instantiateVideoEntity("tituloTest","descripcionTest",
-                                                                 "urlImagen.jpg","urlVideo.mp4",
-                                                                 1);
-        AddVideoCommand cmd = CommandsFactory.intantiateAddVideoCommand(video);
+        VideoEntity video = (VideoEntity) EntityFactory.instantiateVideoEntity("tituloTest",
+                                                                               "descripcionTest",
+                                                                               "urlImagen.jpg","urlVideo.mp4",
+                                                                               1);
+        AddVideoCommand cmd = (AddVideoCommand) CommandsFactory.intantiateAddVideoCommand(video);
         cmd.execute();
         assertEquals(cmd._returned,"1");
     }
@@ -27,18 +28,19 @@ public class M03VideoTest {
     @Test
     public void test2_updateVideo() throws Exception {
 
-        VideoEntity videoAux = EntityFactory.instantiateVideoEntity();
-        VideoEntity video = EntityFactory.instantiateVideoEntity(videoAux.getNextId()-1,
-                                                                 "tituloNuevoTest","descripcionNuevaTest");
-        UpdateVideoCommand cmd = CommandsFactory.intantiateUpdateVideoCommand(video);
+        VideoEntity videoAux = (VideoEntity) EntityFactory.instantiateVideoEntity();
+        VideoEntity video = (VideoEntity) EntityFactory.instantiateVideoEntity(videoAux.getNextId()-1,
+                                                                               "tituloNuevoTest",
+                                                                               "descripcionNuevaTest");
+        UpdateVideoCommand cmd = (UpdateVideoCommand) CommandsFactory.intantiateUpdateVideoCommand(video);
         cmd.execute();
         assertEquals(cmd._returned,"1");
     }
 
     @Test
     public void test3_getVideo() throws Exception {
-        VideoEntity videoAux = EntityFactory.instantiateVideoEntity();
-        GetVideoCommand cmd = CommandsFactory.intantiateGetVideoCommand(videoAux.getNextId()-1);
+        VideoEntity videoAux = (VideoEntity) EntityFactory.instantiateVideoEntity();
+        GetVideoCommand cmd = (GetVideoCommand) CommandsFactory.intantiateGetVideoCommand(videoAux.getNextId()-1);
         cmd.execute();
 
         assertEquals(cmd._returned.get_id(),videoAux.getNextId()-1);
@@ -47,7 +49,7 @@ public class M03VideoTest {
     @Test
     public void test4_getAllVideoFromUser() throws Exception {
 
-        GetAllVideoByIdCommand cmd = CommandsFactory.intantiateGetAllVideoByIdCommand(1);
+        GetAllVideoByIdCommand cmd = (GetAllVideoByIdCommand) CommandsFactory.intantiateGetAllVideoByIdCommand(1);
         cmd.execute();
         assertNotEquals(cmd._returned.size(),0);
 
@@ -55,8 +57,8 @@ public class M03VideoTest {
 
     @Test
     public void test5_deleteVideo() throws Exception {
-        VideoEntity videoAux = EntityFactory.instantiateVideoEntity();
-        DeleteVideoCommand cmd = CommandsFactory.intantiateDeleteVideoCommand(videoAux.getNextId()-1);
+        VideoEntity videoAux = (VideoEntity) EntityFactory.instantiateVideoEntity();
+        DeleteVideoCommand cmd = (DeleteVideoCommand) CommandsFactory.intantiateDeleteVideoCommand(videoAux.getNextId()-1);
         cmd.execute();
         assertEquals(cmd._returned,"0");
     }

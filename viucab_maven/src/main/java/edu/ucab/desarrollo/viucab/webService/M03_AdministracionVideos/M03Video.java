@@ -54,8 +54,9 @@ public class M03Video {
             if(usuario == 0)
                 throw new ParameterNotValidException("Usuario");
 
-            aux = EntityFactory.instantiateVideoEntity(titulo,descripcion,r.saveImage(imagen),r.saveVideo(video),usuario);
-            cmd = CommandsFactory.intantiateAddVideoCommand(aux);
+            aux = (VideoEntity) EntityFactory.instantiateVideoEntity(titulo,descripcion,r.saveImage(imagen)
+                                                                           ,r.saveVideo(video),usuario);
+            cmd = (AddVideoCommand) CommandsFactory.intantiateAddVideoCommand(aux);
             cmd.execute();
 
             otrosModulos(tag,aux.getNextId()-1);
@@ -108,7 +109,7 @@ public class M03Video {
 
 
             video = EntityFactory.instantiateVideoEntity(videoId,titulo,descripcion);
-            cmd = CommandsFactory.intantiateUpdateVideoCommand(video);
+            cmd = (UpdateVideoCommand) CommandsFactory.intantiateUpdateVideoCommand(video);
             cmd.execute();
             return gson.toJson(cmd._returned);
 
@@ -133,7 +134,7 @@ public class M03Video {
             if(videoId == 0)
                 throw new ParameterNotValidException("videoId");
 
-            cmd = CommandsFactory.intantiateGetVideoCommand(videoId);
+            cmd = (GetVideoCommand) CommandsFactory.intantiateGetVideoCommand(videoId);
             cmd.execute();
             return gson.toJson(cmd._returned);
         } catch (Exception e) {
@@ -156,7 +157,7 @@ public class M03Video {
             if(userId == 0)
                 throw new ParameterNotValidException("UsuarioId");
 
-            cmd  = CommandsFactory.intantiateGetAllVideoByIdCommand(userId);
+            cmd  = (GetAllVideoByIdCommand) CommandsFactory.intantiateGetAllVideoByIdCommand(userId);
             cmd.execute();
             return gson.toJson(cmd._returned);
         } catch (Exception e) {
@@ -177,7 +178,7 @@ public class M03Video {
             if(videoId == 0)
                 throw new ParameterNotValidException("videoId");
 
-            cmd = CommandsFactory.intantiateDeleteVideoCommand(videoId);
+            cmd = (DeleteVideoCommand) CommandsFactory.intantiateDeleteVideoCommand(videoId);
             cmd.execute();
             return gson.toJson(cmd._returned);
         } catch (Exception e) {
