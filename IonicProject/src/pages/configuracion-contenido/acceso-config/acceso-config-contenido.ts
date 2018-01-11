@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ServicioProvider } from '../../../providers/servicio/servicio';
+import { RestApiService } from '../../../app/rest-api.service';
 
 /**
  * Generated class for the AccesoConfigContenidoPage page.

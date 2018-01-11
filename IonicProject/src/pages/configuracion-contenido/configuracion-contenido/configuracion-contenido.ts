@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ServicioProvider } from '../../../providers/servicio/servicio';
+import { RestApiService } from '../../../app/rest-api.service';
 
 /**
  * Generated class for the ConfigContenidoPage page.
