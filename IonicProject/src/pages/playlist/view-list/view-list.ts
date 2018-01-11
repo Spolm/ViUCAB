@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController} from 'ionic-angular';
 import {EditListPage} from "../edit-list/edit-list";
 import { RestApiService } from "../../../app/rest-api.service";
+import { ReproductorPage } from "../../reproductor/reproductor";
 
 /**
  * Generated class for the ViewListPage page.
@@ -70,6 +71,11 @@ export class ViewListPage {
     alert.present();
   }
 
+  public VerVideo(id){
+    console.log(id);
+    this.navCtrl.setRoot(ReproductorPage,id);
+  }
+
   public getAllVideos(){
     this.api.geta('playlist/getVideosFromPlaylist?lis_rep_id='+ this.idLista).subscribe((data) => { // Success
       console.log (data.json());
@@ -93,7 +99,7 @@ export class ViewListPage {
       if(data.json() == true){
         this.getAllVideos();
       }else if(data.json() == false){
-        this.presentAlert("Ups","El video no pudo ser agregado a la lista");
+        this.presentAlert("Ups","El video no pudo ser eliminado a la lista");
        
       }
       

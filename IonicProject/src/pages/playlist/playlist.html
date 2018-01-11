@@ -43,7 +43,7 @@
 <div [ngSwitch]="tab">
   <ion-list *ngSwitchCase="'mias'">
 
-    <button ion-button style="widh:100%!important;background-color: #68efad;" (click)="goToAddList()" >Agregar Lista</button>
+    <button ion-button style="width:100%!important;background-color: #68efad;" (click)="goToAddList()" >Agregar Lista</button>
 
     <ion-item *ngFor="let lista of ListasDeReproduccion" >
       <ion-thumbnail item-start id="List-img">
@@ -76,70 +76,32 @@
 
   <ion-list no-lines *ngSwitchCase="'sugeridas'">
 
-    <ion-item>
-      <ion-grid>
+    <h1>Videos mas vistos</h1>
+    <ion-item *ngFor="let video of VideosMasVistos" >
+      <ion-thumbnail (click)="VerVideo(video.id)" item-start id="List-img">
+        <img [src]="video.imagen">
+      </ion-thumbnail>
+      <ion-grid (click)="VerVideo(video.id)">
         <ion-row>
-          <ion-col col-3>
-            <ion-icon name="american-football" class="grande"></ion-icon>
-          </ion-col>
-          <ion-col col-9 class="paddingtop15">
-            <h1>Deportes</h1>
+          <ion-col col-12 class="nopadding" >
+            <ion-row >
+              <div class="ellipsis">
+                <span class="List-title">{{video.nombre}}</span>
+              </div>
+
+            </ion-row>
+            <ion-row>
+              <span class="List-amount">{{video.numReproducciones}} plays</span>
+            </ion-row>
+            <ion-row>
+              <span class="List-duration">{{video.fechaCreacion}}</span>
+            </ion-row>
           </ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
 
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3>
-            <ion-icon name="game-controller-b" class="grande"></ion-icon>
-          </ion-col>
-          <ion-col col-9 class="paddingtop15">
-            <h1>Videojuegos</h1>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3>
-            <ion-icon ios="ios-musical-notes" md="md-musical-notes" class="grande"></ion-icon>
-          </ion-col>
-          <ion-col col-9 class="paddingtop15">
-            <h1>Música</h1>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3>
-            <ion-icon name="happy" class="grande"></ion-icon>
-          </ion-col>
-          <ion-col col-9 class="paddingtop15">
-            <h1>Comedia</h1>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
-    <ion-item>
-      <ion-grid>
-        <ion-row>
-          <ion-col col-3>
-            <ion-icon name="color-palette" class="grande"></ion-icon>
-          </ion-col>
-          <ion-col col-9 class="paddingtop15">
-            <h1>Arte</h1>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
+   
   </ion-list>
 </div>
 

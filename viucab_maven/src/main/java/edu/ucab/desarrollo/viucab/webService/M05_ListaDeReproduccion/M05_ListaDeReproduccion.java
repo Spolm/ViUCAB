@@ -308,10 +308,11 @@ public class M05_ListaDeReproduccion {
     {
         Command commandGetTopVideos = CommandsFactory.instanciaGetTopVideos(); //instancio el comando necesario
         GetTopVideos cmd = (GetTopVideos) commandGetTopVideos; //Inicializo el comando
+        ArrayList<Entity> resultados = new ArrayList<Entity>();
 
         try {
             cmd.execute(); //ejecuto el comando
-            ArrayList<Entity> resultados =cmd.getResultados(); //obtengo los resultados y los devuelvo en Json
+            resultados =cmd.getResultados(); //obtengo los resultados y los devuelvo en Json
             return gson.toJson(resultados);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -319,7 +320,7 @@ public class M05_ListaDeReproduccion {
             e.printStackTrace();
         }
 
-        return null;
+        return gson.toJson(resultados);
     }
 
 
