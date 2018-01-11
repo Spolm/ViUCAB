@@ -28,23 +28,26 @@ END;
 $BODY$;
 
 
-CREATE OR REPLACE FUNCTION public.m08_get_usuarios()
-    RETURNS TABLE(idusuario integer, nombreusuario character varying, tokenusuario character varying) 
+CREATE OR REPLACE FUNCTION public.m08_get_usuarios(	idUsuarioLogueado integer)
+    RETURNS TABLE(idusuario integer, nombreusuario character varying, tokenusuario character varying, imagenusuario character varying) 
     LANGUAGE 'plpgsql'
 
     COST 100
-    STABLE 
+    VOLATILE 
     ROWS 1000
 AS $BODY$
+
   
 DECLARE 
 	var_r record; 
 BEGIN  
-for var_r in(select usu_id, usu_login, usu_token from usuario) 
+for var_r in(select u.usu_id, u.usu_login, u.usu_token, u.usu_avatar from usuario u 
+   where (u.usu_id  not in (select s.id_suscripcion from usuario us, suscripcion s where ((idUsuarioLogueado = s.id_suscriptor) ) )) and (idUsuarioLogueado != u.usu_id)) 
 loop 
     idusuario     := var_r.usu_id;
     nombreusuario := var_r.usu_login; 
     tokenusuario := var_r.usu_token; 
+    imagenusuario := var_r.usu_avatar; 
     return next; 
      
 end loop;     

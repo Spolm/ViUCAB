@@ -28,22 +28,22 @@
             <ion-item> 
               <ion-buttons class= 'centrado-porcentual2'  >
                   <button class="boton">
-                <ion-icon name="add" ></ion-icon>   
               </button>
               </ion-buttons>   
               <ion-avatar item-start>
               <img src="assets/imgs/defaultavatar.png">
               </ion-avatar>
       
-              <h2>{{item.usuario}}</h2> <!--Nombre de usuario-->
+              <h2>{{item.videousu}}</h2> <!--Nombre de usuario-->
               <p>{{item.fecha}}</p> <!--fecha-->
               
             </ion-item>
           
-            <img src={{item.imagen}}>
+            <img id="{{item.id}}" src={{item.imagen}} (click)='reproductor($event);'>
           
             <ion-card-content>
               <p style="font-size:large">{{item.nombre}}</p> <!--Titulo del video-->
+              <p style="font-size:small">{{item.descripcion}}</p> <!--Descripcion del video-->
             </ion-card-content>
           
             <ion-row>

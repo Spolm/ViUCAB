@@ -14,6 +14,6 @@ public interface IDaoVideoEntity extends IDao{
     ArrayList<VideoEntity> getAllVideoById(int idUsuario) throws SQLException;
     int updateVideo(Entity e) throws SQLException;
     int deleteVideo (int idVideo) throws SQLException;
-    int getLastId() throws SQLException;
+    int getNextId() throws SQLException;
 
 }

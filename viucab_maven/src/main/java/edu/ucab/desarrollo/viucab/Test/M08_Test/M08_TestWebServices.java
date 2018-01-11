@@ -3,6 +3,7 @@ package edu.ucab.desarrollo.viucab.Test.M08_Test;
 
 import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.common.exceptions.WebFaulException;
 import edu.ucab.desarrollo.viucab.webService.M08_Suscripcion.M08_Suscripcion;
 import static org.junit.Assert.assertNotNull;
@@ -10,8 +11,14 @@ import org.junit.Test;
 
 public class M08_TestWebServices {
 
+    /**
+     * Metodo que prueba la capa de presentacion clase: M08_Suscripcion
+     * y llama al metodo de GetSuscripcion. Verificando que no devuelva nulo
+     * @throws VIUCABException
+     * @throws WebFaulException
+     */
     @Test
-    public void  TestDaolistaSuscripciones() throws PLConnectException1, BDConnectException1, WebFaulException {
+    public void  TestDaolistaSuscripciones() throws VIUCABException,  WebFaulException {
 
         M08_Suscripcion a = new  M08_Suscripcion();
         assertNotNull(a.GetSuscripcion(1));

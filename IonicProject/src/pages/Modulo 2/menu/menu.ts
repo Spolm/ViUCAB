@@ -42,7 +42,6 @@ export class MenuPage {
     { title: 'Inicio', pageName: 'TabsPage', tabComponent: 'InicioPage', index: 0, icon: 'home' },
     //Aqui van los links de las paginas principales de los demas grupos
     //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
-    { title: 'Mis videos', pageName: 'ListarmisvideosPage', icon: 'play' },
     { title: 'Mis listas', pageName: 'PlaylistPage', icon: 'star-half' },
     { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
   ];
@@ -99,7 +98,6 @@ export class MenuPage {
   //Modificado por Modulo 3
   openMisVideos() {
     this.nav.push(ListarmisvideosPage);
-    this.MyChannelItemHandler();
   }
   //Fin modificado por Modulo 3
 

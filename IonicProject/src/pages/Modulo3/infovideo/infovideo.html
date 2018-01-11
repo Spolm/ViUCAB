@@ -14,38 +14,23 @@
 
 
 <ion-content padding>
-  <ion-img width="100%" height="57%" src="https://img-9gag-fun.9cache.com/photo/aKDy7Bg_700b_v1.jpg"></ion-img>
-  <ion-list>
-    
-      <ion-item>
+  <ion-card>
+    <img *ngFor="let item of items" src="{{URL}}image/{{item._imagen}}">
+
+    <ion-list>
+      <ion-item *ngFor="let item of items">
         <ion-label stacked>Titulo</ion-label>
-        <ion-input type="text" placeholder="Vaquero"></ion-input>
+        <ion-input type="text" [(ngModel)]="update.titulo"></ion-input>
       </ion-item>
-    
-      <ion-item>
+
+      <ion-item *ngFor="let item of items">
         <ion-label stacked>Descripcion</ion-label>
-        <ion-input type="text" placeholder="Este es un video blabla"></ion-input>
+        <ion-input type="text" [(ngModel)]="update.descripcion"></ion-input>
       </ion-item>
-    
       <ion-item>
-          <ion-label stacked>Tags</ion-label>
-          <ion-input type="text" placeholder="#vaquero #loco"></ion-input>
-      </ion-item>
-      
-      <ion-item>
-          <ion-label>Categoria</ion-label>
-          <ion-select [(ngModel)]="categories1" multiple="false">
-            <ion-option value="c1">Categoria 1</ion-option>
-            <ion-option value="c2">Categoria 2</ion-option>
-            <ion-option value="c3">Categoria 3</ion-option>
-            <ion-option value="c4">Categoria 4</ion-option>
-            <ion-option value="c5">Categoria 5</ion-option>
-            <ion-option value="c6">Categoria 6</ion-option>
-          </ion-select>
+        <button ion-button (click)="updateVideo()">Enviar</button>
       </ion-item>
     </ion-list>
+  </ion-card>
 
-    <button ion-button block (click)="getPicture()">Toma una foto</button>
-    <img [src]="image" *ngIf="image" />
-    
 </ion-content>

@@ -2,8 +2,10 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.DaoVideoEntity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoVideoEntity;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
+import org.slf4j.LoggerFactory;
 
 public class AddVideoCommand extends Command {
 
@@ -20,6 +22,9 @@ public class AddVideoCommand extends Command {
 
     @Override
     public void execute() throws Exception {
+
+        final org.slf4j.Logger logger = LoggerFactory.getLogger(DaoVideoEntity.class);
+        logger.debug("Debug: Adding VideoEntity - Command");
 
         IDaoVideoEntity daoVideo = DaoFactory.instantiateDaoVideoEntity();
 

@@ -3,10 +3,6 @@ package edu.ucab.desarrollo.viucab.common.entities;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoVideoEntity;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.sql.SQLException;
 
 public class VideoEntity extends Entity {
@@ -20,8 +16,6 @@ public class VideoEntity extends Entity {
     private int _visitas;
     private int _usuario;
 
-
-    private static final String FOLDER_DIR = "C:/Users/andre/Desktop";
 
 
     public VideoEntity() {}
@@ -48,52 +42,17 @@ public class VideoEntity extends Entity {
 
     }
 
-    public VideoEntity(int videoId, String titulo, String descripcion, String imgUrl) {
+    public VideoEntity(int videoId, String titulo, String descripcion) {
         _id = videoId;
         _titulo = titulo;
         _descripcion = descripcion;
-        _imagen = imgUrl;
     }
 
-    public String saveVideo(InputStream uploadedInputStream, int usuario ){
-
-        int idVideo= getLastId();
-
-        String name = idVideo +".mp4";
-        String filePath = FOLDER_DIR + "/vid/" + name;
-        saveFile(uploadedInputStream,filePath);
-
-        return name;
-    }
-
-    public String saveImage(InputStream uploadedInputStream){
-
-        int idVideo= getLastId();
-        ;//Llamar a stores procedure que te da el siguiente id de video
-
-        String name = idVideo +".jpg";
-        String filePath = FOLDER_DIR + "/img/" + name;
-        saveFile(uploadedInputStream,filePath);
-
-        return name;
-    }
-
-    private void saveFile(InputStream uploadedInputStream, String serverLocation) {
-
-        java.nio.file.Path path = FileSystems.getDefault().getPath(serverLocation);
-        try {
-            Files.copy(uploadedInputStream, path);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private int getLastId(){
+    public int getNextId(){
         int response=0;
         IDaoVideoEntity daoVideo = DaoFactory.instantiateDaoVideoEntity();
         try {
-            response = daoVideo.getLastId();
+            response = daoVideo.getNextId();
         } catch (SQLException e) {
             e.printStackTrace();
         }

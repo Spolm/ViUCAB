@@ -24,6 +24,7 @@ public class Video extends Entity{
     private int id_categoria;
     private int id_usuario;
     private String _valorCategoria;
+    private int idusuario;
 
 
     public Video() {
@@ -92,6 +93,14 @@ public class Video extends Entity{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdUsuario() {
+        return idusuario;
+    }
+
+    public void setIdUsuario(int id) {
+        this.idusuario = id;
     }
 
     public String getNombre() {

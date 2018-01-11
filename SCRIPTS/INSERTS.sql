@@ -1,4 +1,3 @@
-
 INSERT INTO USUARIO VALUES (10, 'usuarioPruebas', '12345', 'cualquier usuario', true, 'usuarioPrueba@gmail');
 ﻿INSERT INTO USUARIO VALUES (1, 'Estefania Perez', '12345', 'token3', true, 'esteperez@gmail.com','https://image.ibb.co/dzGNbm/metallica_Perfil.jpg');
 INSERT INTO USUARIO VALUES (2, 'Barbara Fernandez', '12345', 'token', false, 'barbie1@gmail.com','https://image.ibb.co/dzGNbm/metallica_Perfil.jpg');

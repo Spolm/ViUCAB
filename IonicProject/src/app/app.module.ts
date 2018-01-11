@@ -17,6 +17,7 @@ import {AddListPage} from "../pages/playlist/add-list/add-list";
 import { PopOverListasReproduccionPage} from '../pages/playlist/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 import { HTTP } from '@ionic-native/http';
 import { HttpClientModule } from '@angular/common/http';
+import { MediaCapture } from '@ionic-native/media-capture';
 //Modificado Grupo 3
 import { CargarVideoPage } from '../pages/Modulo3/cargar-video/cargar-video';
 import { InfovideoPage } from '../pages/Modulo3/infovideo/infovideo';
@@ -47,6 +48,7 @@ import {ReproductorPage} from "../pages/reproductor/reproductor"
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,
+    ListarmisvideosPage,
     ReproductorPage
 
   ],
@@ -68,6 +70,7 @@ import {ReproductorPage} from "../pages/reproductor/reproductor"
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,
+    ListarmisvideosPage,
     ReproductorPage
   ],
   providers: [
@@ -79,6 +82,7 @@ import {ReproductorPage} from "../pages/reproductor/reproductor"
     FileChooser,
     FilePath,
     HTTP,
+    MediaCapture,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
