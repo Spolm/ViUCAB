@@ -75,19 +75,6 @@ public class M10_Notificaciones {
      * @return YES
      * @throws SQLException
      */
-    //Desechar Notificacion
-    @GET
-    @Path("/notificacionDes")
-    @Consumes("application/json")
-    @Produces("text/plain")
-    public Response desecharNotificacion (String datos) throws  SQLException {
-        JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
-        PreparedStatement ps = conexion.prepareCall( "{? = CALL m10_desecharnotificacion()}");
-        ps.setInt(1, 1/*jsonDatos.get("not_id").getAsInt()*/);
-        ps.executeUpdate();
-        Sql.bdClose(conexion);
-        return _response;
-    }
 
     //Configuracion de Notificaciones
     @GET

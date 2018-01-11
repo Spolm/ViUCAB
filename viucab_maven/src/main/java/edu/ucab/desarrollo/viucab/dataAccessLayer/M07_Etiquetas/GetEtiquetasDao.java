@@ -2,15 +2,17 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Etiquetas;
-import edu.ucab.desarrollo.viucab.common.entities.Video_Etiq;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
+import org.postgresql.util.PSQLException;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -21,18 +23,30 @@ public class GetEtiquetasDao extends Dao implements IDaoEtiqueta {
     }
 
     @Override
-    public Entity insertarEtiqueta(Entity e) throws SQLException {
+    public Entity insertarEtiqueta(Entity e) throws BDConnectException1, PLConnectException1 {
         Connection conn;
-        String insert="INSERT INTO ETIQUETA (ETI_VALOR) VALUES(?);";
+        String insert="{call add_tag(?,?)}";
         Etiquetas eti = (Etiquetas) e;
         try{
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
-            PreparedStatement ps = conn.prepareStatement(insert);
-            ps.setString(1, eti.getValor());
-            ps.executeUpdate();
+            CallableStatement ps = conn.prepareCall(insert);
+            String str = eti.getValor();
+            List<String> items = Arrays.asList(str.split("\\s"));
+            for(String s : items) {
+                ps.setString(1, s);
+                ps.setInt(2, eti.getVideoEtiqList().getIdVid());
+                ps.execute();
+            }
+            ps.close();
         }
-        catch(SQLException el) {
+        catch (PSQLException el){
+            throw new PLConnectException1(el);
+        }
+        catch (SQLException el) {
+            throw new BDConnectException1(el);
+        }
+        catch (Exception el)    {
             el.printStackTrace();
         }
         finally {
@@ -42,18 +56,26 @@ public class GetEtiquetasDao extends Dao implements IDaoEtiqueta {
     }
 
     @Override
-    public Entity eliminarEtiqueta(Entity e) throws SQLException{
+    public Entity eliminarEtiqueta(Entity e) throws BDConnectException1, PLConnectException1{
         Connection conn;
         Etiquetas eti = (Etiquetas) e;
-        String delete="DELETE FROM ETIQUETA WHERE ETI_ID = (?);";
+        String delete="{call delete_tag(?,?)}";
         try{
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
-            PreparedStatement ps = conn.prepareStatement(delete);
-            ps.setInt(1, eti.getId());
-            ps.executeUpdate();
+            CallableStatement ps = conn.prepareCall(delete);
+            ps.setInt(1, eti.getVideoEtiqList().getIdVid());
+            ps.setString(2, eti.getValor());
+            ps.execute();
+            ps.close();
         }
-        catch(SQLException el) {
+        catch (PSQLException el){
+            throw new PLConnectException1(el);
+        }
+        catch (SQLException el) {
+            throw new BDConnectException1(el);
+        }
+        catch (Exception el)    {
             el.printStackTrace();
         }
         finally {
@@ -63,31 +85,34 @@ public class GetEtiquetasDao extends Dao implements IDaoEtiqueta {
     }
 
     @Override
-    public List<Video_Etiq> consultarVideos(Entity e) throws SQLException{
+    public List<Etiquetas> consultarVideos(Entity e) throws BDConnectException1, PLConnectException1{
         Connection conn;
         Etiquetas eti = (Etiquetas) e;
 
-        List<Video_Etiq> list = new ArrayList<Video_Etiq>();
+        List<Etiquetas> list = new ArrayList<Etiquetas>();
 
-        String selectVid="SELECT V.VID_ID ID_VID, E.ETI_ID ID_ETIQ FROM VIDEO V, " +
-                         "VIDEO_ETIQ VE, ETIQUETA E WHERE E.ETI_ID = (?) " +
-                         "AND VE.IDVID = V.VID_ID AND VE.IDETIQ = (?);";
+        String selectVid="{call consult_tags(?)}";
 
         try{
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
-            PreparedStatement ps = conn.prepareStatement(selectVid);
-            ps.setInt(1, eti.getId());
-            ps.setInt(2, eti.getId());
+            CallableStatement ps = conn.prepareCall(selectVid);
+            ps.setInt(1, eti.getVideoEtiqList().getIdVid());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
-                int _id = rs.getInt("ID_ETIQ");
-                int _idVid = rs.getInt("ID_VID");
-                Video_Etiq video_etiq = new Video_Etiq(_idVid, _id);
-                list.add(video_etiq);
+                String _valor = rs.getString("valor");
+                Etiquetas etis = new Etiquetas(_valor);
+                list.add(etis);
             }
+            ps.close();
         }
-        catch(SQLException el) {
+        catch (PSQLException el){
+            throw new PLConnectException1(el);
+        }
+        catch (SQLException el) {
+            throw new BDConnectException1(el);
+        }
+        catch (Exception el)    {
             el.printStackTrace();
         }
         finally {
