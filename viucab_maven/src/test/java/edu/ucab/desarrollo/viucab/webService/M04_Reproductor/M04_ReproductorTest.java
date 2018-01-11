@@ -5,6 +5,9 @@
  */
 package edu.ucab.desarrollo.viucab.webService.M04_Reproductor;
 
+import com.google.gson.*;
+import static edu.ucab.desarrollo.viucab.dataAccessLayer.Dao.getBdConnect;
+import java.sql.*;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -17,22 +20,40 @@ import static org.junit.Assert.*;
  * @author AlejandroNegrin
  */
 public class M04_ReproductorTest {
-    
+
+    Gson gson = new Gson();
+
     public M04_ReproductorTest() {
     }
-    
+
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws SQLException {
+        Connection conn;
+        conn = getBdConnect();
+        String query = "INSERT INTO usuario(usu_id, usu_login, usu_clave, usu_token, usu_correo,usu_act) VALUES (0,'junit','1234','0', 'prueba@prueba.com',true);\n"
+                + "INSERT INTO video(vid_id,vid_titulo,vid_visitas,vid_usuario, vid_descripcion, vid_imagen, vid_url,vid_fecha) VALUES (0,'Prueba Unitaria', 0, 0, 'd', 'img', 'url', now());\n"
+                + "INSERT INTO comentario(com_id, com_descripcion, id_usu, id_vid) VALUES (0, 'prueba unitaria', 0,0);";
+        Statement st = conn.createStatement();
+        st.executeUpdate(query);
+
     }
-    
+
     @AfterClass
-    public static void tearDownClass() {
+    public static void tearDownClass() throws SQLException {
+        Connection conn;
+        conn = getBdConnect();
+        String query = "DELETE FROM likes WHERE id_usuario = 0;\n"
+                + "DELETE FROM comentario WHERE id_usu = 0;\n"
+                + "DELETE FROM video where vid_id = 0;\n"
+                + "DELETE FROM usuario where usu_id = 0;";
+        Statement st = conn.createStatement();
+        st.executeUpdate(query);
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,28 +64,29 @@ public class M04_ReproductorTest {
     @Test
     public void testGetVideoInfo() throws Exception {
         System.out.println("getVideoInfo");
-        String idvideo = "";
         M04_Reproductor instance = new M04_Reproductor();
-        String expResult = "";
-        String result = instance.getVideoInfo(idvideo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String result = instance.getVideoInfo("0");
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(result).getAsJsonObject();
+        assertEquals(0, Integer.parseInt(json.get("likes").getAsString()));
+        assertEquals("Prueba Unitaria", json.get("title").getAsString());
+        assertEquals("url", json.get("url").getAsString());
     }
 
     /**
      * Test of addVisitaVideo method, of class M04_Reproductor.
      */
     @Test
-    public void testAddVisitaVideo() {
+    public void testAddVisitaVideo() throws SQLException {
         System.out.println("addVisitaVideo");
-        String idvideo = "";
         M04_Reproductor instance = new M04_Reproductor();
-        String expResult = "";
-        String result = instance.addVisitaVideo(idvideo);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.addVisitaVideo("0");
+        String query = "SELECT  vid_visitas FROM video WHERE vid_id = 0";
+        Connection conn = getBdConnect();
+        Statement st = conn.createStatement();
+        ResultSet rs = st.executeQuery(query);
+        rs.next();
+        assertEquals(1, rs.getInt("vid_visitas"));
     }
 
     /**
@@ -73,15 +95,11 @@ public class M04_ReproductorTest {
     @Test
     public void testAddComentario() {
         System.out.println("addComentario");
-        String idvideo = "";
-        String usuario = "";
-        String comentario = "";
         M04_Reproductor instance = new M04_Reproductor();
-        String expResult = "";
-        String result = instance.addComentario(idvideo, usuario, comentario);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String result = instance.addComentario("1", "prueba@prueba.com", "Hueob con sola");
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(result).getAsJsonObject();
+        assertTrue(json.get("result").getAsInt() > 0);
     }
 
     /**
@@ -90,14 +108,11 @@ public class M04_ReproductorTest {
     @Test
     public void testUpdateLike() {
         System.out.println("updateLike");
-        String idvideo = "";
-        String usuario = "";
         M04_Reproductor instance = new M04_Reproductor();
-        String expResult = "";
-        String result = instance.updateLike(idvideo, usuario);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String result = instance.updateLike("0", "prueba@prueba.com");
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(result).getAsJsonObject();
+        assertEquals(1, json.get("result").getAsInt());
     }
 
     /**
@@ -106,14 +121,12 @@ public class M04_ReproductorTest {
     @Test
     public void testGetIfLike() {
         System.out.println("getIfLike");
-        String idvideo = "";
-        String usuario = "";
+        System.out.println("updateLike");
         M04_Reproductor instance = new M04_Reproductor();
-        String expResult = "";
-        String result = instance.getIfLike(idvideo, usuario);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String result = instance.getIfLike("0", "prueba@prueba.com");
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(result).getAsJsonObject();
+        assertEquals(1, json.get("result").getAsInt());
     }
 
     /**
@@ -122,13 +135,11 @@ public class M04_ReproductorTest {
     @Test
     public void testDeleteComentario() {
         System.out.println("deleteComentario");
-        String idcomentario = "";
         M04_Reproductor instance = new M04_Reproductor();
-        String expResult = "";
-        String result = instance.deleteComentario(idcomentario);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        String result = instance.deleteComentario("0");
+        JsonParser parser = new JsonParser();
+        JsonObject json = parser.parse(result).getAsJsonObject();
+        assertEquals(0, json.get("result").getAsInt());
     }
-    
+
 }
