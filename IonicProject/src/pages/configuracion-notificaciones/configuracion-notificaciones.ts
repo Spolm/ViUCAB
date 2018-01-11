@@ -37,7 +37,7 @@ export class ConfiguracionNotificacionesPage {
       estadisticas: true,
     };
     this.restApi.getTodo(URL).subscribe( (data) => {
-      this.response = data[0];
+      this.response = data;
       this.configuracion = {
         id: this.response.id,
         notificaciones: this.response.activado,
