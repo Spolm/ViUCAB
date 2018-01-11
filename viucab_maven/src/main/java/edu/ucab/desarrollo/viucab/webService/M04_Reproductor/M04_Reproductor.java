@@ -44,16 +44,6 @@ public class M04_Reproductor {
         cmd.execute();
         JsonObject json = cmd.result;
 
-        //agrego listas de reproduccion
-        listaJson = new JsonArray();
-        for (int i = 0; i < 3; i++) {
-            jsonObj = new JsonObject();
-            jsonObj.addProperty("id", i);
-            jsonObj.addProperty("nombre", "Lista " + i);
-            listaJson.add(jsonObj);
-        }
-        json.add("listas", listaJson);
-
         return gson.toJson(json);
 
     }
