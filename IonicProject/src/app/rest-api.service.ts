@@ -180,11 +180,19 @@ export class RestApiService {
     });
   }
 
-  getFiltros():any{
-    return this.http
-      .get("http://localhost:8080/viucab/ModeracionContenido/cargarFiltros?id=1")
-      .map((data: any) => data.json())
-      .subscribe();
+
+  traerFiltros(datos) {
+
+  return new Promise ((resolve, reject) => {
+      alert("trayendo filtros...");
+      //this.http.post("http://localhost:8080/WS_mejorado_war_exploded//guardarFiltrosDeUsuario", postParams, options)
+      this.http.get("http://localhost:8080/viucab/ModeracionContenido/cargarFiltros?id=1")
+        .subscribe(data => {
+          console.log(data);
+        }, error => {
+          console.log(error);// Error getting the data
+        });
+    });
   }
 
 

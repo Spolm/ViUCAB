@@ -57,11 +57,9 @@ export class ConfigContenidoPage {
 fil:any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public servicio:RestApiService) {
-      this.fil = this.servicio.getFiltros();
+      this.fil = this.servicio.traerFiltros(1);
       console.log(this.fil);
     }
-
-
 
 
     public guardarConfiguracion() {
@@ -79,10 +77,6 @@ fil:any;
         }, (err) =>{
           console.log(err);
         });
-    }
-
-    traerFiltros(){
-
     }
 
   }
