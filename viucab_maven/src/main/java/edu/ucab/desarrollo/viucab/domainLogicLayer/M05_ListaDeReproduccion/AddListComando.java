@@ -3,11 +3,13 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -30,14 +32,6 @@ public class AddListComando extends Command {
 
 
     /**
-     * Constructor para setear el resultado
-     * @param result
-     */
-    public AddListComando(Boolean result) {
-        this.resultado = result;
-    }
-
-    /**
      * metodo para obtener el resultado
      * @return Boolean
      */
@@ -53,22 +47,15 @@ public class AddListComando extends Command {
      * @throws PlConnectException
      */
     @Override
-    public void execute() throws BdConnectException, PlConnectException {
+    public void execute() throws VIUCABException, SQLException {
 
+        GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //instancio DAO
+        //ArrayList<Entity> listas = dao.GetLista(est);//_resultado = listas;
+        resultado = dao.createLista(est); //llamo al metodo y obtengo el resultado
 
-        try {
-            GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //instancio DAO
-            //ArrayList<Entity> listas = dao.GetLista(est);
-            //_resultado = listas;
-            resultado = dao.createLista(est); //llamo al metodo y obtengo el resultado
-
-        }
-        catch (Exception e){
-            est = new Entity();
-            resultado = false; //si no devuelve nada, devuelve falso
-
-        }
-
+        /*ANTIGUO CATCH
+        est = new Entity();
+        resultado = false; //si no devuelve nada, devuelve falso*/
 
     }
 

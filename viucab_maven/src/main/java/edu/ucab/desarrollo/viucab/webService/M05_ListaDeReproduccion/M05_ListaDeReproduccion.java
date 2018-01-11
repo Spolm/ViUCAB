@@ -7,6 +7,7 @@ import edu.ucab.desarrollo.viucab.common.entities.ListaDeReproduccion;
 import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
 
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
@@ -20,6 +21,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -52,24 +54,14 @@ public class M05_ListaDeReproduccion {
             cmd.execute(); //ejecuto el comando
             ArrayList<Entity> resultados = cmd.getResultados(); //obtengo los resultados y los devuelvo en Json
             return gson.toJson(resultados);
-/*
         } catch (VIUCABException e) {
-
-            listaObject.set_errorCode(e.ERROR_CODE);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
-            return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
         }
 
@@ -98,24 +90,15 @@ public class M05_ListaDeReproduccion {
             cmd.execute(); //ejecuto el comando
             Boolean resultados = cmd.getResultado(); //obtengo los resultados y los devuelvo en Json
             return gson.toJson(resultados);
-/*
-        } catch (VIUCABException e) {
 
-            listaObject.set_errorCode(e.ERROR_CODE);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
-            return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
+        } catch (VIUCABException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
         }
 
@@ -138,24 +121,14 @@ public class M05_ListaDeReproduccion {
             cmd.execute(); //ejecuto el comando
             Entity resultados = cmd.Return(); //obtengo los resultados y los devuelvo en Json
             return gson.toJson(resultados);
-/*
         } catch (VIUCABException e) {
-
-            listaObject.set_errorCode(e.ERROR_CODE);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
-            return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
         }
 
@@ -178,24 +151,15 @@ public class M05_ListaDeReproduccion {
             cmd.execute(); //ejecuto el comando
             Boolean resultados = cmd.getResultado(); //obtengo los resultados y los devuelvo en Json
             return gson.toJson(resultados);
-/*
-        } catch (VIUCABException e) {
 
-            listaObject.set_errorCode(e.ERROR_CODE);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
-            return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
+        } catch (VIUCABException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
         }
 
@@ -217,7 +181,6 @@ public class M05_ListaDeReproduccion {
         try {
             cmd.execute(); //ejecuto el comando
             Boolean resultados = cmd.getResultado(); //obtengo los resultados y los devuelvo en Json
-            return gson.toJson(resultados);
 /*
         } catch (VIUCABException e) {
 
@@ -225,17 +188,15 @@ public class M05_ListaDeReproduccion {
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (VIUCABException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
-            return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
-            e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
+        }
+        finally {
             return gson.toJson(listaObject);
         }
     }
@@ -264,13 +225,10 @@ public class M05_ListaDeReproduccion {
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
+        } catch (VIUCABException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
@@ -297,20 +255,10 @@ public class M05_ListaDeReproduccion {
             cmd.execute(); //ejecuto el comando
             Boolean resultados = cmd.getResultado(); //obtengo los resultados y los devuelvo en Json
             return gson.toJson(resultados);
-/*
-        } catch (VIUCABException e) {
-
-            listaObject.set_errorCode(e.ERROR_CODE);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
-            return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
+        } catch (VIUCABException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
@@ -337,20 +285,10 @@ public class M05_ListaDeReproduccion {
             cmd.execute(); //ejecuto el comando
             ArrayList<Entity> resultados =cmd.getResultados(); //obtengo los resultados y los devuelvo en Json
             return gson.toJson(resultados);
-/*
-        } catch (VIUCABException e) {
-
-            listaObject.set_errorCode(e.ERROR_CODE);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
-            return gson.toJson(listaObject);*/
-        } catch (PlConnectException e) {
+        } catch (SQLException e) {
             e.printStackTrace();
-            listaObject.set_errorCode(550);
-            listaObject.set_errorMsg(e.ERROR_MSG);
-            logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
             return gson.toJson(listaObject);
-        } catch (BdConnectException e) {
+        } catch (VIUCABException e) {
             e.printStackTrace();
             listaObject.set_errorCode(550);
             listaObject.set_errorMsg(e.ERROR_MSG);
@@ -369,11 +307,8 @@ public class M05_ListaDeReproduccion {
      */
     public String ejemplo()
     {
-
         return "Ejemplo formal Y.E.U.P.D.V";
 
-
-       
     }
 
 

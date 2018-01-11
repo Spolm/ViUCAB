@@ -3,10 +3,13 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
+
+import java.sql.SQLException;
 
 /**
  * Clase comando para agregar un video a una lista
@@ -48,18 +51,17 @@ public class AddVideoToListComando extends Command {
      * @throws PlConnectException
      */
     @Override
-    public void execute() throws BdConnectException, PlConnectException {
+    public void execute() throws VIUCABException, SQLException {
 
+        GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion(); //Instancio dao
+        resultado = dao.addVideoToList(est); //llamo al metodo y obtengo el resultado
 
-        try {
-            GetListaDeReproduccionDao dao = DaoFactory.instanciateDaoListaDeReproduccion(); //Instancio dao
-            resultado = dao.addVideoToList(est); //llamo al metodo y obtengo el resultado
-
+            /*
         } catch (Exception e) {
             est = new Entity();
             resultado = false; //si no devuelve nada, devuelve falso
 
-        }
+        }*/
 
 
     }

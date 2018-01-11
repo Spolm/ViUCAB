@@ -3,11 +3,13 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -44,21 +46,20 @@ public class GetVideosFromListComando extends Command {
      * @throws PlConnectException
      */
     @Override
-    public void execute() throws BdConnectException, PlConnectException {
+    public void execute() throws VIUCABException, SQLException {
 
 
-        try {
             GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //seteo dao
             //ArrayList<Entity> listas = dao.GetVideosFromList(est); //llamo al metodo en dao y obtengo la lista con respuestas
             //Entity  lista = dao.GetLista(est);
             _resultado = dao.GetVideosFromList(est); //llamo al metodo en dao y obtengo la lista con respuestas
-
+/*
         }
         catch (Exception e){
             est = new Entity();
 
         }
-
+*/
 
     }
 

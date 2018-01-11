@@ -3,11 +3,13 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -35,21 +37,19 @@ public class GetEspecificListComando extends Command {
      * @throws PlConnectException
      */
     @Override
-    public void execute() throws BdConnectException, PlConnectException {
+    public void execute() throws VIUCABException, SQLException {
 
-
-        try {
-            GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //seteo dao
-            /*Entity  lista = dao.GetEspecificList(est);
-            est = lista; //asigno el resultado a la entidad*/
-            est = dao.GetEspecificList(est); //llamo al metodo de dao y obtengo el resultado
-
+        GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //seteo dao
+        /*Entity  lista = dao.GetEspecificList(est);
+           est = lista; //asigno el resultado a la entidad*/
+        est = dao.GetEspecificList(est); //llamo al metodo de dao y obtengo el resultado
+/*
         }
         catch (Exception e){
             est = new Entity();
 
         }
-
+*/
 
     }
 
