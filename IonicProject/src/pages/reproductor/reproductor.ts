@@ -21,7 +21,7 @@ export class ReproductorPage implements OnInit {
     public video: any[]
     subscription: Subscription;
     public comentario = '';
-    private path = 'Modulo2';
+    private path = 'Reproductor';
     public usuario = 'aledavid21@gmail.com';
     //    public response: any[];
     public color = 'black';
