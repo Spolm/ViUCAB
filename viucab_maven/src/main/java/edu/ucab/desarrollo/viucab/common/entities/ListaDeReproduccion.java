@@ -72,62 +72,117 @@ public class ListaDeReproduccion extends Entity {
     }
 
 
+    // GETTER Y SETTER de todos los atributos
+
     /**
-     * Getter
-     * @return idLista
+     *
+     * @return Integer
      */
     public Integer getIdLista() {
         return idLista;
     }
 
+    /**
+     *
+     * @param idLista
+     */
     public void setIdLista(Integer idLista) {
         this.idLista = idLista;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getNombre() {
         return nombre;
     }
 
+    /**
+     *
+     * @param nombre
+     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getDescripcion() {
         return descripcion;
     }
 
+    /**
+     *
+     * @param descripcion
+     */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
+    /**
+     *
+     * @return Integer
+     */
     public Integer getNumReproducciones() {
         return numReproducciones;
     }
 
+    /**
+     *
+     *
+     * @param numReproducciones
+     */
     public void setNumReproducciones(Integer numReproducciones) {
         this.numReproducciones = numReproducciones;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getFechaCreacion() {
         return fechaCreacion;
     }
 
+    /**
+     *
+     * @param fechaCreacion
+     */
     public void setFechaCreacion(String fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
+    /**
+     *
+     * @return Integer
+     */
     public Integer getIdUsuario() {
         return idUsuario;
     }
 
+    /**
+     *
+     * @param idUsuario
+     */
     public void setIdUsuario(Integer idUsuario) {
         this.idUsuario = idUsuario;
     }
 
+    /**
+     *
+     * @return String
+     */
     public String getUrlImg() {
         return this.urlImg;
     }
 
+    /**
+     *
+     * @param urlImg
+     */
     public void setUrlImg(String urlImg) {
         this.urlImg = urlImg;
     }

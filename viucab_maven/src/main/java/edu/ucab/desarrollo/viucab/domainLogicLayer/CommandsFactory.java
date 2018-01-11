@@ -8,11 +8,15 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasLikeComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.*;
+
 
 /**
  * Fabrica de comandos creada por M011
@@ -194,4 +198,17 @@ public class CommandsFactory {
      }
      
      // Fin M04
+
+    //regin M09
+
+    public static Command instaciateSugerenciasLike (Entity video) {return new GetSugerenciasLikeComando(video);}
+
+    public static Command instaciateSugerenciasSuscripcion (Entity video) {return new GetSugerenciasSuscripcionComando(video);}
+
+    //fin M09
+
+    // M10
+    public static Command instanciateGetNotificaciones ( Entity notificacion) {
+        return new GetNotificaciones(notificacion);
+    }
 }
