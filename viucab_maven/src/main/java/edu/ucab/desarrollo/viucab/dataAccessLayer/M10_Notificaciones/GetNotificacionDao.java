@@ -5,10 +5,7 @@ import com.google.gson.JsonObject;
 import edu.ucab.desarrollo.viucab.common.entities.*;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
-
 import java.sql.*;
-import java.sql.Date;
-import java.util.*;
 import java.util.ArrayList;
 
 
@@ -59,6 +56,13 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
         return not;
     }
 
+    /**Metodo para obtener todas las notificaciones para un usuario loggeado
+     *
+     * @param n
+     * @return ArrayList<Notificacion>
+     * @throws SQLException
+     */
+
     @Override
     public ArrayList<Notificacion> obtenerNotificaciones(Entity n) throws SQLException {
         Notificacion not = (Notificacion) n;
@@ -90,7 +94,6 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
             vid.setDescripcion(_descripcionVid);
             vid.setNombre(_tituloVid);
             usu.set_name_user(_userName);
-            Notificacion notif = new Notificacion(_idNot, vid, usu, _desechado, _fechaNot);
             Notificacion notif = EntityFactory.notificacion(_idNot, vid, usu, _desechado, _fechaNot);
             listaNotif.add(notif);
         }
@@ -103,6 +106,19 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
         closeConnection();
         }
         return listaNotif;
+    }
+
+    public int descartarNotificacion (Entity n) throws SQLException {
+        Gson gson = new Gson();
+        Connection conexion = Dao.getBdConnect();
+        JsonObject jsonDatos = gson.fromJson( String.valueOf(n), JsonObject.class);
+        PreparedStatement ps = conexion.prepareCall( "{? = CALL m10_desecharnotificacion()}");
+        int id = jsonDatos.get("not_id").getAsInt();
+        ps.setInt(1, id );
+        ps.executeQuery();
+        int result = jsonDatos.get("not_id").getAsInt();
+        closeConnection();
+        return  result;
     }
 
     @Override

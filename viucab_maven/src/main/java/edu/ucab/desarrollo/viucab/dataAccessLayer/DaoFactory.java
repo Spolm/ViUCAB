@@ -9,6 +9,7 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones.GetConfiguracionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones.GetNotificacionDao;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.DiscardNotificacion;
 
 /**
  * Fabrica para instanciar los DAO creada por M011
@@ -74,6 +75,9 @@ public class DaoFactory
 
      //region M10
 
+    static public GetNotificacionDao instanciateDiscardNotificacion() {
+        return new GetNotificacionDao();
+    }
     static public GetNotificacionDao instanciateDaonotificacion () {
         return new GetNotificacionDao();
     }

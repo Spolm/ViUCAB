@@ -1,9 +1,12 @@
 package edu.ucab.desarrollo.viucab.webService.M10_Notificaciones;
 
-import com.google.gson.*;
-import edu.ucab.desarrollo.viucab.common.entities.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.DiscardNotificacion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetConfiguracion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetNotificaciones;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.MailNotificacion;
@@ -12,7 +15,6 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -74,12 +76,40 @@ public class M10_Notificaciones {
         return rb.build();
     }
 
+
+
     /** Metodo que desecha la notificacion una vez se ha interactuado con ella
      *
      * @param datos
      * @return YES
      * @throws SQLException
      */
+
+
+    //Desechar Notificacion
+    @GET
+    @Path("/notificacionDes")
+    @Consumes("application/json")
+    @Produces("text/plain")
+    public Response desecharNotificacion (int id) throws  SQLException {
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
+        Entity notificacionObject = EntityFactory.notificacion(id);
+        Command commandNotificacion = CommandsFactory.instanciateDiscardNotificacion(notificacionObject);
+        DiscardNotificacion cmd = (DiscardNotificacion) commandNotificacion;
+        cmd.execute();
+        Entity result = cmd.Return();
+        rb.header("Notification Discarded","Success");
+        rb.tag("application/json");
+        rb.entity(gson.toJson(result));
+        return rb.build();
+        /*JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
+        PreparedStatement ps = conexion.prepareCall( "{? = CALL m10_desecharnotificacion()}");
+        ps.setInt(1,jsonDatos.get("not_id").getAsInt());
+        ps.executeUpdate();
+        Sql.bdClose(conexion);
+        return _response;*/
+    }
+
 
     //Configuracion de Notificaciones
     //Configuracion de Notificaciones
