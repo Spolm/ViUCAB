@@ -79,19 +79,19 @@ public class CommandsFactory {
 
     //M03 Video
 
-    public static AddVideoCommand intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);}
+    public static Command intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);}
 
-    public static UpdateVideoCommand intantiateUpdateVideoCommand (Entity e){return new UpdateVideoCommand(e);}
+    public static Command intantiateUpdateVideoCommand (Entity e){return new UpdateVideoCommand(e);}
 
-    public static GetAllVideoByIdCommand intantiateGetAllVideoByIdCommand(int userID) {
+    public static Command intantiateGetAllVideoByIdCommand(int userID) {
         return new GetAllVideoByIdCommand(userID);
     }
 
-    public static GetVideoCommand intantiateGetVideoCommand(int videoId) {
+    public static Command intantiateGetVideoCommand(int videoId) {
         return new GetVideoCommand(videoId);
     }
 
-    public static DeleteVideoCommand intantiateDeleteVideoCommand(int videoId) {
+    public static Command intantiateDeleteVideoCommand(int videoId) {
         return new DeleteVideoCommand(videoId);
     }
 

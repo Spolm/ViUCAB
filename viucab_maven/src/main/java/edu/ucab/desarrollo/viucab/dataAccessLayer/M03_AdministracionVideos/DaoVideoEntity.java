@@ -51,7 +51,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
             respuesta = getResponseIntBD(rs);
             return respuesta;
         }finally {
-
+            Dao.getBdConnect().close();
         }
 
 
@@ -78,7 +78,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
                 throw new SQLException("Video no existe.");
             return respuesta;
         }finally {
-
+            Dao.getBdConnect().close();
         }
     }
 
@@ -102,7 +102,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
             return respuesta;
 
         }finally {
-
+            Dao.getBdConnect().close();
         }
 
     }
@@ -135,7 +135,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
 
         }finally {
-
+            Dao.getBdConnect().close();
         }
 
     }
@@ -159,7 +159,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
             return respuesta;
 
         }finally {
-
+            Dao.getConInstance().close();
         }
     }
 
@@ -188,6 +188,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
                 System.out.println(ex.getMessage());
             ex.printStackTrace();
         }finally {
+            Dao.getBdConnect().close();
             return respuesta;
         }
 
@@ -225,7 +226,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
         ArrayList<VideoEntity> salida = new ArrayList<VideoEntity>();
 
         while (rs.next()){
-            VideoEntity v = EntityFactory.instantiateVideoEntity(
+            VideoEntity v = (VideoEntity) EntityFactory.instantiateVideoEntity(
                     rs.getInt("id"),
                     rs.getString("titu"),
                     rs.getString("des"),
@@ -245,7 +246,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
         VideoEntity salida = null;
 
         while (rs.next()){
-            salida = EntityFactory.instantiateVideoEntity(
+            salida = (VideoEntity) EntityFactory.instantiateVideoEntity(
                     rs.getInt("id"),
                     rs.getString("titu"),
                     rs.getString("des"),

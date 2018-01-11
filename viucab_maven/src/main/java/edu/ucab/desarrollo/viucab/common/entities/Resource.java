@@ -22,7 +22,7 @@ public class Resource{
 
     public String saveVideo(InputStream uploadedInputStream) throws IOException {
 
-        VideoEntity video = EntityFactory.instantiateVideoEntity();
+        VideoEntity video = (VideoEntity) EntityFactory.instantiateVideoEntity();
         int idVideo= video.getNextId();
 
         String name = idVideo +".mp4";
@@ -34,7 +34,7 @@ public class Resource{
 
     public String saveImage(InputStream uploadedInputStream) throws IOException {
 
-        VideoEntity video = EntityFactory.instantiateVideoEntity();
+        VideoEntity video = (VideoEntity) EntityFactory.instantiateVideoEntity();
         int idVideo= video.getNextId();
 
         String name = idVideo +".jpg";
