@@ -23,7 +23,7 @@
      
     <ion-content padding>
       
-        <ion-card *ngFor="let item of data">
+        <ion-card *ngFor="let item of data" (click)='reproductor($event);'>
            
             <ion-item> 
               <ion-buttons class= 'centrado-porcentual2'  >
@@ -40,7 +40,7 @@
               
             </ion-item>
           
-            <img src={{item.imagen}}>
+            <img id="{{item.id}}" src={{item.imagen}}>
           
             <ion-card-content>
               <p style="font-size:large">{{item.nombre}}</p> <!--Titulo del video-->
