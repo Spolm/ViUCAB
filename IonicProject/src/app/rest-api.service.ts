@@ -173,12 +173,22 @@ export class RestApiService {
       this.http.post("http://localhost:8080/viucab/ModeracionContenido/guardarFiltros", postParams)
 
         .subscribe(data => {
-          console.log(data);
+          console.log('aqui no');
         }, error => {
           console.log(error);// Error getting the data
         });
     });
   }
+
+  getFiltros():any{
+    return this.http
+      .get("http://localhost:8080/viucab/ModeracionContenido/cargarFiltros?id=1")
+      .map((data: any) => data.json())
+      .subscribe();
+  }
+
+
+
 
 
 }

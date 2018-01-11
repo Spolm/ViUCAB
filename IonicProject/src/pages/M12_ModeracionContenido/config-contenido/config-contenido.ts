@@ -54,10 +54,11 @@ export class ConfigContenidoPage {
   maquillaje={id:13,tipo:"filtro-simple",descripcion:"maquillaje",valor:this.maqui};
 
     filtros =[];
-
+fil:any;
 
     constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public servicio:RestApiService) {
-
+      this.fil = this.servicio.getFiltros();
+      console.log(this.fil);
     }
 
 
@@ -78,6 +79,10 @@ export class ConfigContenidoPage {
         }, (err) =>{
           console.log(err);
         });
+    }
+
+    traerFiltros(){
+
     }
 
   }
