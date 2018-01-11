@@ -1,7 +1,9 @@
 package edu.ucab.desarrollo.viucab.dataAccessLayer;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M01_Login.GetUsuarioDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M04_Reproductor.VideoDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
@@ -23,10 +25,17 @@ public class DaoFactory
     //endregion
 
     //region M02
-    static  public GetHomeDao instanciateGetHome(){
-        return new GetHomeDao();
+    static  public GetHomeDao instanciateGetBusquedaComando(){return new GetHomeDao();
     }
+    static  public GetHomeDao instanciateGetMasVistosComando(){return new GetHomeDao();}
+
+    static  public GetHomeDao instanciateGetPreferenciasComando(){return new GetHomeDao();}
+
+    static  public GetHomeDao instanciateGetSuscritosComando(){return new GetHomeDao();}
+
     //endregion
+
+
 
     //region M05
 
@@ -47,5 +56,20 @@ public class DaoFactory
         return new GetEtiquetasDao();
     }
     //endregion
+    
+    
+    
+    
+    //M04 
+    
+    static public VideoDao instanciarVideoDao() {
+        return new VideoDao();
+    }
+    
+    // FIN M04
+    //M01
+    static public GetUsuarioDao instanciateDaoUsuario(){
+        return new GetUsuarioDao();
+    }
 }
 

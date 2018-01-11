@@ -1,22 +1,20 @@
-package edu.ucab.desarrollo.viucab.webService.M07_Etiqueta;
 
-import com.google.gson.Gson;
+        package edu.ucab.desarrollo.viucab.webService.M07_Etiqueta;
+
+        import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Etiquetas;
-import edu.ucab.desarrollo.viucab.common.entities.Video_Etiq;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
-
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.ConsultarVideos;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.EliminarEtiqueta;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.InsertarEtiqueta;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Path("/Etiqueta")
@@ -24,15 +22,16 @@ public class M07_Etiqueta {
     Gson gson = new Gson();
 
     /**
-     * Este metodo inserta una nueva etiqueta
+     * Este metodo inserta una nueva etiqueta relacionandola a un video
+     * si la etiqueta ya existe no se inserta en la tabla etiqueta pero si en video_etiq
      * y devuelve en un texto plano la etiqueta insertada
      */
 
     @GET
     @Path("/insertar")
     @Produces("text/plain")
-    public String insertarEtiqueta(@QueryParam("valor") String valor){
-        Entity etiquetaObject = EntityFactory.insertEtiqueta(valor);
+    public String insertarEtiqueta(@QueryParam("valor") String valor, @QueryParam("id") int id){
+        Entity etiquetaObject = EntityFactory.insertEtiqueta(valor, id);
         Command commandEtiqueta = CommandsFactory.instanciateInsertEtiqueta(etiquetaObject);
         InsertarEtiqueta cmd = (InsertarEtiqueta) commandEtiqueta;
         cmd.execute();
@@ -43,14 +42,14 @@ public class M07_Etiqueta {
 
 
     /**
-     * Este metodo elimina una etiqueta por id y devuelve un json con el id de la etiqueta que se elimino
+     * Este metodo elimina la etiqueta de un video
      */
 
     @GET
     @Path("/eliminar")
     @Produces("text/plain")
-    public String eliminarEtiqueta(@QueryParam("id") int id){
-        Entity etiquetaObject = EntityFactory.eliminarEtiqueta(id);
+    public String eliminarEtiqueta(@QueryParam("id") int id, @QueryParam("valor") String valor){
+        Entity etiquetaObject = EntityFactory.eliminarEtiqueta(id, valor);
         Command commandEtiqueta = CommandsFactory.instanciateEliminarEtiqueta(etiquetaObject);
         EliminarEtiqueta cmd = (EliminarEtiqueta) commandEtiqueta;
         cmd.execute();
@@ -60,8 +59,7 @@ public class M07_Etiqueta {
     }
 
     /**
-     * Este metodo devuelve una lista en un json con el id de todos los videos asociados a una etiqueta
-     * y el id de la etiqueta asociada
+     * Este metodo devuelve una lista con todas las etiquetas de un video
      */
 
     @GET
@@ -74,8 +72,6 @@ public class M07_Etiqueta {
         ConsultarVideos cmd = (ConsultarVideos) commandEtiqueta;
         cmd.execute();
         List<Entity> result = cmd.ReturnList();
-        //List<Video_Etiq> json = new ArrayList<Video_Etiq>();
-        //json.addAll((Collection<? extends Video_Etiq>) result);
         return gson.toJson(result);
     }
 }

@@ -1,14 +1,14 @@
 webpackJsonp([1],{
 
-/***/ 761:
+/***/ 458:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UsuarioPageModule", function() { return UsuarioPageModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__usuario__ = __webpack_require__(777);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SugerenciaPageModule", function() { return SugerenciaPageModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sugerencia__ = __webpack_require__(459);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,33 +18,33 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var UsuarioPageModule = (function () {
-    function UsuarioPageModule() {
+var SugerenciaPageModule = (function () {
+    function SugerenciaPageModule() {
     }
-    return UsuarioPageModule;
+    return SugerenciaPageModule;
 }());
-UsuarioPageModule = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["NgModule"])({
+SugerenciaPageModule = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__usuario__["a" /* UsuarioPage */],
+            __WEBPACK_IMPORTED_MODULE_2__sugerencia__["a" /* SugerenciaPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__usuario__["a" /* UsuarioPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__sugerencia__["a" /* SugerenciaPage */]),
         ],
     })
-], UsuarioPageModule);
+], SugerenciaPageModule);
 
-//# sourceMappingURL=usuario.module.js.map
+//# sourceMappingURL=sugerencia.module.js.map
 
 /***/ }),
 
-/***/ 777:
+/***/ 459:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UsuarioPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(31);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SugerenciaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,29 +57,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the UsuarioPage page.
+ * Generated class for the CategoriaPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var UsuarioPage = (function () {
-    function UsuarioPage(navCtrl, navParams) {
+//
+var SugerenciaPage = (function () {
+    function SugerenciaPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
-    UsuarioPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad UsuarioPage');
+    SugerenciaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad SugerenciaPage');
     };
-    return UsuarioPage;
+    return SugerenciaPage;
 }());
-UsuarioPage = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-        selector: 'page-usuario',template:/*ion-inline-start:"C:\Users\Usuario\Documents\Universidad\Desarrollo\Proyecto\Proyecto1\PruebaGit\ViUCAB\IonicProject\src\pages\Modulo 2\usuario\usuario.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <ion-buttons start>\n\n      <button ion-button menuToggle>\n\n      <ion-icon name="menu"></ion-icon>\n\n    </button>\n\n    </ion-buttons>\n\n    <ion-title>\n\n      <ion-icon name="logo-youtube"> ViUCAB</ion-icon>\n\n      <ion-buttons class= \'centrado-porcentual\'  >\n\n          <button  >\n\n        <ion-icon name="videocam" color="primary"></ion-icon>   \n\n      </button>\n\n      </ion-buttons>   \n\n    \n\n    </ion-title>\n\n    \n\n  </ion-navbar>\n\n</ion-header>\n\n \n\n<ion-content padding>\n\n   \n\n  \n\n\n\n     \n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Usuario\Documents\Universidad\Desarrollo\Proyecto\Proyecto1\PruebaGit\ViUCAB\IonicProject\src\pages\Modulo 2\usuario\usuario.html"*/,
+SugerenciaPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-sugerencia',template:/*ion-inline-start:"C:\Users\Familia\Desktop\Luis\Proyecto\ViUCAB\Prueba\src\pages\M01-Login\sugerencia\sugerencia.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header >\n\n        \n\n          <ion-navbar color="primary">\n\n            <ion-title>Sugerencia</ion-title>\n\n          </ion-navbar>\n\n        \n\n        </ion-header>\n\n            \n\n<ion-content padding >\n\n    \n\n            <ion-list>\n\n                <h4 style="color:#000000;font-weight:600;text-align:center;">Canales recomendados </h4>                         \n\n            </ion-list>\n\n     \n\n        \n\n        <ion-card>\n\n        \n\n                <img width="200" height="200" src="assets/imgs/paisaje.png"/>\n\n            <ion-item>\n\n                <ion-avatar item-start>\n\n                    <img src="assets/imgs/fernando-avatar.jpg">\n\n                </ion-avatar>\n\n                <h2>Fernando Obregon</h2>\n\n            </ion-item>\n\n    \n\n            <ion-card-content>\n\n                <p>Fernando Obregon · 1.2 vistas · <ion-col align-self-center text-center>\n\n                    <ion-note>\n\n                        30yr ago\n\n                    </ion-note>\n\n                    </ion-col>\n\n                </p>\n\n\n\n                    <button style="color:#000000; font-weight:900;" ion-button  block outline icon-end>\n\n                        <ion-icon style="color:#000000;" ios="logo-youtube" md="logo-youtube"  ></ion-icon>\n\n                        Suscribirse\n\n                    </button> \n\n\n\n            </ion-card-content>      \n\n        </ion-card>\n\n\n\n\n\n        <ion-card>              \n\n            <img src="assets/imgs/P10_Paisaje.png">\n\n            <ion-item>\n\n                <ion-avatar item-start>\n\n                    <img src="assets/imgs/Logo1.png">\n\n                </ion-avatar>\n\n                <h2>Luiz Diaz</h2>\n\n            </ion-item>\n\n    \n\n            <ion-card-content>\n\n                <p>Luis Diaz · 1.2 vistas\n\n                    <ion-col align-self-center text-center>\n\n                    <ion-note>\n\n                        30yr ago\n\n                    </ion-note>\n\n                    </ion-col>\n\n                </p>\n\n                \n\n                <button class="button icon icon-right ion-home">\n\n                        Suscribirse\n\n                </button>           \n\n            </ion-card-content>\n\n                        \n\n        </ion-card>\n\n\n\n            <div padding>\n\n                <button ion-button block clear (click)=\'goPaginaCategoria()\' icon-end>Continuar</button>\n\n            </div>  \n\n</ion-content>\n\n        '/*ion-inline-end:"C:\Users\Familia\Desktop\Luis\Proyecto\ViUCAB\Prueba\src\pages\M01-Login\sugerencia\sugerencia.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-], UsuarioPage);
+], SugerenciaPage);
 
-//# sourceMappingURL=usuario.js.map
+//# sourceMappingURL=sugerencia.js.map
 
 /***/ })
 

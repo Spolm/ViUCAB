@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Created by estefania on 20/11/2017.
  */
-public class Usuario {
+public class Usuario extends Entity{
     private int     _id_user;
     private String  _name_user;
     private String  _pass_user;
@@ -28,6 +28,10 @@ public class Usuario {
         this._email_user = _email_user;
         this._avatar_user = _avatar_user;
     }
+    public Usuario (int _id_user, String _name_user) {
+        this._id_user = _id_user;
+        this._name_user = _name_user;  }
+
 /*
     public Usuario(String _name_user, Image _avatar_user) {
         
@@ -44,6 +48,12 @@ public class Usuario {
     }
 
     public Usuario() {
+    }
+
+    public Usuario(String _name_user,String _pass_user, String _email_user ){
+        this._name_user = _name_user;
+        this._pass_user = _pass_user;
+        this._email_user = _email_user;
     }
 
 
