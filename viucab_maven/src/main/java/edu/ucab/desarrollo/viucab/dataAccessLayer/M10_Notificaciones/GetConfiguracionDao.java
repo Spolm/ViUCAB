@@ -5,6 +5,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
+import javax.ws.rs.core.EntityTag;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,11 +37,15 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
     //Metodo que obtiene la configuracion de notificaciones de la BDD
     @Override
     public Entity configuracion(Entity e) throws SQLException {
+        return null;
+    }
+
+    public Entity getConfiguracion(Entity e) throws SQLException {
+        ConfiguracionNotificaciones con = (ConfiguracionNotificaciones)e;
         Connection conexion;
         ResultSet result = null;
         String select="SELECT * FROM config_notificacion WHERE usu_id = ?;";
         PreparedStatement ps = null;
-        Entity config = null;
         try {
             conexion = getBdConnect();
             ps = conexion.prepareStatement(select);
@@ -54,7 +59,7 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
             boolean subscripciones = (result.getBoolean("con_not_suscripciones"));
             boolean etiquetados = (result.getBoolean("con_not_etiquetado"));
             boolean estadisticas = (result.getBoolean("con_not_estadisticas"));
-            config = EntityFactory.configuracionNotificaciones(id,activado,boletin,subscripciones,etiquetados,estadisticas,preferencias);
+            con = EntityFactory.configuracionNotificaciones(id,activado,boletin,subscripciones,etiquetados,estadisticas,preferencias);
             result.close();
         }
         catch (SQLException error){
@@ -63,7 +68,7 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
         finally {
             closeConnection();
         }
-        return config;
+        return con;
     }
     // Modificar para que se traiga todos los datos correctos de Entity e
     @Override

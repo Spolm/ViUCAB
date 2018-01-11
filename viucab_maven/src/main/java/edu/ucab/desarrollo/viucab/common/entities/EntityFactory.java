@@ -156,6 +156,7 @@ public class EntityFactory
     static public ConfiguracionNotificaciones configuracionNotificaciones(int id, boolean activado, boolean boletin, boolean subscripciones, boolean etiquetados, boolean estadisticas, boolean preferencias){
         return new ConfiguracionNotificaciones(id, activado, boletin, subscripciones, etiquetados, estadisticas, preferencias);  }
 
+    static public ConfiguracionNotificaciones configuracionNotificaciones() {return new ConfiguracionNotificaciones();};
     static public Notificacion notificacion () {
         return new Notificacion();
     }

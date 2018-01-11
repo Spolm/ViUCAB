@@ -201,4 +201,8 @@ public class CommandsFactory {
     public static Command instanciateGetNotificaciones ( Entity notificacion) {
         return new GetNotificaciones(notificacion);
     }
+
+    public static Command instanciateGetConfiguracion (Entity configuracion) {
+        return new GetConfiguracion(configuracion);
+    }
 }
