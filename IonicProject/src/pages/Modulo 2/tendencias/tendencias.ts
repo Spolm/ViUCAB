@@ -69,6 +69,7 @@ export class TendenciasPage {
   estadoNombre:string;
   subscription: Subscription;
   errorMessage = '';
+  listaSuscripcion: Array<{}>;
   
 
 //Metodo para llenar el listado de videos
@@ -133,7 +134,14 @@ export class TendenciasPage {
       }else if (val != '') {
           var value = idAttr.nodeValue;
           console.log(value + " value");
-          //this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
+          this.api.geta('Suscripcion/SetSuscripcion?idLogueado=1&idSuscriptor='+ value)
+                      .subscribe((data) => { // Success
+                          this.listaSuscripcion = data.json()
+                          console.log (this.listaSuscripcion)
+                      },
+                      (error) =>{
+                          console.error(error);
+                      });
       }
       //
     }
