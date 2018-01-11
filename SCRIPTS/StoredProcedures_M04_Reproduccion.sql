@@ -62,7 +62,7 @@ CREATE OR REPLACE FUNCTION getComentarios(fitrovideo int)
      
         FOR var in (SELECT usuario.usu_id iduser, usuario.usu_avatar urlimg , usuario.usu_login nombre , comentario.com_descripcion comentario
 FROM comentario , usuario
-WHERE comentario.id_vid = 1 AND comentario.id_usu = usuario.usu_id)
+WHERE comentario.id_vid = 1 AND comentario.id_usu = usuario.usu_id  ORDER BY comentario.com_id)
         LOOP 
         iduser:= var.iduser;
         urlimg := var.urlimg;

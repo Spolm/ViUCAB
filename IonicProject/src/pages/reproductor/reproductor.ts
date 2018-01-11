@@ -152,6 +152,10 @@ export class ReproductorPage implements OnInit {
     openVideo(id) {
         this.navCtrl.setRoot(ReproductorPage, id);
     }
+    
+    refresh(){
+        this.navCtrl.setRoot(ReproductorPage, this.navParams.data);
+    }
 
     @ViewChild('myNav') nav: NavController;
 

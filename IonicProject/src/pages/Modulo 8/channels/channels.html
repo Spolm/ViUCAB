@@ -16,7 +16,7 @@
     </ion-title>
 
   </ion-navbar>
-  <ion-searchbar placeholder="Nombre del usuario a buscar " (ionInput)="getItems1($event)"></ion-searchbar> <!--> Creacion</!-->
+  <ion-searchbar placeholder="Indique el nombre del usuario a suscribir " (ionInput)="getItems1($event)"></ion-searchbar> <!--> Creacion</!-->
 </ion-header>
 
 
@@ -30,10 +30,14 @@
       refreshingText="Actualizando...">
     </ion-refresher-content>
 </ion-refresher>
-  <ion-list *ngIf= "mostrarSuscripciones">
+
+  <ion-list *ngIf= "mostrarSuscripciones"> 
+      <ion-navbar>
+          <ion-title> Canales Suscritos </ion-title>
+      </ion-navbar>
         <ion-item *ngFor="let item of listaSuscripcion ; let i = index " >
             <ion-avatar item-start > 
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa">
+                <img src="../../../assets/imgs/defaultavatar.png">
             </ion-avatar>
             <h2> {{ item._name_user }} </h2>
              <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->
@@ -42,9 +46,12 @@
   </ion-list>
  
   <ion-list *ngIf= "mostrarUsuarios">
+      <ion-navbar >
+          <ion-title> Canales </ion-title>
+      </ion-navbar>
     <ion-item  *ngFor="let item of listaUsuarios ; let ix = index  " >
         <ion-avatar item-start > 
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa">
+            <img src="../../../assets/imgs/defaultavatar.png">
         </ion-avatar>
         <h2> {{ item._name_user }} </h2>
         <!-->    <p>Suscritos {{item.suscritos}}  this.items[i].suscritos</p></-->

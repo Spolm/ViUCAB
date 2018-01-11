@@ -1,5 +1,5 @@
 CREATE OR REPLACE FUNCTION public.m02_buscarvideo(IN parametrobusqueda character varying)
-  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying,nombreusuario character varying, fotousuario character varying) 
+  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying,nombreusuario character varying, fotousuario character varying,idusu numeric) 
 AS 
 $BODY$ 
 DECLARE
@@ -8,14 +8,14 @@ concatenado character varying;
 
 BEGIN 
 concatenado := '%'||parametroBusqueda||'%' ;
-for var_r in(SELECT  video.*,usuario.usu_login,usuario.usu_avatar
+for var_r in(SELECT  video.*,USUARIO.USU_ID,usuario.usu_login,usuario.usu_avatar
              FROM    video, categoria, video_cat,usuario 
              WHERE   video.vid_titulo LIKE concatenado
               AND video.vid_id=video_cat.idvid 
                      AND categoria.cat_id=video_cat.idcat 
                      AND video.vid_usuario=usuario.usu_id
             UNION 
-			SELECT  video.*,usuario.usu_login,usuario.usu_avatar
+			SELECT  video.*,USUARIO.USU_ID,usuario.usu_login,usuario.usu_avatar
 			FROM    video,categoria,video_cat,usuario 
 			WHERE   categoria.cat_valor LIKE concatenado
 					AND video.vid_id=video_cat.idvid 
@@ -23,7 +23,7 @@ for var_r in(SELECT  video.*,usuario.usu_login,usuario.usu_avatar
 					AND video.vid_usuario=usuario.usu_id
 					
 			UNION 
-			SELECT  video.*,usuario.usu_login,usuario.usu_avatar
+			SELECT  video.*,USUARIO.USU_ID,usuario.usu_login,usuario.usu_avatar
 			FROM    video,etiqueta,video_etiq,usuario
 			WHERE   etiqueta.eti_valor LIKE concatenado
 					AND video.vid_id=video_etiq.idvid 
@@ -39,6 +39,7 @@ loop
 		visitasvideo := var_r.vid_visitas;
 		nombreusuario := var_r.usu_login;
 		fotousuario := var_r.usu_avatar;
+		idusu := var_r.usu_id;
 
 		return next;
 		
@@ -52,12 +53,12 @@ $BODY$
   
   
   CREATE OR REPLACE FUNCTION public.m02_obtenermasvistos()
-  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying) AS
+  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying,idusuario numeric) AS
 $BODY$ 
 DECLARE
 var_r record;
 BEGIN 
-for var_r in(SELECT VIDEO.* ,USUARIO.USU_LOGIN,USUARIO.USU_AVATAR
+for var_r in(SELECT VIDEO.* ,USUARIO.USU_ID,USUARIO.USU_LOGIN,USUARIO.USU_AVATAR
              FROM VIDEO,USUARIO
              where VIDEO.VID_USUARIO=USUARIO.USU_ID
              ORDER BY VIDEO.VID_VISITAS DESC)
@@ -71,28 +72,31 @@ loop
 		visitasvideo := var_r.vid_visitas;
 		nombreusuario := var_r.usu_login;
 		imagenusuario := var_r.usu_avatar;
+		idusuario := var_r.usu_id;
 		return next;
 		
 end loop;		
   
 END; 
 $BODY$
-  LANGUAGE plpgsql STABLE
+  LANGUAGE plpgsql STABLE;
   
-  CREATE OR REPLACE FUNCTION public.m02_obtenerpreferencias(IN idusuario numeric)
-  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying) AS
+ CREATE OR REPLACE FUNCTION public.m02_obtenerpreferencias(IN idusuario numeric)
+  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying,idusu numeric) AS
 $BODY$ 
 DECLARE
 var_r record;
 BEGIN 
-for var_r in(SELECT  VIDEO.* ,USUARIO.USU_LOGIN,USUARIO.USU_AVATAR
-             FROM video,usuario,categoria,preferencia,video_cat
-             WHERE video.vid_id=video_cat.idvid 
-                   AND categoria.cat_id=video_cat.idcat 
-                   AND usuario.usu_id=preferencia.id_usu 
-                   AND categoria.cat_id=preferencia.id_cat 
-                   AND video_cat.idcat=preferencia.id_cat 
-				   AND usuario.usu_id=idUsuario)
+for var_r in(SELECT video.*,u2.USU_LOGIN,u2.USU_AVATAR,u2.usu_id
+	FROM video,usuario as u1,usuario as u2,categoria,preferencia,video_cat
+         WHERE  video.vid_id=video_cat.idvid 
+         and categoria.cat_id=video_cat.idcat
+         AND   u1.usu_id=preferencia.id_usu 
+         and categoria.cat_id=preferencia.id_cat
+         AND  video_cat.idcat=preferencia.id_cat
+         and u1.usu_id=idusuario
+         and video.vid_usuario=u2.usu_id)
+		 
 loop
 		idvideo:=var_r.vid_id;
 		nombrevideo := var_r.vid_titulo;
@@ -103,6 +107,7 @@ loop
 		visitasvideo := var_r.vid_visitas;
 		nombreusuario := var_r.usu_login;
 		imagenusuario := var_r.usu_avatar;
+		idusu := var_r.usu_id;
 		return next;
 		
 end loop;		
@@ -111,15 +116,15 @@ end loop;
   
 END; 
 $BODY$
-  LANGUAGE plpgsql STABLE
+  LANGUAGE plpgsql STABLE;
   
  CREATE OR REPLACE FUNCTION public.m02_obtenersuscripciones(IN idusuario numeric)
-  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying ) AS
+  RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying, idusu numeric ) AS
 $BODY$ 
 DECLARE
 var_r record;
 BEGIN 
-for var_r in(SELECT DISTINCT (VIDEO.*),usuario.usu_login,usuario.usu_avatar 
+for var_r in(SELECT DISTINCT (VIDEO.*),usuario.usu_login,usuario.usu_avatar , usuario.usu_id
              FROM video,usuario,suscripcion 
              WHERE video.vid_usuario=suscripcion.id_suscripcion 
 				AND suscripcion.id_suscriptor=IdUsuario
@@ -135,6 +140,7 @@ loop
 		visitasvideo := var_r.vid_visitas;
 		nombreusuario := var_r.usu_login;
 		imagenusuario :=var_r.usu_avatar;
+		idusu := var_r.usu_id;
 		return next;
 		
 end loop;		
@@ -143,5 +149,5 @@ end loop;
   
 END; 
 $BODY$
-  LANGUAGE plpgsql STABLE
+  LANGUAGE plpgsql STABLE;
 

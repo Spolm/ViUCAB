@@ -1,10 +1,14 @@
 package edu.ucab.desarrollo.viucab.common.exceptions;
 
+import javax.ws.rs.core.MediaType;
+import javax.xml.ws.Response;
+
 /**
  * Created by Daniel on 30/11/2017.
  * excepcion que sera manipulada
  * por el flujo
  */
+
 public class VIUCABException extends Exception {
 
     public final int ERROR_CODE = 550;
@@ -22,8 +26,18 @@ public class VIUCABException extends Exception {
         _metodo = metodo;
     }
 
+    public VIUCABException(String error) {
+        super(error);
+
+    }
+
     public VIUCABException(Exception error) {
         super(error);
+
+    }
+
+    public VIUCABException(String descripcion,Exception error) {
+        super(descripcion+" "+ error);
 
     }
     @Override
@@ -38,5 +52,6 @@ public class VIUCABException extends Exception {
 
         return str.toString();
     }
+
 
 }
