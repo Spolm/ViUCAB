@@ -2,6 +2,7 @@ import { Component, } from '@angular/core';
 import { IonicPage, NavController, NavParams,  AlertController} from 'ionic-angular';
 import { RestApiService } from '../../../app/rest-api.service';
 import { Subscription } from 'rxjs/Subscription';
+import {ReproductorPage} from '../../reproductor/reproductor';
 
 /**
  * Generated class for the TendenciasPage page.
@@ -17,7 +18,7 @@ import { Subscription } from 'rxjs/Subscription';
   providers: [RestApiService]
 })
 export class TendenciasPage {
-  data = [{                       //DATA DE PRUEBA LOCAL
+  /*data = [{                       //DATA DE PRUEBA LOCAL
       id: 1,
       nombre: 'Kryptonite: Superman odia esto',
       usuario: 'Barbara Fernández',
@@ -59,8 +60,8 @@ export class TendenciasPage {
       fecha: 'Noviembre 10, 2017',
       imagen: 'assets/imgs/shapeofyou.png',
       visitas: 8
-  }];
-  //data: any[];
+  }];*/
+  data: any[];
   buscarQuery : string ='';
   
   items: any[];
@@ -68,14 +69,15 @@ export class TendenciasPage {
   estadoNombre:string;
   subscription: Subscription;
   errorMessage = '';
+  listaSuscripcion: Array<{}>;
   
 
 //Metodo para llenar el listado de videos
   ngOnInit(): void {
-    /*this.subscription = this.api.getVideos('Home/MasVistos')
+    this.subscription = this.api.getVideos('Home/MasVistos')
         .subscribe(data => this.data = data,
         error => this.errorMessage = error);
-    this.errorMessage = '';*/
+    this.errorMessage = '';
   }
 
   
@@ -108,6 +110,41 @@ export class TendenciasPage {
         img:'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSeK0JpMddFw6P1hVBdjiQQuw7MpFnGza014TUmxfGfy4B9uYpa'}]
      }
   }
+  
+    
+  
+    reproductor(ev: any) {
+      let val = ev.target || ev.srcElement || ev.currentTarget;
+      var idAttr = val.attributes.id;
+      if (idAttr === undefined){
+          console.log("Se debe dar click a la imagen");
+      }else if (val != '') {
+          var value = idAttr.nodeValue;
+          console.log(value + " value");
+          this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
+      }
+      //
+    }
+
+    suscripcionBoton(ev: any) {
+      let val = ev.target || ev.srcElement || ev.currentTarget;
+      var idAttr = val.attributes.id;
+      if (idAttr === undefined){
+          console.log("Se debe dar click en el mas");
+      }else if (val != '') {
+          var value = idAttr.nodeValue;
+          console.log(value + " value");
+          this.api.geta('Suscripcion/SetSuscripcion?idLogueado=1&idSuscriptor='+ value)
+                      .subscribe((data) => { // Success
+                          this.listaSuscripcion = data.json()
+                          console.log (this.listaSuscripcion)
+                      },
+                      (error) =>{
+                          console.error(error);
+                      });
+      }
+      //
+    }
 
   getItems(ev: any){
     //Reset items back to all of the items
@@ -119,7 +156,7 @@ export class TendenciasPage {
     
         if (val === undefined){
             console.log("valor vacio");
-            this.data = [{                       //DATA DE PRUEBA LOCAL
+            /*this.data = [{                       //DATA DE PRUEBA LOCAL
                 id: 1,
                 nombre: 'Kryptonite: Superman odia esto',
                 usuario: 'Barbara Fernández',
@@ -161,27 +198,30 @@ export class TendenciasPage {
                 fecha: 'Noviembre 10, 2017',
                 imagen: 'assets/imgs/shapeofyou.png',
                 visitas: 8
-            }];
-            //this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
-            //                    .subscribe(data => this.data = data,
-            //                    error => this.errorMessage = error);
-            //                    this.errorMessage = '';
+            }];*/
+            
+            this.subscription = this.api.getVideos('Home/MasVistos') //LLAMADA AL WS
+                                .subscribe(data => this.data = data,
+                                error => this.errorMessage = error);
+                                this.errorMessage = '';
+            
         }else if (val != '') {
-            this.data = [{                       //DATA DE PRUEBA LOCAL
+            /*this.data = [{                       //DATA DE PRUEBA LOCAL
                 id: 1,
                 nombre: '3 Doors Down - Kryptonite',
                 usuario: 'Barbara Fernández',
                 fecha: 'Noviembre 5, 2017',
                 imagen: 'assets/imgs/kryptonite.png',
                 visitas: 8
-            }];
-            //this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
-            //                    .subscribe(data => this.data = data,
-            //                    error => this.errorMessage = error);
-            //                    this.errorMessage = '';
+            }];*/
+            
+            this.subscription = this.api.getVideos('Home/Busqueda?parametroBusqueda=' + val)       //LLAMADA WS
+                                .subscribe(data => this.data = data,
+                                error => this.errorMessage = error);
+                                this.errorMessage = '';
         }else if ((val == '')){
             console.log("valor vacio");
-            this.data = [{                       //DATA DE PRUEBA LOCAL
+            /*this.data = [{                       //DATA DE PRUEBA LOCAL
                 id: 1,
                 nombre: 'Kryptonite: Superman odia esto',
                 usuario: 'Barbara Fernández',
@@ -223,11 +263,12 @@ export class TendenciasPage {
                 fecha: 'Noviembre 10, 2017',
                 imagen: 'assets/imgs/shapeofyou.png',
                 visitas: 8
-            }];
-            //this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
-            //                    .subscribe(data => this.data = data,
-            //                    error => this.errorMessage = error);
-            //                    this.errorMessage = '';
+            }];*/
+            
+            this.subscription = this.api.getVideos('Home/MasVistos') //LLAMADA AL WS
+                                .subscribe(data => this.data = data,
+                                error => this.errorMessage = error);
+                                this.errorMessage = '';
         }
   }
 }

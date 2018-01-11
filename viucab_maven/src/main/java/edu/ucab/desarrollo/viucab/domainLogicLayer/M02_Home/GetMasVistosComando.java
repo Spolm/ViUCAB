@@ -2,12 +2,15 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
+import org.postgresql.util.PSQLException;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
@@ -35,8 +38,12 @@ public class GetMasVistosComando extends Command {
         return _resultado;
     }
 
+    /**
+     * Metodo que realiza la llamada a el patron DAO en la clase GetHomeDAO
+     * para almacenar los datos obtenidos en la fabrica
+     */
     @Override
-    public void execute() throws VIUCABException,SQLException{
+    public void execute() throws VIUCABException, SQLException, PLConnectException1, BDConnectException1 {
 
             GetHomeDao dao =  DaoFactory.instanciateGetMasVistosComando();
             ArrayList<Video> video = dao.GetMasVistosComando();

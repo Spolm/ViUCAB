@@ -32,6 +32,10 @@ public class GetSuscritosComando extends Command {
         return _resultado;
     }
 
+    /**
+     * Metodo que realiza la llamada a el patron DAO en la clase GetHomeDAO
+     * para almacenar los datos obtenidos en la fabrica
+     */
     @Override
     public void execute() throws VIUCABException , SQLException{
 
