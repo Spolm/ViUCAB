@@ -6,7 +6,7 @@ import {ViewListPage} from "./view-list/view-list";
 import { RestApiService } from "../../app/rest-api.service";
 import { Content, Events } from 'ionic-angular';
 import { NullAstVisitor } from '@angular/compiler';
-
+import { Modulo9Page } from '../modulo9/modulo9';
 import {PopOverListasReproduccionPage} from '../playlist/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 import {AddListPage} from "./add-list/add-list";
 
@@ -144,6 +144,10 @@ export class PlaylistPage {
      });
 
     
+  }
+
+  probando(){
+    this.navCtrl.push(Modulo9Page);
   }
 
   public goToAddList(){
