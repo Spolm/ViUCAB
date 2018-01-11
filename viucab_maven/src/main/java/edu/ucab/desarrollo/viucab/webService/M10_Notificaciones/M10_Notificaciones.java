@@ -78,12 +78,7 @@ public class M10_Notificaciones {
 
 
 
-    /** Metodo que desecha la notificacion una vez se ha interactuado con ella
-     *
-     * @param datos
-     * @return YES
-     * @throws SQLException
-     */
+
 
 
     //Desechar Notificacion

@@ -9,6 +9,11 @@ public class Notificacion extends Entity {
     private boolean desechado;
     private Date fecha;
 
+    public Notificacion(int id) {
+        this.id = id;
+    }
+
+
     public Notificacion(int id, Video video, Usuario usuario, boolean desechado, Date fecha) {
         this.id = id;
         this.video = video;
