@@ -120,7 +120,7 @@ export class TendenciasPage {
       }else if (val != '') {
           var value = idAttr.nodeValue;
           console.log(value + " value");
-          //this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
+          this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
       }
       //
     }

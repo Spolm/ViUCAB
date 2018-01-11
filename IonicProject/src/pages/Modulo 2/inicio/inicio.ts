@@ -128,7 +128,6 @@ export class InicioPage {
               public alertCtrl: AlertController,
               public api : RestApiService) {
     this.initializeItems();
-    this.api.getTodo('Home/MasVistos');
     
   }
 
@@ -163,7 +162,7 @@ export class InicioPage {
     }else if (val != '') {
         var value = idAttr.nodeValue;
         console.log(value + " value");
-        //this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
+        this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
     }
     //
   }
