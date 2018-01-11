@@ -5,6 +5,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 
 import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
@@ -51,7 +52,7 @@ public class GetSuscripcionComando extends Command {
      */
 
     @Override
-    public void execute() throws BDConnectException1, PLConnectException1 {
+    public void execute() throws VIUCABException  {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
         ArrayList<Usuario> user = dao.listaSuscripciones(idSuscriptor);
