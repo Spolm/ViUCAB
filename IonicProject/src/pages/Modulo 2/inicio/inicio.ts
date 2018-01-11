@@ -30,7 +30,7 @@ export class InicioPage {
 
 //Metodo para llenar el listado de videos inicial
   ngOnInit(): void {
-    this.subscription = this.api.getVideos('Home/Inicio?id=1') //LLAMADA AL WS
+    this.subscription = this.api.getVideos('Home/ObtenerPreferencias?id=1') //LLAMADA AL WS
                         .subscribe(data => this.data = data,
                         error => this.errorMessage = error);
                         this.errorMessage = '';
@@ -262,7 +262,7 @@ export class InicioPage {
                 imagen: 'assets/imgs/shapeofyou.png',
                 visitas: 8
             }];*/
-            this.subscription = this.api.getVideos('Home/Inicio?id=1') //LLAMADA AL WS
+            this.subscription = this.api.getVideos('Home/ObtenerPreferencias?id=1') //LLAMADA AL WS
                                 .subscribe(data => this.data = data,
                                 error => this.errorMessage = error);
                                 this.errorMessage = '';

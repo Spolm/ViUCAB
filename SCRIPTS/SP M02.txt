@@ -77,22 +77,23 @@ end loop;
   
 END; 
 $BODY$
-  LANGUAGE plpgsql STABLE
+  LANGUAGE plpgsql STABLE;
   
-  CREATE OR REPLACE FUNCTION public.m02_obtenerpreferencias(IN idusuario numeric)
+CREATE OR REPLACE FUNCTION public.m02_obtenerpreferencias(IN idusuario numeric)
   RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying) AS
 $BODY$ 
 DECLARE
 var_r record;
 BEGIN 
-for var_r in(SELECT  VIDEO.* ,USUARIO.USU_LOGIN,USUARIO.USU_AVATAR
-             FROM video,usuario,categoria,preferencia,video_cat
-             WHERE video.vid_id=video_cat.idvid 
-                   AND categoria.cat_id=video_cat.idcat 
-                   AND usuario.usu_id=preferencia.id_usu 
-                   AND categoria.cat_id=preferencia.id_cat 
-                   AND video_cat.idcat=preferencia.id_cat 
-				   AND usuario.usu_id=idUsuario)
+for var_r in(SELECT video.*,u2.USU_LOGIN,u2.USU_AVATAR
+	FROM video,usuario as u1,usuario as u2,categoria,preferencia,video_cat
+         WHERE  video.vid_id=video_cat.idvid 
+         and categoria.cat_id=video_cat.idcat
+         AND   u1.usu_id=preferencia.id_usu 
+         and categoria.cat_id=preferencia.id_cat
+         AND  video_cat.idcat=preferencia.id_cat
+         and u1.usu_id=idusuario
+         and video.vid_usuario=u2.usu_id)
 loop
 		idvideo:=var_r.vid_id;
 		nombrevideo := var_r.vid_titulo;
@@ -111,7 +112,7 @@ end loop;
   
 END; 
 $BODY$
-  LANGUAGE plpgsql STABLE
+  LANGUAGE plpgsql STABLE;
   
  CREATE OR REPLACE FUNCTION public.m02_obtenersuscripciones(IN idusuario numeric)
   RETURNS TABLE(idvideo numeric, nombrevideo character varying, descripcionvideo character varying, imagenvideo character varying, urlvideo character varying, fechavideo character varying, visitasvideo character varying, nombreusuario character varying, imagenusuario character varying ) AS
@@ -143,5 +144,5 @@ end loop;
   
 END; 
 $BODY$
-  LANGUAGE plpgsql STABLE
+  LANGUAGE plpgsql STABLE;
 
