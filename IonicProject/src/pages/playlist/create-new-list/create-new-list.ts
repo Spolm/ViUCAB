@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-
+import { IonicPage, NavController, NavParams, AlertController, Events } from 'ionic-angular';
+import { RestApiService } from "../../../app/rest-api.service";
 /**
  * Generated class for the CreateNewListPage page.
  *
@@ -12,18 +12,30 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 @Component({
   selector: 'page-create-new-list',
   templateUrl: 'create-new-list.html',
+  providers: [RestApiService]
 })
 export class CreateNewListPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  public nombreLista:any;
+  public descripcionLista:any;
+
+  constructor(public events:Events, public navCtrl: NavController,public api: RestApiService, public navParams: NavParams, public alertCtrl: AlertController) {
   }
   
-  showAlert() {
-    let alert = this.alertCtrl.create({
-      title: 'Lista Creada!',
-      buttons: ['OK']
-    });
-    alert.present();
+  guardarListaNueva(){
+    this.api.geta('playlist/createPlaylist?id_usu='+ 4 +'&lis_rep_nombre='+ this.nombreLista +'&lis_rep_descripcion='+ this.descripcionLista).subscribe((data) => { // Success
+      console.log (data.json());
+      if(data.json() == true){
+        this.events.publish('reloadPlaylists');
+        this.navCtrl.pop();
+      }else if(data.json() == false){
+        
+      }
+      
+     },
+     (error) =>{
+       console.error(error);
+     });
   }
 
   ionViewDidLoad() {

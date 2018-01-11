@@ -1,14 +1,16 @@
 //Clase que se encarga de enviar las solicitudes al servidor Rest Java
-//En periodo de prueba, no se ha validado que funciona, pero es la estructura basica. 
-
+//En periodo de prueba, no se ha validado que funciona, pero es la estructura basica.
 import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
 
 //Direccion del servidor donde esta la BDD
+<<<<<<< HEAD
 const URL = 'http://localhost:8080/viucab';
+=======
+const URL = 'http://192.168.1.116:8080/viucab';
+>>>>>>> Develop
 
 @Injectable()
 export class RestApiService {
@@ -119,7 +121,6 @@ export class RestApiService {
    }
 
    //Manejo de erorres
-
    private handleError (error: Response | any) {
     console.error('ApiService::handleError', error);
     return Observable.throw(error);
@@ -130,16 +131,33 @@ export class RestApiService {
   public getVideos(direccion): Observable<any> {
     return this.http.get(URL+'/'+direccion)
         .map((data: any) => data.json())
-        .do(data => console.log("get Countries from json: " + JSON.stringify(data)))
+        .do(data => console.log("get Videos from json: " + JSON.stringify(data)))
         .catch(this.handleError);
   }
 
 
- 
+
   public geta(direccion){
     return this.http
       .get(URL+'/'+direccion)
- 
+
   }
+
+  public getReproduccion(direccion){
+    return this.http
+      .get(URL+'/'+direccion)
+
+  }
+  
+/////////////////
+ //Metodo DELETE: /direccion
+   //Elimina en una direccion
+   public deleteSus(direccion){
+    return this.http
+    .get(URL+'/'+direccion)
+    .map((data: any) => data.json())
+    .catch(this.handleError);
+   }
+  
 
 }

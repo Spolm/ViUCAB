@@ -9,14 +9,19 @@ import java.util.List;
 
 public class Etiquetas extends Entity{
     private int id;
-    private List<Video_Etiq> videoEtiqList;
+    private Video_Etiq videoEtiqList;
     private List<Cat_Fil_Etiq> catFilEtiqList;
     private String valor;
 
-    public Etiquetas(int id, List<Video_Etiq> videoEtiqList, List<Cat_Fil_Etiq> catFilEtiqList, String valor) {
+    public Etiquetas(int id, Video_Etiq videoEtiqList, List<Cat_Fil_Etiq> catFilEtiqList, String valor) {
         this.id = id;
         this.videoEtiqList = videoEtiqList;
         this.catFilEtiqList = catFilEtiqList;
+        this.valor = valor;
+    }
+
+    public Etiquetas(String valor, Video_Etiq videoEtiq){
+        this.videoEtiqList = videoEtiq;
         this.valor = valor;
     }
 
@@ -43,11 +48,11 @@ public class Etiquetas extends Entity{
         this.valor = valor;
     }
 
-    public List<Video_Etiq> getVideoEtiqList() {
+    public Video_Etiq getVideoEtiqList() {
         return videoEtiqList;
     }
 
-    public void setVideoEtiqList(List<Video_Etiq> videoEtiqList) {
+    public void setVideoEtiqList(Video_Etiq videoEtiqList) {
         this.videoEtiqList = videoEtiqList;
     }
 

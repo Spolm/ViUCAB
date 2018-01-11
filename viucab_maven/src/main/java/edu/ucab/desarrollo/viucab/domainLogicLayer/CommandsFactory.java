@@ -2,15 +2,24 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
+<<<<<<< HEAD
+=======
+import edu.ucab.desarrollo.viucab.common.entities.Video;
+>>>>>>> Develop
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasLikeComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.*;
+
 
 /**
  * Fabrica de comandos creada por M011
@@ -60,21 +69,69 @@ public class CommandsFactory {
 
     //M02 Instancias
 
-    public  static  Command instanciateGetBusquedaComando     (String criterio) {return  new GetBusquedaComando(criterio);}
+    public  static  Command instanciateGetBusquedaComando     (Entity est) {return  new GetBusquedaComando(est);}
 
     //Mas Vistos no recibe Parametros
     public  static  Command instanciateGetMasVistosComando    () {return  new GetMasVistosComando();}
 
-    public  static  Command instanciateGetPreferenciasComando (int idUsuario) {return  new GetPreferenciasComando(idUsuario);}
+    public  static  Command instanciateGetPreferenciasComando (Entity est) {return  new GetPreferenciasComando(est);}
 
-    public  static  Command instanciateGetSuscritosComando    (int idUsuario) {return  new GetSuscritosComando(idUsuario);}
+    public  static  Command instanciateGetSuscritosComando    (Entity est) {return  new GetSuscritosComando(est);}
 
     // Fin instancias M02
+
+    //M03 Video
+
+    public static AddVideoCommand intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);}
+
+    public static UpdateVideoCommand intantiateUpdateVideoCommand (Entity e){return new UpdateVideoCommand(e);}
+
+    public static GetAllVideoByIdCommand intantiateGetAllVideoByIdCommand(int userID) {
+        return new GetAllVideoByIdCommand(userID);
+    }
+
+    public static GetVideoCommand intantiateGetVideoCommand(int videoId) {
+        return new GetVideoCommand(videoId);
+    }
+
+    public static DeleteVideoCommand intantiateDeleteVideoCommand(int videoId) {
+        return new DeleteVideoCommand(videoId);
+    }
+
+    //Fin M03
 
     //region M05
 
     public static Command instanciaGetLista (Entity lista){
         return new GetListaComando(lista);
+    }
+
+    public static Command instanciaGetEspecificList (Entity lista){
+        return new GetEspecificListComando(lista);
+    }
+
+    public static Command instanciaAddListComando (Entity lista){
+        return new AddListComando(lista);
+    }
+
+    public static Command instanciaModifyListComando (Entity lista){
+        return new ModifyListComando(lista);
+    }
+
+    public static Command instanciaDeleteListComando (Entity lista){
+        return new DeleteListComando(lista);
+    }
+
+    public static Command instanciaAddVideoToListComando (Entity lista){
+        return new AddVideoToListComando(lista);
+    }
+
+    public static Command instanciaDeleteVideoToListComando (Entity lista){
+        return new DeleteVideoToListComando(lista);
+    }
+
+    public static Command instanciaGetVideosFromList (Entity lista){
+        return new GetVideosFromListComando(lista);
     }
 
     //endregion
@@ -101,8 +158,52 @@ public class CommandsFactory {
 
      public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
 
-
+     public static Command instanciaGetUsuariosComando () {return  new GetUsuariosComando();}
     //Fin instancias M08
+<<<<<<< HEAD
+=======
+     
+     
+     // M04
+     
+     public static Command instanciarComandoGetVideoInfo(int idvideo) {
+         return new ComandoGetVideoInfo(idvideo);
+     }
+     
+     public static Command instanciarComandoGetVideosRelacionados(int idvideo) {
+         return new ComandoGetVideosRelacionados(idvideo);
+     }
+     
+     public static Command instanciarComandoGetComentarios(int idvideo) {
+         return new ComandoGetComentarios(idvideo);
+     }
+     
+     public static Command instanciarComandoGetVideoYCanal(int idvideo) {
+         return new ComandoGetVideoYCanal(idvideo);
+     }
+     
+     public static Command instanciarComandoAddVisita(int idvideo) {
+         return new ComandoAddVisita(idvideo);
+     }
+     
+     public static Command instanciarComandoAgregarComentario(int idvideo,String usuario, String comentario) {
+         return new ComandoAgregarComentario(idvideo,usuario,comentario);
+     }
+        
+     public static Command instanciarComandoUpdateLike(int idvideo,String usuario) {
+         return new ComandoUpdateLike(idvideo,usuario);
+     }
+        
+     public static Command instanciarComandoGetIfLike(int idvideo,String usuario) {
+         return new ComandoGetIfLike(idvideo,usuario);
+     }
+        
+     public static Command instanciarComandoDeleteComentario(int idcom) {
+         return new ComandoDeleteComentario(idcom);
+     }
+     
+     // Fin M04
+>>>>>>> Develop
 
     //regin M09
 
@@ -111,4 +212,12 @@ public class CommandsFactory {
     public static Command instaciateSugerenciasSuscripcion (Entity video) {return new GetSugerenciasSuscripcionComando(video);}
 
     //fin M09
+<<<<<<< HEAD
+=======
+
+    // M10
+    public static Command instanciateGetNotificaciones ( Entity notificacion) {
+        return new GetNotificaciones(notificacion);
+    }
+>>>>>>> Develop
 }

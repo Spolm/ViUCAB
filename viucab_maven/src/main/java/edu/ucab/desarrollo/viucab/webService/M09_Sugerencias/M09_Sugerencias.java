@@ -4,8 +4,12 @@ import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
+<<<<<<< HEAD
 import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.M08.PlConnectException;
+=======
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
+>>>>>>> Develop
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasLikeComando;
@@ -25,7 +29,11 @@ public class M09_Sugerencias {
     @Path("/get_sugerencias-likes")
     //@Produces("Application/json")
     @Produces(MediaType.APPLICATION_JSON)
+<<<<<<< HEAD
     public String getSugerenciasLikes(@QueryParam("id") int id_usuario, @QueryParam("categoria") String categoria) throws PlConnectException, BdConnectException {
+=======
+    public String getSugerenciasLikes(@QueryParam("id") int id_usuario, @QueryParam("categoria") String categoria)  {
+>>>>>>> Develop
 
         Entity respuesta = EntityFactory.instaciateVideo(id_usuario, categoria);
         Command cmd = CommandsFactory.instaciateSugerenciasLike(respuesta);
@@ -58,19 +66,34 @@ public class M09_Sugerencias {
     @Path("/get_sugerencias-suscripciones")
     //@Produces("Application/json")
     @Produces(MediaType.APPLICATION_JSON)
+<<<<<<< HEAD
     public String getSugerenciasSuscripciones(@QueryParam("id") int id_usuario, @QueryParam("categoria") String categoria) throws PlConnectException, BdConnectException {
+=======
+    public String getSugerenciasSuscripciones(@QueryParam("id") int id_usuario, @QueryParam("categoria") String categoria)  {
+>>>>>>> Develop
         Entity respuesta = EntityFactory.instaciateVideo(id_usuario, categoria);
         Command cmd = CommandsFactory.instaciateSugerenciasSuscripcion(respuesta);
         GetSugerenciasSuscripcionComando comando = (GetSugerenciasSuscripcionComando) cmd;
            /* FabricaComando fabrica = new FabricaComando();
             GetSugerenciasLikeComando comando = fabrica.FabricarComando1();
             return comando.executeCoomand(id_usuario, categoria);*/
+<<<<<<< HEAD
+=======
+        try {
+>>>>>>> Develop
             comando.execute();
             Entity result = cmd.Return();
             Gson gson = new Gson();
             Video v = (Video) result;
             ArrayList<Entity> lista = comando.executeCommand();
             return gson.toJson(lista);
+<<<<<<< HEAD
+=======
+        } catch (BdConnectException e) {
+            e.printStackTrace();
+        }
+
+>>>>>>> Develop
 
         //Tiene que manejar esta excepcion ya que mas abajo hay metodos con SQL
         /*catch (SQLException e) {
@@ -81,6 +104,10 @@ public class M09_Sugerencias {
             //respuesta.set_errorCode(ex.getMessage());
 
         }*/
+<<<<<<< HEAD
 
+=======
+        return null;
+>>>>>>> Develop
     }
 }

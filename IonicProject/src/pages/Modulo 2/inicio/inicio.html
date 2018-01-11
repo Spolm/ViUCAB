@@ -28,11 +28,16 @@
 
 <ion-content padding>
 
-  <ion-card *ngFor="let item of items">
+  <ion-card *ngFor="let item of data">
      
       <ion-item> 
+        <ion-buttons class= 'centrado-porcentual2'  >
+            <button class="boton">
+          <ion-icon name="add" ></ion-icon>   
+        </button>
+        </ion-buttons>   
         <ion-avatar item-start>
-          <img src="assets/imgs/marty-avatar.png">
+        <img src="assets/imgs/defaultavatar.png">
         </ion-avatar>
 
         <h2>{{item.usuario}}</h2> <!--Nombre de usuario-->
@@ -40,17 +45,17 @@
         
       </ion-item>
     
-      <img src="assets/imgs/advance-card-bttf.png">
+      <img src={{item.imagen}}>
     
       <ion-card-content>
-        <p>{{item.nombre}}</p> <!--Titulo del video-->
+        <p style="font-size:large">{{item.nombre}}</p> <!--Titulo del video-->
       </ion-card-content>
     
       <ion-row>
         <ion-col>
           <button ion-button icon-left clear small>
             <ion-icon name="eye"></ion-icon>
-            <div>{{item.visitas}} visita/as</div>
+            <div>{{item.visitas}} vista/s</div>
           </button>
         </ion-col>
       </ion-row>

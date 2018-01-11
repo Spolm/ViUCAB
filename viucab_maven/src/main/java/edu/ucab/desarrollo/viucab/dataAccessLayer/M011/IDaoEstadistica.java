@@ -10,7 +10,7 @@ import java.sql.SQLException;
  */
 public interface IDaoEstadistica extends IDao {
 
-    Entity GetEstadistica1 (Entity e) throws SQLException; //throws SQLException, BdConnectException;
+    Entity GetEstadistica1 (Entity e) throws SQLException; //throws SQLException, BDConnectException1;
     Entity GetEstadistica2 (Entity e);
     Entity GetEstadistica3 (Entity e);
     Entity GetEstadistica4 (Entity e);
