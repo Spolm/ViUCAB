@@ -7,6 +7,11 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoV
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Comando que se encarga de eliminar un video
+ *
+ */
+
 public class DeleteVideoCommand extends Command {
 
 
@@ -15,11 +20,21 @@ public class DeleteVideoCommand extends Command {
     public String _returned;
 
 
+    /**
+     * Constructor de comando eliminar video
+     * @Param int
+     *
+     */
+
     public DeleteVideoCommand(int videoId){
 
         _video = videoId;
     }
 
+    /**
+     * Metodo que ejecuta el comando eliminar video
+     *
+     */
     @Override
     public void execute() throws Exception {
 

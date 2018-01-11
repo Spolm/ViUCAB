@@ -12,16 +12,27 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-
+/**
+ * Clase para acceder a la capa de datos por PostgreSQL.
+ *
+ */
 
 public class DaoVideoEntity implements IDaoVideoEntity {
 
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(DaoVideoEntity.class);
 
+    /**
+     * Constructor Vacio
+     */
     public DaoVideoEntity(){
 
     }
 
+    /**
+     * Metodo de capa de datos que guarda videos
+     * @Param Entity
+     *
+     */
     @Override
     public int addVideo(Entity e) throws SQLException{
 
@@ -58,6 +69,10 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
     }
 
+    /**
+     * Metodo de capa de datos que obtiene un video
+     *@Param int
+     */
     @Override
     public VideoEntity getVideo(int idVideo) throws SQLException {
         logger.debug("Debug: Getting VideoEntity - DAO");
@@ -82,6 +97,11 @@ public class DaoVideoEntity implements IDaoVideoEntity {
         }
     }
 
+    /**
+     * Metodo de capa de datos que obtiene todos los videos de un usuario
+     * @Param int
+     *
+     */
 
     @Override
     public ArrayList<VideoEntity> getAllVideoById(int idUsuario) throws SQLException {
@@ -108,6 +128,10 @@ public class DaoVideoEntity implements IDaoVideoEntity {
     }
 
 
+    /**
+     * Metodo de capa de datos que edita el video
+     * @Param Entity
+     */
     @Override
     public int updateVideo(Entity e) throws SQLException {
         logger.debug("Debug: Updating VideoEntity - DAO");
@@ -140,6 +164,13 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
     }
 
+
+    /**
+     * Metodo de capa de datos que elimina un video
+     * @Param int
+     *
+     */
+
     @Override
     public int deleteVideo(int idVideo) throws SQLException {
         logger.debug("Debug: Deleting VideoEntity - DAO");
@@ -163,6 +194,10 @@ public class DaoVideoEntity implements IDaoVideoEntity {
         }
     }
 
+    /**
+     * Metodo de capa de datos que se encarga de devolver el siguiente id de video.
+     *
+     */
     @Override
     public int getNextId() throws SQLException {
         logger.debug("Debug: getLast VideoEntity ID - DAO");
@@ -210,6 +245,11 @@ public class DaoVideoEntity implements IDaoVideoEntity {
     }
 
 
+    /**
+     * Metodo de capa de datos que se encarga de manejar la respuesta de la Base de Datos respondieno un entero
+     *
+     * @Param ResultSet
+     */
     private int getResponseIntBD(ResultSet rs) throws NullPointerException, SQLException{
 
         int salida = 0;
@@ -221,6 +261,13 @@ public class DaoVideoEntity implements IDaoVideoEntity {
         return salida;
 
     }
+
+    /**
+     * Metodo de capa de datos que se encarga de manejar la respuesta de la Base de Datos respondiendo
+     * un arreglo de videos
+     *
+     * @Param ResultSet
+     */
 
     private ArrayList<VideoEntity> getResponseArrayListBD(ResultSet rs) throws SQLException {
         ArrayList<VideoEntity> salida = new ArrayList<VideoEntity>();
@@ -242,6 +289,11 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
     }
 
+    /**
+     * Metodo de capa de datos que se encarga de manejar la respuesta de la Base de Datos respondieno un video
+     *
+     * @Param ResultSet
+     */
     private VideoEntity getResponseVideoBD(ResultSet rs)throws SQLException {
         VideoEntity salida = null;
 

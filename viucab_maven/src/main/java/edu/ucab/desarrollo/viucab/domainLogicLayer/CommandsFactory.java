@@ -79,17 +79,45 @@ public class CommandsFactory {
 
     //M03 Video
 
+    /**
+     * Metodo que instancia un comando de agregar video.
+     *@Param Entity
+     */
     public static Command intantiateAddVideoCommand (Entity e){return new AddVideoCommand(e);}
 
+    /**
+     * Metodo que instancia un comando de editar video
+     *
+     * @Param Entity
+     *
+     */
     public static Command intantiateUpdateVideoCommand (Entity e){return new UpdateVideoCommand(e);}
 
+
+    /**
+     *Metodo que instancia un comando GetAllVideoById
+     *
+     * @Param int
+     *
+     */
     public static Command intantiateGetAllVideoByIdCommand(int userID) {
         return new GetAllVideoByIdCommand(userID);
     }
 
+    /**
+     * Metodo que instancia un comando GetVideo
+     *
+     * @Param int
+     *
+     */
     public static Command intantiateGetVideoCommand(int videoId) {
         return new GetVideoCommand(videoId);
     }
+
+    /**
+     * Metodo que intancia un comando eliminar video.
+     *
+     */
 
     public static Command intantiateDeleteVideoCommand(int videoId) {
         return new DeleteVideoCommand(videoId);

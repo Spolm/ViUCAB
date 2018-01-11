@@ -8,6 +8,10 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoV
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Comando que se encarga de obtener la informacion de un video
+ *
+ */
 public class GetVideoCommand extends Command {
 
 
@@ -16,11 +20,20 @@ public class GetVideoCommand extends Command {
     public VideoEntity _returned;
 
 
+    /**
+     * Constructor de comando obtener video
+     * @Param int
+     *
+     */
     public GetVideoCommand(int videoId){
 
         _videoId = videoId;
     }
 
+    /**
+     * Metodo que se encarga de ejecutar el comando obtener video
+     *
+     */
     @Override
     public void execute() throws Exception {
 

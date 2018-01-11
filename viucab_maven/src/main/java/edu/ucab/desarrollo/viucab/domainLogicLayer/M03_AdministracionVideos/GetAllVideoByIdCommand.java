@@ -10,6 +10,10 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 
+/**
+ * Comando que se encarga de obtener todos los videos de un usuario.
+ *
+ */
 public class GetAllVideoByIdCommand extends Command {
 
 
@@ -17,12 +21,21 @@ public class GetAllVideoByIdCommand extends Command {
 
     public ArrayList<VideoEntity> _returned;
 
+    /**
+     * Constructor de comando obtener todos los video por id de usuario
+     * @Param int
+     *
+     */
 
     public GetAllVideoByIdCommand(int usuario){
 
         _usuario = usuario;
     }
 
+    /**
+     * Metodo que ejecuta el comando obtener todos los videos por id de usuario
+     *
+     */
     @Override
     public void execute() throws Exception {
 
