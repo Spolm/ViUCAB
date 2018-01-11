@@ -115,7 +115,7 @@ public class M08_Suscripcion {
 
             GetSuscripcionComando cmd = (GetSuscripcionComando) comandSuscripcion;
             cmd.execute();
-            ArrayList<Usuario> result = cmd.get_listUsuario(); System.out.println("RESPUESTA DE CAPA DE PRESENTACION->  "+result);
+            ArrayList<Usuario> result = cmd.get_listUsuario();
 
 
             return   gson.toJson(result);
