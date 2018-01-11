@@ -9,6 +9,7 @@ import java.util.Date;
 import java.sql.*;
 import java.util.ArrayList;
 
+import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.Filtro;
@@ -287,14 +288,14 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
                 listaFiltrosBD.add(resultado);
             }
 
-            //Clasificando y formando la lista de los videos que se van a insertar de la base de datos
+            //Clasificando y formando la lista de los filtros que se van a insertar de la base de datos
             for( int i = 0 ; i < listaFiltrosNuevos.size() ; i++ ){
                 if (!(listaFiltrosBD.contains(listaFiltrosNuevos.get(i)))) {
                     listaInsertsBD.add(listaFiltrosNuevos.get(i).getId());
                 }
             }
 
-            //Clasificando y formando la lista de los videos que se van a eliminar de la base de datos
+            //Clasificando y formando la lista de los filtros que se van a eliminar de la base de datos
             for( int i = 0 ; i < listaFiltrosBD.size() ; i++ ){
                 if (!(listaFiltrosNuevos.contains(listaFiltrosBD.get(i)))) {
                     listaDeleteBD.add(listaFiltrosBD.get(i).getId());
@@ -302,20 +303,27 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
             }
 
             //Eliminando los filtros no marcados en la app
+
+            conn.close();
+            ps=null;
+            conn=getBdConnect();
             for( int i = 0 ; i < listaDeleteBD.size() ; i++ ){
-                String transDelete="DELETE FROM USU_FIL WHERE ID_USU="+id+" AND ID_FIL="+listaDeleteBD.get(i);
-                ps = conn.prepareStatement(query);
-                ps.executeQuery();
+                String transDelete="DELETE FROM USU_FIL WHERE ID_USU="+Integer.toString(id)+" AND ID_FIL="+Integer.toString(listaDeleteBD.get(i));
+                ps = conn.prepareStatement(transDelete);
+                ps.executeUpdate();
             }
+            conn.close();
+            ps=null;
+            conn=getBdConnect();
             //Insertando solo los filtros nuevos que no estaban en BD
             for( int i = 0 ; i < listaInsertsBD.size() ; i++ ){
-                String transInserts="INSERT INTO USU_FIL(ID_USU,ID_FIL) VALUES ("+id+","+listaInsertsBD.get(i)+")";
-                ps = conn.prepareStatement(query);
-                ps.executeQuery();
+                String transInserts="INSERT INTO USU_FIL(ID_USU,ID_FIL) VALUES ("+Integer.toString(id)+","+listaInsertsBD.get(i)+")";
+                ps = conn.prepareStatement(transInserts);
+                ps.executeUpdate();
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            return "error"+e.getMessage();
         } catch (Exception e){
             logger.error("Metodo: {} {}","guardarFiltrosEnBD",e.toString());
             throw  new VIUCABException(e);
@@ -323,8 +331,9 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
         } finally{
             Sql.bdClose(conn);
         }
+Gson g = new Gson();
 
-        return "s";
+        return (g.toJson(listaDeleteBD));
     }
 
 

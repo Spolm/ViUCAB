@@ -93,7 +93,7 @@ public class M12_ModeracionContenido {
             Command commadModeracionContenido = CommandsFactory.instanciarGuardarFiltrosComando(contenedor);
             GuardarFiltrosComando cmd = (GuardarFiltrosComando) commadModeracionContenido;
             cmd.execute();
-            return gson.toJson(cmd.getResultadoGuardado());
+            return cmd.getResultadoGuardado();
 
         } catch (Exception ex) {
             return gson.toJson("ASD");
