@@ -155,7 +155,7 @@ public class CommandsFactory {
 
      public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
 
-     public static Command instanciaGetUsuariosComando () {return  new GetUsuariosComando();}
+     public static Command instanciaGetUsuariosComando (int idLogueado) {return  new GetUsuariosComando( idLogueado );}
     //Fin instancias M08
      
      

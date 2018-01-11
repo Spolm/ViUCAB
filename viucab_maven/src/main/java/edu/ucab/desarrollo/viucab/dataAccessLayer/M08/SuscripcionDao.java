@@ -6,6 +6,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Suscripcion;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import org.postgresql.util.PSQLException;
 
@@ -32,7 +33,7 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      * @return resultlist
      * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public ArrayList<Usuario> listaUsuarios() throws BDConnectException1, PLConnectException1 {
+    public ArrayList<Usuario> listaUsuarios(int idUsuario) throws  VIUCABException {
         CallableStatement preStatement = null;
         //Creando la lista q corresponde a usuarios
         ArrayList<Usuario> listaUsers  = new ArrayList<>();
@@ -45,9 +46,9 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SPa
-            preStatement = conn.prepareCall("{call m08_get_usuarios()}");
+            preStatement = conn.prepareCall("{call m08_get_usuarios(?)}");
             //Metiendo los parametros al SP
-           // preStatement.setInt(1,idUsuario);
+            preStatement.setInt(1,idUsuario);
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
 
@@ -66,9 +67,10 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){   throw new PLConnectException1(e);     }
-          catch (SQLException e) {   throw new BDConnectException1(e);       }
-          catch (Exception e)    {   e.printStackTrace();    }
+        } catch (NullPointerException e){  throw new VIUCABException("CAMPOS NULOS", e);}
+        catch (PSQLException e){   throw new VIUCABException("ERROR CON EL STORE PROCEDURE",e);     }
+        catch (SQLException e) {   throw new VIUCABException("ERROR CON LA BASE DE DATOS",e);       }
+        catch (Exception e)    {    throw new VIUCABException(e);    }
         finally {
             closeConnection();
         }
@@ -83,7 +85,7 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      * @return resultlist
      * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-      public ArrayList<Usuario> listaSuscripciones(int idUsuario) throws BDConnectException1, PLConnectException1 {
+      public ArrayList<Usuario> listaSuscripciones(int idUsuario) throws VIUCABException   {
         CallableStatement preStatement = null;
           //Creando la lista q corresponde a usuarios
         ArrayList<Usuario> listaSuscripcion  = new ArrayList<>();
@@ -115,9 +117,10 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             }
             resultSet.close();
 
-        } catch (PSQLException e){   throw new PLConnectException1(e);     }
-          catch (SQLException e) {   throw new BDConnectException1(e);       }
-          catch (Exception e)    {   e.printStackTrace();    }
+        }  catch (NullPointerException e){  throw new VIUCABException("CAMPOS NULOS", e);}
+        catch (PSQLException e){   throw new VIUCABException("ERROR CON EL STORE PROCEDURE",e);     }
+        catch (SQLException e) {   throw new VIUCABException("ERROR CON LA BASE DE DATOS",e);       }
+        catch (Exception e)    {    throw new VIUCABException(e);    }
         finally {
             closeConnection();
         }
@@ -132,13 +135,14 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      * @return resultlist
      * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public String insertarSuscriptor (int idUsuario, int idsuscripcion) throws BDConnectException1, PLConnectException1 {
+    public void insertarSuscriptor (int idUsuario, int idsuscripcion) throws VIUCABException {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
         Connection conn;
         String respuesta=null;
         try {
+
             //Creando la instancia de Conexion a la BD
             conn = getBdConnect();
             //Invocando el SP
@@ -150,15 +154,16 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             resultSet.close();
-            return respuesta="lo inserto";
+            //return respuesta="lo inserto";
         }
-          catch (PSQLException e){   throw new PLConnectException1(e);     }
-          catch (SQLException e) {   throw new BDConnectException1(e);       }
-          catch (Exception e)    {   e.printStackTrace();    }
+          catch (NullPointerException e){  throw new VIUCABException("CAMPOS NULOS", e);}
+          catch (PSQLException e){   throw new VIUCABException("ERROR CON EL STORE PROCEDURE",e);     }
+          catch (SQLException e) {   throw new VIUCABException("ERROR CON LA BASE DE DATOS",e);       }
+          catch (Exception e)    {    throw new VIUCABException(e);    }
         finally {
             closeConnection();
-            if(respuesta==null) respuesta="ya esta insertado";
-            return respuesta;
+           //if(respuesta==null) respuesta="ya esta insertado";
+           // return respuesta;
         }
 
     }
@@ -170,7 +175,7 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
      * @return resultlist
      * @throws PLConnectException1 , BDConnectException1 Exepcion personalizada
      */
-    public String eliminarSuscriptor (int idUsuario, int idsuscripcion) throws BDConnectException1, PLConnectException1 {
+    public void eliminarSuscriptor (int idUsuario, int idsuscripcion) throws VIUCABException {
         CallableStatement preStatement = null;
         ResultSet resultSet = null;
         Suscripcion suscrip;
@@ -188,15 +193,16 @@ public class SuscripcionDao extends Dao implements IDaoSuscripcion {
             resultSet = preStatement.executeQuery();
 
             resultSet.close();
-            return respuesta="lo elimino";
 
-        }  catch (PSQLException e){   throw new PLConnectException1(e);     }
-           catch (SQLException e) {   throw new BDConnectException1(e);       }
-           catch (Exception e)    {   e.printStackTrace();    }
+
+        } catch (NullPointerException e){  throw new VIUCABException("CAMPOS NULOS", e);}
+          catch (PSQLException e){   throw new VIUCABException("ERROR CON EL STORE PROCEDURE",e);     }
+          catch (SQLException e) {   throw new VIUCABException("ERROR CON LA BASE DE DATOS",e);       }
+          catch (Exception e)    {    throw new VIUCABException(e);    }
             finally {
             closeConnection();
 
-            return respuesta;
+
 
         }
 
