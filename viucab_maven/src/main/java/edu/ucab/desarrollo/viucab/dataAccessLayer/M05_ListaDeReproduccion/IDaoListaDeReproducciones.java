@@ -11,9 +11,9 @@ import java.util.ArrayList;
  */
 public interface IDaoListaDeReproducciones extends IDao {
 
-    ArrayList<Entity> GetLista(Entity e) throws SQLException;
+    ArrayList<Entity> getLista(Entity e) throws SQLException;
 
-    Entity GetEspecificList(Entity e) throws SQLException;
+    Entity getEspecificList(Entity e) throws SQLException;
 
     Boolean createLista(Entity e) throws SQLException;
 

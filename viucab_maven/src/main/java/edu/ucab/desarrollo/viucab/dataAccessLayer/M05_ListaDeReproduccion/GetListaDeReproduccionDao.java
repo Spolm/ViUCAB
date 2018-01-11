@@ -43,7 +43,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return resultlist
      */
     @Override
-    public ArrayList<Entity> GetLista(Entity e) throws SQLException {
+    public ArrayList<Entity> getLista(Entity e) throws SQLException {
 
         ArrayList<Entity> listaContenedora= new ArrayList<>();
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
@@ -99,7 +99,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @throws SQLException
      */
     @Override
-    public Entity GetEspecificList(Entity e) throws SQLException {
+    public Entity getEspecificList(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
         Integer idListaBuscada = lista.getIdLista();

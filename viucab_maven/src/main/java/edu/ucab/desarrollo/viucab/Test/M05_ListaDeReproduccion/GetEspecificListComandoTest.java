@@ -20,7 +20,7 @@ public class GetEspecificListComandoTest {
         Entity est = EntityFactory.getListaEspecifica(70);
 
         GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //instancio DAO
-        Entity resultadoPrueba = dao.GetEspecificList(est); //llamo al metodo y obtengo el resultado
+        Entity resultadoPrueba = dao.getEspecificList(est); //llamo al metodo y obtengo el resultado
         assertNotNull(resultadoPrueba);
     }
 

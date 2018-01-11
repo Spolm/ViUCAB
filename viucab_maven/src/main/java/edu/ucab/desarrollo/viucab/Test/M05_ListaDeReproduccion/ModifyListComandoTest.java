@@ -8,9 +8,7 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetLis
 import org.junit.Test;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class ModifyListComandoTest {

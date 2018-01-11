@@ -56,9 +56,9 @@ public class GetListaComando extends Command {
     public void execute() throws VIUCABException, SQLException {
 
             GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //seteo el DAO
-            /*ArrayList<Entity> listas = dao.GetLista(est);
+            /*ArrayList<Entity> listas = dao.getLista(est);
             _resultado = listas; */
-            _resultado = dao.GetLista(est); //llamo al metodo en dao y obtengo la lista con los resultados
+            _resultado = dao.getLista(est); //llamo al metodo en dao y obtengo la lista con los resultados
 
         /*}
         catch (Exception e){

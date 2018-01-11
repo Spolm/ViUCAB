@@ -10,7 +10,6 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  * Clase comando para obtener una lista especifica
@@ -40,9 +39,9 @@ public class GetEspecificListComando extends Command {
     public void execute() throws VIUCABException, SQLException {
 
         GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //seteo dao
-        /*Entity  lista = dao.GetEspecificList(est);
+        /*Entity  lista = dao.getEspecificList(est);
            est = lista; //asigno el resultado a la entidad*/
-        est = dao.GetEspecificList(est); //llamo al metodo de dao y obtengo el resultado
+        est = dao.getEspecificList(est); //llamo al metodo de dao y obtengo el resultado
 /*
         }
         catch (Exception e){

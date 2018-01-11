@@ -50,7 +50,7 @@ public class AddListComando extends Command {
     public void execute() throws VIUCABException, SQLException {
 
         GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //instancio DAO
-        //ArrayList<Entity> listas = dao.GetLista(est);//_resultado = listas;
+        //ArrayList<Entity> listas = dao.getLista(est);//_resultado = listas;
         resultado = dao.createLista(est); //llamo al metodo y obtengo el resultado
 
         /*ANTIGUO CATCH

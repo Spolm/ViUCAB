@@ -51,7 +51,7 @@ public class GetVideosFromListComando extends Command {
 
             GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //seteo dao
             //ArrayList<Entity> listas = dao.GetVideosFromList(est); //llamo al metodo en dao y obtengo la lista con respuestas
-            //Entity  lista = dao.GetLista(est);
+            //Entity  lista = dao.getLista(est);
             _resultado = dao.GetVideosFromList(est); //llamo al metodo en dao y obtengo la lista con respuestas
 /*
         }

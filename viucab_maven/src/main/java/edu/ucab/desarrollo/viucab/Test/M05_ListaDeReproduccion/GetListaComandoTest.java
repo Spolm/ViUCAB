@@ -20,7 +20,7 @@ public class GetListaComandoTest {
         Entity est = EntityFactory.getLista(70);
 
         GetListaDeReproduccionDao dao =  DaoFactory.instanciateDaoListaDeReproduccion(); //instancio DAO
-        ArrayList<Entity> resultadoPrueba = dao.GetLista(est); //llamo al metodo y obtengo el resultado
+        ArrayList<Entity> resultadoPrueba = dao.getLista(est); //llamo al metodo y obtengo el resultado
         assertNotNull(resultadoPrueba);
     }
 }
