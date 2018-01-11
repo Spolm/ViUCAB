@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestApiService } from '../../../app/rest-api.service';
+import { ServicioProvider } from '../../../providers/servicio/servicio';
 
 /**
  * Generated class for the AccesoConfigContenidoPage page.
@@ -18,7 +18,7 @@ import { RestApiService } from '../../../app/rest-api.service';
 export class AccesoConfigContenidoPage {
   private id: number =1;
   private password: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public s: RestApiServicez) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public s: ServicioProvider) {
     
   }
 

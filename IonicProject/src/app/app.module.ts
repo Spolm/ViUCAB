@@ -36,6 +36,11 @@ import { ChannelsPage } from '../pages/Modulo 8/channels/channels';
 
 import {ReproductorPage} from "../pages/reproductor/reproductor"
 
+//Modificado por Grupo 12
+import { AccesoConfigContenidoPage } from '../pages/M12_ModeracionContenido/acceso-config-contenido/acceso-config-contenido';
+import { ServicioProvider } from '../providers/servicio/servicio';
+//Fin modificación
+
 @NgModule({
   declarations: [
     MyApp,
@@ -47,7 +52,8 @@ import {ReproductorPage} from "../pages/reproductor/reproductor"
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,
-    ReproductorPage
+    ReproductorPage,
+    AccesoConfigContenidoPage
 
   ],
   imports: [
@@ -68,7 +74,8 @@ import {ReproductorPage} from "../pages/reproductor/reproductor"
     NotificacionesPage,
     ConfiguracionNotificacionesPage,
     ChannelsPage,
-    ReproductorPage
+    ReproductorPage,
+    AccesoConfigContenidoPage
   ],
   providers: [
     StatusBar,
@@ -80,6 +87,7 @@ import {ReproductorPage} from "../pages/reproductor/reproductor"
     FilePath,
     HTTP,
     SplashScreen,
+    ServicioProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

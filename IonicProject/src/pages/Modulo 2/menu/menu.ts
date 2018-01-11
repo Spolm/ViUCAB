@@ -16,6 +16,8 @@ import {NotificacionesPage} from '../../notificaciones/notificaciones';
 import {ConfiguracionNotificacionesPage} from '../../configuracion-notificaciones/configuracion-notificaciones';
 //Fin Modificado por Modulo 10
 
+import {AccesoConfigContenidoPage} from '../../M12_ModeracionContenido/acceso-config-contenido/acceso-config-contenido';
+
 import { ChannelsPage } from '../../Modulo 8/channels/channels';
 
 export interface PageInterface {
@@ -102,6 +104,13 @@ export class MenuPage {
     this.MyChannelItemHandler();
   }
   //Fin modificado por Modulo 3
+
+    //Modificado por Módulo 12 (06/12/2017)
+    openAccesoModContenido(){
+      this.nav.push(AccesoConfigContenidoPage);
+      this.MyChannelItemHandler();
+    }
+    //Fin de Modificación por Módulo 12 (06/12/2017)
 
   //Modificado por Modulo 10
   openNotificaciones(){

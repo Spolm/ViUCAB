@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { RestApiService } from '../../../app/rest-api.service';
+import { ServicioProvider } from '../../../providers/servicio/servicio';
 
 /**
  * Generated class for the ConfigContenidoPage page.
@@ -57,7 +57,7 @@ export class ConfigContenidoPage {
     filtros =[];
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public servicio:RestApiService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public servicio:ServicioProvider) {
 
     }
 
@@ -74,7 +74,7 @@ export class ConfigContenidoPage {
     }
 
     guardarConfig() {
-        this.servicio.getFiltros(1).then((result) => {
+        this.servicio.postRequest(this.filtros).then((result) => {
           console.log(result);
         }, (err) =>{
           console.log(err);
