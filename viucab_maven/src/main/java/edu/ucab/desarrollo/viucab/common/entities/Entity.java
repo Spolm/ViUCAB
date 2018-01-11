@@ -11,7 +11,7 @@ public class Entity {
         /***
          * atributos de la clase padre entidad
          */
-        private int _id;
+        protected int _id;
         private String _cadena;
         private int _errorCode1;
         private String _errorMsg1;
