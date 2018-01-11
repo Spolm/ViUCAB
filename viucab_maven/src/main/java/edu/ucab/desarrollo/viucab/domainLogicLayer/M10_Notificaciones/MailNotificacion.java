@@ -22,7 +22,7 @@ public class MailNotificacion {
 
     MimeMultipart multipart = new MimeMultipart("related");
 
-    public void enviarNotificacion (String recipient, String body, String subject){
+    public void enviarNotificacion (String recipient, String body, String subject, String image){
 
         try{
 
@@ -41,20 +41,17 @@ public class MailNotificacion {
             message.setFrom(new InternetAddress ("arkantostheapp@gmail.com"));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));;
             message.setSubject(subject);
-            String htmlText = "<H1>"+body+"</H1><a href=\"https://www.redtube.com/2785284\">\n" +
-                    "        <img src = \"https://i.pinimg.com/originals/d4/e2/a7/d4e2a780c99d812a9b1ef75323bc10c3.jpg\"/>\n" +
-                    "    </a>";
+            String htmlText = "<H1>"+body+"</H1><a href=\"https://www.youtube.com\"><img src = \"cid:image\"/></a>";
             messageBodyPart.setContent(htmlText, "text/html");
             multipart.addBodyPart(messageBodyPart);
-            /*messageBodyPart = new MimeBodyPart();
+            messageBodyPart = new MimeBodyPart();
             DataSource fds = new FileDataSource(
-                    "C:/Users/Vladimir/Desktop/Acorde.png");
+                    "C:/Users/vladimir/Documents/GitHub/ViUCAB/IonicProject/src/"+image);
 
             messageBodyPart.setDataHandler(new DataHandler(fds));
             messageBodyPart.setHeader("Content-ID", "<image>");
-            multipart.addBodyPart(messageBodyPart);*/
+            multipart.addBodyPart(messageBodyPart);
             message.setContent(multipart);
-            //message.setText(body);
 
             Transport t = session.getTransport("smtp");
             t.connect("arkantostheapp@gmail.com","arkantos13*");

@@ -211,8 +211,17 @@ public class CommandsFactory {
 
     //fin M09
 
-    // M10
+     // M10
     public static Command instanciateGetNotificaciones ( Entity notificacion) {
         return new GetNotificaciones(notificacion);
+    }
+
+
+    public static Command instanciateGetConfiguracion (Entity configuracion) {
+        return new GetConfiguracion(configuracion);
+    }
+
+    public static Command instanciateDiscardNotificacion (Entity notificacion) {
+        return new DiscardNotificacion(notificacion);
     }
 }
