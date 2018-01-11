@@ -3,9 +3,12 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M04_Reproductor.VideoDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.DaoVideoEntity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetListaDeReproduccionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones.GetConfiguracionDao;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones.GetNotificacionDao;
 
 /**
  * Fabrica para instanciar los DAO creada por M011
@@ -33,6 +36,10 @@ public class DaoFactory
     static  public GetHomeDao instanciateGetSuscritosComando(){return new GetHomeDao();}
 
     //endregion
+
+    //M03 Video
+    static public DaoVideoEntity instantiateDaoVideoEntity(){ return new DaoVideoEntity();}
+    //Fin M03 Video
 
     //region M05
 
@@ -64,5 +71,16 @@ public class DaoFactory
     }
     
     // FIN M04
+
+     //region M10
+
+    static public GetNotificacionDao instanciateDaonotificacion () {
+        return new GetNotificacionDao();
+    }
+
+    static public GetConfiguracionDao instanciateDaoConfiguracion () {
+        return new GetConfiguracionDao();
+    }
+    //endregion
 }
 

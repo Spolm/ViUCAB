@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar color="primary">
+    <ion-navbar color="primary" hide-tabs>
         <ion-buttons start>
             <button ion-button menuToggle>
                 <ion-icon name="menu"></ion-icon>
@@ -32,9 +32,9 @@
             <ion-row *ngIf="usuario">
                 <ion-col text-center col-6 (click)="updateLike()">
                     <ion-icon name="thumbs-up" color="{{color}}"></ion-icon><br> 
-                    {{video.likes}}
+                    {{likes}}
                 </ion-col>
-                <ion-col text-center col-6 > 
+                <ion-col text-center col-6 (click)="addToList()"> 
                          <ion-icon name="add"></ion-icon><br>
                     <p style="white-space: normal; color: black">
 
@@ -91,7 +91,7 @@
         </ion-item>
     </ion-list>
 
-    <ion-list>
+    <ion-list *ngIf="usuario">
         <ion-list-header>
             <h5>Escribir Comentario</h5>
 

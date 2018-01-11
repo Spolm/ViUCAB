@@ -18,6 +18,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 public class ComandoUpdateLike extends Command{
     private int idvideo;
     private String usuario;
+    public int result;
     
     public ComandoUpdateLike(int idvideo, String usuario) {
         this.idvideo = idvideo;
@@ -27,7 +28,7 @@ public class ComandoUpdateLike extends Command{
     @Override
     public void execute() throws VIUCABException, Exception {
         VideoDao dao = DaoFactory.instanciarVideoDao();
-        dao.updateLike(this.idvideo, this.usuario);
+        this.result = dao.updateLike(this.idvideo, this.usuario);
     }
 
     @Override

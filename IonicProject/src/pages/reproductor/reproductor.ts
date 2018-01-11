@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AlertController} from 'ionic-angular';
 import {RestApiService} from '../../app/rest-api.service';
 import {Subscription} from 'rxjs/Subscription';
+import {AddListPage} from "../playlist/add-list/add-list"
 
 /**
  * Generated class for the ListasPage page.
@@ -21,9 +22,10 @@ export class ReproductorPage implements OnInit {
     subscription: Subscription;
     public comentario = '';
     private path = 'Modulo2';
-    public usuario = 'erbintune@gmail.com';
+    public usuario = 'aledavid21@gmail.com';
     //    public response: any[];
     public color = 'black';
+    public likes = 0;
     //    public video =                //PRUEBA CON DATOS ESTATICOS
     //    {
     //        title: 'Subiendo a Galipan',
@@ -128,6 +130,7 @@ export class ReproductorPage implements OnInit {
         this.api.getReproduccion(this.path + '/addVisita?idvideo=' + this.navParams.data).subscribe();
         this.api.getReproduccion(this.path + '/getVideoInfo?idvideo=' + this.navParams.data).subscribe((data) => { // Success
             this.video = data.json();
+            this.likes = data.json().likes;
 
         },
             (error) => {
@@ -154,17 +157,22 @@ export class ReproductorPage implements OnInit {
 
 
     sentComment() {
-        this.api.getReproduccion(this.path + '/addComentario?idvideo=' + this.navParams.data + '&usuario=' + this.usuario + '&comentario=' + this.comentario).subscribe((data) => {
-            if (data.json().result != '0') {
-                this.showAlert('Comentario agregado exitosamente!');
-                this.openVideo(this.navParams.data);
-            }
-            else {
-                this.showAlert('Hubo un error enviando tu comentario :(. Intentelo de nuevo');
-            }
-        });
+        if (this.comentario) {
+            this.api.getReproduccion(this.path + '/addComentario?idvideo=' + this.navParams.data + '&usuario=' + this.usuario + '&comentario=' + this.comentario).subscribe((data) => {
+                if (data.json().result != '0') {
+                    this.showAlert('Comentario agregado exitosamente!');
+                    this.openVideo(this.navParams.data);
+                }
+                else {
+                    this.showAlert('Hubo un error enviando tu comentario :(. Intentelo de nuevo');
+                }
+            });
+        }
     }
 
+    addToList() {
+        this.navCtrl.push(AddListPage);
+    }
 
     showAlert(title) {
         let alert = this.alertCtrl.create({
@@ -176,8 +184,18 @@ export class ReproductorPage implements OnInit {
 
 
     updateLike() {
-        this.api.getReproduccion(this.path + '/updateLike?idvideo=' + this.navParams.data + '&usuario=' + this.usuario).subscribe();
-        this.openVideo(this.navParams.data);
+        this.api.getReproduccion(this.path + '/updateLike?idvideo=' + this.navParams.data + '&usuario=' + this.usuario).subscribe((data) => {
+            if (data.json().result != '-1') {
+                this.likes = data.json().result;
+                if (this.color == 'black') {
+                    this.color = 'primary';
+                }
+                else {
+                    this.color = 'black'
+                }
+            }
+        });
+        //        this.openVideo(this.navParams.data);
     }
 
     deleteComentario(idcom, com) {

@@ -8,7 +8,7 @@
     <ion-title>
         <ion-row>
             <ion-col col-10 class="nopadding">
-                Editar lista numero 1
+                Editar {{Lista.nombre}}
    
             </ion-col>
             <ion-col col-2 class="nopadding" align="right">
@@ -26,19 +26,19 @@
 
     <ion-item>
       <ion-label floating>Nombre de la Lista</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="nombreLista"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label floating>Descripcion</ion-label>
-      <ion-textarea></ion-textarea>
+      <ion-textarea [(ngModel)]="descripcionLista"></ion-textarea>
     </ion-item>
 
 
   </ion-list>
 
 
-      <button class="botonGuardarEditado" ion-button color="light">GUARDAR</button>
+      <button (click)="guardarLista()" class="botonGuardarEditado" ion-button color="light">GUARDAR</button>
 
   
 
