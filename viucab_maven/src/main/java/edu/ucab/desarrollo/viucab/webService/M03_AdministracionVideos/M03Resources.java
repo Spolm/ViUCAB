@@ -1,3 +1,4 @@
+//Esta clase no esta siendo utilizada
 package edu.ucab.desarrollo.viucab.webService.M03_AdministracionVideos;
 
 import com.google.gson.Gson;
@@ -5,6 +6,7 @@ import com.sun.org.apache.xpath.internal.SourceTree;
 import org.glassfish.jersey.media.multipart.FormDataParam;
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
+import org.glassfish.jersey.media.multipart.MultiPart;
 
 import javax.imageio.ImageIO;
 import javax.ws.rs.*;
@@ -126,4 +128,14 @@ public class M03Resources {
             e.printStackTrace();
         }
     }
+
+    @POST
+    @Consumes(MediaType.MULTIPART_FORM_DATA)
+    @Path("/test")
+    public String Test(@FormDataParam("titulo") String titulo) {
+
+        return titulo;
+    }
+
+
 }

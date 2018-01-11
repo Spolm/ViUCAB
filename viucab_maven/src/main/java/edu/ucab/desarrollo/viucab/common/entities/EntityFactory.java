@@ -39,8 +39,8 @@ public class EntityFactory
 
     //Modulo 3
 
-    static public VideoEntity instantiateVideoEntity(int videoId, String titulo, String descripcion, String imgUrl){
-        return new VideoEntity(videoId,titulo,descripcion,imgUrl);
+    static public VideoEntity instantiateVideoEntity(int videoId, String titulo, String descripcion){
+        return new VideoEntity(videoId,titulo,descripcion);
     }
 
     static public VideoEntity instantiateVideoEntity(String titulo, String descripcion, String imgUrl, String url, int usuario ){
