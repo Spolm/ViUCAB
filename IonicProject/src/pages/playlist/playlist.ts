@@ -9,6 +9,7 @@ import { NullAstVisitor } from '@angular/compiler';
 
 import {PopOverListasReproduccionPage} from '../playlist/pop-over-listas-reproduccion/pop-over-listas-reproduccion';
 import {AddListPage} from "./add-list/add-list";
+import { ReproductorPage } from "../reproductor/reproductor";
 
 /**
  * Generated class for the ListasPage page.
@@ -30,6 +31,7 @@ export class PlaylistPage {
   public userid:any = 4;
   public ListasDeReproduccion:any = [];
   public VideosDeLista:any = [];
+  public VideosMasVistos:any = [];
   public IdListaBorrar:any;
 
 //constructor de todo
@@ -38,7 +40,9 @@ export class PlaylistPage {
     this.events.subscribe('reloadPlaylists',() => {
       //call methods to refresh content
       console.log("RELOADEA");
+      
       this.getPlaylists(); //obtiene las listas
+      
   });
 
   this.events.subscribe('deletePlaylist',(data) => { 
@@ -60,6 +64,7 @@ export class PlaylistPage {
     this.tab = 'mias';
     console.log("ENtre a playlist");
     this.getPlaylists();
+    this.getVideosMasVistos();
   }
 
   //metodo para presentar una alerta
@@ -96,6 +101,25 @@ export class PlaylistPage {
     alert.present();
   }
 
+  VerVideo(id){
+    console.log(id);
+    this.navCtrl.setRoot(ReproductorPage,id);
+  }
+
+  getVideosMasVistos(){
+    console.log("entro e mas vistos");
+    this.api.geta('playlist/getTopVideos').subscribe((data) => { // Success
+      console.log (data.json());
+      
+        this.VideosMasVistos = data.json();
+      
+      
+     },
+     (error) =>{
+       console.error(error);
+     });
+  }
+
   //metodo para eliminar una lista
   deletePlayList(){
     this.api.geta('playlist/deletePlaylist?lis_rep_id='+ this.IdListaBorrar).subscribe((data) => { // Success
@@ -112,6 +136,7 @@ export class PlaylistPage {
 
 //metodo para obtener las listas
   getPlaylists(){
+    console.log("hola");
 
     this.api.geta('playlist/getAllPlaylist?id_usu='+ this.userid).subscribe((data) => { // Success
           console.log (data.json());
