@@ -1,0 +1,24 @@
+<ion-header >
+  <ion-navbar color="moradoViUCAB"  >
+
+    <ion-buttons start>
+      <button ion-button menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title align="center">Acceso a Mod. de Contenido</ion-title> 
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+<br>
+  <p>Para acceder a Moderación de Contenido, es necesario comprobar que usted es el usuario de esta cuenta. Por favor, ingrese la contraseña para continuar.</p>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Contraseña:</ion-label>
+      <ion-input type="password" maxlength="50"[(ngModel)]="password"></ion-input>
+    </ion-item>
+    <button ion-button color="verdeViUCAB" full (click)="continuar()">Continuar</button>
+  </ion-list>
+</ion-content>

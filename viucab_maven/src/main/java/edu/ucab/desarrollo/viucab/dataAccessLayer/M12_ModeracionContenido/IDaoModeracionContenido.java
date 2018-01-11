@@ -46,7 +46,7 @@ public interface IDaoModeracionContenido extends IDao {
      * @throws SQLException
      * @throws VIUCABException
      */
-    public boolean guardarFiltrosEnBD(Integer id,  ArrayList<Filtro> listaFiltrosNuevos) throws SQLException, VIUCABException;
+    public String guardarFiltrosEnBD(Integer id,  ArrayList<Filtro> listaFiltrosNuevos) throws SQLException, VIUCABException;
 
 }
 
