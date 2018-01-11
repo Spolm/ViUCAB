@@ -1,19 +1,24 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetBusquedaComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetMasVistosComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetPreferenciasComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.GetSuscritosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.ConsultarVideos;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.EliminarEtiqueta;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.InsertarEtiqueta;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
-import edu.ucab.desarrollo.viucab.common.entities.Video;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.DiscardNotificacion;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetConfiguracion;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetNotificaciones;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
-import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.*;
 
 
 /**
@@ -202,7 +207,13 @@ public class CommandsFactory {
         return new GetNotificaciones(notificacion);
     }
 
+
     public static Command instanciateGetConfiguracion (Entity configuracion) {
         return new GetConfiguracion(configuracion);
     }
+
+    public static Command instanciateDiscardNotificacion (Entity notificacion) {
+        return new DiscardNotificacion(notificacion);
+    }
+
 }

@@ -2,16 +2,13 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones;
 
 import edu.ucab.desarrollo.viucab.common.entities.ConfiguracionNotificaciones;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
-import javax.ws.rs.core.EntityTag;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
 
@@ -40,26 +37,30 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
         return null;
     }
 
-    public Entity getConfiguracion(Entity e) throws SQLException {
-        ConfiguracionNotificaciones con = (ConfiguracionNotificaciones)e;
+    public ArrayList<ConfiguracionNotificaciones> getConfiguracion(Entity e) throws SQLException {
+        ConfiguracionNotificaciones config = (ConfiguracionNotificaciones) e;
+        ArrayList<ConfiguracionNotificaciones> listaConfig = new ArrayList<>();
         Connection conexion;
         ResultSet result = null;
-        String select="SELECT * FROM config_notificacion WHERE usu_id = ?;";
         PreparedStatement ps = null;
         try {
-            conexion = getBdConnect();
-            ps = conexion.prepareStatement(select);
+            conexion = Dao.getBdConnect();
+            ps = conexion.prepareCall("{ call m10_getconfiguracion(?) }");
             // id por default
             ps.setInt(1, 1);
             result = ps.executeQuery();
-            int id = (result.getInt("con_not_id"));
-            boolean boletin = (result.getBoolean("con_not_boletin"));
-            boolean preferencias = (result.getBoolean("con_not_preferencias"));
-            boolean activado = (result.getBoolean("con_not_recibir"));
-            boolean subscripciones = (result.getBoolean("con_not_suscripciones"));
-            boolean etiquetados = (result.getBoolean("con_not_etiquetado"));
-            boolean estadisticas = (result.getBoolean("con_not_estadisticas"));
-            con = EntityFactory.configuracionNotificaciones(id,activado,boletin,subscripciones,etiquetados,estadisticas,preferencias);
+            while(result.next()) {
+                int id = (result.getInt("con_not_id"));
+                Boolean activado = (result.getBoolean("con_not_recibir"));
+                Boolean boletin = (result.getBoolean("con_not_boletin"));
+                Boolean subscripciones = (result.getBoolean("con_not_suscripciones"));
+                Boolean etiquetados = (result.getBoolean("con_not_etiquetado"));
+                Boolean estadisticas = (result.getBoolean("con_not_estadisticas"));
+                Boolean preferencias = (result.getBoolean("con_not_preferencias"));
+                config = new ConfiguracionNotificaciones(id, activado, boletin, subscripciones, etiquetados, estadisticas, preferencias);
+                listaConfig.add(config);
+                break;
+            }
             result.close();
         }
         catch (SQLException error){
@@ -68,7 +69,7 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
         finally {
             closeConnection();
         }
-        return con;
+        return listaConfig;
     }
     // Modificar para que se traiga todos los datos correctos de Entity e
     @Override

@@ -92,8 +92,8 @@ public class M10_Notificaciones {
         Command commandConfiguracion = CommandsFactory.instanciateGetConfiguracion(configuracionObject);
         GetConfiguracion cmd = (GetConfiguracion) commandConfiguracion;
         cmd.execute();
-        Entity result = cmd.Return();
-        System.out.println(result);
+        List<Entity> result = cmd.ReturnListCon();
+//        System.out.println(result);
         return gson.toJson(result);
     }
 

@@ -1,5 +1,7 @@
 package edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import edu.ucab.desarrollo.viucab.common.entities.*;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
@@ -7,6 +9,7 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
+import java.util.ArrayList;
 
 
 public class GetNotificacionDao extends Dao implements IDaoNotificacion {
@@ -88,8 +91,10 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
             vid.setNombre(_tituloVid);
             usu.set_name_user(_userName);
             Notificacion notif = new Notificacion(_idNot, vid, usu, _desechado, _fechaNot);
+            Notificacion notif = EntityFactory.notificacion(_idNot, vid, usu, _desechado, _fechaNot);
             listaNotif.add(notif);
         }
+        result.close();
     }
     catch (SQLException e) {
         e.printStackTrace();
