@@ -3,6 +3,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M08;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
@@ -34,10 +35,10 @@ public class SetSuscripcionComando extends Command {
 
 
     @Override
-    public void execute() throws BDConnectException1, PLConnectException1 {
+    public void execute() throws VIUCABException {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-         resp= dao.insertarSuscriptor(suscriptor,suscripcion);
+          dao.insertarSuscriptor(suscriptor,suscripcion);
 
 
     }

@@ -4,9 +4,8 @@ import { RestApiService } from '../../../app/rest-api.service';
 import { Subscription } from 'rxjs/Subscription';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Http, Headers, Response } from '@angular/http';
-import { RequestOptions } from '@angular/http/src/base_request_options';
-import { HTTP } from '@ionic-native/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
+//import { HTTP } from '@ionic-native/http';
 
 
 /**
@@ -84,23 +83,29 @@ export class MisVideosPage {
   }
 
   updateImagen(){
-    
-    let headers = new Headers(); 
-    headers.append("Accept", 'application/json');
-    headers.append('content-type', 'application/json');
+    var fd = new FormData();
+    fd.append('titulo',"titulo");
+    let reqOpt;
+    let headers = new Headers();
+    headers.append('content-type', 'multipart/form-data');
+    headers.append('accept-encoding', 'gzip');
+    reqOpt = new RequestOptions({
+      headers : headers
+    });
     let data = {
       titulo: "la senora verga de triana",
-      descripcion: "penetones",
+      /*descripcion: "penetones",
       oldImgUrl: "ooolaksjdo",
       videoId: "42",
+      file: null,*/
        };
     this.presentToast("antes");
-    this.http.post("http://192.168.1.116:8080/viucab/Video", JSON.stringify(data)).subscribe(data => {
-      console.log(JSON.stringify(data.json()));
-      this.presentToast(JSON.stringify(data.json()));
+    this.http.post("http://192.168.1.116:8080/viucab/Resources/test", fd,reqOpt).subscribe(data => {
+      console.log(data);
+      //this.presentToast(JSON.stringify(data.json()));
     }, error => {
-      console.log(JSON.stringify(error.json()));
-      this.presentToast(JSON.stringify(error.json()));
+      console.log(error);
+      //this.presentToast(JSON.stringify(error.json()));
     });
   }
     

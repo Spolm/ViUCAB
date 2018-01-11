@@ -4,6 +4,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
 import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
@@ -25,8 +26,13 @@ public class GetUsuariosComando extends Command {
         this._resultado = _resultado;
         this.idSuscriptor = idSuscriptor;
     }
+
     public GetUsuariosComando(ArrayList<Usuario> _resultado) {
         this._resultado = _resultado;
+    }
+
+    public GetUsuariosComando(int idSuscriptor)  {
+        this.idSuscriptor = idSuscriptor;
     }
 
 
@@ -45,10 +51,10 @@ public class GetUsuariosComando extends Command {
 
 
     @Override
-    public void execute() throws BDConnectException1, PLConnectException1 {
+    public void execute() throws VIUCABException  {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
-        ArrayList<Usuario> user = dao.listaUsuarios();
+        ArrayList<Usuario> user = dao.listaUsuarios(idSuscriptor);
 
         //Guardamos lo que devuelve el DAO
         _resultado=user;

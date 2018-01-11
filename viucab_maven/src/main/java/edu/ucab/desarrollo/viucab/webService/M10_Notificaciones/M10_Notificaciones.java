@@ -1,9 +1,13 @@
 package edu.ucab.desarrollo.viucab.webService.M10_Notificaciones;
 
-import com.google.gson.*;
-import edu.ucab.desarrollo.viucab.common.entities.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.DiscardNotificacion;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetConfiguracion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetNotificaciones;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.MailNotificacion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
@@ -11,7 +15,6 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -59,57 +62,66 @@ public class M10_Notificaciones {
     @Path("/notificacion")
     @Produces("application/json")
     //Recibe como parametro el id del usuario que inicio sesion
-    public String obtenerNotificacion (){
-
+    public Response obtenerNotificacion () {
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity notificacionObject = EntityFactory.notificacion();
         Command commandNotificacion = CommandsFactory.instanciateGetNotificaciones(notificacionObject);
         GetNotificaciones cmd = (GetNotificaciones) commandNotificacion;
         cmd.execute();
         List<Entity> result = cmd.ReturnListNot();
-        return gson.toJson(result);
+        rb.header("Notifications","Success");
+        rb.tag("application/json");
+        rb.entity(gson.toJson(result));
+        //return gson.toJson(result);
+        return rb.build();
     }
 
-    /** Metodo que desecha la notificacion una vez se ha interactuado con ella
-     *
-     * @param datos
-     * @return YES
-     * @throws SQLException
-     */
 
+
+
+
+
+    //Desechar Notificacion
+    @GET
+    @Path("/notificacionDes")
+    @Consumes("application/json")
+    @Produces("text/plain")
+    public Response desecharNotificacion (int id) throws  SQLException {
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
+        Entity notificacionObject = EntityFactory.notificacion(id);
+        Command commandNotificacion = CommandsFactory.instanciateDiscardNotificacion(notificacionObject);
+        DiscardNotificacion cmd = (DiscardNotificacion) commandNotificacion;
+        cmd.execute();
+        Entity result = cmd.Return();
+        rb.header("Notification Discarded","Success");
+        rb.tag("application/json");
+        rb.entity(gson.toJson(result));
+        return rb.build();
+        /*JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
+        PreparedStatement ps = conexion.prepareCall( "{? = CALL m10_desecharnotificacion()}");
+        ps.setInt(1,jsonDatos.get("not_id").getAsInt());
+        ps.executeUpdate();
+        Sql.bdClose(conexion);
+        return _response;*/
+    }
+
+
+    //Configuracion de Notificaciones
     //Configuracion de Notificaciones
     @GET
     @Path("/configuracion")
     @Produces("application/json")
-//@QueryParam("id") String id
     public String obtenerConfiguracion (){
 
-        String select="SELECT * FROM config_notificacion WHERE usu_id = ?;";
-        try {
-            PreparedStatement ps = conexion.prepareStatement(select);
-            ps.setInt(1, 1);
-            ResultSet result = ps.executeQuery();
-            List<ConfiguracionNotificaciones> list = new ArrayList<ConfiguracionNotificaciones>();
-            while(result.next()) {
-                ConfiguracionNotificaciones config = new ConfiguracionNotificaciones(0,true,true,true,true,true,true);
-                config.setId(result.getInt("con_not_id"));
-                config.setBoletin(result.getBoolean("con_not_boletin"));
-                config.setPreferencias(result.getBoolean("con_not_preferencias"));
-                config.setActivado(result.getBoolean("con_not_recibir"));
-                config.setSubscripciones(result.getBoolean("con_not_suscripciones"));
-                config.setEtiquetados(result.getBoolean("con_not_etiquetado"));
-                config.setEstadisticas(result.getBoolean("con_not_estadisticas"));
-                list.add(config);
-            }
-
-            return gson.toJson(list);
-        }
-        catch (SQLException e){
-            return e.getMessage();
-        }
-        finally {
-            Sql.bdClose(conexion);
-        }
+        Entity configuracionObject = EntityFactory.configuracionNotificaciones();
+        Command commandConfiguracion = CommandsFactory.instanciateGetConfiguracion(configuracionObject);
+        GetConfiguracion cmd = (GetConfiguracion) commandConfiguracion;
+        cmd.execute();
+        List<Entity> result = cmd.ReturnListCon();
+//        System.out.println(result);
+        return gson.toJson(result);
     }
+
     @POST
     @Path("/configuracion")
     @Consumes("application/json")

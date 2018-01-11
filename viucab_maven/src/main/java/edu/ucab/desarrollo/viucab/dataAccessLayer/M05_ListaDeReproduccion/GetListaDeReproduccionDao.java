@@ -42,7 +42,8 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @param
      * @return resultlist
      */
-    public ArrayList<Entity> GetLista(Entity e) throws SQLException {
+    @Override
+    public ArrayList<Entity> getLista(Entity e) throws SQLException {
 
         ArrayList<Entity> listaContenedora= new ArrayList<>();
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
@@ -97,7 +98,8 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
-    public Entity GetEspecificList(Entity e) throws SQLException {
+    @Override
+    public Entity getEspecificList(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
         Integer idListaBuscada = lista.getIdLista();
@@ -150,6 +152,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean createLista(Entity e) throws SQLException {
 
         /*EN LA BD LA FUNCION RECIBE ESTO =
@@ -212,6 +215,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean modifyLista(Entity e) throws SQLException {
 
 
@@ -268,6 +272,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean deleteList(Entity e) throws SQLException {
 
 
@@ -318,6 +323,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean addVideoToList(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
@@ -369,6 +375,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
      * @return
      * @throws SQLException
      */
+    @Override
     public Boolean deleteVideoToList(Entity e) throws SQLException {
 
         ListaDeReproduccion lista = (ListaDeReproduccion) e;
@@ -412,6 +419,14 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
         return eliminado;
     }
 
+
+    /**
+     * Metodo para obtener un video de una lista
+     * @param e
+     * @return
+     * @throws SQLException
+     */
+    @Override
     public ArrayList<Entity> GetVideosFromList(Entity e) throws SQLException {
 
         ArrayList<Entity> listaContenedora= new ArrayList<>();
@@ -429,6 +444,59 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
             preStatement = conn.prepareCall("{call m05_obtenervideoslista(?)}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
             //Seteo lo que le estoy mandando al procedimiento con ese "?"
             preStatement.setInt(1,idLista);
+            //Ejecucion del query
+            resultSet = preStatement.executeQuery();
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt("vid_id");
+                String nombre = resultSet.getString("vid_titulo");
+                //String descripcion = resultSet.getString("vid_descripcion");
+                String imagen = resultSet.getString("vid_imagen");
+                String fechaCreacion = resultSet.getString("vid_fecha");
+                String urlVideo = resultSet.getString("vid_url");
+                int numReproducciones = resultSet.getInt("vid_visitas");
+                //int idUsuarioF = resultSet.getInt("vid_usuario");
+
+                video = (Video) EntityFactory.video(id, nombre, imagen, numReproducciones, fechaCreacion, urlVideo);
+                listaContenedora.add(video);
+
+            }
+            resultSet.close();
+
+        } catch (SQLException e1) {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+
+            System. out. println(e1.getMessage());
+        }
+        catch(Exception ex)
+        {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+        }
+        finally {
+            closeConnection();
+        }
+        return listaContenedora;
+    }
+
+    /**
+     * Metodo para obtener un video de una lista
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public ArrayList<Entity> getTopVideos() throws SQLException {
+
+        ArrayList<Entity> listaContenedora= new ArrayList<>();
+        Video video;
+        CallableStatement preStatement = null;
+        ResultSet resultSet = null;
+        Connection conn;
+
+        try {
+            //Creando la instancia de Conexion a la BD
+            conn = getBdConnect();
+            //Invocando el SP
+            preStatement = conn.prepareCall("{call m05_toptenvideo()}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
             //Ejecucion del query
             resultSet = preStatement.executeQuery();
             while (resultSet.next()) {

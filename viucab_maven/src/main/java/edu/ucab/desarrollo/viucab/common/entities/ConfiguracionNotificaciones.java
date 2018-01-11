@@ -20,6 +20,10 @@ public class ConfiguracionNotificaciones extends Entity{
         this.preferencias = preferencias;
     }
 
+    public ConfiguracionNotificaciones() {
+
+    }
+
     public int getId() {
         return id;
     }

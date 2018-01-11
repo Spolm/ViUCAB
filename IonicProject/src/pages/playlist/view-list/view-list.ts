@@ -74,9 +74,9 @@ export class ViewListPage {
     this.api.geta('playlist/getVideosFromPlaylist?lis_rep_id='+ this.idLista).subscribe((data) => { // Success
       console.log (data.json());
 
-      if(data.json() == true){
+      
         this.VideosDeLista = data.json();
-      }
+      
      
      
      },
@@ -88,7 +88,7 @@ export class ViewListPage {
   public confirmdeleteVideo(){
 
     this.api.geta('playlist/deleteVideoFromPlaylist?vid_id='+ this.idVideo
-  +'&?lis_rep_id='+ this.idLista).subscribe((data) => { // Success
+  +'&lis_rep_id='+ this.idLista).subscribe((data) => { // Success
       console.log (data.json());
       if(data.json() == true){
         this.getAllVideos();

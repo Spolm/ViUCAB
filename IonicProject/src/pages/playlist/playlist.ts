@@ -32,16 +32,16 @@ export class PlaylistPage {
   public VideosDeLista:any = [];
   public IdListaBorrar:any;
 
-
+//constructor de todo
   constructor(public events:Events, public api: RestApiService, public navCtrl: NavController, public navParams: NavParams,public popoverCtrl: PopoverController,public alertCtrl: AlertController) {
   
     this.events.subscribe('reloadPlaylists',() => {
       //call methods to refresh content
       console.log("RELOADEA");
-      this.getPlaylists();
+      this.getPlaylists(); //obtiene las listas
   });
 
-  this.events.subscribe('deletePlaylist',(data) => {
+  this.events.subscribe('deletePlaylist',(data) => { 
     //call methods to refresh content
     console.log("BORRAR LISTA",data);
     this.IdListaBorrar = data.id;
@@ -62,7 +62,7 @@ export class PlaylistPage {
     this.getPlaylists();
   }
 
-  
+  //metodo para presentar una alerta
   presentAlert(title,subTitle) {
     let alert = this.alertCtrl.create({
       title: title,
@@ -71,6 +71,7 @@ export class PlaylistPage {
     alert.present();
   }
 
+  //metodo para presentar una confirmacion o cancelacion
   presentConfirm(title,message) {
     let alert = this.alertCtrl.create({
       title: title,
@@ -95,15 +96,13 @@ export class PlaylistPage {
     alert.present();
   }
 
+  //metodo para eliminar una lista
   deletePlayList(){
     this.api.geta('playlist/deletePlaylist?lis_rep_id='+ this.IdListaBorrar).subscribe((data) => { // Success
       console.log (data.json());
-      if(data.json() == true){
+      
         this.getPlaylists();
-      }else if(data.json() == false){
-        this.presentAlert("Ups","La lista no puedo ser eliminada");
-        console.log("Lista no puede ser eliminada");
-      }
+      
       
      },
      (error) =>{
@@ -111,6 +110,7 @@ export class PlaylistPage {
      });
   }
 
+//metodo para obtener las listas
   getPlaylists(){
 
     this.api.geta('playlist/getAllPlaylist?id_usu='+ this.userid).subscribe((data) => { // Success
@@ -122,7 +122,7 @@ export class PlaylistPage {
          });
   }
 
-
+  //popover
   presentPopover(myEvent,lista) {
     let popover = this.popoverCtrl.create(PopOverListasReproduccionPage,{listapopover:lista});
     popover.present({
@@ -131,6 +131,7 @@ export class PlaylistPage {
   }
 
 
+//metodo para ver una lista
   public goToViewList(id,name){
     console.log("Lista que vere", id, name);
 
@@ -146,6 +147,7 @@ export class PlaylistPage {
     
   }
 
+  //metodo para agregar una lista
   public goToAddList(){
     this.navCtrl.push(AddListPage,{listasAdd: this.ListasDeReproduccion});
   }

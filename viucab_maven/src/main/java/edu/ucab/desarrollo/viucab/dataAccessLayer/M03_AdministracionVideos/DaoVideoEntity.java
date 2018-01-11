@@ -4,6 +4,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
 import edu.ucab.desarrollo.viucab.common.entities.VideoEntity;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
+import org.postgresql.util.PSQLException;
 import org.slf4j.LoggerFactory;
 
 import java.sql.*;
@@ -22,11 +23,11 @@ public class DaoVideoEntity implements IDaoVideoEntity {
     }
 
     @Override
-    public int addVideo(Entity e) throws SQLException {
+    public int addVideo(Entity e) throws SQLException{
 
         logger.debug("Debug: Adding VideoEntity - DAO");
 
-        int respuesta = 0;
+        int respuesta;
         VideoEntity agregar = (VideoEntity) e;
 
         SimpleDateFormat _sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -48,17 +49,9 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
             rs = stm.executeQuery();
             respuesta = getResponseIntBD(rs);
-
-        }catch (Exception ex){
-            if(ex instanceof NullPointerException)
-                agregar.set_errorMsg("Error de apuntador Nulo.");
-            else if (ex instanceof SQLException)
-                agregar.set_errorMsg("Error en la conexion de la BD.");
-            else
-                agregar.set_errorMsg(ex.getMessage());
-            ex.printStackTrace();
-        }finally {
             return respuesta;
+        }finally {
+            Dao.getBdConnect().close();
         }
 
 
@@ -67,9 +60,9 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
     @Override
     public VideoEntity getVideo(int idVideo) throws SQLException {
-        logger.debug("Debug: Getting video from VideoEntity Id - DAO");
+        logger.debug("Debug: Getting VideoEntity - DAO");
 
-        VideoEntity respuesta = null;
+        VideoEntity respuesta;
 
         ResultSet rs;
 
@@ -81,24 +74,18 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
             rs = stm.executeQuery();
             respuesta = getResponseVideoBD(rs);
-
-        }catch (Exception ex){
-            if(ex instanceof NullPointerException)
-                System.out.println("Error de apuntador Nulo.");
-            else if (ex instanceof SQLException)
-                System.out.println("Error en la conexion de la BD.");
-            else
-                System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }finally {
+            if(respuesta==null)
+                throw new SQLException("Video no existe.");
             return respuesta;
+        }finally {
+            Dao.getBdConnect().close();
         }
     }
 
 
     @Override
     public ArrayList<VideoEntity> getAllVideoById(int idUsuario) throws SQLException {
-        logger.debug("Debug: Getting Al videos from user VideoEntity - DAO");
+        logger.debug("Debug: Getting All videos from user - DAO");
 
         ArrayList<VideoEntity> respuesta = null;
 
@@ -112,17 +99,10 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
             rs = stm.executeQuery();
             respuesta = getResponseArrayListBD(rs);
-
-        }catch (Exception ex){
-            if(ex instanceof NullPointerException)
-                System.out.println("Error de apuntador Nulo.");
-            else if (ex instanceof SQLException)
-                System.out.println("Error en la conexion de la BD.");
-            else
-                System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }finally {
             return respuesta;
+
+        }finally {
+            Dao.getBdConnect().close();
         }
 
     }
@@ -132,40 +112,37 @@ public class DaoVideoEntity implements IDaoVideoEntity {
     public int updateVideo(Entity e) throws SQLException {
         logger.debug("Debug: Updating VideoEntity - DAO");
 
-        int respuesta = 0;
+        int respuesta;
         VideoEntity update = (VideoEntity) e;
 
         ResultSet rs;
 
         try{
             Connection conn = Dao.getBdConnect();
-            CallableStatement stm = conn.prepareCall("{? = Call M03_UpdateVideo(?,?,?)}");
+            CallableStatement stm = conn.prepareCall("{? = Call M03_UpdateVideo(?,?)}");
 
             stm.setString(1,update.get_titulo());
             stm.setString(2,update.get_descripcion());
-            stm.setString(3,update.get_imagen());
-            stm.setInt(4,update.get_id());
+            stm.setInt(3,update.get_id());
 
             rs = stm.executeQuery();
             respuesta = getResponseIntBD(rs);
 
-        }catch (Exception ex){
-            if(ex instanceof NullPointerException)
-                update.set_errorMsg("Error de apuntador Nulo.");
-            else if (ex instanceof SQLException)
-                update.set_errorMsg("Error en la conexion de la BD.");
-            else
-                update.set_errorMsg(ex.getMessage());
-            ex.printStackTrace();
-        }finally {
+            if(respuesta==0)
+                throw new SQLException("Video no existe.");
+
             return respuesta;
+
+
+        }finally {
+            Dao.getBdConnect().close();
         }
 
     }
 
     @Override
     public int deleteVideo(int idVideo) throws SQLException {
-        logger.debug("Debug: Deleting video from VideoEntity Id - DAO");
+        logger.debug("Debug: Deleting VideoEntity - DAO");
 
         int respuesta = 0;
 
@@ -179,22 +156,15 @@ public class DaoVideoEntity implements IDaoVideoEntity {
 
             rs = stm.executeQuery();
             respuesta = getResponseIntBD(rs);
-
-        }catch (Exception ex){
-            if(ex instanceof NullPointerException)
-                System.out.println("Error de apuntador Nulo.");
-            else if (ex instanceof SQLException)
-                System.out.println("Error en la conexion de la BD.");
-            else
-                System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }finally {
             return respuesta;
+
+        }finally {
+            Dao.getConInstance().close();
         }
     }
 
     @Override
-    public int getLastId() throws SQLException {
+    public int getNextId() throws SQLException {
         logger.debug("Debug: getLast VideoEntity ID - DAO");
 
         int respuesta = 0;
@@ -218,6 +188,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
                 System.out.println(ex.getMessage());
             ex.printStackTrace();
         }finally {
+            Dao.getBdConnect().close();
             return respuesta;
         }
 
@@ -255,7 +226,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
         ArrayList<VideoEntity> salida = new ArrayList<VideoEntity>();
 
         while (rs.next()){
-            VideoEntity v = EntityFactory.instantiateVideoEntity(
+            VideoEntity v = (VideoEntity) EntityFactory.instantiateVideoEntity(
                     rs.getInt("id"),
                     rs.getString("titu"),
                     rs.getString("des"),
@@ -275,7 +246,7 @@ public class DaoVideoEntity implements IDaoVideoEntity {
         VideoEntity salida = null;
 
         while (rs.next()){
-            salida = EntityFactory.instantiateVideoEntity(
+            salida = (VideoEntity) EntityFactory.instantiateVideoEntity(
                     rs.getInt("id"),
                     rs.getString("titu"),
                     rs.getString("des"),
