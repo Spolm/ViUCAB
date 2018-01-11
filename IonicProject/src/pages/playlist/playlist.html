@@ -43,7 +43,7 @@
 <div [ngSwitch]="tab">
   <ion-list *ngSwitchCase="'mias'">
 
-    <button ion-button (click)="goToAddList()" >Agregar Lista</button>
+    <button ion-button style="widh:100%!important;background-color: #68efad;" (click)="goToAddList()" >Agregar Lista</button>
 
     <ion-item *ngFor="let lista of ListasDeReproduccion" >
       <ion-thumbnail item-start id="List-img">

@@ -27,5 +27,7 @@ public interface IDaoListaDeReproducciones extends IDao {
 
     ArrayList<Entity> GetVideosFromList(Entity e) throws SQLException;
 
+    ArrayList<Entity> getTopVideos() throws SQLException;
+
 
 }

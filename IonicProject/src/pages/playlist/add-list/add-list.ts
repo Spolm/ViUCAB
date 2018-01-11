@@ -79,17 +79,18 @@ export class AddListPage {
     alert.present();
   }
 
-  public addVideoToList(idLista){
-    console.log("video agregado a esta lista",idLista);
+  public addVideoToList(lista){
+    console.log("video agregado a esta lista",lista);
 
  
     this.api.geta('playlist/addVideoToPlaylist?vid_id='+ 1
-  +'&?lis_rep_id='+ idLista).subscribe((data) => { // Success
+  +'&lis_rep_id='+ lista.idLista).subscribe((data) => { // Success
       console.log (data.json());
       if(data.json() == true){
+        this.presentAlert("Exito","Video agregado a la lista "+ lista.nombre);
         this.navCtrl.pop();
       }else if(data.json() == false){
-        this.presentAlert("Ups","El video no pudo ser agregado a la lista");
+        this.presentAlert("Ups","Este video ya se encuentra en la lista"+lista.nombre);
        
       }
       

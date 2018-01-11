@@ -78,7 +78,7 @@ public class M05_ListaDeReproduccion {
                                @QueryParam("lis_rep_descripcion") String lis_rep_descripcion )
     {
 
-        String lis_rep_img = "";
+        String lis_rep_img = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtXnCR_ZKLXop4kwMfaIDLOxcPqco1zROOTIoEyCSP5LtBuXho";
         Integer lis_rep_numrep = 0;
         String lis_rep_fecha = LocalDate.now().toString(); //convierte la fecha de hoy la pone en string para crear la lista
 
@@ -177,10 +177,11 @@ public class M05_ListaDeReproduccion {
         Entity listaObject = EntityFactory.deleteList(lis_rep_id); //llamo a la fabrica entidad para setear lo que necesito pasar al dao
         Command commandDeleteList = CommandsFactory.instanciaDeleteListComando(listaObject); //instancio el comando necesario
         DeleteListComando cmd = (DeleteListComando) commandDeleteList; //Inicializo el comando
+        Boolean resultados = false;
 
         try {
             cmd.execute(); //ejecuto el comando
-            Boolean resultados = cmd.getResultado(); //obtengo los resultados y los devuelvo en Json
+            resultados = cmd.getResultado(); //obtengo los resultados y los devuelvo en Json
 /*
         } catch (VIUCABException e) {
 
@@ -196,9 +197,7 @@ public class M05_ListaDeReproduccion {
             listaObject.set_errorMsg(e.ERROR_MSG);
             logger.error("Metodo: {} {}", "getTrainingDetail", e.toString());
         }
-        finally {
-            return gson.toJson(listaObject);
-        }
+        return gson.toJson(resultados);
     }
 
     @GET
@@ -298,6 +297,31 @@ public class M05_ListaDeReproduccion {
 
     }
 
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/getTopVideos")
+    @Produces("text/plain")
+    /**
+     * Metodo para obtener los videos mas vistos
+     */
+    public String obtenerVideosMasVistos()
+    {
+        Command commandGetTopVideos = CommandsFactory.instanciaGetTopVideos(); //instancio el comando necesario
+        GetTopVideos cmd = (GetTopVideos) commandGetTopVideos; //Inicializo el comando
+
+        try {
+            cmd.execute(); //ejecuto el comando
+            ArrayList<Entity> resultados =cmd.getResultados(); //obtengo los resultados y los devuelvo en Json
+            return gson.toJson(resultados);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (VIUCABException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     @GET
     @Path("/holamundo")
@@ -307,7 +331,7 @@ public class M05_ListaDeReproduccion {
      */
     public String ejemplo()
     {
-        return "Ejemplo formal Y.E.U.P.D.V";
+        return "Ejemplo formal Y.E.U.P.D.V.V";
 
     }
 
