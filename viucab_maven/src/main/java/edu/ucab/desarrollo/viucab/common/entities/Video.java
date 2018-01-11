@@ -20,6 +20,7 @@ public class Video extends Entity{
     private String busqueda;
     private ArrayList<Video> listaVideo;
     private String [] listaRespVideo;
+    private int idusuario;
 
 
     public Video() {
@@ -70,6 +71,14 @@ public class Video extends Entity{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getIdUsuario() {
+        return idusuario;
+    }
+
+    public void setIdUsuario(int id) {
+        this.idusuario = id;
     }
 
     public String getNombre() {

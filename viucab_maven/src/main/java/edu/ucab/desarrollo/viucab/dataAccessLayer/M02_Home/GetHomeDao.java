@@ -82,9 +82,10 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 int visitas = resultSet.getInt("visitasvideo");
                 String nombreusu = resultSet.getString("nombreusuario");
                 String imagenusuario = resultSet.getString("imagenusuario");
-
+                int idusudueno = resultSet.getInt("idusuario");
 
                 video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video.setIdUsuario(idusudueno);
                 listaVideos.add(video);
 
 
@@ -143,9 +144,10 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 int visitas = resultSet.getInt("visitasvideo");
                 String nombreusu = resultSet.getString("nombreusuario");
                 String imagenusuario = resultSet.getString("imagenusuario");
+                int idusudueno = resultSet.getInt("idusu");
 
-
-                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas, nombreusu, imagenusuario);
+                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video.setIdUsuario(idusudueno);
                 resultlist.add(video);
 
             }
@@ -201,9 +203,10 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 int visitas = resultSet.getInt("visitasvideo");
                 String nombreusu = resultSet.getString("nombreusuario");
                 String imagenusuario = resultSet.getString("imagenusuario");
+                int idusudueno = resultSet.getInt("idusu");
 
-                //Casteo del entity a video del resultado del sp
                 video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video.setIdUsuario(idusudueno);
                 resultlist.add(video);
 
             }
@@ -260,9 +263,10 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 int visitas = resultSet.getInt("visitasvideo");
                 String nombreusu = resultSet.getString("nombreusuario");
                 String imagenusuario = resultSet.getString("fotousuario");
-
+                int idusudueno = resultSet.getInt("idusu");
 
                 video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video.setIdUsuario(idusudueno);
                 resultlist.add(video);
 
             }
