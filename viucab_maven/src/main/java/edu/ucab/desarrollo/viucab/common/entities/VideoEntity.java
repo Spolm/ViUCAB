@@ -5,6 +5,9 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoV
 
 import java.sql.SQLException;
 
+/**
+ * Clase que se encarga de modelar los videos.
+ */
 public class VideoEntity extends Entity {
 
 
@@ -18,8 +21,20 @@ public class VideoEntity extends Entity {
 
 
 
+    /**
+     * Constructor vacio de VideoEntity
+     */
+
     public VideoEntity() {}
 
+    /**
+     * Constructor VideoEntity
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param int
+     */
     public VideoEntity(String titulo, String descripcion, String imagen, String url, int usuario) {
 
         _titulo = titulo;
@@ -30,6 +45,16 @@ public class VideoEntity extends Entity {
 
     }
 
+    /**
+     * Constructor VideoEntity
+     * @Param int
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param int
+     */
     public VideoEntity(int id, String titulo, String descripcion, String imagen, String url, String fecha, int visitas) {
 
         _id = id;
@@ -42,12 +67,22 @@ public class VideoEntity extends Entity {
 
     }
 
+    /**
+     * Constructor VideoEntity
+     * @Param int
+     * @Param String
+     * @Param String
+     */
     public VideoEntity(int videoId, String titulo, String descripcion) {
         _id = videoId;
         _titulo = titulo;
         _descripcion = descripcion;
     }
 
+    /**
+     * Metodo que se encarga de obtener el siguiente id de video
+     *
+     */
     public int getNextId(){
         int response=0;
         IDaoVideoEntity daoVideo = DaoFactory.instantiateDaoVideoEntity();

@@ -21,11 +21,28 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.FileAlreadyExistsException;
 
+
+/**
+ * Clase que utiliza GlassFish para publicar los servicios web relacionados con la administracion de video
+ */
+
 @Path("/Video")
 public class M03Video {
     final static org.slf4j.Logger logger = LoggerFactory.getLogger(DaoVideoEntity.class);
     static Gson gson = new Gson();
 
+    /**
+     * Metodo que consume el WS de agregar video.
+     * Recibe los datos del video.mp4 y la imagen de muestra .jpg
+     * Adicionalmente guarda las etuiquetas recibidas en el video.
+     *
+     * @Param InputStream
+     * @Param InputStream
+     * @Param String
+     * @Param String
+     * @Param int
+     * @Param String
+     */
     @PUT
     @Consumes(MediaType.MULTIPART_FORM_DATA)
     @Produces("application/json")
@@ -77,6 +94,12 @@ public class M03Video {
 
     }
 
+    /**
+     *Metodo que invoca las peticiones necesarias para agregar etiquetas.
+     * @Param String
+     * @Param int
+     *
+     */
     private void otrosModulos(String tag, int id) {
 
             Entity etiquetaObject = EntityFactory.insertEtiqueta(tag, id);
@@ -86,6 +109,14 @@ public class M03Video {
             Entity result = cmd.Return();
     }
 
+    /**
+     * Metodo que se encarga de actualizar video
+     *
+     * @Param String
+     * @Param String
+     * @Param int
+     *
+     */
     @GET
     @Path("/update")
     @Produces("application/json")
@@ -122,6 +153,13 @@ public class M03Video {
 
     }
 
+
+    /**
+     *Metodo que se encarga de obtener video por id
+     *
+     * @Param int
+     *
+     */
     @GET
     @Path("/get")
     @Produces("application/json")
@@ -145,6 +183,12 @@ public class M03Video {
 
     }
 
+    /**
+     * Metodo que se encarga de obtener todos los videos de un usuario
+     *
+     * @Param int
+     *
+     */
     @GET
     @Path("/getAll")
     @Produces("application/json")
@@ -167,6 +211,13 @@ public class M03Video {
         }
 
     }
+
+    /**
+     * Metodo que elimina un video
+     *
+     * @Param int
+     *
+     */
 
     @DELETE
     @Produces("application/json")

@@ -7,6 +7,10 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoV
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Comando que se encarga de Agregar un video.
+ *
+ */
 public class AddVideoCommand extends Command {
 
 
@@ -15,11 +19,22 @@ public class AddVideoCommand extends Command {
     public String _returned;
 
 
+    /**
+     * Constructor del agregar comando
+     *
+     * @Param Entity
+     *
+     */
+
     public AddVideoCommand(Entity video){
 
         _video = video;
     }
 
+    /**
+     *Metodo ejecutar el comando
+     *
+     */
     @Override
     public void execute() throws Exception {
 

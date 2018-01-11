@@ -7,6 +7,10 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M03_AdministracionVideos.IDaoV
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
+/**
+ * Comando que se encarga de editar video
+ *
+ */
 public class UpdateVideoCommand extends Command {
 
 
@@ -15,10 +19,21 @@ public class UpdateVideoCommand extends Command {
     public String _returned;
 
 
+    /**
+     *Constructor de editar video comand
+     *
+     * @Param Entity
+     *
+     */
     public UpdateVideoCommand(Entity video){
 
         _video = video;
     }
+
+    /**
+     * Metodo que se encarga de ejecutar el comando editar video
+     *
+     */
 
     @Override
     public void execute() throws Exception {

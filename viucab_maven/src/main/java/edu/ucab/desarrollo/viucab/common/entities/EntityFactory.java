@@ -39,18 +39,44 @@ public class EntityFactory
 
     //Modulo 3
 
+    /**
+     * Metodo que se encarga de instanciar un Video
+     * @Param int
+     * @Param String
+     * @Param String
+     */
     static public Entity instantiateVideoEntity(int videoId, String titulo, String descripcion){
         return new VideoEntity(videoId,titulo,descripcion);
     }
 
+    /**
+     * Metodo que se encarga de instanciar un Video
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param String
+     * @Param int
+     */
     static public Entity instantiateVideoEntity(String titulo, String descripcion, String imgUrl, String url, int usuario ){
         return new VideoEntity(titulo,descripcion,imgUrl,url,usuario);
     }
 
-    static public Entity instantiateVideoEntity(int id, String titulo, String descripcion, String imgUrl, String url, String fecha, int visitas){
+    /**
+     * Metodo que se encarga de instanciar un Video
+     * @Param int
+     * @Param String
+     * @Param String
+     * @Param String
+     */
+    static public Entity instantiateVideoEntity(int id, String titulo, String descripcion, String imgUrl,
+                                                String url, String fecha, int visitas){
         return new VideoEntity(id,titulo,descripcion,imgUrl,url,fecha,visitas);
     }
 
+    /**
+     * Metodo que se encarga de instanciar un Video
+     */
     static public Entity instantiateVideoEntity( ){
         return new VideoEntity();
     }

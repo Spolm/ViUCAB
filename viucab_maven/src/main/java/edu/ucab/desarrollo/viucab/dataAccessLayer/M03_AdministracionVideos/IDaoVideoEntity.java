@@ -7,6 +7,11 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.IDao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * Interface para definir los metodos del programa relacionados con la administracion del video.
+ *
+ */
+
 public interface IDaoVideoEntity extends IDao{
 
     int addVideo(Entity e) throws SQLException;
