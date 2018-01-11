@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertNotNull;
 
 public class GetTopVideosTest {
-    
+
     @Test
     public void execute() throws VIUCABException, SQLException {
 

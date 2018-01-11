@@ -100,12 +100,9 @@ export class PlaylistPage {
   deletePlayList(){
     this.api.geta('playlist/deletePlaylist?lis_rep_id='+ this.IdListaBorrar).subscribe((data) => { // Success
       console.log (data.json());
-      if(data.json() == true){
+      
         this.getPlaylists();
-      }else if(data.json() == false){
-        this.presentAlert("Ups","La lista no puedo ser eliminada");
-        console.log("Lista no puede ser eliminada");
-      }
+      
       
      },
      (error) =>{
