@@ -34,11 +34,7 @@ export class NotificacionesPage {
     });
   }
 
-<<<<<<< HEAD
-   goToConfiguracionNotificaciones(){
-=======
   public goToConfiguracionNotificaciones() {
->>>>>>> Develop
     this.navCtrl.push(ConfiguracionNotificacionesPage);
   }
 

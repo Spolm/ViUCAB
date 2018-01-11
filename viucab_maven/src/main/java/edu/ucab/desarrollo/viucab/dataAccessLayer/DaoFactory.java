@@ -8,11 +8,8 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M05_ListaDeReproduccion.GetLis
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M07_Etiquetas.GetEtiquetasDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M09_Sugerencias.GetSugerenciasDao;
-<<<<<<< HEAD
-=======
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones.GetConfiguracionDao;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones.GetNotificacionDao;
->>>>>>> Develop
 
 /**
  * Fabrica para instanciar los DAO creada por M011
@@ -64,8 +61,6 @@ public class DaoFactory
         return new GetEtiquetasDao();
     }
     //endregion
-<<<<<<< HEAD
-=======
     
     
     
@@ -77,15 +72,12 @@ public class DaoFactory
     }
     
     // FIN M04
->>>>>>> Develop
 
     //regionM09
     static public GetSugerenciasDao instaciateDaoSugerencias(){
         return new GetSugerenciasDao();
     }
     //final M09
-<<<<<<< HEAD
-=======
 
      //region M10
 
@@ -97,6 +89,5 @@ public class DaoFactory
         return new GetConfiguracionDao();
     }
     //endregion
->>>>>>> Develop
 }
 

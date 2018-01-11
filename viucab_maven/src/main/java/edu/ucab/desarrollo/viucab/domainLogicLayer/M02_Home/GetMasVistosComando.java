@@ -50,9 +50,4 @@ public class GetMasVistosComando extends Command {
     public Entity Return() {
         return null;
     }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
-        return null;
-    }
 }

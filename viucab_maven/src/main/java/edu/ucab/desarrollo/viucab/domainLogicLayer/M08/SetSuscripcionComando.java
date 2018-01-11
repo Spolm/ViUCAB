@@ -47,9 +47,4 @@ public class SetSuscripcionComando extends Command {
     public Entity Return() {
         return est;
     }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
-        return null;
-    }
 }

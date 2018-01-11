@@ -7,13 +7,9 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M02_Home.GetHomeDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
->>>>>>> Develop
 
 /**
  * Created by estefania on 29/11/2017.
@@ -47,11 +43,6 @@ public class GetSuscritosComando extends Command {
 
     @Override
     public Entity Return() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
         return null;
     }
 }

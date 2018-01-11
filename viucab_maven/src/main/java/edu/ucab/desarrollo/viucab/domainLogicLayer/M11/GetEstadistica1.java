@@ -41,9 +41,4 @@ public class GetEstadistica1 extends Command {
     public Entity Return() {
         return est;
     }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
-        return null;
-    }
 }

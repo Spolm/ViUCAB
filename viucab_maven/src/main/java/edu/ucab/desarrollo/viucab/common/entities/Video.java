@@ -16,16 +16,14 @@ public class Video extends Entity{
     private String descripcion;
     private String imagen;
     private String url;
-    private String _valorCategoria;
-    private String usuario;
-    private int id_categoria;
-    private ArrayList<Video> listaVideo;
-    private int id_usuario;
     private String videousu;
     private String videoima;
     private String busqueda;
+    private ArrayList<Video> listaVideo;
     private String [] listaRespVideo;
-
+    private int id_categoria;
+    private int id_usuario;
+    private String _valorCategoria;
 
 
     public Video() {
@@ -35,7 +33,6 @@ public class Video extends Entity{
         this.id_usuario = id_usuario;
         this._valorCategoria = categoria;
     }
-
 
     public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
                  String url,int usuario,  int id_categoria) {
@@ -67,7 +64,6 @@ public class Video extends Entity{
     }
 
     public Video(ArrayList listaVideo) {
-
         this.listaVideo = listaVideo;
     }
 
@@ -86,25 +82,7 @@ public class Video extends Entity{
         this.visitas=visitas;
     }
 
-
-    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
-                 String url, int id_categoria) {
-        this.descripcion=descripcion;
-        this.id=id;
-        this.fecha=fecha;
-        this.nombre=titulo;
-        this.imagen=imagen;
-        this.url=url;
-        this.visitas=visitas;
-        this.id_categoria = id_categoria;
-    }
-
-
-    public String get_valorCategoria() {
-        return _valorCategoria;
-
     public Video(int idUsuario) {
-
     }
 
 
@@ -196,7 +174,6 @@ public class Video extends Entity{
         this.listaVideo = listaVideo;
     }
 
-
     public String[] getListaRespVideo() {
         return listaRespVideo;
     }
@@ -204,7 +181,6 @@ public class Video extends Entity{
     public void setListaRespVideo(String[] listaRespVideo) {
         this.listaRespVideo = listaRespVideo;
     }
-
 
     public int getId_categoria() {
         return id_categoria;
@@ -229,5 +205,4 @@ public class Video extends Entity{
     public void set_valorCategoria(String _valorCategoria) {
         this._valorCategoria = _valorCategoria;
     }
-
 }

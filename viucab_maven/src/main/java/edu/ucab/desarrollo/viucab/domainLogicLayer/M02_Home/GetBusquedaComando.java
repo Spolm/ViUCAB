@@ -13,8 +13,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import java.util.ArrayList;
-
 /**
  * Created by estefania on 29/11/2017.
  */
@@ -46,11 +44,6 @@ public class GetBusquedaComando extends Command{
 
     @Override
     public Entity Return() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
         return null;
     }
 }

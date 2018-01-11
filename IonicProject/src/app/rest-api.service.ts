@@ -6,11 +6,7 @@ import 'rxjs/add/operator/map';
 import { Http } from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
-<<<<<<< HEAD
-const URL = 'http://localhost:8080/viucab';
-=======
 const URL = 'http://192.168.1.116:8080/viucab';
->>>>>>> Develop
 
 @Injectable()
 export class RestApiService {
@@ -22,11 +18,10 @@ export class RestApiService {
   //Metodo GET: /direccion
   //Accede al metodo que se encuentra en direccion y devuelve la respuesta
   public getTodo(direccion){
-    console.log(URL+'/'+direccion);
     return this.http
-      .get(URL+'/'+direccion)
+      .get(URL + '/' + direccion)
       .map((data: any) => data.json())
-      .subscribe();
+      .catch(this.handleError);
   }
 
   //Metodo GET: /direccion/id_objeto
@@ -148,7 +143,7 @@ export class RestApiService {
       .get(URL+'/'+direccion)
 
   }
-  
+
 /////////////////
  //Metodo DELETE: /direccion
    //Elimina en una direccion
@@ -158,6 +153,6 @@ export class RestApiService {
     .map((data: any) => data.json())
     .catch(this.handleError);
    }
-  
+
 
 }

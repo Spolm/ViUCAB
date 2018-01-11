@@ -7,8 +7,6 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-
 
 public class InsertarEtiqueta extends Command{
 
@@ -35,10 +33,5 @@ public class InsertarEtiqueta extends Command{
     @Override
     public Entity Return() {
         return eti;
-    }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
-        return null;
     }
 }

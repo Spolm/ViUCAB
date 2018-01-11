@@ -6,8 +6,6 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.M011.GetEstadisticaDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-
 /**
  * Created by Daniel on 25/11/2017.
  */
@@ -39,10 +37,5 @@ public class GetEstadistica7 extends Command {
     @Override
     public Entity Return() {
         return est;
-    }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
-        return null;
     }
 }

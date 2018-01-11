@@ -42,13 +42,8 @@ export class MenuPage {
     { title: 'Inicio', pageName: 'TabsPage', tabComponent: 'InicioPage', index: 0, icon: 'home' },
     //Aqui van los links de las paginas principales de los demas grupos
     //{ title: 'Configuración de usuario', pageName: 'UsuarioPage', icon: 'contact' },
-<<<<<<< HEAD
-    //{ title: 'Mi canal', pageName: 'CanalPage', icon: 'play' },
-    { title: 'Mis listas', pageName: 'Modulo9Page', icon: 'star-half' },
-=======
     { title: 'Mis videos', pageName: 'ListarmisvideosPage', icon: 'play' },
     { title: 'Mis listas', pageName: 'PlaylistPage', icon: 'star-half' },
->>>>>>> Develop
     { title: 'Estadísticas', pageName: 'EstadisticaPage', icon: 'stats' }
   ];
  

@@ -28,14 +28,6 @@ export class InicioPage {
   
 
 //Metodo para llenar el listado de videos inicial
-<<<<<<< HEAD
-/*  ngOnInit(): void {
-    this.subscription = this.api.getVideos('Home/cargarTodo')
-        .subscribe(items => this.items = items,
-        error => this.errorMessage = error);
-    this.errorMessage = '';
-  }*/
-=======
   ngOnInit(): void {
     /*this.subscription = this.api.getVideos('Home/cargarTodo')              //LLAMADA DE PRUEBAS
         .subscribe(data => this.data = data,
@@ -127,7 +119,6 @@ export class InicioPage {
         visitas: 8
     }];
   }
->>>>>>> Develop
 
 
   @ViewChild('myNav') nav: NavController

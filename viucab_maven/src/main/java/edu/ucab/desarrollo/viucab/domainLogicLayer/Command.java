@@ -5,11 +5,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 
-<<<<<<< HEAD
-import java.util.ArrayList;
-=======
 import java.sql.SQLException;
->>>>>>> Develop
 import java.util.List;
 import java.util.ArrayList;
 
@@ -29,6 +25,5 @@ public abstract class Command
      */
     public abstract Entity Return() ;
 
-    public abstract ArrayList<Entity> executeCommand();
 
 }

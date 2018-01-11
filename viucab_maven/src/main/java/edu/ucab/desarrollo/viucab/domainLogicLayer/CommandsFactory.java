@@ -7,10 +7,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
-<<<<<<< HEAD
-=======
 import edu.ucab.desarrollo.viucab.common.entities.Video;
->>>>>>> Develop
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasLikeComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M09_Sugerencias.GetSugerenciasSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M11.*;
@@ -160,8 +157,6 @@ public class CommandsFactory {
 
      public static Command instanciaGetUsuariosComando () {return  new GetUsuariosComando();}
     //Fin instancias M08
-<<<<<<< HEAD
-=======
      
      
      // M04
@@ -203,7 +198,6 @@ public class CommandsFactory {
      }
      
      // Fin M04
->>>>>>> Develop
 
     //regin M09
 
@@ -212,12 +206,9 @@ public class CommandsFactory {
     public static Command instaciateSugerenciasSuscripcion (Entity video) {return new GetSugerenciasSuscripcionComando(video);}
 
     //fin M09
-<<<<<<< HEAD
-=======
 
     // M10
     public static Command instanciateGetNotificaciones ( Entity notificacion) {
         return new GetNotificaciones(notificacion);
     }
->>>>>>> Develop
 }

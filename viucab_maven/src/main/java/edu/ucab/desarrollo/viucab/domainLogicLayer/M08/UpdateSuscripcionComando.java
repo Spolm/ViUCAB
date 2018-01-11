@@ -7,8 +7,6 @@ import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 
-import java.util.ArrayList;
-
 public class UpdateSuscripcionComando extends Command {
     private int suscriptor;
     private int suscripcion;
@@ -42,11 +40,6 @@ public class UpdateSuscripcionComando extends Command {
 
     @Override
     public Entity Return() {
-        return null;
-    }
-
-    @Override
-    public ArrayList<Entity> executeCommand() {
         return null;
     }
 }

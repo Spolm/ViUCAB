@@ -165,8 +165,6 @@ public class EntityFactory
 
     //final M09
 
-<<<<<<< HEAD
-=======
     // M10 Notificaciones
 
     static public ConfiguracionNotificaciones configuracionNotificaciones(int id, boolean activado, boolean boletin, boolean subscripciones, boolean etiquetados, boolean estadisticas, boolean preferencias){
@@ -182,6 +180,5 @@ public class EntityFactory
     //Fin M10
 
 
->>>>>>> Develop
 }
 
