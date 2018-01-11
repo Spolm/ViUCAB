@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-buttons>
+    <ion-title>
+      Configuración
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page3">
+  <div id="titulo" class="show-list-numbers-and-dots">
+      <strong>
+        Configuración de Notificaciones
+      </strong>
+  </div>
+  <form id="configuracion-form">
+    <ion-item id="notificaciones">
+      <ion-label>
+        Notificaciones
+      </ion-label>
+      <ion-toggle color="positive" checked="{{configuracion.notificaciones}}"  (click)="cambiarNotificaciones();" ></ion-toggle>
+    </ion-item>
+    <ion-item id="boletin-toggle">
+      <ion-label>
+        Boletín Semanal
+      </ion-label>
+      <ion-toggle color="positive" checked="{{configuracion.boletin}}"></ion-toggle>
+    </ion-item>
+    <div id="mensaje" class="show-list-numbers-and-dots">
+        <strong>
+          Acepto recibir notificaciones a mi correo electrónico
+        </strong>
+    </div>
+    <ion-item id="recomendados-toggle">
+      <ion-label>
+        Videos Recomendados
+      </ion-label>
+    <ion-toggle color="positive" checked="{{configuracion.recomendados}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+    </ion-item>
+    <ion-item id="subscripciones-toggle">
+      <ion-label>
+        Videos de Subscripciones
+      </ion-label>
+      <ion-toggle color="positive" checked="{{configuracion.subscripciones}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+    </ion-item>
+    <ion-item id="etiquetados-toggle">
+      <ion-label>
+        Videos Etiquetados
+      </ion-label>
+      <ion-toggle color="positive" checked="{{configuracion.etiquetados}}" disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+    </ion-item>
+    <ion-item id="estadisticas-toggle"> 
+      <ion-label>
+        Estadísticas de Usuario
+      </ion-label>
+      <ion-toggle color="positive" checked="{{configuracion.estadisticas}}"disabled="{{!configuracion.notificaciones}}"></ion-toggle>
+    </ion-item>
+    <button  (click)="guardar()" ion-button block>Guardar</button>    
+  </form>
+</ion-content>

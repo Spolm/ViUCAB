@@ -1,0 +1,29 @@
+<ion-list >
+        <ion-item (click)="goToEditList()">
+      <ion-grid>
+        <ion-row > 
+          <ion-col col-4 class="nopadding">
+              <ion-icon class="f21 color-blue" ios="ios-create" md="md-create"></ion-icon>
+          </ion-col>
+          <ion-col col-8 class="nopadding" align="right">
+              Editar lista 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    
+    </ion-item>
+    <ion-item (click)="goToDeleteList()">
+        <ion-grid>
+          <ion-row>
+            <ion-col col-4 class="nopadding">
+                <ion-icon class="f21 color-blue" ios="ios-trash" md="md-trash"></ion-icon>
+            </ion-col>
+            <ion-col col-8 class="nopadding" align="right">
+                Eliminar lista 
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+      </ion-item>
+    
+  </ion-list>

@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>
+      <ion-icon name="logo-youtube"> ViUCAB</ion-icon>
+      <ion-buttons class= 'centrado-porcentual'  >
+          <button  >
+        <ion-icon name="videocam" color="primary"></ion-icon>
+      </button>
+      </ion-buttons>
+
+    </ion-title>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-list>
+    <ion-item (click)="metodo(1)">
+      Estadistica1
+    </ion-item >
+    <ion-item >
+    Estadistica2
+    </ion-item>
+
+    <ion-item  (click)="metodo(2)">
+    Estadistica3a
+    </ion-item>
+  
+
+  </ion-list>
+
+
+  <ion-item>
+    <ion-label>Cambiar Grafica </ion-label>
+    <ion-toggle (ionChange)="isDisabled = !isDisabled"></ion-toggle>
+  </ion-item>
+
+  <div [class.hide]="!mostrar">
+
+  <ion-card  [class.hide]="!isDisabled" >
+      <ion-card-header>
+        Bar Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #barCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+
+
+
+    <ion-card [class.hide]="isDisabled">
+      <ion-card-header>
+        Doughnut Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #doughnutCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+
+</ion-content>

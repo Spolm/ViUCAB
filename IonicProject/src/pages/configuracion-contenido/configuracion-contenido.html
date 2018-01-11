@@ -1,0 +1,77 @@
+<ion-header >
+  <ion-navbar color="moradoViUCAB" align="center" >
+    <ion-title>
+      Moderación de Contenido
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit) = "guardarConfiguracion()">
+    <p align="center">IMPORTANTE: </p>
+    <p align="justify">  En esta sección podrá bloquear el contenido que no desea ver, las visualizaciones se ajustarán a los parámetros establecidos.</p>
+    <ion-item-group>
+      <ion-item-divider color="light">
+        <ion-label>Filtros Individuales </ion-label>
+        <ion-toggle [(ngModel)]="filtrosIndividuales"  [ngModelOptions]="{standalone: true}"></ion-toggle>
+        <ion-icon ios="ios-add" md="md-add"></ion-icon>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label>Violencia</ion-label>
+        <ion-checkbox [(ngModel)]="violenciaa.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Terrorismo</ion-label>
+        <ion-checkbox [(ngModel)]="terrorismo.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Discriminación</ion-label>
+        <ion-checkbox [(ngModel)]="discriminacion.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Sexo y Pornografía</ion-label>
+        <ion-checkbox [(ngModel)]="sexo.valor" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Religión</ion-label>
+        <ion-checkbox [(ngModel)]="religion.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Gore y Cont. Sangriento</ion-label>
+        <ion-checkbox [(ngModel)]="sangriento.valor" [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Política e Ideología</ion-label>
+        <ion-checkbox [(ngModel)]="politica.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Maquillaje y Tutoriales</ion-label>
+        <ion-checkbox [(ngModel)]="maquillaje.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+    </ion-item-group>
+    <hr><br>
+    <ion-item-group>
+      <ion-item-divider color="light">
+        <ion-label>Estructuras Especiales</ion-label>
+        <ion-toggle [(ngModel)]="estructurasFiltros"  [ngModelOptions]="{standalone: true}" ></ion-toggle>
+      </ion-item-divider>
+      <!--<p align="justify">En esta sección se ponen a su disposición estructuras con filtros agrupados para mayor comodidad.</p>-->
+      <ion-item>
+        <ion-label>Control Parental</ion-label>
+        <ion-checkbox [(ngModel)]="parental.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+      <ion-item>
+        <ion-label>Perfil Infantil</ion-label>
+        <ion-checkbox [(ngModel)]="infantil.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+        <ion-icon ios="ios-alert" md="md-alert"></ion-icon>
+      </ion-item>
+      <ion-item>
+        <ion-label>Perfil de Adulto</ion-label>
+        <ion-checkbox [(ngModel)]="perfil.valor"  [ngModelOptions]="{standalone: true}"></ion-checkbox>
+      </ion-item>
+    </ion-item-group>
+    <hr>
+      <button ion-button color="verdeViUCAB" type="submit">Guardar</button>
+  </form>
+</ion-content>
+

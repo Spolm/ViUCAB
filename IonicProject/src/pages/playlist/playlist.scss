@@ -1,0 +1,91 @@
+page-playlist{
+    
+        .centrado-porcentual {
+            position: absolute;
+            left: 100%;
+            top: 95%;
+            transform: translate(-100%, -100%);
+            -webkit-transform: translate(-100%, -100%);
+            font-size: 1.2em;
+        
+        }
+    
+        $segment-button-ios-background-color: #7b1fa2;
+    
+    
+        .segment-button {
+             color: #fff !important;
+             text-transform: none !important;
+             font-size: 1.6rem !important;
+             font-weight: 400 !important;
+             opacity: 1 !important;
+             border: 0 !important;
+             background: $segment-button-ios-background-color !important;
+        
+            &.activated, &.segment-activated {
+              border-bottom: 4px solid #68EFAD !important;
+            }
+          }
+    
+         $segment-button-ios-background-color: #7b1fa2;
+        
+    
+        .List-title{
+            font-weight: 500;
+            font-size: 16px;
+        }
+    
+        .List-amount{
+            font-weight: 100;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .List-duration{
+            font-size: 16px!important;
+        }
+    
+        ion-thumbnail img{
+            width: 120px!important;
+        }
+    
+       .ellipsis{
+           width: 250px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+       }
+    
+       .nopadding{
+           padding: 0px!important;
+       }
+    
+       .f21{
+           font-size: 21px!important;
+       }
+    
+       .color-blue{
+        color:#68EFAD 
+       }
+       .color-grey{
+           color:#989898;
+       }
+    
+       .grande {
+        font-size: 40px;
+        color : #68EFAD;
+      }
+    
+      .popover-md .popover-content{
+          width: 150px!important;
+      }
+    
+      
+    .paddingtop15 {
+        padding-top: 15px!important;
+    }
+    }
+    
+    $segment-button-ios-text-color: white;
+    

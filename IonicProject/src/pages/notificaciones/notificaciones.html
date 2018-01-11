@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>
+      Notificaciones
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page1">
+  <button id="notificaciones-button1" ion-button color="light" block icon-right style="text-align:left;" (click)="goToConfiguracionNotificaciones()">
+    Configuración
+    <ion-icon name="settings"></ion-icon>
+  </button>
+  <ion-item *ngIf="vacio">
+    <p style="text-align: center">No tiene Notificaciones Pendientes</p>
+
+  </ion-item>
+  <ion-list *ngIf="!vacio">
+    <ion-item *ngFor="let n of notificacionList" color="none" (click)="goToVideo(n)">
+      <ion-thumbnail item-left>
+        <img src="{{n.video.imagen}}">
+      </ion-thumbnail>
+      <h2>
+        {{n.video.nombre}}
+      </h2>
+      <p>
+        {{n.fecha}}
+      </p>
+      <p>
+       {{n.usuario._name_user}} ha subido un nuevo video!
+      </p>
+      <p>
+        {{n.video.descripcion}}
+      </p>
+    </ion-item>
+  </ion-list>
+</ion-content>
