@@ -18,11 +18,10 @@ export class RestApiService {
   //Metodo GET: /direccion
   //Accede al metodo que se encuentra en direccion y devuelve la respuesta
   public getTodo(direccion){
-    console.log(URL+'/'+direccion);
     return this.http
-      .get(URL+'/'+direccion)
+      .get(URL + '/' + direccion)
       .map((data: any) => data.json())
-      .subscribe();
+      .catch(this.handleError);
   }
 
   //Metodo GET: /direccion/id_objeto
@@ -144,7 +143,7 @@ export class RestApiService {
       .get(URL+'/'+direccion)
 
   }
-  
+
 /////////////////
  //Metodo DELETE: /direccion
    //Elimina en una direccion
@@ -154,6 +153,6 @@ export class RestApiService {
     .map((data: any) => data.json())
     .catch(this.handleError);
    }
-  
+
 
 }
