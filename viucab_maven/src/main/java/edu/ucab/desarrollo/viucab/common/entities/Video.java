@@ -16,23 +16,17 @@ public class Video extends Entity{
     private String descripcion;
     private String imagen;
     private String url;
-<<<<<<< HEAD
     private String _valorCategoria;
     private String usuario;
     private int id_categoria;
     private ArrayList<Video> listaVideo;
     private int id_usuario;
-=======
     private String videousu;
     private String videoima;
     private String busqueda;
-    private ArrayList<Video> listaVideo;
     private String [] listaRespVideo;
-    private int id_categoria;
-    private int id_usuario;
-    private String _valorCategoria;
 
->>>>>>> Develop
+
 
     public Video() {
     }
@@ -42,9 +36,7 @@ public class Video extends Entity{
         this._valorCategoria = categoria;
     }
 
-<<<<<<< HEAD
-    public Video(ArrayList<Video> listaVideo) {
-=======
+
     public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
                  String url,int usuario,  int id_categoria) {
         this.descripcion = descripcion;
@@ -75,7 +67,7 @@ public class Video extends Entity{
     }
 
     public Video(ArrayList listaVideo) {
->>>>>>> Develop
+
         this.listaVideo = listaVideo;
     }
 
@@ -94,7 +86,7 @@ public class Video extends Entity{
         this.visitas=visitas;
     }
 
-<<<<<<< HEAD
+
     public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
                  String url, int id_categoria) {
         this.descripcion=descripcion;
@@ -107,27 +99,12 @@ public class Video extends Entity{
         this.id_categoria = id_categoria;
     }
 
-    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
-                 String url,int usuario,  int id_categoria) {
-        this.descripcion=descripcion;
-        this.id=id;
-        this.fecha=fecha;
-        this.nombre=titulo;
-        this.imagen=imagen;
-        this.url=url;
-        this.visitas=visitas;
-        this.id_categoria = id_categoria;
-        this.id_usuario = usuario;
-
-    }
-
-
 
     public String get_valorCategoria() {
         return _valorCategoria;
-=======
+
     public Video(int idUsuario) {
->>>>>>> Develop
+
     }
 
 
@@ -219,8 +196,7 @@ public class Video extends Entity{
         this.listaVideo = listaVideo;
     }
 
-<<<<<<< HEAD
-=======
+
     public String[] getListaRespVideo() {
         return listaRespVideo;
     }
@@ -229,7 +205,7 @@ public class Video extends Entity{
         this.listaRespVideo = listaRespVideo;
     }
 
->>>>>>> Develop
+
     public int getId_categoria() {
         return id_categoria;
     }
@@ -245,8 +221,6 @@ public class Video extends Entity{
     public void setId_usuario(int id_usuario) {
         this.id_usuario = id_usuario;
     }
-<<<<<<< HEAD
-=======
 
     public String get_valorCategoria() {
         return _valorCategoria;
@@ -255,5 +229,5 @@ public class Video extends Entity{
     public void set_valorCategoria(String _valorCategoria) {
         this._valorCategoria = _valorCategoria;
     }
->>>>>>> Develop
+
 }
