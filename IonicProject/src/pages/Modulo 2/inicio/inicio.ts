@@ -2,7 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RestApiService } from '../../../app/rest-api.service';
 import { Subscription } from 'rxjs/Subscription';
-
+import {ReproductorPage} from '../../reproductor/reproductor';
 
 /**
  * Generated class for the InicioPage page.
@@ -30,7 +30,7 @@ export class InicioPage {
 
 //Metodo para llenar el listado de videos inicial
   ngOnInit(): void {
-    this.subscription = this.api.getVideos('Home/Inicio?id=1') //LLAMADA AL WS
+    this.subscription = this.api.getVideos('Home/ObtenerPreferencias?id=1') //LLAMADA AL WS
                         .subscribe(data => this.data = data,
                         error => this.errorMessage = error);
                         this.errorMessage = '';
@@ -128,7 +128,6 @@ export class InicioPage {
               public alertCtrl: AlertController,
               public api : RestApiService) {
     this.initializeItems();
-    this.api.getTodo('Home/MasVistos');
     
   }
 
@@ -155,6 +154,18 @@ export class InicioPage {
 
   
 
+  reproductor(ev: any) {
+    let val = ev.target || ev.srcElement || ev.currentTarget;
+    var idAttr = val.attributes.id;
+    if (idAttr === undefined){
+        console.log("Se debe dar click a la imagen");
+    }else if (val != '') {
+        var value = idAttr.nodeValue;
+        console.log(value + " value");
+        this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
+    }
+    //
+  }
 
   getItems(ev: any){
     //Reset items back to all of the items
@@ -251,7 +262,7 @@ export class InicioPage {
                 imagen: 'assets/imgs/shapeofyou.png',
                 visitas: 8
             }];*/
-            this.subscription = this.api.getVideos('Home/Inicio?id=1') //LLAMADA AL WS
+            this.subscription = this.api.getVideos('Home/ObtenerPreferencias?id=1') //LLAMADA AL WS
                                 .subscribe(data => this.data = data,
                                 error => this.errorMessage = error);
                                 this.errorMessage = '';
