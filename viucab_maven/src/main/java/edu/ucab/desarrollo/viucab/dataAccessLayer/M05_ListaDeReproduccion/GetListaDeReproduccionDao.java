@@ -477,4 +477,57 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
         }
         return listaContenedora;
     }
+
+    /**
+     * Metodo para obtener un video de una lista
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public ArrayList<Entity> getTopVideos() throws SQLException {
+
+        ArrayList<Entity> listaContenedora= new ArrayList<>();
+        Video video;
+        CallableStatement preStatement = null;
+        ResultSet resultSet = null;
+        Connection conn;
+
+        try {
+            //Creando la instancia de Conexion a la BD
+            conn = getBdConnect();
+            //Invocando el SP
+            preStatement = conn.prepareCall("{call m05_toptenvideo()}"); //HAY QUE AGREGAR ESTE METODO A POSTGRE
+            //Ejecucion del query
+            resultSet = preStatement.executeQuery();
+            while (resultSet.next()) {
+
+                int id = resultSet.getInt("vid_id");
+                String nombre = resultSet.getString("vid_titulo");
+                //String descripcion = resultSet.getString("vid_descripcion");
+                String imagen = resultSet.getString("vid_imagen");
+                String fechaCreacion = resultSet.getString("vid_fecha");
+                String urlVideo = resultSet.getString("vid_url");
+                int numReproducciones = resultSet.getInt("vid_visitas");
+                //int idUsuarioF = resultSet.getInt("vid_usuario");
+
+                video = (Video) EntityFactory.video(id, nombre, imagen, numReproducciones, fechaCreacion, urlVideo);
+                listaContenedora.add(video);
+
+            }
+            resultSet.close();
+
+        } catch (SQLException e1) {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+
+            System. out. println(e1.getMessage());
+        }
+        catch(Exception ex)
+        {
+            //throw new ViUcabException(e1.mensaje, e1.codigo);
+        }
+        finally {
+            closeConnection();
+        }
+        return listaContenedora;
+    }
 }

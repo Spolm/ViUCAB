@@ -131,6 +131,10 @@ public class CommandsFactory {
         return new GetVideosFromListComando(lista);
     }
 
+    public static Command instanciaGetTopVideos (){
+        return new GetTopVideos();
+    }
+
     //endregion
 
     //region M07

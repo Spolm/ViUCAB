@@ -298,6 +298,31 @@ public class M05_ListaDeReproduccion {
 
     }
 
+    @GET
+    @CrossOrigin(origins = "http://localhost:8100")
+    @Path("/getTopVideos")
+    @Produces("text/plain")
+    /**
+     * Metodo para obtener los videos mas vistos
+     */
+    public String obtenerVideosMasVistos()
+    {
+        Command commandGetTopVideos = CommandsFactory.instanciaGetTopVideos(); //instancio el comando necesario
+        GetTopVideos cmd = (GetTopVideos) commandGetTopVideos; //Inicializo el comando
+
+        try {
+            cmd.execute(); //ejecuto el comando
+            ArrayList<Entity> resultados =cmd.getResultados(); //obtengo los resultados y los devuelvo en Json
+            return gson.toJson(resultados);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (VIUCABException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
     @GET
     @Path("/holamundo")
@@ -307,7 +332,7 @@ public class M05_ListaDeReproduccion {
      */
     public String ejemplo()
     {
-        return "Ejemplo formal Y.E.U.P.D.V";
+        return "Ejemplo formal Y.E.U.P.D.V.V";
 
     }
 
