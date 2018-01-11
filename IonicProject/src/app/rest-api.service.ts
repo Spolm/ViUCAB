@@ -155,10 +155,10 @@ export class RestApiService {
     .catch(this.handleError);
    }
 
-   public m12prueba(){
+   public getFiltros(id){
      return new Promise ((resolve, reject) => {
 
-       this.http.get("http://localhost:8080/viucab/Moderacion/prueba")
+       this.http.get("http://localhost:8080/viucab/ModeracionContenido/cargarFiltros?id="+id)
          .subscribe(data => {
            console.log(data);
          }, error => {

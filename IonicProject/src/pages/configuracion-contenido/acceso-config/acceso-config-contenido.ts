@@ -18,7 +18,7 @@ import { RestApiService } from '../../../app/rest-api.service';
 export class AccesoConfigContenidoPage {
   private id: number =1;
   private password: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public s: ServicioProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public s: RestApiServicez) {
     
   }
 

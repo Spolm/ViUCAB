@@ -57,7 +57,7 @@ export class ConfigContenidoPage {
     filtros =[];
 
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public servicio:ServicioProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,public http: Http, public servicio:RestApiService) {
 
     }
 
@@ -74,7 +74,7 @@ export class ConfigContenidoPage {
     }
 
     guardarConfig() {
-        this.servicio.postRequest(this.filtros).then((result) => {
+        this.servicio.getFiltros(1).then((result) => {
           console.log(result);
         }, (err) =>{
           console.log(err);
