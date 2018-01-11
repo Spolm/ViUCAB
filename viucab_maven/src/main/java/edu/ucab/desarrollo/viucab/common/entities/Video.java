@@ -1,100 +1,47 @@
 package edu.ucab.desarrollo.viucab.common.entities;
 
-        import java.util.LinkedList;
+import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
-import java.util.ArrayList;
+import java.util.Date;
 
-/**
- * Created by estefania on 10/11/2017.
- */
-public class Video extends Entity{
-
-    private int id;
-    private String nombre;
-    private String fecha;
-    private int visitas;
+public class Video extends Entity {
+    private Integer id;
+    private String titulo;
     private String descripcion;
     private String imagen;
     private String url;
-    private String videousu;
-    private String videoima;
-    private String busqueda;
-    private ArrayList<Video> listaVideo;
-    private String [] listaRespVideo;
-
+    private Date fecha;
+    private Integer visitas;
+    private Integer usuario;
 
     public Video() {
     }
 
-    public Video(int id, String nombre, String fecha, int visitas, String descripcion, String imagen, String url, String videousu, String videoima) {
+    public Video(Integer id, String titulo, String descripcion, String imagen, String url, Date fecha, Integer visitas, Integer usuario) {
         this.id = id;
-        this.nombre = nombre;
-        this.fecha = fecha;
-        this.visitas = visitas;
+        this.titulo = titulo;
         this.descripcion = descripcion;
         this.imagen = imagen;
         this.url = url;
-        this.videousu = videousu;
-        this.videoima = videoima;
+        this.fecha = fecha;
+        this.visitas = visitas;
+        this.usuario = usuario;
     }
 
-    public Video (String busqueda){
-        this.busqueda=busqueda;
-    }
-
-    public Video(ArrayList listaVideo) {
-        this.listaVideo = listaVideo;
-    }
-
-    public Video(String [] listaRespVideo) {
-        this.listaRespVideo = listaRespVideo;
-    }
-
-    public Video(int id, String titulo, String descripcion, String imagen, String fecha, int visitas,
-                 String url) {
-        this.descripcion=descripcion;
-        this.id=id;
-        this.fecha=fecha;
-        this.nombre=titulo;
-        this.imagen=imagen;
-        this.url=url;
-        this.visitas=visitas;
-    }
-
-    public Video(int idUsuario) {
-    }
-
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public int getVisitas() {
-        return visitas;
-    }
-
-    public void setVisitas(int visitas) {
-        this.visitas = visitas;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {
@@ -121,43 +68,27 @@ public class Video extends Entity{
         this.url = url;
     }
 
-    public String getVideousu() {
-        return videousu;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setVideousu(String videousu) {
-        this.videousu = videousu;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
-    public String getVideoima() {
-        return videoima;
+    public Integer getVisitas() {
+        return visitas;
     }
 
-    public void setVideoima(String videoima) {
-        this.videoima = videoima;
+    public void setVisitas(Integer visitas) {
+        this.visitas = visitas;
     }
 
-    public String getBusqueda() {
-        return busqueda;
+    public Integer getUsuario() {
+        return usuario;
     }
 
-    public void setBusqueda(String busqueda) {
-        this.busqueda = busqueda;
-    }
-
-    public ArrayList<Video> getListaVideo() {
-        return listaVideo;
-    }
-
-    public void setListaVideo(ArrayList<Video> listaVideo) {
-        this.listaVideo = listaVideo;
-    }
-
-    public String[] getListaRespVideo() {
-        return listaRespVideo;
-    }
-
-    public void setListaRespVideo(String[] listaRespVideo) {
-        this.listaRespVideo = listaRespVideo;
+    public void setUsuario(Integer usuario) {
+        this.usuario = usuario;
     }
 }

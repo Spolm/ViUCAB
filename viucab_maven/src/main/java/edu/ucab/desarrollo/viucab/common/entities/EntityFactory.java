@@ -26,14 +26,6 @@ public class EntityFactory
 
     static public Entity homeVideo(int idUsuario) {return new Usuario(idUsuario);}
 
-    static public Entity homeVideo(int id, String titulo, String descripcion,
-                                   String imagen, String url, String fecha, int visitas, String nombre , String foto){
-        return new Video(id,titulo,fecha,visitas,descripcion,imagen,url,nombre,foto);
-    }
-
-    static  public Entity homeVideo(String parametro){
-        return new Video(parametro);
-    }
 
     //final M02
 
@@ -110,10 +102,6 @@ public class EntityFactory
         return new ListaDeReproduccion(lis_rep_id, null);
     }
 
-    static public Entity video (Integer idLista, String titulo, String imgUrl, Integer numReproducciones, String fechaCreacion, String urlVideo)
-    {
-        return new Video(idLista, titulo, "", imgUrl, fechaCreacion, numReproducciones,  urlVideo);
-    }
 
     //endregion
 
@@ -153,7 +141,25 @@ public class EntityFactory
 
     //M12
 
-    static public Filtro filtro (int id, String tipo, String descripcion){ return new Filtro(id,tipo,descripcion);}
+    static public Entity filtro (int id, String tipo, String descripcion){
+        return new Filtro(id,tipo,descripcion);
+    }
+
+    static public Entity filtro (int id, String tipo, String descripcion, boolean valor){
+        return new Filtro(id,tipo,descripcion,valor);
+    }
+
+    static public Entity video(Integer id, String titulo, String descripcion, String imagen, String url, Date fecha, Integer visitas, Integer usuario){
+        return new Video(id, titulo, descripcion, imagen, url, fecha, visitas, usuario);
+    }
+
+    static public Entity contenedorIdListaFiltros(Integer id, ArrayList<Filtro> listaFiltros){
+        return new ContenedorIdListaFiltros(id,listaFiltros);
+    }
+
+    static public Entity contenedorIdListaVideos(Integer id, ArrayList<Video> listaVideos){
+        return new ContenedorIdListaVideos(id,listaVideos);
+    }
     //endregion
 }
 

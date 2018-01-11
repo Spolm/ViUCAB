@@ -78,7 +78,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
 
-                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = null;//(Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 listaVideos.add(video);
 
 
@@ -139,7 +139,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
 
-                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas, nombreusu, imagenusuario);
+                video =null;//(Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas, nombreusu, imagenusuario);
                 resultlist.add(video);
 
             }
@@ -196,7 +196,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("imagenusuario");
 
                 //Casteo del entity a video del resultado del sp
-                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video = null;//(Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }
@@ -227,7 +227,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
         ArrayList<Video> resultlist = null;
         ResultSet resultSet = null;
         Video param = (Video) entidad;
-        String parametroBusqueda= param.getBusqueda();
+        String parametroBusqueda= null;//param.getBusqueda();
 
         Video video;
         Connection conn;
@@ -254,7 +254,7 @@ public class GetHomeDao extends Dao implements IDaoHome {
                 String imagenusuario = resultSet.getString("fotousuario");
 
 
-                video = (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
+                video =null;// (Video) EntityFactory.homeVideo(id, nombre, descripcion, imagen, url, fecha, visitas,nombreusu,imagenusuario);
                 resultlist.add(video);
 
             }

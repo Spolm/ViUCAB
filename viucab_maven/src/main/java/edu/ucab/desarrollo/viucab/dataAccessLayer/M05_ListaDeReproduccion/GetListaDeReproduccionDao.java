@@ -442,7 +442,7 @@ public class GetListaDeReproduccionDao extends Dao implements IDaoListaDeReprodu
                 int numReproducciones = resultSet.getInt("vid_visitas");
                 //int idUsuarioF = resultSet.getInt("vid_usuario");
 
-                video = (Video) EntityFactory.video(id, nombre, imagen, numReproducciones, fechaCreacion, urlVideo);
+                video = null;//(Video) EntityFactory.video(id, nombre, imagen, numReproducciones, fechaCreacion, urlVideo);
                 listaContenedora.add(video);
 
             }

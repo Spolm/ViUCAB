@@ -2,7 +2,7 @@ package edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido;
 
 
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
-import edu.ucab.desarrollo.viucab.common.entities.Filtro;
+import edu.ucab.desarrollo.viucab.common.entities.Video;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M12_ModeracionContenido.GetModeracionContenidoDao;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
@@ -12,17 +12,17 @@ import java.util.ArrayList;
 /**
  * Created by jose on 08/11/2017.
  */
-public class GetFiltrosDeUsuarioComando extends Command {
+public class GetVideosPermitidosComando extends Command {
 
     Integer id;
     Entity est;
-    ArrayList<Filtro> _resultado;
+    ArrayList<Video> _resultado;
 
-    public GetFiltrosDeUsuarioComando(Integer id) {
+    public GetVideosPermitidosComando(Integer id) {
         this.id=id;
     }
 
-    public ArrayList<Filtro> getFiltros()
+    public ArrayList<Video> getVideosPermitidos()
     {
         return _resultado;
     }
@@ -31,9 +31,7 @@ public class GetFiltrosDeUsuarioComando extends Command {
     public void execute() {
         try {
             GetModeracionContenidoDao dao =  DaoFactory.instanciarModeracionContenidoDao();
-            ArrayList<Filtro> listaFiltros = dao.buscarFiltros(id);
-
-            _resultado=listaFiltros;
+            _resultado= dao.buscarVideosPermitidos(id);
 
         }
         catch (Exception e){

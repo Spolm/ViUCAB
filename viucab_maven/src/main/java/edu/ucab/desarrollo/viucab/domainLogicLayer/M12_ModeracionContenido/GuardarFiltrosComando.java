@@ -1,6 +1,6 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido;
 
-
+import edu.ucab.desarrollo.viucab.common.entities.ContenedorIdListaFiltros;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.Filtro;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
@@ -12,28 +12,29 @@ import java.util.ArrayList;
 /**
  * Created by jose on 08/11/2017.
  */
-public class GetFiltrosDeUsuarioComando extends Command {
+public class GuardarFiltrosComando extends Command {
 
     Integer id;
+    ArrayList<Filtro> listaFiltros;
     Entity est;
-    ArrayList<Filtro> _resultado;
+    String _resultado;
 
-    public GetFiltrosDeUsuarioComando(Integer id) {
-        this.id=id;
+    public GuardarFiltrosComando(ContenedorIdListaFiltros contenedor) {
+        this.id=contenedor.getId();
+        this.listaFiltros=contenedor.getListaFiltros();
     }
 
-    public ArrayList<Filtro> getFiltros()
+    public String getResultadoGuardado()
     {
         return _resultado;
     }
+
 
     @Override
     public void execute() {
         try {
             GetModeracionContenidoDao dao =  DaoFactory.instanciarModeracionContenidoDao();
-            ArrayList<Filtro> listaFiltros = dao.buscarFiltros(id);
-
-            _resultado=listaFiltros;
+            _resultado = dao.guardarFiltrosEnBD(id, listaFiltros);
 
         }
         catch (Exception e){

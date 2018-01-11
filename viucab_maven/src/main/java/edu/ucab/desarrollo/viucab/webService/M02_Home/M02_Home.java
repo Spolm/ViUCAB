@@ -135,7 +135,7 @@ public class M02_Home {
          */
         public String busquedaVideos (@QueryParam("parametroBusqueda")  String parametroBusqueda)
         {
-            Entity videoObject = EntityFactory.homeVideo(parametroBusqueda);
+            Entity videoObject = null;
             Command commadHome = CommandsFactory.instanciateGetBusquedaComando(videoObject);
             GetBusquedaComando cmd = (GetBusquedaComando) commadHome;
             try {

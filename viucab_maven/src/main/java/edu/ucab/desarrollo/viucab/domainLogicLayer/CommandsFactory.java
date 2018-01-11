@@ -1,5 +1,7 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer;
 
+import edu.ucab.desarrollo.viucab.common.entities.ContenedorIdListaFiltros;
+import edu.ucab.desarrollo.viucab.common.entities.ContenedorIdListaVideos;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
@@ -200,6 +202,10 @@ public class CommandsFactory {
 
     //M12
     public  static  Command instanciarGetFiltrosDeUsuarioComando(Integer id) {return  new GetFiltrosDeUsuarioComando(id);}
+    public  static  Command instanciarValidarAccesoComando(Integer id, String claveApp) {return  new ValidarAccesoComando(id, claveApp);}
+    public  static  Command instanciarGetVideosPermitidosComando(Integer id) {return  new GetVideosPermitidosComando(id);}
+    public  static  Command instanciarFiltrarVideosComando(ContenedorIdListaVideos contenedor) {return  new FiltrarVideosComando(contenedor);}
+    public  static  Command instanciarGuardarFiltrosComando(ContenedorIdListaFiltros contenedor) {return  new GuardarFiltrosComando(contenedor);}
 
     // Fin M12
 }
