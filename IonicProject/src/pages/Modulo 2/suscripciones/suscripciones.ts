@@ -123,6 +123,19 @@ export class SuscripcionesPage {
       }
       //
     }
+
+    suscripcionBoton(ev: any) {
+      let val = ev.target || ev.srcElement || ev.currentTarget;
+      var idAttr = val.attributes.id;
+      if (idAttr === undefined){
+          console.log("Se debe dar click en el mas");
+      }else if (val != '') {
+          var value = idAttr.nodeValue;
+          console.log(value + " value");
+          //this.navCtrl.parent.parent.setRoot(ReproductorPage,value);
+      }
+      //
+    }
   
     getItems(ev: any){
       //Reset items back to all of the items

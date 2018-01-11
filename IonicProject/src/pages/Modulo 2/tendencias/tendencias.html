@@ -23,12 +23,12 @@
    
   <ion-content padding>
     
-      <ion-card *ngFor="let item of data" (click)='reproductor($event);'>
+      <ion-card *ngFor="let item of data">
          
           <ion-item> 
             <ion-buttons class= 'centrado-porcentual2'  >
                 <button class="boton">
-              <ion-icon name="add" id="{{item.idusuario}}"></ion-icon>   
+              <ion-icon name="add" id="{{item.idusuario}}" (click)='suscripcionBoton($event);'></ion-icon>   
             </button>
             </ion-buttons>   
             <ion-avatar item-start>
@@ -40,7 +40,7 @@
             
           </ion-item>
         
-          <img id="{{item.id}}" src={{item.imagen}}>
+          <img id="{{item.id}}" src={{item.imagen}} (click)='reproductor($event);'>
         
           <ion-card-content>
             <p style="font-size:large">{{item.nombre}}</p> <!--Titulo del video-->
