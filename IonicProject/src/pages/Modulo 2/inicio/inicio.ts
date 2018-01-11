@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { RestApiService } from '../../../app/rest-api.service';
 import { Subscription } from 'rxjs/Subscription';
+import { AgregarvideoPage } from '../../Modulo3/agregarvideo/agregarvideo';
 
 
 /**
@@ -361,4 +362,9 @@ export class InicioPage {
         }
   }
 
+    //MODULO 3 CARGAR VIDEO BOTON HEADER
+    openCargarVideo(){
+        this.navCtrl.push('AgregarvideoPage');
+    }
+    //FIN MODULO 3
 }
