@@ -2,7 +2,7 @@ package edu.ucab.desarrollo.viucab.common.entities;
 
 import java.util.Date;
 
-public class Notificacion {
+public class Notificacion extends Entity {
     private int id;
     private Video video;
     private Usuario usuario;

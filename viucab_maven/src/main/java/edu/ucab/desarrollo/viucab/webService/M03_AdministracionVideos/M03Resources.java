@@ -25,20 +25,20 @@ public class M03Resources {
     static Connection conn = Sql.getConInstance();
     private static final String FOLDER_DIR = "C:/Users/andre/Desktop/img/";
 
-    @POST
-    @Path("/uploadImage")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    @Produces("application/json")
-    public String uploadImage(@FormDataParam("file") InputStream uploadedInputStream,
-                              @FormDataParam("file") FormDataContentDisposition fileDisposition) {
-
-        String name = "download-" + Integer.toString( new Random().nextInt(50)) +".jpg";
-        String filePath = FOLDER_DIR + name;
-        saveFile(uploadedInputStream,filePath);
-        String output = "File uploaded to : " + filePath;
-        return gson.toJson(output);
-
-    }
+//    @POST
+//    @Path("/uploadImage")
+//    @Consumes(MediaType.MULTIPART_FORM_DATA)
+//    @Produces("application/json")
+//    public String uploadImage(@FormDataParam("file") InputStream uploadedInputStream,
+//                              @FormDataParam("file") FormDataContentDisposition fileDisposition) {
+//
+//        String name = "download-" + Integer.toString( new Random().nextInt(50)) +".jpg";
+//        String filePath = FOLDER_DIR + name;
+//        saveFile(uploadedInputStream,filePath);
+//        String output = "File uploaded to : " + filePath;
+//        return gson.toJson(output);
+//
+//    }
 
     @POST
     @Path("/uploadVideo")

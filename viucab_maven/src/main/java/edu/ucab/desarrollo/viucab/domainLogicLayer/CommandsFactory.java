@@ -13,6 +13,8 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M02_Home.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M04_Reproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M05_ListaDeReproduccion.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.*;
+
 
 /**
  * Fabrica de comandos creada por M011
@@ -194,4 +196,9 @@ public class CommandsFactory {
      }
      
      // Fin M04
+
+    // M10
+    public static Command instanciateGetNotificaciones ( Entity notificacion) {
+        return new GetNotificaciones(notificacion);
+    }
 }
