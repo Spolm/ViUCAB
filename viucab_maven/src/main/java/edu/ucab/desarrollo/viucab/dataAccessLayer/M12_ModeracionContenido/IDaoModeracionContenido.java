@@ -17,28 +17,28 @@ public interface IDaoModeracionContenido extends IDao {
      * @return
      * @throws SQLException
      */
-    public ArrayList<Filtro> buscarFiltros(Integer id) throws SQLException;
+    public ArrayList<Filtro> buscarFiltros(Integer id) throws SQLException, VIUCABException;
 
     /**
      * Metodo que se instancia en el GetModeracionContenidoDao.java
      * @return
      * @throws SQLException
      */
-    public boolean compararPassword(Integer id, String password) throws SQLException;
+    public boolean compararPassword(Integer id, String password) throws SQLException, VIUCABException;
 
     /**
      * Metodo que se instancia en el GetModeracionContenidoDao.java
      * @return
      * @throws SQLException
      */
-    public ArrayList<Video> buscarVideosPermitidos(Integer id) throws SQLException;
+    public ArrayList<Video> buscarVideosPermitidos(Integer id) throws SQLException, VIUCABException;
 
     /**
      * Metodo que se instancia en el GetModeracionContenidoDao.java
      * @return
      * @throws SQLException
      */
-    public ArrayList<Video> buscarYFiltrarVideos(Integer id, ArrayList<Video> listaVideos ) throws SQLException;
+    public ArrayList<Video> buscarYFiltrarVideos(Integer id, ArrayList<Video> listaVideos ) throws SQLException, VIUCABException;
 
     /**
      * Metodo que se instancia en el GetModeracionContenidoDao.java

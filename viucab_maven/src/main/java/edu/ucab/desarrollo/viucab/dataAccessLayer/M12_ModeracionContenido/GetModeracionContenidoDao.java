@@ -51,7 +51,7 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
      * @return lista de filtros
      * @throws SQLException
      */
-    public ArrayList<Filtro> buscarFiltros(Integer id) throws SQLException {
+    public ArrayList<Filtro> buscarFiltros(Integer id) throws SQLException,VIUCABException{
 
         ArrayList<Filtro> listaFiltros= new ArrayList<>();
         Connection conn= null;
@@ -82,6 +82,9 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
 
         } catch(SQLException e) {
             e.printStackTrace();
+        }catch (Exception e) {
+            logger.error( "Metodo: {} {}", "buscarFiltros", e.toString() );
+            throw new VIUCABException( e );
         }
         finally {
             Sql.bdClose(conn);
@@ -99,7 +102,7 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
      * @return true o false
      * @throws SQLException
      */
-    public boolean compararPassword(Integer id, String password) throws SQLException {
+    public boolean compararPassword(Integer id, String password) throws SQLException, VIUCABException {
         //Instanciando conexion
         Connection conn= Sql.getConInstance();
         //Variable de control
@@ -122,7 +125,10 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        } catch (Exception e) {
+            logger.error( "Metodo: {} {}", "compararPassword", e.toString() );
+            throw new VIUCABException( e );
+        }finally {
             Sql.bdClose(conn);
         }
 
@@ -138,7 +144,7 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
      * @return lista de videos permitidos
      * @throws SQLException
      */
-    public ArrayList<Video> buscarVideosPermitidos(Integer idd) throws SQLException {
+    public ArrayList<Video> buscarVideosPermitidos(Integer idd) throws SQLException, VIUCABException {
         ArrayList<Video> listaVideos=new ArrayList<>();
 
         Connection conn= null;
@@ -176,7 +182,11 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        }
+        catch (Exception e) {
+            logger.error( "Metodo: {} {}", "buscarVideosPermitidos", e.toString() );
+            throw new VIUCABException( e );
+        }finally {
             Sql.bdClose(conn);
         }
 
@@ -194,7 +204,7 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
      * @return lista de videos filtrada, segun los videos permitidos del Usuario
      * @throws SQLException
      */
-    public ArrayList<Video> buscarYFiltrarVideos(Integer idd,  ArrayList<Video> listaVideos) throws SQLException {
+    public ArrayList<Video> buscarYFiltrarVideos(Integer idd,  ArrayList<Video> listaVideos) throws SQLException,VIUCABException{
         ArrayList<Video> listaVideosPermitidos=new ArrayList<>();
         ArrayList<Video> listaVideosFiltrados= new ArrayList<>();
         Connection conn= null;
@@ -238,7 +248,10 @@ public class GetModeracionContenidoDao extends Dao implements IDaoModeracionCont
 
         } catch (SQLException e) {
             e.printStackTrace();
-        } finally {
+        } catch (Exception e) {
+            logger.error( "Metodo: {} {}", "buscarYFiltrarVideos", e.toString() );
+            throw new VIUCABException( e );
+        }finally {
             Sql.bdClose(conn);
         }
 
