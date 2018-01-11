@@ -30,6 +30,9 @@ public class GetUsuariosComando extends Command {
     }
 
 
+    public GetUsuariosComando(int idSuscriptor)  {
+        this.idSuscriptor = idSuscriptor;
+    }
 
     /**
      * Metoto que Devuelve la lista de  Usuarios

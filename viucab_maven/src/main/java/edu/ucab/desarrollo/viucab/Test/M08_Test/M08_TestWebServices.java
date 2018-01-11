@@ -1,9 +1,7 @@
 package edu.ucab.desarrollo.viucab.Test.M08_Test;
 
 
-import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
-import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
-import edu.ucab.desarrollo.viucab.common.exceptions.WebFaulException;
+import edu.ucab.desarrollo.viucab.common.exceptions.*;
 import edu.ucab.desarrollo.viucab.webService.M08_Suscripcion.M08_Suscripcion;
 import static org.junit.Assert.assertNotNull;
 import org.junit.Test;
@@ -11,7 +9,7 @@ import org.junit.Test;
 public class M08_TestWebServices {
 
     @Test
-    public void  TestDaolistaSuscripciones() throws PLConnectException1, BDConnectException1, WebFaulException {
+    public void  TestDaolistaSuscripciones() throws PLConnectException1, BDConnectException1, WebFaulException, PlConnectException, BdConnectException {
 
         M08_Suscripcion a = new  M08_Suscripcion();
         assertNotNull(a.GetSuscripcion(1));

@@ -30,11 +30,10 @@ public class ViUcab extends Application {
         h.add(M11_Estadistica.class);
         h.add(M05_ListaDeReproduccion.class);
         h.add(M08_Suscripcion.class);
-<<<<<<< HEAD
         h.add(M12_ModeracionContenido.class);
-=======
+
         h.add(MultiPartFeature.class);
->>>>>>> Develop
+
 
 
         return h;

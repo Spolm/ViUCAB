@@ -9,8 +9,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.*;
 
-<<<<<<< HEAD
-=======
+
         import com.google.gson.Gson;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
@@ -20,18 +19,17 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.ConsultarVideos;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.EliminarEtiqueta;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M07_Etiquetas.InsertarEtiqueta;
->>>>>>> Develop
+
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-<<<<<<< HEAD
+
 
 import java.util.ArrayList;
 import java.util.Collection;
-=======
->>>>>>> Develop
+
 import java.util.List;
 
 @Path("/Etiqueta")

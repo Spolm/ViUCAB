@@ -4,6 +4,7 @@ import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M03_AdministracionVideos.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetUsuariosComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.SetSuscripcionComando;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.UpdateSuscripcionComando;
 import edu.ucab.desarrollo.viucab.common.entities.Video;
@@ -150,7 +151,7 @@ public class CommandsFactory {
      public  static  Command instanciaSetSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new SetSuscripcionComando(idsuscriptor,idsuscripcion);}
 
      public  static  Command instanciaUpdateSuscripcionComando(int idsuscriptor,int idsuscripcion) {return  new UpdateSuscripcionComando(idsuscriptor,idsuscripcion);}
-
+    public static Command instanciaGetUsuariosComando (int idLogueado) {return  new GetUsuariosComando( idLogueado );}
 
     //Fin instancias M08
      

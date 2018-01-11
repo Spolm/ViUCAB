@@ -2,7 +2,9 @@ package edu.ucab.desarrollo.viucab.Test.M08_Test;
 
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.M08.SuscripcionDao;
 import org.junit.Test;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 public class M08_TestSuscripcionDao {
 
     @Test
-    public void  TestlistaSuscripciones() throws PLConnectException1, BDConnectException1 {
+    public void  TestlistaSuscripciones() throws PLConnectException1, BDConnectException1, PlConnectException, BdConnectException {
 
         SuscripcionDao dao = DaoFactory.instanciateSuscripcion();
         ArrayList<Usuario> user = dao.listaSuscripciones(1);

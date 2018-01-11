@@ -2,7 +2,9 @@ package edu.ucab.desarrollo.viucab.Test.M08_Test;
 
 import edu.ucab.desarrollo.viucab.common.entities.Usuario;
 import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
 import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M08.GetSuscripcionComando;
@@ -18,7 +20,7 @@ import static org.junit.Assert.assertNotNull;
 public class M08_TestSuscripcionComando {
 
     @Test
-    public  void TestGetSuscripcionComando() throws PLConnectException1, BDConnectException1 {
+    public  void TestGetSuscripcionComando() throws PLConnectException1, BDConnectException1, PlConnectException, BdConnectException {
 
         Command comandSuscripcion = CommandsFactory.instanciaGetSuscripcionComando(1);
         GetSuscripcionComando cmd = (GetSuscripcionComando) comandSuscripcion;
@@ -31,7 +33,7 @@ public class M08_TestSuscripcionComando {
 
     @Test
     public  void TestGetUsuariosComando() throws PLConnectException1, BDConnectException1 {
-        Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando();
+        Command comandSuscripcion = CommandsFactory.instanciaGetUsuariosComando(1);
         GetUsuariosComando cmd = (GetUsuariosComando) comandSuscripcion;
         cmd.execute();
         ArrayList<Usuario> result = cmd.get_listUsuario();
