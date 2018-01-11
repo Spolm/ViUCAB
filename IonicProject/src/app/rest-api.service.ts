@@ -8,7 +8,7 @@ import { Http } from '@angular/http';
 import { Headers, RequestOptions} from '@angular/http';
 
 //Direccion del servidor donde esta la BDD
-const URL = 'http://localhost:8888/Viucab_war';
+const URL = 'http://localhost:8080/viucab';
 
 @Injectable()
 export class RestApiService {

@@ -7,7 +7,7 @@ public class Registry {
 
     public static String BD_USER = "ViUCAB";
     public static String BD_PASSWORD = "viucab";
-    public static String BD_URL = "jdbc:postgresql://localhost:5432/VIUCAB";
+    public static String BD_URL = "jdbc:postgresql://localhost:5432/ViUCAB";
     public static String BD_CLASS_FOR_NAME = "org.postgresql.Driver";
 
     public static final int RESULT_CODE_OK = 200;

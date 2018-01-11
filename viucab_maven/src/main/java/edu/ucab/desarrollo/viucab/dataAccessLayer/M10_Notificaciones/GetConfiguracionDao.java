@@ -3,7 +3,6 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones;
 import edu.ucab.desarrollo.viucab.common.entities.ConfiguracionNotificaciones;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
-import edu.ucab.desarrollo.viucab.common.exceptions.M08.BdConnectException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
 
 import java.sql.Connection;
@@ -36,7 +35,7 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
 
     //Metodo que obtiene la configuracion de notificaciones de la BDD
     @Override
-    public Entity configuracion(Entity e) throws SQLException, BdConnectException {
+    public Entity configuracion(Entity e) throws SQLException {
         Connection conexion;
         ResultSet result = null;
         String select="SELECT * FROM config_notificacion WHERE usu_id = ?;";
@@ -68,7 +67,7 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
     }
     // Modificar para que se traiga todos los datos correctos de Entity e
     @Override
-    public void modificarConfiguracion(Entity e) throws SQLException, BdConnectException {
+    public void modificarConfiguracion(Entity e) throws SQLException {
         Connection conexion;
         ResultSet result = null;
         String select= "UPDATE config_notificacion SET " +
