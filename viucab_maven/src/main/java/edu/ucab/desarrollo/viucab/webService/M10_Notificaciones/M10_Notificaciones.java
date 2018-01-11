@@ -59,14 +59,18 @@ public class M10_Notificaciones {
     @Path("/notificacion")
     @Produces("application/json")
     //Recibe como parametro el id del usuario que inicio sesion
-    public String obtenerNotificacion (){
-
+    public Response obtenerNotificacion () {
+        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity notificacionObject = EntityFactory.notificacion();
         Command commandNotificacion = CommandsFactory.instanciateGetNotificaciones(notificacionObject);
         GetNotificaciones cmd = (GetNotificaciones) commandNotificacion;
         cmd.execute();
         List<Entity> result = cmd.ReturnListNot();
-        return gson.toJson(result);
+        rb.header("Notifications","Success");
+        rb.tag("application/json");
+        rb.entity(gson.toJson(result));
+        //return gson.toJson(result);
+        return rb.build();
     }
 
     /** Metodo que desecha la notificacion una vez se ha interactuado con ella
