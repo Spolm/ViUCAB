@@ -162,80 +162,16 @@ public class M10_Notificaciones {
     @POST
     @Path("/notificacionMail")
     @Produces("application/json")
-    public Response enviarMail (@QueryParam("userCliId") String userCli, @QueryParam("userSuscrId") String userSuscr){
-<<<<<<< HEAD
+    public Response enviarMail (@QueryParam("userCliId") String userCli, @QueryParam("userSuscrId") String userSuscr) {
 
         Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity objetoMail = EntityFactory.notificacionCorreo();
-        Command cmdMail= CommandsFactory.instanciateMailNotificacion(objetoMail,userCli,userSuscr);
+        Command cmdMail = CommandsFactory.instanciateMailNotificacion(objetoMail, userCli, userSuscr);
         MailNotificacion mail = (MailNotificacion) cmdMail;
         mail.execute();
-        String entidad = "El mensaje ha sido enviado correctamente"+mail.Return().get_cadena();
-        rb.header("Content-Type","application/json");
+        String entidad = "El mensaje ha sido enviado correctamente" + mail.Return().get_cadena();
+        rb.header("Content-Type", "application/json");
         rb.entity(entidad);
         return rb.build();
-        /*String usuarioCliente= null;
-=======
-        Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
-        String usuarioCliente= null;
->>>>>>> 926c2ad3a79d9c2fb3e2288e79838f80779da2d2
-        String correo = null;
-        String usuarioSuscripcion= null;
-        String video= null;
-        String image= null;
-        try{
-            Statement stmt = conexion.createStatement();
-<<<<<<< HEAD
-            PreparedStatement st = conexion.prepareCall("{ call m10_sendmailnotificacion(?) }");
-            st.setInt(1, Integer.parseInt(userCli));
-            ResultSet rs = st.executeQuery();
-=======
-            ResultSet rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userCli);
->>>>>>> 926c2ad3a79d9c2fb3e2288e79838f80779da2d2
-            if(rs.next()){
-                usuarioCliente = rs.getString(2);
-                correo = rs.getString(6);
-            }
-<<<<<<< HEAD
-            st.setInt(1,Integer.parseInt(userSuscr));
-            rs = st.executeQuery();
-            if(rs.next()){
-                usuarioSuscripcion = rs.getString(2);
-            }
-            st = conexion.prepareCall( "{ call m10_sendvideonotificacion(?)}");
-            st.setInt(1, Integer.parseInt(userSuscr));
-            ResultSet rs2 = st.executeQuery();
-=======
-            rs = stmt.executeQuery("SELECT * FROM usuario WHERE usu_id = " + userSuscr);
-            if(rs.next()){
-                usuarioSuscripcion = rs.getString(2);
-            }
-            ResultSet rs2 = stmt.executeQuery("SELECT * FROM video WHERE usu_id = " + userSuscr);
->>>>>>> 926c2ad3a79d9c2fb3e2288e79838f80779da2d2
-            if (rs2.next()){
-                video = rs2.getString(2);
-                image = rs2.getString(8);
-            }
-            MailNotificacion mail = new MailNotificacion();
-            mail.enviarNotificacion(correo,"Hola " + usuarioCliente + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + usuarioSuscripcion +" ha subido un nuevo video titulado: "+video,"Actividad reciente", image);
-            rs.close();
-            rs2.close();
-            stmt.close();
-<<<<<<< HEAD
-=======
-            rb.header("Content-Type","application/json");
-            rb.entity("El mensaje ha sido enviado correctamente");
->>>>>>> 926c2ad3a79d9c2fb3e2288e79838f80779da2d2
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            Sql.bdClose(conexion);
-<<<<<<< HEAD
-        }*/
-
-=======
-        }
-        return rb.build();
->>>>>>> 926c2ad3a79d9c2fb3e2288e79838f80779da2d2
     }
 }
