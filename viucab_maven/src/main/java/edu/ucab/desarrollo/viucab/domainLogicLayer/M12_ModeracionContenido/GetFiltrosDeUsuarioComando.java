@@ -10,7 +10,7 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import java.util.ArrayList;
 
 /**
- * Created by jose on 08/11/2017.
+ * Created by Pablo, Jose and Karem on 07/01/2018.
  */
 public class GetFiltrosDeUsuarioComando extends Command {
 

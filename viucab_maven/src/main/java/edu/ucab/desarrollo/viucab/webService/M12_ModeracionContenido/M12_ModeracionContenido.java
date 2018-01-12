@@ -11,12 +11,20 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M12_ModeracionContenido.*;
 import javax.ws.rs.*;
 import java.sql.Connection;
 
-
+/**
+ * Created by Pablo, Jose and Karem on 07/01/2018.
+ */
 @Path("/ModeracionContenido")
 public class M12_ModeracionContenido {
     Entity entidad = null;
     Gson gson = new Gson();
-    //Connection conn = Sql.getConInstance();
+      //Connection conn = Sql.getConInstance();
+
+    /**
+     * Devuelve todos los filtros de configuracion dado un id de Usuario
+     * @Param id
+     * @return lista de filtros del Usuario
+     */
 
     @GET
     @Path("/cargarFiltros")
@@ -34,7 +42,12 @@ public class M12_ModeracionContenido {
         }
     }
 
-
+  /**
+     * Devuelve true si la contraseña ingresada coincide con la del Usuario, dado un id de Usuario y Clave obtenida desde la app
+     * @Param id
+     * @Param claveApp
+     * @return true o false
+     */
     @GET
     @Path("/validarAcceso")
     @Produces("application/json")
@@ -51,7 +64,11 @@ public class M12_ModeracionContenido {
     }
 
 
-
+/**
+     * Devuelve todos los videos permitidos segun los filtros y preferencia del Usuraio, dado un id de Usuario
+     * @Param id
+     * @return lista de videos permitidos
+     */
     @GET
     @Path("/cargarVideosPermitidos")
     @Produces("application/json")
@@ -67,8 +84,12 @@ public class M12_ModeracionContenido {
         }
 
     }
-
-
+  /**
+     * Devuelve todos los videos permitidos segun los filtros y preferencia del Usuraio,
+     * dado un contenedor compuesto del id de Usuario y la lista de videos a filtrar
+     * @Param contenedor
+     * @return lista de videos filtrados
+     */
     @POST
     @Path("/filtrarVideos")
     @Consumes("application/json")
@@ -85,7 +106,12 @@ public class M12_ModeracionContenido {
         }
     }
 
-
+/**
+     * Devuelve true si pudo guardar todos los filtros del Usuraio,
+     * dado un contenedor compuesto del id de Usuario y la lista de filtros a guardar
+     * @Param contenedor
+     * @return true si guardó los filtros con exito
+     */
     @POST
     @Path("/guardarFiltros")
     @Consumes("application/json")

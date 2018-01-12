@@ -11,7 +11,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by pablo & jose on 09/01/2018.
+ * Created by Pablo, Jose and Karem on 07/01/2018.
  */
 public class M12_Test {
 
@@ -28,7 +28,7 @@ public class M12_Test {
 
     }
 
-    //Prueba si el r
+    //Prueba si el resultado es tru o false.
     @Test
     public void pruebaValidarClave() throws Exception {
 

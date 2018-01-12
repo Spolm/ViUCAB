@@ -5,6 +5,9 @@ package edu.ucab.desarrollo.viucab.common.entities;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 
 import java.io.Serializable;
+/**
+ * Created by Pablo, Jose and Karem on 07/01/2018.
+ */
 
 public class Filtro extends Entity {
     private Integer id;

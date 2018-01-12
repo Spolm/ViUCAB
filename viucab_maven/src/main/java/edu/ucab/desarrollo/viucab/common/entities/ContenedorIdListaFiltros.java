@@ -3,6 +3,10 @@ package edu.ucab.desarrollo.viucab.common.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+/**
+ * Created by Pablo, Jose and Karem on 07/01/2018.
+ */
+
 
 public class ContenedorIdListaFiltros extends Entity implements Serializable{
     private Integer id;
