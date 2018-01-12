@@ -1,4 +1,12 @@
 package edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones;
+import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.entities.Notificacion;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.DaoFactory;
+import edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones.MailNotificacionDao;
+import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
+import org.slf4j.LoggerFactory;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -13,14 +21,60 @@ import javax.mail.internet.MimeMultipart;
 import java.util.Properties;
 
 
-public class MailNotificacion {
-    Properties props = new Properties();
+public class MailNotificacion extends Command{
 
-    Session session = Session.getDefaultInstance(props);
+    final static org.slf4j.Logger logger = LoggerFactory.getLogger(GetNotificaciones.class);
 
-    MimeMessage message = new MimeMessage(session);
+    private static Notificacion nt;
 
-    MimeMultipart multipart = new MimeMultipart("related");
+    private static Entity en;
+
+    private static String usuarioCli;
+
+    private static String usuarioSus;
+
+    private static String destinatario;
+
+    private static String cuerpo;
+
+    private static String tema;
+
+    private static String imagen;
+
+    private static Properties props = new Properties();
+
+    private static Session session = Session.getDefaultInstance(props);
+
+    private static MimeMessage message = new MimeMessage(session);
+
+    private static MimeMultipart multipart = new MimeMultipart("related");
+
+    public MailNotificacion (Entity en, String usuarioCli, String usuarioSus){
+        this.usuarioCli = usuarioCli;
+        this.usuarioSus = usuarioSus;
+        this.en = en;
+        cuerpo = null;
+        destinatario = null;
+        tema = null;
+        imagen = null;
+    }
+
+    @Override
+    public void execute() {
+        try {
+            MailNotificacionDao dao = DaoFactory.instanciateDaoMailNotificacion();
+            nt = dao.mailNotificacion(en,usuarioCli,usuarioSus);
+            cuerpo = "Hola " + nt.getUsuario().get_name_user() + " nos complace notificarle que sus suscripciones han generado actividad ultimamente:\n El usuario " + nt.getUsuarioSus().get_name_user() +" ha subido un nuevo video titulado: "+ nt.getVideo().getNombre();
+            destinatario = nt.getUsuario().get_email_user();
+            tema = "Actividad Reciente";
+            imagen = nt.getVideo().getImagen();
+            enviarNotificacion(destinatario,cuerpo,tema,imagen);
+        }
+        catch (Exception e){
+            logger.debug("Exception: {}", e);
+        }
+    }
+
 
     public void enviarNotificacion (String recipient, String body, String subject, String image){
 
@@ -61,5 +115,11 @@ public class MailNotificacion {
         catch(Exception e){
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public Entity Return() {
+        nt.set_cadena(nt.getUsuario().get_name_user());
+        return nt;
     }
 }

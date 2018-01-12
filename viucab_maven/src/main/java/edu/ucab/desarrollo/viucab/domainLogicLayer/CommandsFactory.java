@@ -216,6 +216,10 @@ public class CommandsFactory {
         return new GetNotificaciones(notificacion);
     }
 
+    public static Command instanciateMailNotificacion ( Entity mailNotificacion, String usuarioCli, String usuarioSus) {
+        return new MailNotificacion(mailNotificacion,usuarioCli, usuarioSus);
+    }
+
 
     public static Command instanciateGetConfiguracion (Entity configuracion) {
         return new GetConfiguracion(configuracion);

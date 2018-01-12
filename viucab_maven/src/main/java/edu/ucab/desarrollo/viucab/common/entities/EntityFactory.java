@@ -179,6 +179,13 @@ public class EntityFactory
     static public Notificacion notificacion (int id, Video video, Usuario usuario, boolean desechado, Date fecha){
         return new Notificacion(id, video, usuario, desechado, fecha);
     }
+    static public Notificacion notificacionCorreo (){
+        return new Notificacion();
+    }
+
+    static public Notificacion notificacionCorreo (Usuario usuCli, Usuario usuSus, Video vid){
+        return new Notificacion(usuCli,usuSus,vid);
+    }
 
     static public Notificacion notificacion (int id) {
         return new Notificacion (id);

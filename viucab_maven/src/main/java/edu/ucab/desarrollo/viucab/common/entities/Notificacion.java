@@ -6,6 +6,7 @@ public class Notificacion extends Entity {
     private int id;
     private Video video;
     private Usuario usuario;
+    private Usuario usuarioSus;
     private boolean desechado;
     private Date fecha;
 
@@ -20,6 +21,11 @@ public class Notificacion extends Entity {
         this.usuario = usuario;
         this.desechado = desechado;
         this.fecha = fecha;
+    }
+    public Notificacion(Usuario uCli, Usuario uSus,Video video){
+        this.video = video;
+        this.usuario = uCli;
+        this.usuarioSus = uSus;
     }
 
     public int getId() {
@@ -44,6 +50,14 @@ public class Notificacion extends Entity {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public Usuario getUsuarioSus() {
+        return usuarioSus;
+    }
+
+    public void setUsuarioSus(Usuario usuarioSus) {
+        this.usuarioSus = usuarioSus;
     }
 
     public boolean isDesechado() {
