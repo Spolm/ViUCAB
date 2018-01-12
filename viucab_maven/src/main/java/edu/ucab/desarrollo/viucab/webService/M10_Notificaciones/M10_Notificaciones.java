@@ -4,8 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
 import edu.ucab.desarrollo.viucab.common.entities.EntityFactory;
-import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.*;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Command;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.CommandsFactory;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.DiscardNotificacion;
@@ -13,6 +12,8 @@ import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetConfigu
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.GetNotificaciones;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.M10_Notificaciones.MailNotificacion;
 import edu.ucab.desarrollo.viucab.domainLogicLayer.Sql;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -22,6 +23,7 @@ import java.util.List;
 
 @Path("/Notificaciones")
 public class M10_Notificaciones {
+    private static Logger logger = LoggerFactory.getLogger( M10_Notificaciones.class );
     Gson gson = new Gson();
     Connection conexion = Sql.getConInstance();
     private Response _response;
@@ -30,18 +32,31 @@ public class M10_Notificaciones {
     @Path("/notificacion")
     @Produces("application/json")
     //Recibe como parametro el id del usuario que inicio sesion
-    public Response obtenerNotificacion () throws  SQLException, BdConnectException, PlConnectException {
+    public Response obtenerNotificacion () {
         Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity notificacionObject = EntityFactory.notificacion();
         Command commandNotificacion = CommandsFactory.instanciateGetNotificaciones(notificacionObject);
         GetNotificaciones cmd = (GetNotificaciones) commandNotificacion;
-        cmd.execute();
-        List<Entity> result = cmd.ReturnListNot();
-        rb.header("Notifications","Success");
-        rb.tag("application/json");
-        rb.entity(gson.toJson(result));
-        //return gson.toJson(result);
-        return rb.build();
+        try {
+            cmd.execute();
+            List<Entity> result = cmd.ReturnListNot();
+            rb.header("Notifications","Success");
+            rb.tag("application/json");
+            rb.entity(gson.toJson(result));
+            //return gson.toJson(result);
+        }
+        catch ( VIUCABException e) {
+            notificacionObject.set_errorCode(e.ERROR_CODE);
+            notificacionObject.set_errorMsg(e.ERROR_MSG);
+            rb.header("Notificaciones","ERROR");
+        } catch (BDConnectException1 e) {
+            e.printStackTrace();
+        } catch (PLConnectException1 e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    return rb.build();
     }
 
     //Desechar Notificacion
@@ -49,16 +64,28 @@ public class M10_Notificaciones {
     @Path("/notificacionDes")
     @Consumes("application/json")
     @Produces("text/plain")
-    public Response desecharNotificacion (int id) throws  SQLException {
+    public Response desecharNotificacion (int id) {
         Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity notificacionObject = EntityFactory.notificacion(id);
         Command commandNotificacion = CommandsFactory.instanciateDiscardNotificacion(notificacionObject);
         DiscardNotificacion cmd = (DiscardNotificacion) commandNotificacion;
+        try {
         cmd.execute();
         Entity result = cmd.Return();
         rb.header("Notification Discarded","Success");
         rb.tag("application/json");
         rb.entity(gson.toJson(result));
+        } catch (VIUCABException e) {
+            notificacionObject.set_errorCode(e.ERROR_CODE);
+            notificacionObject.set_errorMsg(e.ERROR_MSG);
+            rb.header("Notificaciones","ERROR");
+        } catch (BDConnectException1 e) {
+            e.printStackTrace();
+        } catch (PLConnectException1 e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return rb.build();
         /*JsonObject jsonDatos = gson.fromJson( datos, JsonObject.class);
         PreparedStatement ps = conexion.prepareCall( "{? = CALL m10_desecharnotificacion()}");
@@ -74,18 +101,30 @@ public class M10_Notificaciones {
     @GET
     @Path("/configuracion")
     @Produces("application/json")
-    public Response obtenerConfiguracion (){
+    public Response obtenerConfiguracion () {
         Response.ResponseBuilder rb = Response.status(Response.Status.ACCEPTED);
         Entity configuracionObject = EntityFactory.configuracionNotificaciones();
         Command commandConfiguracion = CommandsFactory.instanciateGetConfiguracion(configuracionObject);
         GetConfiguracion cmd = (GetConfiguracion) commandConfiguracion;
-        cmd.execute();
-        List<Entity> result = cmd.ReturnListCon();
+        try {
+            cmd.execute();
+            List<Entity> result = cmd.ReturnListCon();
 //        System.out.println(result);
-        rb.header("Notifications","Success");
-        rb.tag("application/json");
-        rb.entity(gson.toJson(result));
-
+            rb.header("Notifications", "Success");
+            rb.tag("application/json");
+            rb.entity(gson.toJson(result));
+        }
+        catch (VIUCABException e) {
+            configuracionObject.set_errorCode(e.ERROR_CODE);
+            configuracionObject.set_errorMsg(e.ERROR_MSG);
+            rb.header("Notificaciones","ERROR");
+        } catch (BDConnectException1 e) {
+            e.printStackTrace();
+        } catch (PLConnectException1 e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return (rb.build());
     }
 

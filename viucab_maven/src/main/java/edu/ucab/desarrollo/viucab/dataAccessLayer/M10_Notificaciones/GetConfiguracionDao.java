@@ -2,7 +2,11 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones;
 
 import edu.ucab.desarrollo.viucab.common.entities.ConfiguracionNotificaciones;
 import edu.ucab.desarrollo.viucab.common.entities.Entity;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
+import org.postgresql.util.PSQLException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,7 +41,7 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
         return null;
     }
 
-    public ArrayList<ConfiguracionNotificaciones> getConfiguracion(Entity e) throws SQLException {
+    public ArrayList<ConfiguracionNotificaciones> getConfiguracion(Entity e) throws SQLException, VIUCABException, BDConnectException1, PLConnectException1 {
         ConfiguracionNotificaciones config = (ConfiguracionNotificaciones) e;
         ArrayList<ConfiguracionNotificaciones> listaConfig = new ArrayList<>();
         Connection conexion;
@@ -62,9 +66,12 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
                 break;
             }
             result.close();
-        }
-        catch (SQLException error){
-            error.getMessage();
+        }catch (PSQLException error) {
+            throw new PLConnectException1(error);
+        } catch (SQLException error) {
+            throw new BDConnectException1(error);
+        } catch (Exception error) {
+            error.printStackTrace();
         }
         finally {
             closeConnection();
@@ -73,7 +80,7 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
     }
     // Modificar para que se traiga todos los datos correctos de Entity e
     @Override
-    public void modificarConfiguracion(Entity e) throws SQLException {
+    public void modificarConfiguracion(Entity e) throws SQLException, VIUCABException, BDConnectException1, PLConnectException1 {
         Connection conexion;
         ResultSet result = null;
         String select= "UPDATE config_notificacion SET " +
@@ -88,10 +95,13 @@ public class GetConfiguracionDao extends Dao implements IDaoConfiguracion  {
             ps = conexion.prepareStatement(select);
            ps.setInt(1, config.get_id());
         }
-        catch (SQLException error){
+        catch (PSQLException error) {
+            throw new PLConnectException1(error);
+        } catch (SQLException error) {
+            throw new BDConnectException1(error);
+        } catch (Exception error) {
             error.printStackTrace();
-        }
-        finally {
+        } finally {
             closeConnection();
         }
     }

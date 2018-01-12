@@ -3,15 +3,20 @@ package edu.ucab.desarrollo.viucab.dataAccessLayer.M10_Notificaciones;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import edu.ucab.desarrollo.viucab.common.entities.*;
-import edu.ucab.desarrollo.viucab.common.exceptions.BdConnectException;
-import edu.ucab.desarrollo.viucab.common.exceptions.PlConnectException;
+import edu.ucab.desarrollo.viucab.common.exceptions.BDConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.PLConnectException1;
+import edu.ucab.desarrollo.viucab.common.exceptions.VIUCABException;
 import edu.ucab.desarrollo.viucab.dataAccessLayer.Dao;
+import org.junit.platform.commons.logging.Logger;
+import org.junit.platform.commons.logging.LoggerFactory;
+import org.postgresql.util.PSQLException;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 
 public class GetNotificacionDao extends Dao implements IDaoNotificacion {
+    private static Logger logger = LoggerFactory.getLogger(GetNotificacionDao.class );
     @Override
     public Entity notificacion(Entity e) throws SQLException {
         return null;
@@ -58,15 +63,17 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
         return not;
     }
 
-    /**Metodo para obtener todas las notificaciones para un usuario loggeado
-     *
-     * @param n
-     * @return ArrayList<Notificacion>
-     * @throws SQLException, BdConnectException, PlConnectException
+    /**
+     * Metodo que busca las notificaciones que no han sido desechadas por el usuario
+     * @return listaNotif
+     * @throws SQLException
+     * @throws VIUCABException
+     * @throws PLConnectException1
+     * @throws BDConnectException1
      */
 
     @Override
-    public ArrayList<Notificacion> obtenerNotificaciones(Entity n) throws SQLException, BdConnectException, PlConnectException {
+    public ArrayList<Notificacion> obtenerNotificaciones(Entity n) throws SQLException, BDConnectException1, PLConnectException1 {
         Notificacion not = (Notificacion) n;
         ArrayList<Notificacion> listaNotif = new ArrayList<>();
         PreparedStatement preStatement;
@@ -100,24 +107,38 @@ public class GetNotificacionDao extends Dao implements IDaoNotificacion {
             listaNotif.add(notif);
         }
         result.close();
+    } catch ( PSQLException e) {
+        throw new PLConnectException1(e);
     } catch (SQLException e) {
+        throw new BDConnectException1(e);
+        } catch (Exception e) {
         e.printStackTrace();
-        } finally {
+    } finally {
         closeConnection();
         }
         return listaNotif;
     }
 
-    public int descartarNotificacion (Entity n) throws SQLException {
+    public int descartarNotificacion (Entity n) throws SQLException, VIUCABException, BDConnectException1, PLConnectException1 {
         Gson gson = new Gson();
-        Connection conexion = Dao.getBdConnect();
-        JsonObject jsonDatos = gson.fromJson( String.valueOf(n), JsonObject.class);
-        PreparedStatement ps = conexion.prepareCall( "{? = CALL m10_desecharnotificacion()}");
-        int id = jsonDatos.get("not_id").getAsInt();
-        ps.setInt(1, id );
-        ps.executeQuery();
-        int result = jsonDatos.get("not_id").getAsInt();
-        closeConnection();
+        int result = 0;
+        try {
+            Connection conexion = Dao.getBdConnect();
+            JsonObject jsonDatos = gson.fromJson(String.valueOf(n), JsonObject.class);
+            PreparedStatement ps = conexion.prepareCall("{? = CALL m10_desecharnotificacion()}");
+            int id = jsonDatos.get("not_id").getAsInt();
+            ps.setInt(1, id);
+            ps.executeQuery();
+            result = jsonDatos.get("not_id").getAsInt();
+        } catch (PSQLException e) {
+            throw new PLConnectException1(e);
+        } catch (SQLException e) {
+            throw new BDConnectException1(e);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeConnection();
+        }
         return  result;
     }
 
